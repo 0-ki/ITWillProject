@@ -6,7 +6,7 @@ import com.doArtShow.controls.Controller;
 import com.doArtShow.dao.MemberDao;
 import com.doArtShow.dto.MemberDto;
 
-// 회원 가입 컨트롤러 ->정미언니가 만듬~!
+// 회원 가입 컨트롤러
 public class MemberAddController implements Controller{
 	MemberDao memberDao;
 	
