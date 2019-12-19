@@ -24,14 +24,14 @@ public class MemberAddController implements Controller{
 		// 회원가입 입력폼을 요청할 때
 		if (model.get("member") == null) {
 			
-			return "/auth/memberSignUp.jsp";
+			return "/auth/memberSignUp.jsp"; //forward일때는 .jsp
 		
 		// 회원 가입 후 등록을 요청할 때(로그인 페이지를 보여준다.)
 		}else { 
 			MemberDto member = (MemberDto)model.get("member");
 			memberDao.insertMember(member);
 		    
-			return "redirect:memberLogIn.do";		 
+			return "redirect:memberLogIn.do"; //redirect일때는 .do
 		}
 	}
 }
