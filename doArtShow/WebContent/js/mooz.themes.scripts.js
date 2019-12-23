@@ -70,10 +70,10 @@ $('.owl-portfolio').owlCarousel({
 })*/
 
   // hide #back-top first
-  $("#back-top").hide();
+  /*$("#back-top").hide();*/
 
   // fade in #back-top
-
+/*
   $(window).scroll(function () {
   	if ($(this).scrollTop() > 100) {
   		$('#back-top').fadeIn();
@@ -88,7 +88,7 @@ $('.owl-portfolio').owlCarousel({
   		scrollTop: 0
   	}, 800);
   	return false;
-  });
+  });*/
 
 // Closes the Responsive Menu on Menu Item Click
 $('.navbar-collapse ul li a').click(function() {

@@ -18,4 +18,23 @@
     <link rel="stylesheet" type="text/css" href="/doArtShow/libs/slick/slick-theme.css" />
     <link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR&display=swap" rel="stylesheet">
     <!--font-family: 'Noto Sans KR', sans-serif;-->
+    
+        <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
+    	<script>
+	Kakao.init('3f954d79af6a536ec76db999e7f2ba5b');
+    function loginWithKakao() {
+      console.log('login카카오 호출됨!');
+    	// 로그인 창을 띄웁니다.
+      Kakao.Auth.loginForm({
+    	  success: function(authObj) {
+              alert(JSON.stringify(authObj));
+            },
+            fail: function(err) {
+              alert(JSON.stringify(err));
+        }
+      });
+    };
+	</script>
+    
+    
 </head>
