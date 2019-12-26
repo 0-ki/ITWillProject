@@ -17,7 +17,7 @@
                     <div class="section-title">
                         <h2>최근 등록된 전시</h2>
                         <div>
-                            <h4>최근 등록된 전시(+더보기) -이미지 클릭시 해당 게시물 연결</h4>
+                            <h4><a href="#">더 보기 &nbsp;<span class="fa fa-plus"></span> </a></h4>
                             <div class="intro-heading">
                                 <div><img src="/doArtShow/sampleImages/1.jpg" alt="1"></div>
                                 <div><img src="/doArtShow/sampleImages/2.jpg" alt="2"></div>
@@ -32,7 +32,7 @@
                     <div class="section-title">
                         <h2>인기 있는 전시</h2>
                         <div>
-                            <h4>마감 임박한 전시(+더보기) -이미지 클릭시 해당 게시물 연결</h4>
+                            <h4><a href="#">더 보기 &nbsp;<span class="fa fa-plus"></span> </a></h4>
                             <div class="intro-heading">
                                 <div><img src="/doArtShow/sampleImages/5.jpg" alt="1"></div>
                                 <div><img src="/doArtShow/sampleImages/6.jpg" alt="2"></div>
