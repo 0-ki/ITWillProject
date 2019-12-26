@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
     <!-- 메인로고나 top 버튼 클릭시 최상단 좌표 역할 #page-top -->
     <span id="page-top">&nbsp;</span>
     <div id="page-top-div"></div>
@@ -144,3 +146,4 @@
         <a href=""><span class="item" style="color: #CE6D39; font-family: 'Noto Sans KR', sans-serif; "><br><br>전시<br><br>등록</span></a>
         <a href="#page-top"><i class="fa fa-angle-up"></i></a>
     </div>
+    

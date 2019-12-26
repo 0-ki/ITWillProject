@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -20,7 +22,7 @@
     <!--font-family: 'Noto Sans KR', sans-serif;-->
     
         <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
-    	<script>
+<!--     	<script>
 	Kakao.init('3f954d79af6a536ec76db999e7f2ba5b');
     function loginWithKakao() {
       console.log('login카카오 호출됨!');
@@ -34,7 +36,7 @@
         }
       });
     };
-	</script>
+	</script> -->
     
     
 </head>
