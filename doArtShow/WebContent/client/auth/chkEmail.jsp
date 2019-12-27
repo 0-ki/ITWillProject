@@ -9,7 +9,7 @@
 <title>이메일 중복확인</title>
 </head>
 <body>
-<form>
+<form name="emailChkForm">
     <table>
 	    <tr>
 			<td>이메일</td>
@@ -21,10 +21,21 @@
 	   </tr>
 		<tr>
 			<td>
-			<input type="button" value="이메일 사용" id="emailUseBtn" onclick="javascript:self.close()"></td>
+			<input type="button" value="이메일 사용" id="emailUseBtn" onclick="setId()"></td>
 		</tr>
 	</table>
 </form>
-
+<script language="javascript">
+$(document).ready(function(){
+	$("#emailUseBtn").attr("disabled", true);
+    $("#emailChkModalBtn").click(function(){
+        	$("#emailUseBtn").attr("disabled", false);
+    });
+});
+function setId(){
+	opener.document.signUpForm.email.value=document.emailChkForm.email.value;
+	self.close();
+}
+</script>
 </body>
 </html>

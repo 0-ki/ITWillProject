@@ -25,7 +25,7 @@ public class MemberLogInController implements Controller{
 			
 			//로그인 정보 확인
 			MemberDto member = memberDao.checkMember(
-					loginInfo.getId(), loginInfo.getPw());
+					loginInfo.getEmail(), loginInfo.getPw());
 			
 			if (member != null) {
 				// 로그인 정보 있음. 세션 생성 

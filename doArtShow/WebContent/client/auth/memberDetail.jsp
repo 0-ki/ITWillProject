@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<script src="../js/validate.js"></script>
+<script src="../js/validateForm.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
 <title>나의 계정 페이지</title>
 </head>
@@ -14,30 +14,42 @@
 <h1>내계정</h1>
 <table>
 	<tr>
-		<td>id</td>
-		<td>${member.id}</td>
+		<td>이메일</td>
+		<td>${member.email}</td>
 		<td><a href="memberLogOut.do">로그아웃</a></td>
 	</tr>
 	<tr>
-		<td>name</td>
-		<form method="post" name="updateNameForm">
-		<td><input type="text" value="${member.name}" name="name" id="input_name"></td>
-		<!-- <td><input type="submit" id="nameSubmitBtn" value="수정"></td> -->
-		<td><input type="button" onclick="chkNameFn(this.form)"id="nameSubmitBtn" value="수정"></td>
+		<td>이름</td>
+		<td>${member.name}</td>
+	</tr>
+	<tr>
+		<td>생년월일</td>
+		<form method="post" name="updateBirthForm">
+		<td><input type="text" value="${member.birth}" name="birth" id="input_birth" placeholder="0000-00-00"></td>
+		<td><input type="button" onclick="chkBirthFn(this.form)"id="birthSubmitBtn" value="수정"></td>
 		</form>
 	</tr>
 	<tr>
-		<td><div id="chkName"></div></td>
+		<td><div id="birth_check"></div></td>
 	</tr>
 	<tr>
-		<td>email</td>
-		<form  action="memberUpdate.do" method="post" name="updateEmailForm">
-		<td><input type="text" value="${member.email}" name="email" id="input_email"></td>
-		<td><input type="submit" id="emailSubmitBtn" value="수정"></td>
+		<td>성별</td>
+		<td>
+		<c:choose>
+			<c:when test="${member.gender}=='female'">여성</c:when>	
+			<c:otherwise>남성</c:otherwise>
+		</c:choose>
+		</td>
+	</tr>
+	<tr>
+		<td>비밀번호</td>
+		<form method="post" name="updatePwForm">
+		<td><input type="text" value="${member.pw}" name="pw" id="input_pw"></td>
+		<td><input type="button" onclick="chkPwFn(this.form)"id="pwSubmitBtn" value="수정"></td>
 		</form>
 	</tr>
 	<tr>
-		<td><div id="chkEmail"></div></td>
+		<td><div id="pw_check"></div></td>
 	</tr>
 	<tr>
 		<td>가보고 싶은 전시</td>
@@ -56,6 +68,14 @@
 		</td>
 	</tr>
 	<tr>
+		<td>내가 등록한 전시</td>
+	</tr>
+	<tr>
+		<td colspan="3">
+			<jsp:include  page="/client/auth/myExhibition.jsp"/>
+		</td>
+	</tr>
+	<tr>
 		<td colspan="3"><a href="">탈퇴하기</a></td>
 	</tr>
 </table>
@@ -66,25 +86,47 @@
 </c:if>
 <script type="text/javascript">
 $(document).ready(function(){
-	//이름칸에 입력을하고 나면 알림 부분을 비워준다.
-	$("#input_name").keyup(function(){
-		if($("#input_name").val() != null){
-			$("#chkName").text("")
+	//생년월일 입력을하고 나면 알림 부분을 비워준다.
+	$("#input_birth").keyup(function(){
+		if($("#input_birth").val() != null){
+			$("#birth_check").text("")
 		}
 	});
 	
-	//이메일 유효검사
-	$("#input_email").keyup(function(){
-		var email = $("#input_email").val();
-		var filter = /^([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
-		if(filter.test(email)){
-			$("#chkEmail").text("");
-			$("#emailSubmitBtn").attr("disabled", false);
-		} else {
-			$("#chkEmail").text("이메일 형식에 맞게 작성해주세요. 예시)123@art.com");
-			$("#chkEmail").css('color','red');
-			$("#emailSubmitBtn").attr("disabled", true);
+	//비밀번호 입력을하고 나면 알림 부분을 비워준다.
+	$("#input_pw").keyup(function(){
+		if($("#input_pw").val() != null){
+			$("#pw_check").text("")
 		}
+	});
+	
+	//생년월일 유효성검사
+	$("#input_birth").blur(function(){
+		var birth = $("#input_birth").val();
+		var filter =  /^(19[0-9][0-9]|20\d{2})-(0[0-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$/;
+		if(filter.test(birth)){
+			$("#birth_check").text("");
+			$("#birthSubmitBtn").attr("disabled", false);
+		} else {
+			
+			$("#birth_check").text("생년월일 8자리를 입력해주세요.");
+			$("#birth_check").css('color','red');
+			$("#birthSubmitBtn").attr("disabled", true);
+		}					
+	});
+
+	//비밀번호 유효검사
+	$("#input_pw").blur(function(){
+		var pw = $("#input_pw").val();
+		var filter = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,16}$/;
+		if(filter.test(pw)){
+			$("#pw_check").text("");
+			$("#pwSubmitBtn").attr("disabled", false);
+		} else {
+			$("#pw_check").text("8~16자 영문 대 소문자, 숫자, 특수문자를 사용하세요.");
+			$("#pw_check").css('color','red');
+			$("#pwSubmitBtn").attr("disabled", true);
+		}			
 	});
 });
 </script>

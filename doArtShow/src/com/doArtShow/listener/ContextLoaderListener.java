@@ -13,7 +13,7 @@ import com.doArtShow.controls.member.MemberEmailChkController;
 import com.doArtShow.controls.member.MemberLogInController;
 import com.doArtShow.controls.member.MemberLogOutController;
 import com.doArtShow.controls.member.MemberUpdateController;
-import com.doArtShow.controls.member.findIdController;
+import com.doArtShow.controls.member.findEmailController;
 import com.doArtShow.controls.member.findPwController;
 import com.doArtShow.dao.ExhibitionDao;
 import com.doArtShow.dao.ManagerDao;
@@ -73,7 +73,7 @@ public class ContextLoaderListener implements ServletContextListener{
 			sc.setAttribute("/client/auth/memberUpdate.do", new MemberUpdateController().setMemberDao(memberDao));
 			
 			//아이디 찾기
-			sc.setAttribute("/client/auth/findId.do", new findIdController().setMemberDao(memberDao));
+			sc.setAttribute("/client/auth/findEmail.do", new findEmailController().setMemberDao(memberDao));
 			
 			//아이디 찾기
 			sc.setAttribute("/client/auth/findPw.do", new findPwController().setMemberDao(memberDao));

@@ -53,50 +53,51 @@ public class DistpatcherServlet extends HttpServlet{
 		    } else if ("/client/auth/memberAdd.do".equals(servletPath)) {
 		    	if(request.getParameter("id")!=null){
 		    		  model.put("member", new MemberDto()
-		    				  .setId(request.getParameter("id"))
 		    				  .setEmail(request.getParameter("email"))
 		    				  .setName(request.getParameter("name"))
+		    				  .setBirth(request.getParameter("birth"))
+		    				  .setGender(request.getParameter("gender"))
 		    				  .setPw(request.getParameter("pw")));
 		    	  }
 		    	  
 		      } else if("/client/auth/memberLogIn.do".equals(servletPath)){
-		    	  if(request.getParameter("id")!=null){
+		    	  if(request.getParameter("email")!=null){
 			    	  model.put("loginInfo", new MemberDto()
-			    			  .setId(request.getParameter("id"))
+			    			  .setEmail(request.getParameter("email"))
 			    			  .setPw(request.getParameter("pw"))); 
 		    	  }
 		    	  
 		      } else if("/client/auth/memberDetail.do".equals(servletPath)){
 		    	  if(session.getAttribute("member")!=null){
 		    		  MemberDto member = (MemberDto)session.getAttribute("member");
-		    		  model.put("id", member.getId()); 
+		    		  model.put("email", member.getEmail()); 
 		    	  }
 		      } else if("/client/auth/memberUpdate.do".equals(servletPath)){
-		    	 if(request.getParameter("name")!=null) {
-		    		 model.put("name",request.getParameter("name"));
+		    	 if(request.getParameter("birth")!=null) {
+		    		 model.put("birth",request.getParameter("birth"));
 		    		 
 		    		 MemberDto member = (MemberDto)session.getAttribute("member");
-		    		 String id = member.getId();
-		    		 model.put("id", id);
+		    		 String email = member.getEmail();
+		    		 model.put("email", email);
 		    	 }
-		    	 if(request.getParameter("email")!=null) {
-		    		 model.put("email",request.getParameter("email"));
+		    	 if(request.getParameter("pw")!=null) {
+		    		 model.put("pw",request.getParameter("pw"));
 		    		 
 		    		 MemberDto member = (MemberDto)session.getAttribute("member");
-		    		 String id = member.getId();
-		    		 model.put("id", id);
+		    		 String email = member.getEmail();
+		    		 model.put("email", email);
 		    	 }
-		      } else if("/client/auth/findId.do".equals(servletPath)){
-		    	  if(request.getParameter("email")!=null) {
-		    		  model.put("findIdInfo", new MemberDto()
-		    				  .setEmail(request.getParameter("email"))
-		    				  .setName(request.getParameter("name")));
+		      } else if("/client/auth/findEmail.do".equals(servletPath)){
+		    	  if(request.getParameter("name")!=null) {
+		    		  model.put("findEmailInfo", new MemberDto()
+		    				  .setEmail(request.getParameter("name"))
+		    				  .setName(request.getParameter("birth")));
 		    	  }
 		      } else if("/client/auth/findPw.do".equals(servletPath)){
-		    	  if(request.getParameter("id")!=null) {
+		    	  if(request.getParameter("email")!=null) {
 		    		  model.put("findPwInfo", new MemberDto()
-		    				  .setId(request.getParameter("id"))
-		    				  .setEmail(request.getParameter("email")));
+		    				  .setEmail(request.getParameter("email"))
+		    				  .setBirth(request.getParameter("birth")));
 		    	  }
 		    	  
 		    }

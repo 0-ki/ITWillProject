@@ -20,7 +20,7 @@ public class findPwController implements Controller{
 	public String execute(Map<String, Object> model) throws Exception {
 		if(model.get("findPwInfo") != null) {
 			MemberDto member = (MemberDto)model.get("findPwInfo");
-			String pw = memberDao.findPw(member.getId(), member.getEmail());
+			String pw = memberDao.findPw(member.getEmail(), member.getBirth());
 			
 			HttpSession session = (HttpSession)model.get("session");
 	        session.setAttribute("pw", pw);

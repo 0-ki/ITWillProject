@@ -29,11 +29,11 @@ function emailChkModal()
 </head>
 <body>
 <h2>회원가입</h2>
-	<form method="post" name="signUpForm">
+	<form method="post" name="signUpForm" action="memberAdd.do">
     	<table>
     	 		<tr>
 	                <td>이메일</td>
-	                <td><input type="text" name="email" id="input_email" value=""></td>
+	                <td><input type="text" name="email" id="input_email"></td>
 	                <td><input type="button" id="emailChkButton" value="중복확인" onclick="emailChkModal(document.signUpForm.email.value)"></td>
 	            </tr>
 	            <tr>
@@ -56,6 +56,16 @@ function emailChkModal()
 	            </tr>
 	            <tr>
 	                <td colspan="2"><div id="birth_check"></div></td>
+	            </tr>
+	            <tr>
+	                <td>성별</td>
+	                <td>
+	                    <input type="radio" name="birth" id="male" value="male">남
+	                	<input type="radio" name="birth" id="female" checked="checked" value="female">여
+	                </td>
+	            </tr>
+	            <tr>
+	                <td colspan="2"><div id="gender_check"></div></td>
 	            </tr>
 	            <tr>
 	                <td>비밀번호</td>
@@ -104,7 +114,7 @@ function emailChkModal()
 	            </tr>
 	            <tr>
 	                <td>
-	                    <input type="button" value="회원가입" id="submitBtn" onclick="validateSign(this.form)">
+	                    <input type="button" value="회원가입" id="submitBtn" onclick="validateSignUp(this.form)">
 	                </td>
 	                <td>
 	                	<div id="checkbox_check"></div>
@@ -127,8 +137,7 @@ function emailChkModal()
                 	$("#id_check").text("");
                 	$("#idChkButton").attr("disabled", false);
                 }
-            });
-            
+            });            
         });
         
     </script>

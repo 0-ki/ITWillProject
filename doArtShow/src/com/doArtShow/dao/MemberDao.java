@@ -51,13 +51,14 @@ public class MemberDao {
 		
 		try {
 			conn = ds.getConnection();
-			sql = "INSERT INTO artshowdb.MEMBER(ID, EMAIL, NAME, PW) "
-				+ "VALUES (?,?,?,?)";
+			sql = "INSERT INTO artshowdb.MEMBER(EMAIL, NAME, BIRTH, GENDER, PW) "
+				+ "VALUES (?,?,?,?,?)";
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, member.getId());
-			pstmt.setString(2, member.getEmail());
-			pstmt.setString(3, member.getName());
-			pstmt.setString(4, member.getPw());
+			pstmt.setString(1, member.getEmail());
+			pstmt.setString(2, member.getName());
+			pstmt.setString(3, member.getBirth());
+			pstmt.setString(4, member.getGender());
+			pstmt.setString(5, member.getPw());
 			
 			pstmt.executeUpdate();
 
@@ -69,7 +70,7 @@ public class MemberDao {
 		}
 	}
 
-	public MemberDto checkMember(String id, String pw) {
+	public MemberDto checkMember(String email, String pw) {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -79,9 +80,9 @@ public class MemberDao {
 		
 		try {
 			conn = ds.getConnection();
-			sql = "SELECT * FROM artshowdb.MEMBER WHERE ID=? AND PW=?";
+			sql = "SELECT * FROM artshowdb.MEMBER WHERE EMAIL=? AND PW=?";
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, id);
+			pstmt.setString(1, email);
 			pstmt.setString(2, pw);
 			
 			rs = pstmt.executeQuery();
@@ -89,7 +90,7 @@ public class MemberDao {
 			member = new MemberDto();
 			
 			while(rs.next()){
-				member.setId(rs.getString("id"));
+				member.setBirth(rs.getString("birth"));
 				member.setPw(rs.getString("pw"));
 				member.setEmail(rs.getString("email"));
 				member.setName(rs.getString("name"));
@@ -106,7 +107,7 @@ public class MemberDao {
 		return member;
 	}
 
-	public MemberDto selectInfo(String id) {
+	public MemberDto selectInfo(String email) {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -115,18 +116,18 @@ public class MemberDao {
 		MemberDto member = null;
 		try {
 			conn = ds.getConnection();
-			sql = "SELECT * FROM artshowdb.MEMBER WHERE ID=?";
+			sql = "SELECT * FROM artshowdb.MEMBER WHERE email=?";
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, id);
+			pstmt.setString(1, email);
 			
 			rs = pstmt.executeQuery();
 			
 			member = new MemberDto();
 			
 			while(rs.next()){
-				member.setId(rs.getString("id"));
-				member.setPw(rs.getString("pw"));
 				member.setEmail(rs.getString("email"));
+				member.setPw(rs.getString("pw"));
+				member.setBirth(rs.getString("birth"));
 				member.setName(rs.getString("name"));
 			}
 			
@@ -141,17 +142,17 @@ public class MemberDao {
 		return member;
 	}
 
-	public void updateName(String name, String id) {
+	public void updateBirth(String birth, String email) {
 		Connection 			conn 	= null;
 		PreparedStatement 	pstmt 	= null;
 		String 				sql 	= null;
 		
 		try {
 			conn = ds.getConnection();
-			sql = "UPDATE artshowdb.MEMBER SET name=? WHERE id=?";
+			sql = "UPDATE artshowdb.MEMBER SET birth=? WHERE email=?";
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, name);
-			pstmt.setString(2, id);
+			pstmt.setString(1, birth);
+			pstmt.setString(2, email);
 			
 			pstmt.executeUpdate();
 
@@ -163,17 +164,17 @@ public class MemberDao {
 		}
 	}
 
-	public void updateEmail(String email, String id) {
+	public void updatePw(String pw, String email) {
 		Connection 			conn 	= null;
 		PreparedStatement 	pstmt 	= null;
 		String 				sql 	= null;
 		
 		try {
 			conn = ds.getConnection();
-			sql = "UPDATE artshowdb.MEMBER SET email=? WHERE id=?";
+			sql = "UPDATE artshowdb.MEMBER SET pw=? WHERE email=?";
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, email);
-			pstmt.setString(2, id);
+			pstmt.setString(1, pw);
+			pstmt.setString(2, email);
 			
 			pstmt.executeUpdate();
 
@@ -185,25 +186,26 @@ public class MemberDao {
 		}		
 	}
 
-	public String findId(String email, String name) {
+	public String findEmail(String name, String birth) {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		String sql = null;
 		
-		String id = null;
+		String email = null;
 		
 		try {
 			conn = ds.getConnection();
-			sql = "SELECT id FROM artshowdb.MEMBER WHERE email=? AND name=?";
+			sql = "SELECT email FROM artshowdb.MEMBER WHERE name=? AND birth=?";
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, email);
-			pstmt.setString(2, name);
+			pstmt.setString(1, name);
+			pstmt.setString(2, birth);
 			
 			rs = pstmt.executeQuery();
 						
-			while(rs.next()){
-				id = rs.getString("id");
+			if(rs.next()){
+				email = rs.getString("email");
+				System.out.println(email);
 			}
 			
 		} catch (SQLException e) {
@@ -214,10 +216,10 @@ public class MemberDao {
 			try {if(conn	!= null)conn.close();	} catch (SQLException e) {}
 		}
 		
-		return id;
+		return email;
 	}
 
-	public String findPw(String id, String email) {
+	public String findPw(String email, String birth) {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -227,10 +229,10 @@ public class MemberDao {
 		
 		try {
 			conn = ds.getConnection();
-			sql = "SELECT pw FROM artshowdb.MEMBER WHERE id=? AND email=?";
+			sql = "SELECT pw FROM artshowdb.MEMBER WHERE email=? AND birth=?";
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, id);
-			pstmt.setString(2, email);
+			pstmt.setString(1, email);
+			pstmt.setString(2, birth);
 			
 			rs = pstmt.executeQuery();
 						

@@ -1,9 +1,9 @@
 // 회원 로그인 유효성 검사
 function validateLogin(loginForm){
-    if(!loginForm.id.value){
-        $("#chkId").text("아이디를 입력하세요");
-        $("#chkId").css('color','red');
-        loginForm.id.focus();
+    if(!loginForm.email.value){
+        $("#chkEmail").text("아이디를 입력하세요");
+        $("#chkEmail").css('color','red');
+        loginForm.email.focus();
         return false;
     }
     if(!loginForm.pw.value){
@@ -18,7 +18,7 @@ function validateLogin(loginForm){
 }
 
 //회원가입 유효성 검사
-function validateSign(signUpForm){
+function validateSignUp(signUpForm){
 	
 	//이메일 입력여부 검사
 	if(!signUpForm.email.value){
@@ -65,55 +65,68 @@ function validateSign(signUpForm){
 		$("#checkbox_check").text("이용약관에 동의해주세요");
 		$("#checkbox_check").css('color','red');
 		return false;
-	
+		
 	signUpForm.action = "memberAdd.do";
 	signUpForm.submit();
 }
 
-//회원 정보수정(이름 수정)
-function chkNameFn(updateNameForm){
-	if(!updateNameForm.name.value){
-        $("#chkName").text("수정할 이름을 입력하세요");
-        $("#chkName").css('color','red');
-        updateNameForm.name.focus();
+//회원 정보수정(생년월일 수정)
+function chkBirthFn(updateBirthForm){
+	if(!updateBirthForm.birth.value){
+        $("#birth_check").text("수정할 이름을 입력하세요");
+        $("#birth_check").css('color','red');
+        updateBirthForm.birth.focus();
         return false;
     }
 
-	updateNameForm.action="memberUpdate.do"
-	updateNameForm.submit();
+	updateBirthForm.action="memberUpdate.do"
+	updateBirthForm.submit();
 }
 
-//아이디 찾기 폼 유효성 검사
-function chkFindIdForm(findIdForm){
-	if(!findIdForm.email.value){
-        $("#chkEmail").text("수정할 이메일을 입력하세요");
-        $("#chkEmail").css('color','red');
-        findIdForm.email.focus();
-        return false;
-    }
-	if(!findIdForm.name.value){
-		$("#chkName").text("수정할 이메일을 입력하세요");
-		$("#chkName").css('color','red');
-		findIdForm.name.focus();
+//회원 정보수정(비밀번호 수정)
+function chkPwFn(updatePwForm){
+	if(!updatePwForm.pw.value){
+		$("#pw_check").text("수정할 이름을 입력하세요");
+		$("#pw_check").css('color','red');
+		updatePwForm.pw.focus();
 		return false;
 	}
 	
-	findIdForm.action="findId.do"
-	findIdForm.submit();
+	updatePwForm.action="memberUpdate.do"
+	updatePwForm.submit();
 }
+
+//이메일 찾기 폼 유효성 검사
+function chkFindEmailForm(findIdForm){
+	if(!findEmailForm.birth.value){
+        $("#chkBirth").text("생년월일을 입력하세요");
+        $("#chkBirth").css('color','red');
+        findEmailForm.birth.focus();
+        return false;
+    }
+	if(!findEmailForm.name.value){
+		$("#chkName").text("이름을 입력하세요");
+		$("#chkName").css('color','red');
+		findEmailForm.name.focus();
+		return false;
+	}
+	
+	findEmailForm.action="findEmail.do"
+	findEmailForm.submit();
+}	
 
 //비밀번호 찾기 폼 유효성 검사
 function chkFindPwForm(findPwForm){
 	if(!findPwForm.email.value){
-		 $("#chkEmail").text("수정할 이메일을 입력하세요");
+		 $("#chkEmail").text("이메일을 입력하세요");
 	     $("#chkEmail").css('color','red');
 	     findPwForm.email.focus();
 		 return false;
 	}
-	if(!findPwForm.id.value){
-		 $("#chkId").text("수정할 이메일을 입력하세요");
-	     $("#chkId").css('color','red');
-	     findPwForm.id.focus();
+	if(!findPwForm.birth.value){
+		 $("#chkBirth").text("생년월일을 입력하세요");
+	     $("#chkBirth").css('color','red');
+	     findPwForm.birth.focus();
 	     return false;
 	}
 	findPwForm.action = "findPw.do";

@@ -8,27 +8,27 @@ import com.doArtShow.controls.Controller;
 import com.doArtShow.dao.MemberDao;
 import com.doArtShow.dto.MemberDto;
 
-public class findIdController implements Controller{
+public class findEmailController implements Controller{
 	MemberDao memberDao;
 	
-	public findIdController setMemberDao(MemberDao memberDao){
+	public findEmailController setMemberDao(MemberDao memberDao){
 		this.memberDao = memberDao;
 		return this;
 	}
 
 	@Override
 	public String execute(Map<String, Object> model) throws Exception {
-		if(model.get("findIdInfo") != null) {
-			MemberDto member = (MemberDto)model.get("findIdInfo");
-			String id = memberDao.findId(member.getEmail(), member.getName());
-			
+		if(model.get("findEmailInfo") != null) {
+			MemberDto member = (MemberDto)model.get("findEmailInfo");
+			String email = memberDao.findEmail(member.getName(), member.getBirth());
+						
 			HttpSession session = (HttpSession)model.get("session");
-	        session.setAttribute("id", id);
+	        session.setAttribute("email", email);
 	        
-			return "/client/auth/findIdResult.jsp";
+			return "/client/auth/findEmailResult.jsp";
 			
 		} else {
-			return "/client/auth/findIdForm.jsp";
+			return "/client/auth/findEmailForm.jsp";
 		}
 	}
 }

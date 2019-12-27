@@ -18,8 +18,8 @@ public class MemberDetailController implements Controller{
 	}
 	@Override
 	public String execute(Map<String, Object> model) throws Exception {
-		String id = (String)model.get("id");
-		MemberDto member = memberDao.selectInfo(id);
+		String email = (String)model.get("email");
+		MemberDto member = memberDao.selectInfo(email);
 		return "/client/auth/memberDetail.jsp";			
 	}
 
