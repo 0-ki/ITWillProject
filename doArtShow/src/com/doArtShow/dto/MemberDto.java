@@ -7,47 +7,50 @@ public class MemberDto {
 	private String name;
 	private String pw;
 	private String img;
-	
-	public MemberDto() {}
 
 	public String getId() {
 		return id;
 	}
 
-	public void setId(String id) {
+	public MemberDto setId(String id) {
 		this.id = id;
+		return this;
 	}
 
 	public String getEmail() {
 		return email;
 	}
 
-	public void setEmail(String email) {
+	public MemberDto setEmail(String email) {
 		this.email = email;
+		return this;
 	}
 
 	public String getName() {
 		return name;
 	}
 
-	public void setName(String name) {
+	public MemberDto setName(String name) {
 		this.name = name;
+		return this;
 	}
 
 	public String getPw() {
 		return pw;
 	}
 
-	public void setPw(String pw) {
+	public MemberDto setPw(String pw) {
 		this.pw = pw;
+		return this;
 	}
 
 	public String getImg() {
 		return img;
 	}
 
-	public void setImg(String img) {
+	public MemberDto setImg(String img) {
 		this.img = img;
+		return this;
 	}
 	
 	
