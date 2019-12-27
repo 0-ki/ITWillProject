@@ -10,7 +10,7 @@ import com.doArtShow.dto.MemberDto;
 
 // 회원 로그인 컨트롤러
 public class MemberLoginController implements Controller{
-MemberDao memberDao;
+	MemberDao memberDao;
 	
 	public MemberLoginController setMemberDao(MemberDao memberDao){
 		this.memberDao = memberDao;

@@ -4,8 +4,10 @@ import javax.naming.InitialContext;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
+import javax.servlet.annotation.WebListener;
 import javax.sql.DataSource;
 
+import com.doArtShow.controls.member.ExhibitionListController;
 import com.doArtShow.controls.member.MemberAddController;
 import com.doArtShow.controls.member.MemberLoginController;
 import com.doArtShow.dao.ExhibitionDao;
@@ -16,6 +18,7 @@ import com.doArtShow.dao.VisitListDao;
 import com.doArtShow.dao.WishListDao;
 
 // datasource 주입, 컨트롤러 객체에 dao주입
+@WebListener
 public class ContextLoaderListener implements ServletContextListener{
 	@Override
 	public void contextInitialized(ServletContextEvent event) {
@@ -46,13 +49,13 @@ public class ContextLoaderListener implements ServletContextListener{
 			//--------------------------------------------------------------------------------------
 			//각자 추가하는 Controller에 따라서 수정될 수 있습니다.
 			//회원 가입(추가)
-			sc.setAttribute("/auth/memberSignUp.do", new MemberAddController().setMemberDao(memberDao) );
+			sc.setAttribute("/client/auth/memberSignUp.do", new MemberAddController().setMemberDao(memberDao));
 			
 			//회원 로그인
-			sc.setAttribute("/auth/memberLogIn.do", new MemberLoginController().setMemberDao(memberDao));
+			sc.setAttribute("/client/auth/memberLogIn.do", new MemberLoginController().setMemberDao(memberDao));
 			
-			
-			
+			//전시 목록 
+			sc.setAttribute("/client/ExListView.do", new ExhibitionListController().setExhibitionDao(exhibitionDao));
 			
 			//--------------------------------------------------------------------------------------
 		} catch (Exception e) {
