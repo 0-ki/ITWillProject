@@ -20,7 +20,7 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 
                 <div id="top-searchbar" class="nav justify-content-center">
-                    <input type="text" class="form-control" placeholder="전시 검색">
+                    <input type="text" class="form-control" placeholder="전시 검색" name="search" onclick="javascript:">
                 </div>
 
                 <ul class="nav navbar-nav navbar-right">
