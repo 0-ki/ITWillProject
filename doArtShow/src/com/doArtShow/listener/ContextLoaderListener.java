@@ -8,6 +8,8 @@ import javax.servlet.annotation.WebListener;
 import javax.sql.DataSource;
 
 import com.doArtShow.controls.exhibition.ExhibitionAddController;
+import com.doArtShow.controls.exhibition.ExhibitionAddFormController;
+import com.doArtShow.controls.exhibition.ExhibitionMyListController;
 import com.doArtShow.controls.exhibition.ExhibitionUpdateController;
 import com.doArtShow.controls.member.MemberAddController;
 import com.doArtShow.controls.member.MemberLoginController;
@@ -55,6 +57,12 @@ public class ContextLoaderListener implements ServletContextListener{
 			//회원 로그인
 			sc.setAttribute("/auth/memberLogIn.do", new MemberLoginController().setMemberDao(memberDao));
 			
+			//-------------------------------------------------------------------------------------------------------------
+			//			programmed by Hojeong - begin
+			//-------------------------------------------------------------------------------------------------------------			
+			//전시회 등록폼
+			sc.setAttribute("/exhibition/addForm.do", new ExhibitionAddFormController().setExhibitionDao(exhibitionDao));
+			
 			//전시회 등록
 			sc.setAttribute("/exhibition/add.do", new ExhibitionAddController().setExhibitionDao(exhibitionDao));
 			
@@ -62,7 +70,10 @@ public class ContextLoaderListener implements ServletContextListener{
 			sc.setAttribute("/exhibition/update.do", new ExhibitionUpdateController().setExhibitionDao(exhibitionDao));
 			
 			//마이 전시회 리스트 
-			//sc.setAttribute("/exhibition/myList.do", new ExhibitionMyListController().setExhibitionDao(exhibitionDao));
+			sc.setAttribute("/exhibition/myList.do", new ExhibitionMyListController().setExhibitionDao(exhibitionDao));
+			//-------------------------------------------------------------------------------------------------------------
+			//			programmed by Hojeong - end
+			//-------------------------------------------------------------------------------------------------------------			
 			
 			//--------------------------------------------------------------------------------------
 		} catch (Exception e) {

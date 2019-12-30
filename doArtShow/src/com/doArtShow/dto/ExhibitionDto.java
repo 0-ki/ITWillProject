@@ -27,6 +27,8 @@ public class ExhibitionDto {
 	private String 			admFee;
 	private String			imageFile1;
 	private String 			imageFile2;
+	private String			imageFile3;
+	private String 			imageFile4;
 	private int				exhReadCount;
 	private Timestamp	registerDate;
 	private String			activeFlag;
@@ -158,6 +160,18 @@ public class ExhibitionDto {
 	public void setImageFile2(String imageFile2) {
 		this.imageFile2 = imageFile2;
 	}
+	public String getImageFile3() {
+		return imageFile3;
+	}
+	public void setImageFile3(String imageFile3) {
+		this.imageFile3 = imageFile3;
+	}
+	public String getImageFile4() {
+		return imageFile4;
+	}
+	public void setImageFile4(String imageFile4) {
+		this.imageFile4 = imageFile4;
+	}
 	public int getExhReadCount() {
 		return exhReadCount;
 	}
@@ -191,7 +205,9 @@ public class ExhibitionDto {
 				+ ", exhPlaceZip=" + exhPlaceZip + ", exhPlaceAddr1=" + exhPlaceAddr1 + ", exhPlaceAddr2="
 				+ exhPlaceAddr2 + ", exhUrl=" + exhUrl + ", exhStartDate=" + exhStartDate + ", exhEndDate=" + exhEndDate
 				+ ", opTime=" + opTime + ", tel=" + tel + ", admFee=" + admFee + ", imageFile1=" + imageFile1
-				+ ", imageFile2=" + imageFile2 + ", exhReadCount=" + exhReadCount + ", registerDate=" + registerDate
-				+ ", activeFlag=" + activeFlag + ", exhGubun3=" + Arrays.toString(exhGubun3) + "]";
+				+ ", imageFile2=" + imageFile2 + ", imageFile3=" + imageFile3 + ", imageFile4=" + imageFile4
+				+ ", exhReadCount=" + exhReadCount + ", registerDate=" + registerDate + ", activeFlag=" + activeFlag
+				+ ", exhGubun3=" + Arrays.toString(exhGubun3) + "]";
 	}
+
 }

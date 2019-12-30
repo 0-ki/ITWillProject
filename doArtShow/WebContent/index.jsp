@@ -8,7 +8,8 @@
 </head>
 <body>
 <h1>전시회 사이트에 오신것을 환영합니다.</h1>
-<a href="<%=request.getContextPath() %>/exhibition/update.do?exhID=12">update</a>
-<a href="<%=request.getContextPath() %>/exhibition/add.do">add</a>
+<a href="<%=request.getContextPath() %>/exhibition/update.do?exhID=1">update</a>
+<a href="<%=request.getContextPath() %>/exhibition/addForm.do">add</a>
+<a href="<%=request.getContextPath() %>/exhibition/myList.do">myList</a>
 </body>
 </html>
