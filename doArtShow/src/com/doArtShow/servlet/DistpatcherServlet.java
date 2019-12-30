@@ -21,9 +21,8 @@ import com.doArtShow.dto.ExhibitionDto;
 import com.doArtShow.dto.MemberDto;
 
 @WebServlet("*.do")
-public class DistpatcherServlet extends HttpServlet{
-	
-	
+public class DistpatcherServlet extends HttpServlet {
+
 	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//service메소드는 doPost와 doGet을 모두 처리합니다.
@@ -120,8 +119,7 @@ public class DistpatcherServlet extends HttpServlet{
 			    		  System.out.println(request.getParameter("search"));
 			    		  model.put("search", request.getParameter("search"));
 			    	  }
-			    }
-		      } else if("/client/ExContentView.do".equals(servletPath)){
+			  } else if("/client/ExContentView.do".equals(servletPath)){
 		    	  ExhibitionDto exhDto = new ExhibitionDto();
 		    	  if(request.getParameter("exhID") != null){
 		    		  int exhID = Integer.parseInt(request.getParameter("exhID"));
@@ -158,7 +156,7 @@ public class DistpatcherServlet extends HttpServlet{
 		        RequestDispatcher rd = request.getRequestDispatcher(viewUrl);
 		        rd.include(request, response);
 		      }
-		      
+		      }
 		    } catch(Exception e){
 		    	 e.printStackTrace();
 		         request.setAttribute("error", e);
@@ -167,3 +165,4 @@ public class DistpatcherServlet extends HttpServlet{
 		    }
 	}
 }
+

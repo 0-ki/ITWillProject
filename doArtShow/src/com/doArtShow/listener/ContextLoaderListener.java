@@ -86,7 +86,7 @@ public class ContextLoaderListener implements ServletContextListener{
 			sc.setAttribute("/client/auth/memberSignUp.do", new MemberAddController().setMemberDao(memberDao));
 			
 			//회원 로그인
-			sc.setAttribute("/client/auth/memberLogIn.do", new MemberLoginController().setMemberDao(memberDao));
+			sc.setAttribute("/client/auth/memberLogIn.do", new MemberLogInController().setMemberDao(memberDao));
 			
 			//전시 목록 
 			sc.setAttribute("/client/ExListView.do", new ExhibitionListController().setExhibitionDao(exhibitionDao));
