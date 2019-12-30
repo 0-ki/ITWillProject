@@ -24,3 +24,16 @@
     
 	<!--================ 커스텀 script 파일 ================  -->    
     <script src="/doArtShow/js/ygscript.js"></script>
+<script>
+function chkSearch(searchForm){
+	var _search = $('#search');
+	if(!_search.val()){
+		alert('검색어를 입력해주세요.');
+		_search.focus();
+		return false;
+	}else {
+		return true;
+	}
+}
+
+</script>

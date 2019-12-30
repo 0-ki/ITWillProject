@@ -16,6 +16,7 @@ import org.json.simple.JSONObject;
 
 import com.doArtShow.controls.Controller;
 import com.doArtShow.dao.MemberDao;
+import com.doArtShow.dto.ExhibitionDto;
 import com.doArtShow.dto.MemberDto;
 
 @WebServlet("*.do")
@@ -38,7 +39,6 @@ public class DistpatcherServlet extends HttpServlet{
 		      
 		      Controller pageController = (Controller) sc.getAttribute(servletPath);
 		      System.out.println("servletPath : "+servletPath);
-		      
 		      
 		      //--------------------------------------------------------------------------------------
 			  //각자 추가하는 Controller에 따라서 수정될 수 있습니다.
@@ -99,7 +99,12 @@ public class DistpatcherServlet extends HttpServlet{
 		    				  .setEmail(request.getParameter("email")));
 		    	  }
 		    	  
-		    }
+		      } else if("/search.do".equals(servletPath)){
+			    	  if(request.getParameter("search")!=null) {
+			    		  System.out.println(request.getParameter("search"));
+			    		  model.put("search", request.getParameter("search"));
+			    	  }
+			    }
 		      
 		      
 		      //--------------------------------------------------------------------------------------
