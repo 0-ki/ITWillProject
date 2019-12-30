@@ -20,8 +20,6 @@ import com.doArtShow.dto.MemberDto;
 
 @WebServlet("*.do")
 public class DistpatcherServlet extends HttpServlet{
-	
-	
 	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//service메소드는 doPost와 doGet을 모두 처리합니다.
@@ -51,7 +49,13 @@ public class DistpatcherServlet extends HttpServlet{
 			        
 		    	}
 		    } else if ("/client/auth/memberAdd.do".equals(servletPath)) {
-		    	if(request.getParameter("id")!=null){
+		    	if(request.getParameter("email")!=null){
+		    		System.out.println(request.getParameter("email"));
+		    		System.out.println(request.getParameter("name"));
+		    		System.out.println(request.getParameter("birth"));
+		    		System.out.println(request.getParameter("gender"));
+		    		System.out.println(request.getParameter("pw"));
+		    		
 		    		  model.put("member", new MemberDto()
 		    				  .setEmail(request.getParameter("email"))
 		    				  .setName(request.getParameter("name"))
@@ -72,9 +76,17 @@ public class DistpatcherServlet extends HttpServlet{
 		    		  MemberDto member = (MemberDto)session.getAttribute("member");
 		    		  model.put("email", member.getEmail()); 
 		    	  }
+		    	  
 		      } else if("/client/auth/memberUpdate.do".equals(servletPath)){
 		    	 if(request.getParameter("birth")!=null) {
 		    		 model.put("birth",request.getParameter("birth"));
+		    		 
+		    		 MemberDto member = (MemberDto)session.getAttribute("member");
+		    		 String email = member.getEmail();
+		    		 model.put("email", email);
+		    	 }
+		    	 if(request.getParameter("gender")!=null) {
+		    		 model.put("gender",request.getParameter("gender"));
 		    		 
 		    		 MemberDto member = (MemberDto)session.getAttribute("member");
 		    		 String email = member.getEmail();
@@ -87,19 +99,20 @@ public class DistpatcherServlet extends HttpServlet{
 		    		 String email = member.getEmail();
 		    		 model.put("email", email);
 		    	 }
+		    	 
 		      } else if("/client/auth/findEmail.do".equals(servletPath)){
 		    	  if(request.getParameter("name")!=null) {
 		    		  model.put("findEmailInfo", new MemberDto()
-		    				  .setEmail(request.getParameter("name"))
-		    				  .setName(request.getParameter("birth")));
+		    				  .setName(request.getParameter("name"))
+		    				  .setBirth(request.getParameter("birth")));
 		    	  }
+		    	  
 		      } else if("/client/auth/findPw.do".equals(servletPath)){
 		    	  if(request.getParameter("email")!=null) {
 		    		  model.put("findPwInfo", new MemberDto()
 		    				  .setEmail(request.getParameter("email"))
 		    				  .setBirth(request.getParameter("birth")));
 		    	  }
-		    	  
 		    }
 		      
 		      

@@ -14,6 +14,12 @@ $(document).ready(function(){
 			$("#emailChkButton").attr("disabled", true);
 			$("#submitBtn").attr("disabled", true);
 		}
+//		if($("#input_email").is('[readonly]')){
+//			$("#submitBtn").attr("disabled", false);
+//		} else {
+//			alert("이메일 중복확인을 해주세요");
+//			$("#submitBtn").attr("disabled", true);
+//		}
 	});
 	
 	//이름 유효검사(특수문자가 있을 경우 다시입력)

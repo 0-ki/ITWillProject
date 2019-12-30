@@ -8,10 +8,10 @@ import com.doArtShow.controls.Controller;
 import com.doArtShow.dao.MemberDao;
 import com.doArtShow.dto.MemberDto;
 
-public class findEmailController implements Controller{
+public class FindEmailController implements Controller{
 	MemberDao memberDao;
 	
-	public findEmailController setMemberDao(MemberDao memberDao){
+	public FindEmailController setMemberDao(MemberDao memberDao){
 		this.memberDao = memberDao;
 		return this;
 	}

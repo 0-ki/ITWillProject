@@ -34,12 +34,13 @@
 	</tr>
 	<tr>
 		<td>성별</td>
+		<form method="post" name="updateGenderForm" action ="memberUpdate.do">
 		<td>
-		<c:choose>
-			<c:when test="${member.gender}=='female'">여성</c:when>	
-			<c:otherwise>남성</c:otherwise>
-		</c:choose>
+			<input type="radio" name="gender" id="male"   value="남성" <c:if test="${member.gender eq '남성'}">checked="checked"</c:if>>남성
+			<input type="radio" name="gender" id="female" value="여성" <c:if test="${member.gender eq '여성'}">checked="checked"</c:if>>여성
 		</td>
+		<td><input type="submit" value="수정"></td>
+		</form>
 	</tr>
 	<tr>
 		<td>비밀번호</td>
@@ -52,7 +53,7 @@
 		<td><div id="pw_check"></div></td>
 	</tr>
 	<tr>
-		<td>가보고 싶은 전시</td>
+		<td><h3>가보고 싶은 전시</h3></td>
 	</tr>
 	<tr>
 		<td colspan="3">
@@ -60,7 +61,7 @@
 		</td>
 	</tr>
 	<tr>
-		<td>가본 전시</td>
+		<td><h3>가본 전시</h3></td>
 	</tr>
 	<tr>
 		<td colspan="3">
@@ -68,7 +69,7 @@
 		</td>
 	</tr>
 	<tr>
-		<td>내가 등록한 전시</td>
+		<td><h3>내가 등록한 전시</h3></td>
 	</tr>
 	<tr>
 		<td colspan="3">

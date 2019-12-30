@@ -30,10 +30,12 @@ $(document).ready(function(){
 	$("#emailUseBtn").attr("disabled", true);
     $("#emailChkModalBtn").click(function(){
         	$("#emailUseBtn").attr("disabled", false);
+        	$("#submitBtn").attr("disabled", true);
     });
 });
 function setId(){
 	opener.document.signUpForm.email.value=document.emailChkForm.email.value;
+	$("#submitBtn").attr("disabled", false);
 	self.close();
 }
 </script>

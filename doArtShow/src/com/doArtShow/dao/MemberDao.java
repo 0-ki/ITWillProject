@@ -91,6 +91,7 @@ public class MemberDao {
 			
 			while(rs.next()){
 				member.setBirth(rs.getString("birth"));
+				member.setGender(rs.getString("gender"));
 				member.setPw(rs.getString("pw"));
 				member.setEmail(rs.getString("email"));
 				member.setName(rs.getString("name"));
@@ -126,6 +127,7 @@ public class MemberDao {
 			
 			while(rs.next()){
 				member.setEmail(rs.getString("email"));
+				member.setGender(rs.getString("gender"));
 				member.setPw(rs.getString("pw"));
 				member.setBirth(rs.getString("birth"));
 				member.setName(rs.getString("name"));
@@ -163,6 +165,28 @@ public class MemberDao {
 			try {if(conn!=null)conn.close();} catch (SQLException e) {}
 		}
 	}
+	
+	public void updateGender(String gender, String email) {
+		Connection 			conn 	= null;
+		PreparedStatement 	pstmt 	= null;
+		String 				sql 	= null;
+		
+		try {
+			conn = ds.getConnection();
+			sql = "UPDATE artshowdb.MEMBER SET gender=? WHERE email=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, gender);
+			pstmt.setString(2, email);
+			
+			pstmt.executeUpdate();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {if(pstmt!=null)pstmt.close();} catch (SQLException e) {}
+			try {if(conn!=null)conn.close();} catch (SQLException e) {}
+		}
+	}
 
 	public void updatePw(String pw, String email) {
 		Connection 			conn 	= null;
@@ -187,6 +211,8 @@ public class MemberDao {
 	}
 
 	public String findEmail(String name, String birth) {
+		System.out.println("findEmail실행");
+		System.out.println(name+" "+birth);
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -250,5 +276,27 @@ public class MemberDao {
 		
 		return pw;
 	}
-	
+
+	public void changePw(String newPw, String email, String birth) {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		String sql = null;
+		
+		try {
+			conn = ds.getConnection();
+			sql = "UPDATE artshowdb.MEMBER SET pw=? WHERE email=? AND birth=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, newPw);
+			pstmt.setString(2, email);
+			pstmt.setString(3, birth);
+			
+			pstmt.executeUpdate();			
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {if(pstmt	!= null)pstmt.close();	} catch (SQLException e) {}
+			try {if(conn	!= null)conn.close();	} catch (SQLException e) {}
+		}
+	}
 }

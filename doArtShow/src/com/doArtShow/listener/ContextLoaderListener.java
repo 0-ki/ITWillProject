@@ -13,8 +13,8 @@ import com.doArtShow.controls.member.MemberEmailChkController;
 import com.doArtShow.controls.member.MemberLogInController;
 import com.doArtShow.controls.member.MemberLogOutController;
 import com.doArtShow.controls.member.MemberUpdateController;
-import com.doArtShow.controls.member.findEmailController;
-import com.doArtShow.controls.member.findPwController;
+import com.doArtShow.controls.member.FindEmailController;
+import com.doArtShow.controls.member.FindPwController;
 import com.doArtShow.dao.ExhibitionDao;
 import com.doArtShow.dao.ManagerDao;
 import com.doArtShow.dao.MemberDao;
@@ -55,13 +55,13 @@ public class ContextLoaderListener implements ServletContextListener{
 			//--------------------------------------------------------------------------------------
 			//각자 추가하는 Controller에 따라서 수정될 수 있습니다.		
 			
-			sc.setAttribute("/client/auth/checkEmail.do", new MemberEmailChkController().setMemberDao(memberDao) );
+			sc.setAttribute("/client/auth/checkEmail.do", 	new MemberEmailChkController().setMemberDao(memberDao) );
 			
 			//회원 가입(추가)
-			sc.setAttribute("/client/auth/memberAdd.do", new MemberAddController().setMemberDao(memberDao) );
+			sc.setAttribute("/client/auth/memberAdd.do", 	new MemberAddController().setMemberDao(memberDao) );
 			
 			//회원 로그인
-			sc.setAttribute("/client/auth/memberLogIn.do", new MemberLogInController().setMemberDao(memberDao));
+			sc.setAttribute("/client/auth/memberLogIn.do", 	new MemberLogInController().setMemberDao(memberDao));
 			
 			//회원 계정 보여주기
 			sc.setAttribute("/client/auth/memberDetail.do", new MemberDetailController().setMemberDao(memberDao));
@@ -72,11 +72,11 @@ public class ContextLoaderListener implements ServletContextListener{
 			//회원 정보 수정
 			sc.setAttribute("/client/auth/memberUpdate.do", new MemberUpdateController().setMemberDao(memberDao));
 			
-			//아이디 찾기
-			sc.setAttribute("/client/auth/findEmail.do", new findEmailController().setMemberDao(memberDao));
+			//이메일 찾기
+			sc.setAttribute("/client/auth/findEmail.do", 	new FindEmailController().setMemberDao(memberDao));
 			
-			//아이디 찾기
-			sc.setAttribute("/client/auth/findPw.do", new findPwController().setMemberDao(memberDao));
+			//비밀번호 찾기
+			sc.setAttribute("/client/auth/findPw.do", 		new FindPwController().setMemberDao(memberDao));
 			
 			
 			

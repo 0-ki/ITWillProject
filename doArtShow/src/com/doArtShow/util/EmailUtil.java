@@ -6,13 +6,13 @@ public class EmailUtil {
 	//임시비밀번호가 담긴 이메일 발신
 	public static void sendMail(String email, String subject, String msg) throws Exception{
 		//smtp 서버
-		String charset 		= "UTF-8";
+		String charset 		= "utf-8";
 		String hostSMTP 	= "smtp.naver.com";
 		String hostSMTPid 	= "jungmi0008";
 		String hostSMTPpw	= "qp2ql79";
 		
 		//발신인 정보
-		String senderEmail	= "jungi0008@naver.com";
+		String senderEmail	= "jungmi0008@naver.com";
 		String senderName 	= "길정미";
 		
 		try {
@@ -22,6 +22,7 @@ public class EmailUtil {
 			mail.setSSLOnConnect(true);
 			mail.setHostName(hostSMTP);
 			mail.setSmtpPort(587);
+			
 			mail.setAuthentication(hostSMTPid, hostSMTPpw);
 			mail.setStartTLSEnabled(true);
 			mail.addTo(email);

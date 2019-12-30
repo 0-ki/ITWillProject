@@ -27,6 +27,14 @@ function validateSignUp(signUpForm){
 		signUpForm.email.focus();
 		return false;  
 	}
+	
+//	if(!signUpForm.email.readonly){
+//		$("#email_check").text("이메일 중복확인을 해주세요");
+//		$("#email_check").css('color','red');
+//		return false;
+//	} else {
+//		$("#email_check").text("");
+//	}
 
 	//이름 입력여부 검사
 	if(!signUpForm.name.value){
@@ -37,8 +45,8 @@ function validateSignUp(signUpForm){
 	}
 	
 	//생년월일 입력여부 검사
-	if(!signUpForm.name.value){
-		$("#birth_check").text("이름을 입력하세요");
+	if(!signUpForm.birth.value){
+		$("#birth_check").text("생년월일을 입력하세요");
 		$("#birth_check").css('color','red');
 		signUpForm.birth.focus();
 		return false;
@@ -61,11 +69,13 @@ function validateSignUp(signUpForm){
 	}
 	
 	//체크박스 체크여부 검사
-	if(!$("input:checkbox[name='agree']").is(":checked"))
+	if($("input:checkbox[name='agree']").is(":checked") == false){
 		$("#checkbox_check").text("이용약관에 동의해주세요");
 		$("#checkbox_check").css('color','red');
 		return false;
-		
+	} else {
+		$("#checkbox_check").text("");
+	}
 	signUpForm.action = "memberAdd.do";
 	signUpForm.submit();
 }

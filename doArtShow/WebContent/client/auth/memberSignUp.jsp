@@ -8,6 +8,7 @@
 <script src="../js/validateForm.js"></script>
 <script type="text/javascript"></script>
 <script>
+//중복확인을 하기 전 입력된 아이디가 있는지 확인한다.
 function emailChkModal()
 {
 	if($("#input_email").val()==""){
@@ -25,17 +26,17 @@ function emailChkModal()
 } 
 </script>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>SignUpForm</title>
+<title>회원가입 페이지</title>
 </head>
 <body>
 <h2>회원가입</h2>
-	<form method="post" name="signUpForm" action="memberAdd.do">
+	<form method="post" name="signUpForm">
     	<table>
     	 		<tr>
 	                <td>이메일</td>
 	                <td><input type="text" name="email" id="input_email"></td>
-	                <td><input type="button" id="emailChkButton" value="중복확인" onclick="emailChkModal(document.signUpForm.email.value)"></td>
-	            </tr>
+ 	                <td><input type="button" id="emailChkButton" value="중복확인" onclick="emailChkModal(document.signUpForm.email.value)"></td>
+ 	            </tr>
 	            <tr>
 	                <td colspan="3"><div id="email_check"></div></td>
 	            </tr>
@@ -60,12 +61,9 @@ function emailChkModal()
 	            <tr>
 	                <td>성별</td>
 	                <td>
-	                    <input type="radio" name="birth" id="male" value="male">남
-	                	<input type="radio" name="birth" id="female" checked="checked" value="female">여
+	                    <input type="radio" name="gender" id="male" value="남성">남
+	                	<input type="radio" name="gender" id="female" checked="checked" value="여성">여
 	                </td>
-	            </tr>
-	            <tr>
-	                <td colspan="2"><div id="gender_check"></div></td>
 	            </tr>
 	            <tr>
 	                <td>비밀번호</td>
@@ -114,7 +112,7 @@ function emailChkModal()
 	            </tr>
 	            <tr>
 	                <td>
-	                    <input type="button" value="회원가입" id="submitBtn" onclick="validateSignUp(this.form)">
+	                    <input type="button" value="회원가입" id="submitBtn" onclick="javascript:validateSignUp(this.form)">
 	                </td>
 	                <td>
 	                	<div id="checkbox_check"></div>
@@ -131,13 +129,7 @@ function emailChkModal()
                 else {
                     $("input[name=agree]").prop("checked",false);
                 }
-            });
-            $("#input_id").keyup(function(){
-                if($("#input_id").val()!=""){
-                	$("#id_check").text("");
-                	$("#idChkButton").attr("disabled", false);
-                }
-            });            
+            }); 
         });
         
     </script>

@@ -23,6 +23,18 @@ public class MemberUpdateController implements Controller{
 			MemberDto member = memberDao.selectInfo((String)model.get("email"));
 			HttpSession session = (HttpSession)model.get("session");
 			session.removeAttribute("member");
+			
+			session.setAttribute("member",member);
+			
+			return "redirect:memberDetail.do";
+		}
+		if(model.get("gender")!=null) {
+			memberDao.updateGender((String)model.get("gender"), (String)model.get("email"));
+			
+			MemberDto member = memberDao.selectInfo((String)model.get("email"));
+			HttpSession session = (HttpSession)model.get("session");
+			session.removeAttribute("member");
+			
 			session.setAttribute("member",member);
 			
 			return "redirect:memberDetail.do";
