@@ -26,7 +26,9 @@ public class ExhibitionDto {
 	private String 			tel; //전시관전화번호
 	private String 			admFee; //입장료
 	private String			imageFile1; //전시회 포스터
-	private String 			imageFile2; //작품, 전시전경
+	private String 			imageFile2; //작품, 전시전경1
+	private String 			imageFile3; //작품, 전시전경2 *NULL가능
+	private String 			imageFile4; //작품, 전시전경3 *NULL가능
 	private int				exhReadCount; //전시조회수
 	private Timestamp		registerDate; //전시등록일
 	private String			activeFlag; //관리자컨펌여부
@@ -158,6 +160,18 @@ public class ExhibitionDto {
 	public void setImageFile2(String imageFile2) {
 		this.imageFile2 = imageFile2;
 	}
+	public String getImageFile3() {
+		return imageFile3;
+	}
+	public void setImageFile3(String imageFile3) {
+		this.imageFile3 = imageFile3;
+	}
+	public String getImageFile4() {
+		return imageFile4;
+	}
+	public void setImageFile4(String imageFile4) {
+		this.imageFile4 = imageFile4;
+	}
 	public int getExhReadCount() {
 		return exhReadCount;
 	}
@@ -183,6 +197,7 @@ public class ExhibitionDto {
 	public void setExhGubun3(String exhGubun3[]) {
 		this.exhGubun3 = exhGubun3;
 	}
+	
 	@Override
 	public String toString() {
 		return "ExhibitionDto [exhID=" + exhID + ", memberID=" + memberID + ", exhGubun1=" + exhGubun1 + ", exhGubun2="
@@ -191,8 +206,9 @@ public class ExhibitionDto {
 				+ ", exhPlaceZip=" + exhPlaceZip + ", exhPlaceAddr1=" + exhPlaceAddr1 + ", exhPlaceAddr2="
 				+ exhPlaceAddr2 + ", exhUrl=" + exhUrl + ", exhStartDate=" + exhStartDate + ", exhEndDate=" + exhEndDate
 				+ ", opTime=" + opTime + ", tel=" + tel + ", admFee=" + admFee + ", imageFile1=" + imageFile1
-				+ ", imageFile2=" + imageFile2 + ", exhReadCount=" + exhReadCount + ", registerDate=" + registerDate
-				+ ", activeFlag=" + activeFlag + ", exhGubun3=" + Arrays.toString(exhGubun3) + "]";
+				+ ", imageFile2=" + imageFile2 + ", imageFile3=" + imageFile3 + ", imageFile4=" + imageFile4
+				+ ", exhReadCount=" + exhReadCount + ", registerDate=" + registerDate + ", activeFlag=" + activeFlag
+				+ ", exhGubun3=" + Arrays.toString(exhGubun3) + "]";
 	}
 }
 

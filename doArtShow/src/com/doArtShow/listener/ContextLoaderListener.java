@@ -7,6 +7,7 @@ import javax.servlet.ServletContextListener;
 import javax.servlet.annotation.WebListener;
 import javax.sql.DataSource;
 
+import com.doArtShow.controls.member.ExhibitionContentController;
 import com.doArtShow.controls.member.ExhibitionListController;
 import com.doArtShow.controls.member.MemberAddController;
 import com.doArtShow.controls.member.MemberLoginController;
@@ -56,6 +57,9 @@ public class ContextLoaderListener implements ServletContextListener{
 			
 			//전시 목록 
 			sc.setAttribute("/client/ExListView.do", new ExhibitionListController().setExhibitionDao(exhibitionDao));
+
+			//전시글 상세내용 보기 
+			sc.setAttribute("/client/ExContentView.do", new ExhibitionContentController().setExhibitionDao(exhibitionDao));
 			
 			//--------------------------------------------------------------------------------------
 		} catch (Exception e) {

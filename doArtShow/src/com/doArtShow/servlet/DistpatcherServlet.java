@@ -56,6 +56,13 @@ public class DistpatcherServlet extends HttpServlet{
 			        	
 			    	  model.put("loginInfo", memberDto); 
 		    	  }
+		      } else if("/client/ExContentView.do".equals(servletPath)){
+		    	  ExhibitionDto exhDto = new ExhibitionDto();
+		    	  if(request.getParameter("exhID") != null){
+		    		  int exhID = Integer.parseInt(request.getParameter("exhID"));
+		    		  System.out.println(request.getParameter("exhID"));
+		    		  model.put("exhID", exhID);
+		    	  }
 		      }
 		      
 		      

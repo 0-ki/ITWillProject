@@ -49,22 +49,24 @@
         			<option value="">곧 끝나는 전시</option>
         		</select>
         	</div>
-		</div>
-		
+		</div>	
 	</div>
     <br>
-    <div class="container">
-	    <div id="list" style="display:inline-flex;">  
+    <div id="content_div" class="container">
+	    <div id="content_list">  
 	    	<c:forEach var="list" items="${lists}">
-		    <div>
+		    <div id="content_list_div">
 		        <a href="ExContentView.do?exhID=${list.exhID}"><!-- 아무데나 눌러도 상세페이지로 넘어가게 -->
-		        	<img src="/doArtShow/sampleImages/1.jpg" style="height: 300px; width: 220px;"/><br>
+		        	<img src="/doArtShow/sampleImages/${list.imageFile1}" style="height: 370px; width: 275px;"/><br>
 		            ${list.exhName}<br>
 		            ${list.exhPlace}<br>
 		            ${list.exhStartDate}&nbsp;~&nbsp;${list.exhEndDate}
 		       	 </a>
-		     </div>
-		     </c:forEach>
+		    </div>
+		    </c:forEach>
+		</div>
+		<div id="moreBtn_div" align="center">
+			<button type="button" id="more_btn">더보기</button>
 		</div>
 	</div>
 	
@@ -86,7 +88,40 @@
 				});
 			});
 		});
+		
 	</script> -->
+	
+	<script>
+		/* 더보기 버튼 */
+		/* var maxlength = ;
+		var start_number = 0;
+		
+		$("#more_btn").on("click", function(){
+			start_number = start_number+1;
+			if(start_number > maxlength){
+				return false;
+			}
+			
+			$("#moreBtn_div").fadeOut("fast");
+			$.ajax({
+				url: "/moreList.do",
+				type: "post",
+				data: ,
+				success: function(data){
+					$("#content_list").append(data);
+					if(start_number >= maxlength){
+						$("#moreBtn_div").fadeOut("fast");
+						return false;
+					}
+					$("#moreBtn_div").fadeIn("fast");
+				},
+				error: function(error){
+					
+				}
+			});
+		}); */
+		
+	</script>
 	
 	<jsp:include page="../module/3body_last.html"></jsp:include>
 	

@@ -175,6 +175,23 @@ header img {
 	 padding-left: 50px;
 }
 
+#content_list{
+	display: flex;
+	flex-wrap: wrap;
+	width: 1200px;
+}
+
+#content_list div{ 
+	padding: 5px;
+	padding-bottom: 10px;
+}
+
+#moreBtn_div{
+	padding: 30px;
+}
+
+/* ExContentView.jsp */
+
 
 
 /*--------------------
