@@ -8,6 +8,8 @@ import javax.servlet.annotation.WebListener;
 import javax.sql.DataSource;
 
 import com.doArtShow.controls.exhibition.searchListController;
+import com.doArtShow.controls.member.ExhibitionContentController;
+import com.doArtShow.controls.member.ExhibitionListController;
 import com.doArtShow.controls.member.MemberAddController;
 import com.doArtShow.controls.member.MemberDetailController;
 import com.doArtShow.controls.member.MemberEmailChkController;
@@ -81,7 +83,16 @@ public class ContextLoaderListener implements ServletContextListener{
 			
 			sc.setAttribute("/search.do", new searchListController().setExhibitionDao(exhibitionDao));
 			
+			sc.setAttribute("/client/auth/memberSignUp.do", new MemberAddController().setMemberDao(memberDao));
 			
+			//회원 로그인
+			sc.setAttribute("/client/auth/memberLogIn.do", new MemberLoginController().setMemberDao(memberDao));
+			
+			//전시 목록 
+			sc.setAttribute("/client/ExListView.do", new ExhibitionListController().setExhibitionDao(exhibitionDao));
+
+			//전시글 상세내용 보기 
+			sc.setAttribute("/client/ExContentView.do", new ExhibitionContentController().setExhibitionDao(exhibitionDao));
 			
 			//--------------------------------------------------------------------------------------
 		} catch (Exception e) {

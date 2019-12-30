@@ -158,6 +158,43 @@ header img {
 
 
 /*--------------------
+0. seran
+--------------------*/
+
+/* ExListView.jsp */
+#ctgList li{
+		display: inline;
+		list-style-type: none;
+		margin-left: 10px;
+	}
+
+#ctgBox{
+	 border: 3px solid gray; 
+	 padding: 5px;
+	 padding-right: 50px;
+	 padding-left: 50px;
+}
+
+#content_list{
+	display: flex;
+	flex-wrap: wrap;
+	width: 1200px;
+}
+
+#content_list div{ 
+	padding: 5px;
+	padding-bottom: 10px;
+}
+
+#moreBtn_div{
+	padding: 30px;
+}
+
+/* ExContentView.jsp */
+
+
+
+/*--------------------
 1. General
 --------------------*/
 

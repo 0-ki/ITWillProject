@@ -31,7 +31,7 @@
                         <a href="#page-top"></a>
                     </li>
                     <li>
-                        <a class="page-scroll" href="#about" id="top-list">전시목록</a>
+                        <a class="page-scroll" href="client/ExListView.do" id="top-list">전시목록</a>
                     </li>
                     <li>
                         <a class="page-scroll" href="#services" id="top-list">지도</a>
