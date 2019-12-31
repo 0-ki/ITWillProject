@@ -73,7 +73,7 @@
                             </div>
                             <hr>
                             <div id="login-btngroup">
-                                <input type="submit" class="btn btn-info" id="submitBtn" value="로그인" onclick="validateLogin(this.form)">
+                                <input type="submit" class="btn btn-info" id="submitLogin" value="로그인" onclick="validateLogin(this.form)">
                                 <br>
                                 
                                 
@@ -126,7 +126,7 @@
 							<!-- <a id="kakaoBtn" href="javascript:loginWithKakao()"><img src="/doArtShow/images/kakao_account_login_btn_medium_narrow.png" alt="카카오로그인"></a> -->
                                <!-- <button id="kakaoBtn" onclick="javascript:loginWithKakao()"><img src="/doArtShow/images/kakao_account_login_btn_medium_narrow.png" alt="카카오로그인"></button> -->
                             <br>
-                            <input  type="button"  class="btn btn-danger" id="submitBtn" value="회원가입" onclick="validateLogin(this.form)">
+                            <input  type="button"  class="btn btn-danger" id="submitSignUp" value="회원가입" onclick="validateLogin(this.form)">
                             </div>
 
 
