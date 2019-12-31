@@ -20,7 +20,7 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 
                 <div id="top-searchbar" class="nav justify-content-center">
-                 	<form name="searchForm" action="search.do" onsubmit="return chkSearch(this.form)" method="get">
+                 	<form name="searchForm" action="<%=request.getContextPath()%>/search.do" onsubmit="return chkSearch(this.form)" method="get">
                     	<input type="search" class="form-control" placeholder="전시 검색" id="search" name="search">
                     	<input type="submit" class="hidden" value="검색">
                     </form>
@@ -31,7 +31,7 @@
                         <a href="#page-top"></a>
                     </li>
                     <li>
-                        <a class="page-scroll" href="client/ExListView.do" id="top-list">전시목록</a>
+                        <a class="page-scroll" href="<%=request.getContextPath()%>/client/ExListView.do" id="top-list">전시목록</a>
                     </li>
                     <li>
                         <a class="page-scroll" href="#services" id="top-list">지도</a>

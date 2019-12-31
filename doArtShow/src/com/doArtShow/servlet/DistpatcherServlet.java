@@ -41,7 +41,7 @@ public class DistpatcherServlet extends HttpServlet {
 		      HashMap<String,Object> model = new HashMap<String,Object>();
 		      HttpSession session = request.getSession();
 		      model.put("session", request.getSession());
-		      
+		      System.out.println("getContextPath ==>>"+request.getContextPath());
 		      //페이지컨트롤러는 ServletContext보관소에 저장되어있으므로 이 보관소에서 페이지컨트롤러를 꺼낼때 서블릿 URL을 사용한다
 		      Controller pageController = (Controller) sc.getAttribute(servletPath);
 		      System.out.println("servletPath : "+servletPath);
