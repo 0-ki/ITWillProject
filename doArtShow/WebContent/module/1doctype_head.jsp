@@ -16,6 +16,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
 
     <!-- 직접 작성한 css 및 폰트 CDN 방식 -->
+    <!-- 직접 작성한 css 및 폰트 CDN 방식 -begin -->
     <link href="/doArtShow/css/style.css" rel="stylesheet" type="text/css">
     <link rel="stylesheet" type="text/css" href="/doArtShow/libs/slick/slick.css" />
     <link rel="stylesheet" type="text/css" href="/doArtShow/libs/slick/slick-theme.css" />
@@ -23,21 +24,19 @@
     <!--font-family: 'Noto Sans KR', sans-serif;-->
     
         <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
-<!--     	<script>
-	Kakao.init('3f954d79af6a536ec76db999e7f2ba5b');
-    function loginWithKakao() {
-      console.log('login카카오 호출됨!');
-    	// 로그인 창을 띄웁니다.
-      Kakao.Auth.loginForm({
-    	  success: function(authObj) {
-              alert(JSON.stringify(authObj));
-            },
-            fail: function(err) {
-              alert(JSON.stringify(err));
-        }
-      });
-    };
-	</script> -->
+    <!-- 직접 작성한 css 및 폰트 CDN 방식 -end -->
+
+    <!-- 직접 작성한 css 및 폰트 CDN 방식 by Hojeong -begin -->
+   <link rel="stylesheet" href="/doArtShow/css/HJStyle.css" type="text/css">
+    <!-- 직접 작성한 css 및 폰트 CDN 방식 by Hojeong -end -->
+    
+    <!-- javascript used by Hojeong : begin -->
+ 
+    <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>  <!-- sample6_execDaumPostcode() -->
+	<script src="http://dapi.kakao.com/v2/maps/sdk.js?appkey=c5326277ad64b2569191adafedd5fbbc&libraries=services"></script>
+	<!-- javascript used by Hojeong : end -->
+
+    <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
     
     
 </head>

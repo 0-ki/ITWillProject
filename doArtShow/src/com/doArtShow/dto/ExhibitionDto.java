@@ -197,7 +197,6 @@ public class ExhibitionDto {
 	public void setExhGubun3(String exhGubun3[]) {
 		this.exhGubun3 = exhGubun3;
 	}
-	
 	@Override
 	public String toString() {
 		return "ExhibitionDto [exhID=" + exhID + ", memberID=" + memberID + ", exhGubun1=" + exhGubun1 + ", exhGubun2="

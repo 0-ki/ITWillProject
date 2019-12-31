@@ -146,7 +146,7 @@
 
     <div id="back-top">
         <a data-toggle="modal" href="myBtn" id="myBtn" style="line-height:750%;"><span class="item" style="color: #F17F42; align-items: center; font-family: 'Noto Sans KR', sans-serif;">로그인</span></a>
-        <a href=""><span class="item" style="color: #CE6D39; font-family: 'Noto Sans KR', sans-serif; "><br><br>전시<br><br>등록</span></a>
+        <a href="<%=request.getContextPath() %>/exhibition/addForm.do"><span class="item" style="color: #CE6D39; font-family: 'Noto Sans KR', sans-serif; "><br><br>전시<br><br>등록</span></a>
         <a href="#page-top"><i class="fa fa-angle-up"></i></a>
     </div>
     
