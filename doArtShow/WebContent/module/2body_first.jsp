@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<c:set var="isLogin" value="${sessionScope.member}"/>
+
     <!-- 메인로고나 top 버튼 클릭시 최상단 좌표 역할 #page-top -->
     <span id="page-top">&nbsp;</span>
     <div id="page-top-div"></div>
@@ -20,7 +23,7 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 
                 <div id="top-searchbar" class="nav justify-content-center">
-                 	<form name="searchForm" action="search.do" onsubmit="return chkSearch(this.form)" method="get">
+                 	<form name="searchForm" action="<%=request.getContextPath()%>/search.do" onsubmit="return chkSearch(this.form)" method="get">
                     	<input type="search" class="form-control" placeholder="전시 검색" id="search" name="search">
                     	<input type="submit" class="hidden" value="검색">
                     </form>
@@ -31,7 +34,7 @@
                         <a href="#page-top"></a>
                     </li>
                     <li>
-                        <a class="page-scroll" href="client/ExListView.do" id="top-list">전시목록</a>
+                        <a class="page-scroll" href="<%=request.getContextPath()%>/client/ExListView.do" id="top-list">전시목록</a>
                     </li>
                     <li>
                         <a class="page-scroll" href="#services" id="top-list">지도</a>
@@ -59,7 +62,6 @@
 
                     <div id="login-wrap">
                     
-                    
                         <form method="post" name="loginForm" action="<%=request.getContextPath()%>/client/auth/memberLogIn.do">
                             <div class="login-input">
                                 <input class="form-control" type="text" placeholder="EMAIL" name="email" id="input_id">
@@ -77,9 +79,7 @@
                                 <input type="button" class="btn btn-info" id="submitBtn" value="로그인" onclick="validateLogin(this.form)">
                                 <br>
                                 
-                                
                                  <a id="kakao-login-btn"></a>
-                            
 							<script type='text/javascript'>
 								//<![CDATA[
 								// 사용할 앱의 JavaScript 키를 설정해 주세요.
@@ -129,6 +129,7 @@
                                <!-- <button id="kakaoBtn" onclick="javascript:loginWithKakao()"><img src="/doArtShow/images/kakao_account_login_btn_medium_narrow.png" alt="카카오로그인"></button> -->
                             <br>
                             <input  type="button"  class="btn btn-danger" value="회원가입" onclick="<%=request.getContextPath()%>/client/auth/memberAdd.do">
+                            <input  type="button"  class="btn btn-danger" id="submitSignUp" value="회원가입" onclick="validateLogin(this.form)">
                             </div>
 
 
