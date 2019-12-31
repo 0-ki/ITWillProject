@@ -25,10 +25,9 @@
 						<div>
 							<h2><b>${listOne.exhName}</b></h2>
 							<h4>${listOne.artistName}</h4>
-							<hr>
 						</div>
 						<div>
-							<table border="1">
+							<table class="table nanum table-hover">
 								<tr>
 									<td rowspan="7">
 										<img src="/doArtShow/sampleImages/${listOne.imageFile1}" style="height: 450px; width: 330px;"/>
@@ -53,45 +52,38 @@
 								<tr>
 									<td>&nbsp;사이트 : ${listOne.exhUrl}</td>
 								</tr>
+								<tr>
+									<td colspan="2">
+										<div id="myHist">
+											<a href="javascript:" id="wishBtn1" style="color: #3d3d3d;"> <!-- wishArt_func(); -->
+												<i class="fa fa-heart-o fa-2x"></i><br>
+												<label>가고싶어요</label>
+											</a>
+											<!-- 
+												가고싶어요 클릭하면 채워진 하트 이모티콘으로 변경
+												<i class="fa fa-heart fa-2x"></i>
+											-->
+											<a href="" id="visitBtn" style="color: #3d3d3d;"> <!-- visitArt_func(); -->
+												<i class="fa fa-check fa-2x"></i><br>
+												<label>다녀왔어요</label>
+											</a>
+											<a href="" id="reviewBtn" style="color: #3d3d3d; visibility: hidden;"> <!-- 평소에 숨겨져있다가 다녀왔어요 클릭하면 리뷰작성버튼 show로 변경 -->
+												<i class="fa fa-pencil fa-2x"></i><br> 
+												<label>리뷰작성</label>
+											</a>
+											<a href="" style="color: #3d3d3d;">
+												<i class="fa fa-share-alt fa-2x" aria-hidden="true"></i><br>
+											</a>
+										</div>
+									</td>
+								</tr>
+								<tr>
+									<td colspan="2" style="height: 1500px;">${listOne.exhContent}</td>
+								</tr>
 							</table>
 						</div>
 						<br>
-						<div>
-							<div id="myHist">
-								<a id="wishBtn1">
-									<i class="fa far fa-heart"></i><br>
-									<label>가고싶어요</label>
-								</a>
-								<a id="wishBtn2"><!-- 아이콘만 변경되게 바꿀것 -->
-									<i class="fa fas fa-heart"></i><br>
-									<label>가고싶어요</label>
-								</a>
-								<a id="visitBtn">
-									<i class="fa fas fa-check"></i><br>
-									<label>다녀왔어요</label>
-								</a>
-								<a id="reviewBtn">
-									<i class="fa fas fa-pencil-alt"></i><br>
-									<label>리뷰작성</label>
-								</a>
-								<a>
-									<i class="fa fas fa-share-alt"></i><br>
-									<label>공유</label>
-								</a>
-							</div>
-							<!-- <button type="button" id="wishBtn1" value="wishArt"><i class="fa far fa-heart"></i></button>누르기 전
-							<button type="button" id="wishBtn2" value="wishArt"><i class="fa fas fa-heart"></i></button>누른 후
-							
-							<button type="button" id="visitBtn" value="visitArt"><i class="fa fas fa-check"></i></button>누르기 전							
-							<button type="button" id="reviewBtn" data-toggle="modal" data-target="#revWriteModal" style="display: hidden;"><i class="fa fas fa-pencil-alt"></i></button>누른 후(hidden으로 숨겨놨다가 클릭하면 보여자게)
-							
-							<button type="button" class="btn btn-default"><i class="fa fas fa-share-alt"></i></button> -->
-						</div>
-						<br>
-						<div style="width: 100%; height: 1500px;">${listOne.exhContent}</div>
-						<br>
-						<!-- 리뷰 보여지는 부분 -->
-						
+						<!-- 리뷰 보여지는 부분 (Bootstrap 4 Carousel 기능으로!) -->
 					</div>
 		        </div>
 		        
@@ -106,17 +98,7 @@
 	
 	
 	<script>
-		$(function(){
-			$("#wishBtn1").click(function(){
-				
-			})
-		});
 		
-		$(function(){
-			$("#visitBtn").click(function(){
-				$("#reviewBtn").show();
-			})
-		})
 	</script>
 
 	<jsp:include page="../module/3body_last.html"></jsp:include>
