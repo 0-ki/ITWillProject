@@ -59,7 +59,6 @@
 
                     <div id="login-wrap">
                     
-                    
                         <form>
                             <div class="login-input">
                                 <input class="form-control" type="text" placeholder="ID" name="id" id="input_id">
@@ -76,7 +75,6 @@
                                 <input type="submit" class="btn btn-info" id="submitLogin" value="로그인" onclick="validateLogin(this.form)">
                                 <br>
                                 
-                                
                                  <a id="kakao-login-btn"></a>
 							<script type='text/javascript'>
 								//<![CDATA[
@@ -91,24 +89,12 @@
 											url : '/v2/user/me',
 											success : function(res) {
 												console.log('\n res>>'+JSON.stringify(res));
-												
 												 console.log('\n authObj>>'+ JSON.stringify(authObj)); //<----Kakao.Auth.createLoginButton에서 불러온 결과값 json형태로 출력
-
 									             console.log('\n res.id>>'+ res.id);//<---- 콘솔 로그에 id 정보 출력(id는 res안에 있기 때문에  res.id 로 불러온다)
-
 									             console.log('\n res.email>>'+ res.kakao_account['email']);//<---- 콘솔 로그에 email 정보 출력 (어딨는지 알겠죠?)
-
 									             console.log('\n res.nickname>>'+ res.properties['nickname']);//<---- 콘솔 로그에 닉네임 출력(properties에 있는 nickname 접근 
-
 									         // res.properties.nickname으로도 접근 가능 )
-
 									             console.log('\n access_token>>'+ authObj.access_token);//<---- 콘솔 로그에 토큰값 출력
-
-
-
-									
-												
-												
 											},
 											fail : function(error) {
 												alert(JSON.stringify(error));
