@@ -58,19 +58,19 @@
 						<br>
 						<div>
 							<div id="myHist">
-								<a>
+								<a id="wishBtn1">
 									<i class="fa far fa-heart"></i><br>
 									<label>가고싶어요</label>
 								</a>
-								<a>
+								<a id="wishBtn2"><!-- 아이콘만 변경되게 바꿀것 -->
 									<i class="fa fas fa-heart"></i><br>
 									<label>가고싶어요</label>
 								</a>
-								<a>
+								<a id="visitBtn">
 									<i class="fa fas fa-check"></i><br>
 									<label>다녀왔어요</label>
 								</a>
-								<a>
+								<a id="reviewBtn">
 									<i class="fa fas fa-pencil-alt"></i><br>
 									<label>리뷰작성</label>
 								</a>
