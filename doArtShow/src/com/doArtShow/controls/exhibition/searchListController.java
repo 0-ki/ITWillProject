@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Map;
 
 import com.doArtShow.controls.Controller;
-import com.doArtShow.controls.member.findIdController;
 import com.doArtShow.dao.ExhibitionDao;
 import com.doArtShow.dao.MemberDao;
 import com.doArtShow.dto.ExhibitionDto;
