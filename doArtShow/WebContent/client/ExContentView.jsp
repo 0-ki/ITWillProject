@@ -23,8 +23,9 @@
 		        <div class="modal-body">
 		        	<div class="container">
 						<div>
-							<h2>${listOne.exhName}</h2>
-							<h5>${listOne.artistName}</h5>
+							<h2><b>${listOne.exhName}</b></h2>
+							<h4>${listOne.artistName}</h4>
+							<hr>
 						</div>
 						<div>
 							<table border="1">
@@ -32,36 +33,65 @@
 									<td rowspan="7">
 										<img src="/doArtShow/sampleImages/${listOne.imageFile1}" style="height: 450px; width: 330px;"/>
 									</td>
-									<td>기간 : ${listOne.exhStartDate}&nbsp;~&nbsp;${listOne.exhEndDate}</td>
+									<td>&nbsp;기간 : ${listOne.exhStartDate}&nbsp;~&nbsp;${listOne.exhEndDate}</td>
 								</tr>
 								<tr>
-									<td>전시관 : ${listOne.exhPlace}</td>
+									<td style="width: 80%">&nbsp;전시관 : ${listOne.exhPlace}</td>
 								</tr>
 								<tr>
-									<td>주소 : ${listOne.exhPlaceAddr1}</td>
+									<td>&nbsp;주소 : ${listOne.exhPlaceAddr1}</td>
 								</tr>
 								<tr>
-									<td>시간 : ${listOne.opTime}</td>
+									<td>&nbsp;시간 : ${listOne.opTime}</td>
 								</tr>
 								<tr>
-									<td>입장료 : ${listOne.admFee}</td>
+									<td>&nbsp;입장료 : ${listOne.admFee}</td>
 								</tr>
 								<tr>
-									<td>문의 : ${listOne.tel}</td>
+									<td>&nbsp;문의 : ${listOne.tel}</td>
 								</tr>
 								<tr>
-									<td>사이트 : ${listOne.exhUrl}</td>
+									<td>&nbsp;사이트 : ${listOne.exhUrl}</td>
 								</tr>
 							</table>
 						</div>
+						<br>
 						<div>
-							<button>가고싶어요</button>
-							<button>갔다왔어요</button>
-							<button type="button" data-toggle="modal" data-target="#revWriteModal">리뷰쓰기</button>
-							<button>공유하기</button>
+							<div id="myHist">
+								<a>
+									<i class="fa far fa-heart"></i><br>
+									<label>가고싶어요</label>
+								</a>
+								<a>
+									<i class="fa fas fa-heart"></i><br>
+									<label>가고싶어요</label>
+								</a>
+								<a>
+									<i class="fa fas fa-check"></i><br>
+									<label>다녀왔어요</label>
+								</a>
+								<a>
+									<i class="fa fas fa-pencil-alt"></i><br>
+									<label>리뷰작성</label>
+								</a>
+								<a>
+									<i class="fa fas fa-share-alt"></i><br>
+									<label>공유</label>
+								</a>
+							</div>
+							<!-- <button type="button" id="wishBtn1" value="wishArt"><i class="fa far fa-heart"></i></button>누르기 전
+							<button type="button" id="wishBtn2" value="wishArt"><i class="fa fas fa-heart"></i></button>누른 후
+							
+							<button type="button" id="visitBtn" value="visitArt"><i class="fa fas fa-check"></i></button>누르기 전							
+							<button type="button" id="reviewBtn" data-toggle="modal" data-target="#revWriteModal" style="display: hidden;"><i class="fa fas fa-pencil-alt"></i></button>누른 후(hidden으로 숨겨놨다가 클릭하면 보여자게)
+							
+							<button type="button" class="btn btn-default"><i class="fa fas fa-share-alt"></i></button> -->
 						</div>
-						<div>${listOne.exhContent}</div>
-						<div>리뷰 슬라이드</div>
+						<br>
+						<div style="width: 100%; height: 1500px;">${listOne.exhContent}</div>
+						<br>
+						<!-- 리뷰 보여지는 부분 -->
+						
 					</div>
 		        </div>
 		        
@@ -73,6 +103,21 @@
     		</div>
 	   	</div>
 	</div> -->
+	
+	
+	<script>
+		$(function(){
+			$("#wishBtn1").click(function(){
+				
+			})
+		});
+		
+		$(function(){
+			$("#visitBtn").click(function(){
+				$("#reviewBtn").show();
+			})
+		})
+	</script>
 
 	<jsp:include page="../module/3body_last.html"></jsp:include>
 

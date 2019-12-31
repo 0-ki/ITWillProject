@@ -5,7 +5,6 @@
 	<jsp:include page="../module/1doctype_head.jsp"></jsp:include>
 	
 <body>
- 	
  	<jsp:include page="../module/2body_first.jsp"></jsp:include>
 	
 	<div class="container">
@@ -14,7 +13,7 @@
 				<li><b>태그로 찾을래요</b></li>
 				<li><a href="#데이트" id="ctg">#데이트</a></li>
 				<li><a href="#인생샷" id="ctg">#인생샷</a></li>
-				<li><a href="#친구와함께" id="ctg">#친구화함께</a></li>
+				<li><a href="#친구와함께" id="ctg">#친구와함께</a></li>
 				<li><a href="#나혼자문화생활" id="ctg">#나혼자문화생활</a></li>
 				<li><a href="#부모님과함께" id="ctg">#부모님과함께</a></li>
 				<li><a href="#아이와함께" id="ctg">#아이와함께</a></li>
@@ -122,7 +121,7 @@
 		}); */
 		
 	</script>
-	
+
 	<jsp:include page="../module/3body_last.html"></jsp:include>
 	
 </body>

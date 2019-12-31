@@ -17,8 +17,8 @@ import javax.servlet.http.HttpSession;
 import org.json.simple.JSONObject;
 
 import com.doArtShow.controls.Controller;
+import com.doArtShow.controls.exhibition.ExhibitionListController;
 import com.doArtShow.dao.MemberDao;
-import com.doArtShow.controls.member.ExhibitionListController;
 import com.doArtShow.dto.ExhibitionDto;
 import com.doArtShow.dto.MemberDto;
 import com.oreilly.servlet.MultipartRequest;
@@ -41,10 +41,9 @@ public class DistpatcherServlet extends HttpServlet {
 		      HashMap<String,Object> model = new HashMap<String,Object>();
 		      HttpSession session = request.getSession();
 		      model.put("session", request.getSession());
-		      System.out.println("getContextPath ==>>"+request.getContextPath());
+
 		      //페이지컨트롤러는 ServletContext보관소에 저장되어있으므로 이 보관소에서 페이지컨트롤러를 꺼낼때 서블릿 URL을 사용한다
 		      Controller pageController = (Controller) sc.getAttribute(servletPath);
-		      System.out.println("servletPath : "+servletPath);
 		      
 		      //--------------------------------------------------------------------------------------
 			  //각자 추가하는 Controller에 따라서 수정될 수 있습니다.
@@ -118,14 +117,13 @@ public class DistpatcherServlet extends HttpServlet {
 		    	  
 		      } else if("/search.do".equals(servletPath)){
 			    	  if(request.getParameter("search")!=null) {
-			    		  System.out.println(request.getParameter("search"));
+			    		  
 			    		  model.put("search", request.getParameter("search"));
 			    	  }
 			  } else if("/client/ExContentView.do".equals(servletPath)){
-		    	  ExhibitionDto exhDto = new ExhibitionDto();
 		    	  if(request.getParameter("exhID") != null){
 		    		  int exhID = Integer.parseInt(request.getParameter("exhID"));
-		    		  System.out.println(request.getParameter("exhID"));
+
 		    		  model.put("exhID", exhID);
 		    	  }
 		      } else if ("/exhibition/addForm.do".equals(servletPath)) {

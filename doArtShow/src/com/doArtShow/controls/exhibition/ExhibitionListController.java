@@ -1,4 +1,4 @@
-package com.doArtShow.controls.member;
+package com.doArtShow.controls.exhibition;
 
 import java.util.Map;
 

@@ -162,13 +162,20 @@ header img {
 --------------------*/
 
 /* ExListView.jsp */
+
+#ctg{
+	font-family: 'Noto Sans KR', sans-serif !important;
+}
+
 #ctgList li{
-		display: inline;
-		list-style-type: none;
-		margin-left: 10px;
-	}
+	display: inline;
+	list-style-type: none;
+	margin-left: 10px;
+	font-family: 'Noto Sans KR', sans-serif !important;
+}
 
 #ctgBox{
+	 font-family: 'Noto Sans KR', sans-serif !important;
 	 border: 3px solid gray; 
 	 padding: 5px;
 	 padding-right: 50px;
@@ -191,6 +198,10 @@ header img {
 }
 
 /* ExContentView.jsp */
+
+#myHist{
+	display: inline-flex;
+}
 
 
 
