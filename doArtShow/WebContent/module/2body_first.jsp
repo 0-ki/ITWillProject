@@ -4,7 +4,7 @@
 <c:set var="isLogin" value="${sessionScope.member}"/>
 
     <!-- 메인로고나 top 버튼 클릭시 최상단 좌표 역할 #page-top -->
-    <span id="page-top">&nbsp;</span>
+    <!-- <span id="page-top">&nbsp;</span> -->
     <div id="page-top-div"></div>
     <!--최상단 Navigation -->
     <nav class="navbar navbar-default navbar-fixed-top my-nav-top">
@@ -17,7 +17,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand page-scroll" id="top-mainlogo-a" href="/doArtShow"><img src="/doArtShow/images/mainlogo1.png" id="top-mainlogo-img" alt="전시:해"></a>
+                <a class="navbar-brand page-scroll" id="top-mainlogo-a" href="/doArtShow"><img src="/doArtShow/resourceImages/mainlogo1.png" id="top-mainlogo-img" alt="전시:해"></a>
             </div>
 
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -105,7 +105,7 @@
 										});
 									},
 									fail : function(err) {
-										alert(JSON.stringify(err));
+										alert(JSON.stringify(err)+'으아악');
 									}
 								});
 								//]]>
@@ -137,17 +137,25 @@
     
     	
     
-    
+        <c:choose>
+    	<c:when test="${empty isLogin}">
+        
         <a data-toggle="modal" href="myBtn" id="myBtn" style="line-height:750%;">
-        
-        <span class="item" style="color: #F17F42; align-items: center; font-family: 'Noto Sans KR', sans-serif;">
-    <c:choose>
-    	<c:when test="${empty isLogin}">로그인</c:when>
-    	<c:when test="${!empty isLogin}">로그아웃</c:when>
-    </c:choose>
-        </span>
+        <span class="item" style="color: #F17F42; align-items: center; font-family: 'Noto Sans KR', sans-serif;">로그인</span>
         </a>
+    	</c:when>
+    	
+    	
+    	
+    	<c:when test="${!empty isLogin}">
+    	
+    	<a data-toggle="modal" href="myBtn" id="myBtn" style="line-height:750%;">
+        <span class="item" style="color: #F17F42; align-items: center; font-family: 'Noto Sans KR', sans-serif;">로그아웃</span>
+        </a>
+    	
+    	</c:when>
         
+    </c:choose>
         
         <a href="
         <c:choose>
@@ -165,7 +173,8 @@
         </a>
         
         
-        <a href="#page-top"><i class="fa fa-angle-up"></i></a>
+        <a href="#" id="backtop"><i class="fa fa-angle-up"></i></a>
+<!--         <a href="#page-top"><i class="fa fa-angle-up"></i></a> -->
     </div>
    
     

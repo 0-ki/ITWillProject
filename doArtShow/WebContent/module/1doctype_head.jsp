@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="나만의 전시를 만들어가자! 전시 등록과 가장 인기 있는 전시를 한 눈에">
     <meta name="author" content="">
-    <link rel="shortcut icon" href="/doArtShow/images/artshowtitle_Zn8_icon.ico" type="image/x-icon" />
+    <link rel="shortcut icon" href="/doArtShow/resourceImages/artshowtitle_Zn8_icon.ico" type="image/x-icon" />
     <link rel="icon" href="favicon.ico">
     <title> 전시:해 </title>
     <!-- Bootstrap 4 가져오기 -->
