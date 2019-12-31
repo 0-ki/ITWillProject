@@ -3,32 +3,13 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
-<script src="../js/checkForm.js"></script>
-<script src="../js/validateForm.js"></script>
-<script type="text/javascript"></script>
-<script>
-//중복확인을 하기 전 입력된 아이디가 있는지 확인한다.
-function emailChkModal()
-{
-	if($("#input_email").val()==""){
-		$("#email_check").text("아이디를 입력하세요");
-		$("#email_check").css('color','red');
-		$("#emailChkButton").attr("disabled", true);
-		return;
-	} else {
-		url = "chkEmail.jsp?email=" + document.signUpForm.email.value;
-		
-		window.open(url, "confirm", "toolbar=no, location=no, status=no, menubar=no, scrollbars=no, resizable=no, width=500, height=200");	
-		$("#input_email").attr("disabled", true);
-		$("#emailChkButton").attr("disabled", true);
-	}
-} 
-</script>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>회원가입 페이지</title>
 </head>
+<jsp:include page="../../module/1doctype_head.jsp"></jsp:include>
 <body>
+<jsp:include page="../../module/2body_first.jsp"></jsp:include>
+<br>
 <h2>회원가입</h2>
 	<form method="post" name="signUpForm">
     	<table>
@@ -120,6 +101,10 @@ function emailChkModal()
 	            </tr>
 		</table>
 	</form>
+	<jsp:include page="../../module/3body_last.html"></jsp:include>
+	<script type="text/javascript">
+	
+	</script>
     <script>
         $(document).ready(function(){
             $("#agreeAll").click(function(){

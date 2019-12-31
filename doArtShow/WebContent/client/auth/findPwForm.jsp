@@ -3,10 +3,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-<script src="../js/validateForm.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<jsp:include page="../../module/1doctype_head.jsp"></jsp:include>
+<title>비밀번호 찾기</title>
+<jsp:include page="../../module/2body_first.jsp"></jsp:include>
 </head>
 <body>
 <form method="post" name="findPwForm">
@@ -30,6 +30,7 @@
 		</tr>
 	</table>
 </form>
+<jsp:include page="../../module/3body_last.html"></jsp:include>
 <script type="text/javascript">
 $(document).ready(function(){ 
 	$("#input_email").keyup(function(){

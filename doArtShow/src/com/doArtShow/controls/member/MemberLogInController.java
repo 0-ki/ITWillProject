@@ -31,7 +31,7 @@ public class MemberLogInController implements Controller{
 				// 로그인 정보 있음. 세션 생성 
 		        HttpSession session = (HttpSession)model.get("session");
 		        session.setAttribute("member", member);
-		        return "redirect:memberDetail.do";
+		        return "/index.jsp";
 		        
 		     } else {
 		    	 // 로그인 정보 없음(로그인 실패)
@@ -39,7 +39,7 @@ public class MemberLogInController implements Controller{
 		     }
 		//로그인 폼 요청
 		} else {
-			return "/client/auth/memberLogInForm.jsp";
+			return "/index.jsp";
 
 		}
 	}

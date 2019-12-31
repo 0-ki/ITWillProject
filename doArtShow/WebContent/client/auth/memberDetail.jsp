@@ -5,11 +5,12 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<script src="../js/validateForm.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
 <title>나의 계정 페이지</title>
 </head>
+<jsp:include page="../../module/1doctype_head.jsp"></jsp:include>
 <body>
+<jsp:include page="../../module/2body_first.jsp"></jsp:include>
+<br>
 <c:if test="${!empty sessionScope.member}">
 <h1>내계정</h1>
 <table>
@@ -53,30 +54,6 @@
 		<td><div id="pw_check"></div></td>
 	</tr>
 	<tr>
-		<td><h3>가보고 싶은 전시</h3></td>
-	</tr>
-	<tr>
-		<td colspan="3">
-			<jsp:include page="/client/auth/wishList.jsp"/>
-		</td>
-	</tr>
-	<tr>
-		<td><h3>가본 전시</h3></td>
-	</tr>
-	<tr>
-		<td colspan="3">
-			<jsp:include  page="/client/auth/visitList.jsp"/>
-		</td>
-	</tr>
-	<tr>
-		<td><h3>내가 등록한 전시</h3></td>
-	</tr>
-	<tr>
-		<td colspan="3">
-			<jsp:include  page="/client/auth/myExhibition.jsp"/>
-		</td>
-	</tr>
-	<tr>
 		<td colspan="3"><a href="">탈퇴하기</a></td>
 	</tr>
 </table>
@@ -85,6 +62,7 @@
 로그인이 필요한 페이지 입니다. 로그인해주세요
 <a href="memberLogIn.do">로그인 하러 가기</a>
 </c:if>
+<jsp:include page="../../module/3body_last.html"></jsp:include>
 <script type="text/javascript">
 $(document).ready(function(){
 	//생년월일 입력을하고 나면 알림 부분을 비워준다.
@@ -94,7 +72,7 @@ $(document).ready(function(){
 		}
 	});
 	
-	//비밀번호 입력을하고 나면 알림 부분을 비워준다.
+	//비밀번호 입력을하고 나면 알림 부분을 비워준다.	
 	$("#input_pw").keyup(function(){
 		if($("#input_pw").val() != null){
 			$("#pw_check").text("")

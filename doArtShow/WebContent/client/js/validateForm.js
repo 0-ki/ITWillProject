@@ -13,9 +13,20 @@ function validateLogin(loginForm){
         return false;
     }
 
-    loginForm.action="memberLogIn.do"
     loginForm.submit();
 }
+$(document).ready(function(){
+	$("#input_email").keyup(function(){
+		if($("#input_email").val() != ""){
+			$("#chkEmail").text("")
+		}
+	});
+	$("#input_pw").keyup(function(){
+		if($("#input_pw").val() != ""){
+			$("#chkPw").text("")
+		}
+	});
+});
 
 //회원가입 유효성 검사
 function validateSignUp(signUpForm){

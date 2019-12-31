@@ -25,6 +25,30 @@
 	<!--================ 커스텀 script 파일 ================  -->    
     <script src="/doArtShow/js/ygscript.js"></script>
     <script src="/doArtShow/js/exhFunction.js"></script>
+	
+	<!-- 정미 -->
+	<script src="/doArtShow/client/js/validateForm.js"></script>
+	<script src="/doArtShow/client/js/checkForm.js"></script>
+	<script>
+	//중복확인을 위한 jsp페이지
+	function emailChkModal()
+	{
+		if($("#input_email").val()==""){
+			$("#email_check").text("아이디를 입력하세요");
+			$("#email_check").css('color','red');
+			$("#emailChkButton").attr("disabled", true);
+			return;
+		} else {
+			url = "chkEmail.jsp?email=" + document.signUpForm.email.value;
+			
+			window.open(url, "confirm", "toolbar=no, location=no, status=no, menubar=no, scrollbars=no, resizable=no, width=500, height=200");	
+			$("#input_email").attr("disabled", true);
+			$("#emailChkButton").attr("disabled", true);
+		}
+	}
+	</script>
+	
+
 <script>
 function chkSearch(searchForm){
 	var _search = $('#search');
@@ -38,3 +62,5 @@ function chkSearch(searchForm){
 }
 
 </script>
+
+

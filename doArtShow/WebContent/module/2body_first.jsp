@@ -60,24 +60,26 @@
                     <div id="login-wrap">
                     
                     
-                        <form>
+                        <form method="post" name="loginForm" action="<%=request.getContextPath()%>/client/auth/memberLogIn.do">
                             <div class="login-input">
-                                <input class="form-control" type="text" placeholder="ID" name="id" id="input_id">
+                                <input class="form-control" type="text" placeholder="EMAIL" name="email" id="input_id">
                             </div>
+                            <div id="chkEmail"></div>
                             <div class="login-input"><input class="form-control" type="password" placeholder="PASSWORD" name="pw" id="input_pw"></div>
-
+							<div id="chkPw"></div>
                             <div class="login-input">
-                                <a href="findId.jsp">아이디</a> / <a href="findPw.jsp">비밀번호 찾기</a><br>
-                                <a href=""></a>
+                                <a href="<%=request.getContextPath()%>/client/auth/findEmail.do">아이디</a> / <a href="<%=request.getContextPath()%>/client/auth/findPw.do">비밀번호 찾기</a><br>
+                                
 
                             </div>
                             <hr>
                             <div id="login-btngroup">
-                                <input type="submit" class="btn btn-info" id="submitBtn" value="로그인" onclick="validateLogin(this.form)">
+                                <input type="button" class="btn btn-info" id="submitBtn" value="로그인" onclick="validateLogin(this.form)">
                                 <br>
                                 
                                 
                                  <a id="kakao-login-btn"></a>
+                            
 							<script type='text/javascript'>
 								//<![CDATA[
 								// 사용할 앱의 JavaScript 키를 설정해 주세요.
@@ -126,7 +128,7 @@
 							<!-- <a id="kakaoBtn" href="javascript:loginWithKakao()"><img src="/doArtShow/images/kakao_account_login_btn_medium_narrow.png" alt="카카오로그인"></a> -->
                                <!-- <button id="kakaoBtn" onclick="javascript:loginWithKakao()"><img src="/doArtShow/images/kakao_account_login_btn_medium_narrow.png" alt="카카오로그인"></button> -->
                             <br>
-                            <input  type="button"  class="btn btn-danger" id="submitBtn" value="회원가입" onclick="validateLogin(this.form)">
+                            <input  type="button"  class="btn btn-danger" value="회원가입" onclick="<%=request.getContextPath()%>/client/auth/memberAdd.do">
                             </div>
 
 
