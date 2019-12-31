@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<c:set var="isLogin" value="${sessionScope.member}"/>
+
     <!-- 메인로고나 top 버튼 클릭시 최상단 좌표 역할 #page-top -->
     <span id="page-top">&nbsp;</span>
     <div id="page-top-div"></div>
@@ -73,7 +76,7 @@
                             <hr>
                             <div id="login-btngroup">
                                 <input type="submit" class="btn btn-info" id="submitLogin" value="로그인" onclick="validateLogin(this.form)">
-                                <br>
+                                <br>	
                                 
                                  <a id="kakao-login-btn"></a>
 							<script type='text/javascript'>
@@ -131,8 +134,48 @@
 
 
     <div id="back-top">
-        <a data-toggle="modal" href="myBtn" id="myBtn" style="line-height:750%;"><span class="item" style="color: #F17F42; align-items: center; font-family: 'Noto Sans KR', sans-serif;">로그인</span></a>
-        <a href="<%=request.getContextPath() %>/exhibition/addForm.do"><span class="item" style="color: #CE6D39; font-family: 'Noto Sans KR', sans-serif; "><br><br>전시<br><br>등록</span></a>
+    
+    	
+    
+    
+        <a data-toggle="modal" href="myBtn" id="myBtn" style="line-height:750%;">
+        
+        <span class="item" style="color: #F17F42; align-items: center; font-family: 'Noto Sans KR', sans-serif;">
+    <c:choose>
+    	<c:when test="${empty isLogin}">로그인</c:when>
+    	<c:when test="${!empty isLogin}">로그아웃</c:when>
+    </c:choose>
+        </span>
+        </a>
+        
+        
+        <a href="
+        <c:choose>
+        <c:when test="${!empty isLogin}">
+        <%=request.getContextPath() %>/exhibition/addForm.do 		
+        </c:when>
+        
+        <c:when test="${empty isLogin}">
+        javascript:addFormLogin();
+        </c:when>
+        
+    	</c:choose>
+        ">
+        <span class="item" style="color: #CE6D39; font-family: 'Noto Sans KR', sans-serif; "><br><br>전시<br><br>등록</span>
+        </a>
+        
+        
         <a href="#page-top"><i class="fa fa-angle-up"></i></a>
     </div>
+   
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     

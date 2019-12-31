@@ -313,6 +313,7 @@ section ul li:before {
 input::placeholder {
     font-size: 90%;
     text-align: center;
+    
 }
 
 .my-nav-top {
