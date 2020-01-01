@@ -9,14 +9,14 @@
  	<jsp:include page="../module/2body_first.jsp"></jsp:include>
 
 	<!-- 모달로 변경 예정 -->
-	<!-- <div class="modal" id="ExcontentModal">
+	<!-- <div class="modal fade" id="ExcontentModal">
     	<div class="modal-dialog modal-xl modal-dialog-scrollable">
     		<div class="modal-content">
       
 	        	Modal Header
 	        	<div class="modal-header">
 	        		<h4 class="modal-title">Modal Heading</h4>
-	          		<button type="button" class="close" data-dismiss="modal">x</button>
+	          		<button type="button" class="close" data-dismiss="modal">&times;</button>
 	        	</div> -->
 	        
 		        <!-- Modal body -->
@@ -71,7 +71,7 @@
 												<i class="fa fa-pencil fa-2x"></i><br> 
 												<label>리뷰작성</label>
 											</a>
-											<a href="" style="color: #3d3d3d;">
+											<a href="shareBtn" id="shareBtn" data-toggle="modal" style="color: #3d3d3d;">
 												<i class="fa fa-share-alt fa-2x" aria-hidden="true"></i><br>
 											</a>
 										</div>
@@ -97,8 +97,15 @@
 	</div> -->
 	
 	
+	
 	<script>
-		
+		$(document).ready(function(){
+			$("#shareBtn").click(function(){
+				$("#shareModal").modal({
+					backdrop: true
+				});	
+			});
+		});
 	</script>
 
 	<jsp:include page="../module/3body_last.html"></jsp:include>
