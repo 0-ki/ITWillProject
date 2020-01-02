@@ -198,15 +198,23 @@ header img {
 }
 
 /* ExContentView.jsp */
-
 #myHist{
 	display: inline-flex;
 	text-align: center;
 	padding-left: 35px;
 }
 
-#myHist a{
+#imageBtn{
+	display: inline-block;
+}
+
+#wishBtn, #visitBtn, #reviewBtn, #shareBtn{
 	padding-right: 15px;
+}
+
+.dropdown-item{
+	float: left;
+	margin-left: 2.5px;
 }
 
 
