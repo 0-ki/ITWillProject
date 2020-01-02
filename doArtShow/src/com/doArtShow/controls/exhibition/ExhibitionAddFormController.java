@@ -25,7 +25,7 @@ public class ExhibitionAddFormController implements Controller {
 		// 전시회 등록폼을 요청할때
 		//HttpSession session = (HttpSession) model.get("session");
 		//if (session.getAttribute("id") != null) {
-			return "/exhibition/registerForm.jsp";
+			return "/clientView/exhibition/registerForm.jsp";
 		//}
 		//return "redirect:memberLogIn.do";
 	}

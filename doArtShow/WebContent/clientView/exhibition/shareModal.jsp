@@ -1,7 +1,3 @@
-<style>
-	
-</style>	
-	
 	
 	<div class="modal fade" id="shareModal" role="dialog">
         <div class="modal-dialog">
@@ -17,16 +13,16 @@
                 <div class="modal-body">
                     <div id="sns-go">
                     	<span class="snslink">
-                    		<a href="javascript:sendLinkFaceBook()" title="페이스북으로 공유하기"><img src="" width="36" alt="FaceBook"></a>
+                    		<a href="javascript:sendLinkFaceBook()" title="페이스북으로 공유하기"><img src="/doArtShow/resourcesImages/sns_face.png" width="36" alt="FaceBook"></a>
                     	</span>
                     	<span class="snslink">
-                    		<a href="javascript:sendLinkTwitter()" title="트위터로 공유하기"><img src="" width="36" alt="Twitter"></a>
+                    		<a href="javascript:sendLinkTwitter()" title="트위터로 공유하기"><img src="/doArtShow/resourcesImages/sns_tw.png" width="36" alt="Twitter"></a>
                     	</span>
                     	<span class="snslink">
-                    		<a href="javascript:sendLinkNaver()" title="네이버로 공유하기"><img src="" width="36" alt="Naver"></a>
+                    		<a href="javascript:sendLinkNaver()" title="네이버로 공유하기"><img src="/doArtShow/resourcesImages/sns_naver.png" width="36" alt="Naver"></a>
                     	</span>
                     	<span class="snslink">
-                    		<a href="javascript:sendLinkKakao()" id="kakao-link-btn" title="카카오톡으로 공유하기"><img src="" width="36" alt="KakaoTalk"></a>
+                    		<a href="javascript:sendLinkKakao(this)" id="kakao-link-btn" title="카카오톡으로 공유하기"><img src="/doArtShow/resourcesImages/sns_ka.png" width="36" alt="KakaoTalk"></a>
                     	</span> 
                     </div>
                 </div>
@@ -41,7 +37,7 @@
    
    
 <script>
-	function sendLinkFacebook(){
+	function sendLinkFaceBook(){
 	    var facebook_share_url = "https://www.facebook.com/sharer/sharer.php?u=" + encodeURIComponent(document.URL) + "&t=" + encodeURIComponent(document.title);
 	    window.open(facebook_share_url,
 	                'Share on Facebook',
@@ -63,6 +59,30 @@
 	                'Share on Naver',
 	                'scrollbars=no, width=500, height=500');    
 	}
-	/* 카톡공유 함수 */
+	
+	/* Kakao.init('3f954d79af6a536ec76db999e7f2ba5b'); */
+	function sendLinkKakao(){
+		Kakao.Link.sendDefault({
+			objectType: 'feed',
+			content: {
+				title: encodeURIComponent(document.title),
+				imageUrl: /* 해당 전시회의 포스터 이미지 */,
+				link: {
+					mobileWeUrl: encodeURIComponent(document.URL),
+					webUrl: encodeURIComponent(document.URL),
+				}
+			},
+			
+			buttons: [
+				{
+					title: '링크열기',
+					link: {
+						mobileWeUrl: encodeURIComponent(document.URL),
+						webUrl: encodeURIComponent(document.URL)
+					}
+				}
+			]
+		)};
+	}
 </script>  
     

@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="나만의 전시를 만들어가자! 전시 등록과 가장 인기 있는 전시를 한 눈에">
     <meta name="author" content="">
-    <link rel="shortcut icon" href="/doArtShow/images/artshowtitle_Zn8_icon.ico" type="image/x-icon" />
+    <link rel="shortcut icon" href="/doArtShow/resourcesImages/artshowtitle_Zn8_icon.ico" type="image/x-icon" />
     <link rel="icon" href="favicon.ico">
     <title> 전시:해 </title>
     <!-- Bootstrap 4 가져오기 -->
@@ -23,7 +23,7 @@
     <link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR&display=swap" rel="stylesheet">
     <!--font-family: 'Noto Sans KR', sans-serif;-->
     
-        <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
+    <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
     <!-- 직접 작성한 css 및 폰트 CDN 방식 -end -->
 
     <!-- 직접 작성한 css 및 폰트 CDN 방식 by Hojeong -begin -->

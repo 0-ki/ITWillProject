@@ -57,7 +57,7 @@
 	</tr>
 	<tr>
 		<td colspan="3">
-			<jsp:include page="/client/auth/wishList.jsp"/>
+			<jsp:include page="/clientView/auth/wishList.jsp"/>
 		</td>
 	</tr>
 	<tr>
@@ -65,7 +65,7 @@
 	</tr>
 	<tr>
 		<td colspan="3">
-			<jsp:include  page="/client/auth/visitList.jsp"/>
+			<jsp:include  page="/clientView/auth/visitList.jsp"/>
 		</td>
 	</tr>
 	<tr>
@@ -73,7 +73,7 @@
 	</tr>
 	<tr>
 		<td colspan="3">
-			<jsp:include  page="/client/auth/myExhibition.jsp"/>
+			<jsp:include  page="/clientView/auth/myExhibition.jsp"/>
 		</td>
 	</tr>
 	<tr>

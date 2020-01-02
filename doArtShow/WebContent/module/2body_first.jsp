@@ -14,7 +14,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand page-scroll" id="top-mainlogo-a" href="/doArtShow"><img src="/doArtShow/images/mainlogo1.png" id="top-mainlogo-img" alt="전시:해"></a>
+                <a class="navbar-brand page-scroll" id="top-mainlogo-a" href="/doArtShow"><img src="/doArtShow/resourcesImages/mainlogo1.png" id="top-mainlogo-img" alt="전시:해"></a>
             </div>
 
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -31,7 +31,7 @@
                         <a href="#page-top"></a>
                     </li>
                     <li>
-                        <a class="page-scroll" href="<%=request.getContextPath()%>/client/ExListView.do" id="top-list">전시목록</a>
+                        <a class="page-scroll" href="<%=request.getContextPath()%>/clientView/exhibition/ExListView.do" id="top-list">전시목록</a>
                     </li>
                     <li>
                         <a class="page-scroll" href="#services" id="top-list">지도</a>
@@ -146,7 +146,7 @@
 
     <div id="back-top">
         <a data-toggle="modal" href="myBtn" id="myBtn" style="line-height:750%;"><span class="item" style="color: #F17F42; align-items: center; font-family: 'Noto Sans KR', sans-serif;">로그인</span></a>
-        <a href="<%=request.getContextPath() %>/exhibition/addForm.do"><span class="item" style="color: #CE6D39; font-family: 'Noto Sans KR', sans-serif; "><br><br>전시<br><br>등록</span></a>
+        <a href="<%=request.getContextPath() %>/clientView/exhibition/addForm.do"><span class="item" style="color: #CE6D39; font-family: 'Noto Sans KR', sans-serif; "><br><br>전시<br><br>등록</span></a>
         <a href="#page-top"><i class="fa fa-angle-up"></i></a>
     </div>
     

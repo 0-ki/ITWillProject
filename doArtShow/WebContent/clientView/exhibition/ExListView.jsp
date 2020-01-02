@@ -2,10 +2,10 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
-	<jsp:include page="../module/1doctype_head.jsp"></jsp:include>
+	<jsp:include page="../../module/1doctype_head.jsp"></jsp:include>
 	
 <body>
- 	<jsp:include page="../module/2body_first.jsp"></jsp:include>
+ 	<jsp:include page="../../module/2body_first.jsp"></jsp:include>
 	
 	<div class="container">
 		<div id="ctgBox">
@@ -55,8 +55,8 @@
 	    <div id="content_list">  
 	    	<c:forEach var="list" items="${lists}">
 		    <div id="content_list_div">
-		        <a href="ExContentView.do?exhID=${list.exhID}"><!-- 아무데나 눌러도 상세페이지로 넘어가게 -->
-		        	<img src="/doArtShow/sampleImages/${list.imageFile1}" style="height: 370px; width: 275px;"/><br>
+		        <a href="ExContentView.do?exhID=${list.exhID}" id="ExContentView" data-toggle="modal"><!-- 아무데나 눌러도 상세페이지로 넘어가게 -->
+		        	<img src="/doArtShow/ExbitionImages/${list.imageFile1}" style="height: 370px; width: 275px;"/><br>
 		            ${list.exhName}<br>
 		            ${list.exhPlace}<br>
 		            ${list.exhStartDate}&nbsp;~&nbsp;${list.exhEndDate}
@@ -120,9 +120,19 @@
 			});
 		}); */
 		
+		
+		/* ExContentView(모달로 변경) 띄우는 함수 */
+		/* $(document).ready(function(){
+			$("#ExContentView").click(function(){
+				$("#ExcontentModal").modal({
+					backdrop: true
+				});	
+			});
+		}); */
+		
 	</script>
 
-	<jsp:include page="../module/3body_last.html"></jsp:include>
+	<jsp:include page="../../module/3body_last.html"></jsp:include>
 	
 </body>
 </html>

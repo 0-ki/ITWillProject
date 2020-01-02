@@ -25,10 +25,10 @@ public class FindEmailController implements Controller{
 			HttpSession session = (HttpSession)model.get("session");
 	        session.setAttribute("email", email);
 	        
-			return "/client/auth/findEmailResult.jsp";
+			return "/clientView/auth/findEmailResult.jsp";
 			
 		} else {
-			return "/client/auth/findEmailForm.jsp";
+			return "/clientView/auth/findEmailForm.jsp";
 		}
 	}
 }

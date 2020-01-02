@@ -23,7 +23,7 @@ public class ExhibitionListController implements Controller {
 		//exhibitionDao.selectList()에서 가져온 데이터를 lists라는 이름으로 model(Map객체)에 담는다
 		
 		System.out.println("##5번 다시 ExhibitionListController로 돌아와서 DispatcherRedirect로  url리턴");
-		return "/client/ExListView.jsp"; //DispatcherRedirect에게 뷰URL을 반환
+		return "/clientView/exhibition/ExListView.jsp"; //DispatcherRedirect에게 뷰URL을 반환
 	}
 	
 }

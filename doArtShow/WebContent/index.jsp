@@ -19,10 +19,10 @@
                         <div>
                             <h4><a href="#">더 보기 &nbsp;<span class="fa fa-plus"></span> </a></h4>
                             <div class="intro-heading">
-                                <div><img src="/doArtShow/sampleImages/1.jpg" alt="1"></div>
-                                <div><img src="/doArtShow/sampleImages/2.jpg" alt="2"></div>
-                                <div><img src="/doArtShow/sampleImages/3.jpg" alt="3"></div>
-                                <div><img src="/doArtShow/sampleImages/4.jpg" alt="4"></div>
+                                <div><img src="/doArtShow/ExbitionImages/1.jpg" alt="1"></div>
+                                <div><img src="/doArtShow/ExbitionImages/2.jpg" alt="2"></div>
+                                <div><img src="/doArtShow/ExbitionImages/3.jpg" alt="3"></div>
+                                <div><img src="/doArtShow/ExbitionImages/4.jpg" alt="4"></div>
                             </div>
                         </div>
                     </div>
@@ -34,10 +34,10 @@
                         <div>
                             <h4><a href="#">더 보기 &nbsp;<span class="fa fa-plus"></span> </a></h4>
                             <div class="intro-heading">
-                                <div><img src="/doArtShow/sampleImages/5.jpg" alt="1"></div>
-                                <div><img src="/doArtShow/sampleImages/6.jpg" alt="2"></div>
-                                <div><img src="/doArtShow/sampleImages/7.jpg" alt="3"></div>
-                                <div><img src="/doArtShow/sampleImages/8.jpg" alt="4"></div>
+                                <div><img src="/doArtShow/ExbitionImages/5.jpg" alt="1"></div>
+                                <div><img src="/doArtShow/ExbitionImages/6.jpg" alt="2"></div>
+                                <div><img src="/doArtShow/ExbitionImages/7.jpg" alt="3"></div>
+                                <div><img src="/doArtShow/ExbitionImages/8.jpg" alt="4"></div>
                             </div>
                         </div>
                     </div>

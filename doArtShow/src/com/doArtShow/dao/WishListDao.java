@@ -10,6 +10,5 @@ public class WishListDao {
 		this.ds = ds;
 	}
 	
-	public 
 	
 }

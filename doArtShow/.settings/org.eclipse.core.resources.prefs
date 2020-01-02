@@ -1,3 +1,5 @@
 eclipse.preferences.version=1
-encoding//WebContent/client/ExListView.jsp=UTF-8
-encoding//WebContent/client/shareModal.jsp=UTF-8
+encoding//WebContent/clientView/exhibition/ExContentView.jsp=UTF-8
+encoding//WebContent/clientView/exhibition/ExListView.jsp=UTF-8
+encoding//WebContent/clientView/exhibition/revWriteModal.jsp=UTF-8
+encoding//WebContent/clientView/exhibition/shareModal.jsp=UTF-8

@@ -22,7 +22,7 @@ public class ExhibitionContentController implements Controller{
 		model.put("listOne", exhibitionDao.selectOne(exhID)); // 상세페이지에 뿌릴 데이터를 가져옴
 		
 		System.out.println("##5번 다시 ExhibitionContentController로 돌아와서 DispatcherRedirect로  url리턴");
-		return "/client/ExContentView.jsp";
+		return "/clientView/exhibition/ExContentView.jsp";
 	}
 
 }
