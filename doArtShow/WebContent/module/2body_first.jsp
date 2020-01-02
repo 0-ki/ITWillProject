@@ -64,15 +64,16 @@
                     
                         <form method="post" name="loginForm" action="<%=request.getContextPath()%>/client/auth/memberLogIn.do">
                             <div class="login-input">
-                                <input class="form-control" type="text" placeholder="EMAIL" name="email" id="input_id">
+                                <input class="form-control" type="text" placeholder="EMAIL" name="email" id="input_email">
+                                <div style="margin-top:5px" id="chkEmail"></div>
                             </div>
-                            <div id="chkEmail"></div>
-                            <div class="login-input"><input class="form-control" type="password" placeholder="PASSWORD" name="pw" id="input_pw"></div>
-							<div id="chkPw"></div>
+                            
+                            <div class="login-input">
+                            	<input class="form-control" type="password" placeholder="PASSWORD" name="pw" id="input_pw">
+                            	<div style="margin-top:5px" id="chkPw"></div>
+                            </div>
                             <div class="login-input">
                                 <a href="<%=request.getContextPath()%>/client/auth/findEmail.do">아이디</a> / <a href="<%=request.getContextPath()%>/client/auth/findPw.do">비밀번호 찾기</a><br>
-                                
-
                             </div>
                             <hr>
                             <div id="login-btngroup">

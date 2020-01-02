@@ -106,8 +106,10 @@ header img {
     display: block;
     text-align: center;
     margin: auto;
-    margin-bottom: 2vh;
+    /* margin-bottom: 2vh; */
     width: 50%;
+    overflow:hidden;
+    height:60px;
 }
 
 #login-footer {

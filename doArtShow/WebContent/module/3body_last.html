@@ -46,6 +46,19 @@
 			$("#emailChkButton").attr("disabled", true);
 		}
 	}
+	$(document).ready(function(){
+		   $("#input_email").keyup(function(){
+		      if($("#input_email").val() != ""){
+		         $("#chkEmail").text("")
+		      }
+		   });
+		   $("#input_pw").keyup(function(){
+		      if($("#input_pw").val() != ""){
+		         $("#chkPw").text("")
+		      }
+		   });
+		});
+
 	</script>
 	
 
@@ -61,6 +74,13 @@ function chkSearch(searchForm){
 	}
 }
 
+
+function addFormLogin() {
+	$("#myModal").modal({
+		backdrop : true
+	});
+	
+}
 </script>
 
 

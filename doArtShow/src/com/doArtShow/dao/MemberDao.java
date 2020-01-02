@@ -88,7 +88,7 @@ public class MemberDao {
 			rs = pstmt.executeQuery();
 			
 			member = new MemberDto();
-			
+
 			while(rs.next()){
 				member.setBirth(rs.getString("birth"));
 				member.setGender(rs.getString("gender"));

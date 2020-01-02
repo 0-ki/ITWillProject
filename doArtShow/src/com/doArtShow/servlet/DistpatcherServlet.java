@@ -321,7 +321,7 @@ public class DistpatcherServlet extends HttpServlet {
 		    	  response.setContentType("json:application/json");
 		    	  response.getWriter().print(viewUrl.substring(5));
 			      return;
-			        
+			      
 			  } else {
 		        RequestDispatcher rd = request.getRequestDispatcher(viewUrl);
 		        rd.include(request, response);

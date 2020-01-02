@@ -9,78 +9,95 @@
 <style>
 	.tableLabel{
 		margin-right: 50px;
+		width:150px;
     }
     .form-control{
      	width: 200px;
     }
-    td{
-    	height:20pt;
+    tr{
+    	height:40px;
     }
+    .form-check-input{
+    	width:20px;
+    }
+    .check_tr{
+    	overflow:hidden;
+    	height:25px;
+    }
+    
 </style>   
 </head>
 <jsp:include page="../../module/1doctype_head.jsp"></jsp:include>
 <body>
 <jsp:include page="../../module/2body_first.jsp"></jsp:include>
-<br>
 <c:if test="${!empty sessionScope.member}">
-<div class="container p-4 border">
-    <h4><b>회원정보수정</b></h4>
-    <br>
-    <table>
-	<tr>
-		<td><label class="tableLabel">이메일</label></td>
-		<td>${member.email}</td>
-		<td><a href="memberLogOut.do">로그아웃</a></td>
-	</tr>
-	<tr>
-		<td><label class="tableLabel">이름</label></td>
-		<td>${member.name}</td>
-	</tr>
-	<tr>
-		<td><label class="tableLabel">생년월일</label></td>
-		<form method="post" name="updateBirthForm">
-        <div class="form-group">
-            <td><input class="form-control" type="text" value="${member.birth}" name="birth" id="input_birth" placeholder="0000-00-00"></td>
-            <td><input class="btn btn-light" type="button" onclick="chkBirthFn(this.form)"id="birthSubmitBtn" value="수정"></td>
-        </div>    
-        </form>
-        
-	</tr>
-	<tr>
-		<td colspan="2"><div id="birth_check"></div></td>
-	</tr>
-	<tr>
-		<td><label class="tableLabel">성별</label></td>
-		<form method="post" name="updateGenderForm" action ="memberUpdate.do">
-		<td>
-			<input class="form-check-input" type="radio" name="gender" id="male"   value="남성" <c:if test="${member.gender eq '남성'}">checked="checked"</c:if>>남성
-			<input class="form-check-input" type="radio" name="gender" id="female" value="여성" <c:if test="${member.gender eq '여성'}">checked="checked"</c:if>>여성
-		</td>
-		<td><input class="btn btn-light" type="submit" value="수정"></td>
-		</form>
-	</tr>
-	<tr>
-		<td><label class="tableLabel">비밀번호</label></td>
-		<form method="post" name="updatePwForm">
-        <div class="form-group">
-		<td><input class="form-control" type="password" value="${member.pw}" name="pw" id="input_pw"></td>
-		<td><input class="btn btn-light" type="button" onclick="chkPwFn(this.form)"id="pwSubmitBtn" value="수정"></td>
-        </div>
-        </form>
-	</tr>
-	<tr>
-		<td><div id="pw_check"></div></td>
-	</tr>
-	<tr>
-		<td colspan="3"><a href="">탈퇴하기</a></td>
-    </tr>
-    </table>
-</div>
+	<br>
+    <div class="container">
+        <div style="font-size: 18pt;" align="center"><b>회원정보수정</b></div>
+        <br>
+        <table align="center">
+        <tr>
+            <th><label class="tableLabel">이메일</label></th>
+            <td>${member.email}</td>
+            <td><a href="memberLogOut.do">로그아웃</a></td>
+        </tr>
+        <tr>
+        	<td colspan="3"><div></div></td>    
+        </tr>
+        <tr>
+            <th><label class="tableLabel">이름</label></th>
+            <td>${member.name}</td>
+        </tr>
+        <tr>
+        	<td colspan="3"><div></div></td>    
+        </tr>
+        <tr>
+            <th><label class="tableLabel">생년월일</label></th>
+            <form method="post" name="updateBirthForm">
+            <div class="form-group">
+                <td><input class="form-control" type="text" value="${member.birth}" name="birth" id="input_birth" placeholder="0000-00-00"></td>
+                <td><input class="btn btn-light" type="button" onclick="chkBirthFn(this.form)"id="birthSubmitBtn" value="수정"></td>
+            </div>    
+            </form>
+        </tr>
+        <tr>
+        	<td colspan="3"><div id="birth_check"></div></td>
+        </tr>
+        <tr>
+            <th><label class="tableLabel">성별</label></th>
+            <form method="post" name="updateGenderForm" action ="memberUpdate.do">
+            <td>
+                <input class="form-check-input" type="radio" name="gender" id="male"   value="남성" <c:if test="${member.gender eq '남성'}">checked="checked"</c:if>>남성
+                <input class="form-check-input" type="radio" name="gender" id="female" value="여성" <c:if test="${member.gender eq '여성'}">checked="checked"</c:if>>여성
+            </td>
+            <td><input class="btn btn-light" type="submit" value="수정"></td>
+            </form>
+        </tr>
+        <tr>
+        	<td colspan="3"><div></div></td>    
+        </tr>
+        <tr>
+            <th><label class="tableLabel">비밀번호</label></th>
+            <form method="post" name="updatePwForm">
+            <div class="form-group">
+                <td><input class="form-control" type="password" value="${member.pw}" name="pw" id="input_pw"></td>
+                <td><input class="btn btn-light" type="button" onclick="chkPwFn(this.form)"id="pwSubmitBtn" value="수정"></td>
+            </div>
+            </form>
+        </tr>
+        <tr>
+        	<td colspan="3"><div id="pw_check"></div></td>    
+        </tr>
+        <tr>
+            <td colspan="3"><a href="">탈퇴하기</a></td>
+        </tr>
+        </table>
+    </div>
 </c:if>
 <c:if test="${empty sessionScope.member}">
 <div class="container p-4 border">
 로그인이 필요한 페이지 입니다. 로그인해주세요
-<a href="memberLogIn.do">로그인 하러 가기</a>
+<a href="javascript:addFormLogin();">로그인 하러 가기</a>
 </div>
 </c:if>
 <jsp:include page="../../module/3body_last.html"></jsp:include>

@@ -35,7 +35,7 @@ public class MemberDto {
 		this.birth = birth;
 		return this;
 	}
-	
+
 	public String getGender() {
 		return gender;
 	}

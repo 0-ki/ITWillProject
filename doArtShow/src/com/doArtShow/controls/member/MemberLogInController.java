@@ -27,7 +27,7 @@ public class MemberLogInController implements Controller{
 			MemberDto member = memberDao.checkMember(
 					loginInfo.getEmail(), loginInfo.getPw());
 			
-			if (member != null) {
+			if (member.getEmail() != null) {
 				// 로그인 정보 있음. 세션 생성 
 		        HttpSession session = (HttpSession)model.get("session");
 		        session.setAttribute("member", member);
@@ -35,7 +35,7 @@ public class MemberLogInController implements Controller{
 		        
 		     } else {
 		    	 // 로그인 정보 없음(로그인 실패)
-		        return "redirect:memberLogInFail.do";
+		        return "/client/auth/memberLogInFail.jsp";
 		     }
 		//로그인 폼 요청
 		} else {

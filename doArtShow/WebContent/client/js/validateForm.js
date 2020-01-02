@@ -1,7 +1,7 @@
 // 회원 로그인 유효성 검사
 function validateLogin(loginForm){
     if(!loginForm.email.value){
-        $("#chkEmail").text("아이디를 입력하세요");
+        $("#chkEmail").text("이메일을 입력하세요");
         $("#chkEmail").css('color','red');
         loginForm.email.focus();
         return false;
