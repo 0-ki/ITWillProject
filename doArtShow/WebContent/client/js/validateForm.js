@@ -92,29 +92,22 @@ function validateSignUp(signUpForm){
 }
 
 //회원 정보수정(생년월일 수정)
-function chkBirthFn(updateBirthForm){
-	if(!updateBirthForm.birth.value){
-        $("#birth_check").text("수정할 이름을 입력하세요");
+function checkUpdateForm(updateForm){
+	if(!updateForm.birth.value){
+        $("#birth_check").text("수정할 생년월일 입력하세요");
         $("#birth_check").css('color','red');
-        updateBirthForm.birth.focus();
+        updateForm.birth.focus();
         return false;
     }
-
-	updateBirthForm.action="memberUpdate.do"
-	updateBirthForm.submit();
-}
-
-//회원 정보수정(비밀번호 수정)
-function chkPwFn(updatePwForm){
 	if(!updatePwForm.pw.value){
-		$("#pw_check").text("수정할 이름을 입력하세요");
+		$("#pw_check").text("수정할 비밀번호를 입력하세요");
 		$("#pw_check").css('color','red');
 		updatePwForm.pw.focus();
 		return false;
 	}
 	
-	updatePwForm.action="memberUpdate.do"
-	updatePwForm.submit();
+	updateForm.action="memberUpdate.do"
+	updateForm.submit();
 }
 
 //이메일 찾기 폼 유효성 검사

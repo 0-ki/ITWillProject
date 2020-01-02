@@ -80,27 +80,16 @@ public class DistpatcherServlet extends HttpServlet {
 		               }
 		               
 		            } else if("/client/auth/memberUpdate.do".equals(servletPath)){
-		              if(request.getParameter("birth")!=null) {
-		                 model.put("birth",request.getParameter("birth"));
-		                 
-		                 MemberDto member = (MemberDto)session.getAttribute("member");
-		                 String email = member.getEmail();
-		                 model.put("email", email);
+		              if(request.getParameter("birth")!=null){
+		            	  model.put("member", new MemberDto()
+			                        .setBirth(request.getParameter("birth"))
+			                        .setGender(request.getParameter("gender"))
+			                        .setPw(request.getParameter("pw"))
+		            	  			.setProfileImg(request.getParameter("profileImg")));
 		              }
-		              if(request.getParameter("gender")!=null) {
-		                 model.put("gender",request.getParameter("gender"));
-		                 
-		                 MemberDto member = (MemberDto)session.getAttribute("member");
-		                 String email = member.getEmail();
-		                 model.put("email", email);
-		              }
-		              if(request.getParameter("pw")!=null) {
-		                 model.put("pw",request.getParameter("pw"));
-		                 
-		                 MemberDto member = (MemberDto)session.getAttribute("member");
-		                 String email = member.getEmail();
-		                 model.put("email", email);
-		              }
+		              
+		              MemberDto member = (MemberDto)session.getAttribute("member");
+	            	  model.put("email", member.getEmail());
 		              
 		            } else if("/client/auth/findEmail.do".equals(servletPath)){
 		               if(request.getParameter("name")!=null) {
