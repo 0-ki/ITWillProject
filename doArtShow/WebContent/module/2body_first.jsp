@@ -37,7 +37,7 @@
                         <a class="page-scroll" href="<%=request.getContextPath()%>/client/ExListView.do" id="top-list">전시목록</a>
                     </li>
                     <li>
-                        <a class="page-scroll" href="#services" id="top-list">지도</a>
+                        <a class="page-scroll" href="<%=request.getContextPath()%>/searchMap.do" id="top-list">지도</a>
                     </li>
                 </ul>
             </div>
@@ -79,35 +79,9 @@
                                 <br>	
                                 
                                  <a id="kakao-login-btn"></a>
+                                 
 							<script type='text/javascript'>
-								//<![CDATA[
-								// 사용할 앱의 JavaScript 키를 설정해 주세요.
-								Kakao.init('3f954d79af6a536ec76db999e7f2ba5b');
-								// 카카오 로그인 버튼을 생성합니다.
-								Kakao.Auth.createLoginButton({
-									container : '#kakao-login-btn',
-									success : function(authObj) {
-										// 로그인 성공시, API를 호출합니다.
-										Kakao.API.request({
-											url : '/v2/user/me',
-											success : function(res) {
-												console.log('\n res>>'+JSON.stringify(res));
-												 console.log('\n authObj>>'+ JSON.stringify(authObj)); //<----Kakao.Auth.createLoginButton에서 불러온 결과값 json형태로 출력
-									             console.log('\n res.id>>'+ res.id);//<---- 콘솔 로그에 id 정보 출력(id는 res안에 있기 때문에  res.id 로 불러온다)
-									             console.log('\n res.email>>'+ res.kakao_account['email']);//<---- 콘솔 로그에 email 정보 출력 (어딨는지 알겠죠?)
-									             console.log('\n res.nickname>>'+ res.properties['nickname']);//<---- 콘솔 로그에 닉네임 출력(properties에 있는 nickname 접근 
-									         // res.properties.nickname으로도 접근 가능 )
-									             console.log('\n access_token>>'+ authObj.access_token);//<---- 콘솔 로그에 토큰값 출력
-											},
-											fail : function(error) {
-												alert(JSON.stringify(error));
-											}
-										});
-									},
-									fail : function(err) {
-										alert(JSON.stringify(err)+'으아악');
-									}
-								});
+
 								//]]>
 							</script>
 							

@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebListener;
 import javax.sql.DataSource;
 
 import com.doArtShow.controls.exhibition.searchListController;
+import com.doArtShow.controls.exhibition.searchMapController;
 import com.doArtShow.controls.member.ExhibitionContentController;
 import com.doArtShow.controls.member.ExhibitionListController;
 import com.doArtShow.controls.exhibition.ExhibitionAddController;
@@ -85,7 +86,11 @@ public class ContextLoaderListener implements ServletContextListener{
 			//비밀번호 찾기
 			sc.setAttribute("/client/auth/findPw.do", 		new FindPwController().setMemberDao(memberDao));
 			
+			// 검색기능
 			sc.setAttribute("/search.do", new searchListController().setExhibitionDao(exhibitionDao));
+
+			// 지도 페이지
+			sc.setAttribute("/searchMap.do", new searchMapController().setExhibitionDao(exhibitionDao));
 			
 			sc.setAttribute("/client/auth/memberSignUp.do", new MemberAddController().setMemberDao(memberDao));
 			

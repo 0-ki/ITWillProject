@@ -37,6 +37,6 @@
 	<!-- javascript used by Hojeong : end -->
 
     <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
-    
+    <script>Kakao.init('3f954d79af6a536ec76db999e7f2ba5b');</script>
     
 </head>

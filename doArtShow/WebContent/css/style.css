@@ -811,7 +811,7 @@ figure.effect-bubba:hover p {
 
 .owl-theme .owl-dots .owl-dot.active span,
 .owl-theme .owl-dots .owl-dot:hover span {
-    background: #3accb4;
+    background: #fe9801;
 }
 
 /*--------------------
@@ -999,12 +999,18 @@ footer p a span {
     background-image: none;
     border: 1px solid transparent;
     border-radius: 4px;
-    background-color: #3accb4;
+    background-color: #fe9801;
+    /* #3accb4
+    	#5370EF
+    	#fe9801
+    	#758184 회색
+     */
+    
 }
 
 .btn-xl {
     color: #fff;
-    background-color: #3accb4;
+    background-color: #fe9801;
     /* border-color: #726FB9; */
     font-family: "Open Sans", sans-serif;
     text-transform: uppercase;
@@ -1044,7 +1050,7 @@ footer p a span {
 }
 
 #back-top a:hover {
-    background: #fed136;
+    background: #fe9801;
 }
 
 /* arrow icon (span tag) */

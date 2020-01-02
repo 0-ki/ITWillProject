@@ -31,7 +31,7 @@ public class ExhibitionDao {
 		try {
 			conn = ds.getConnection();
 			System.out.println("일단 들어왔음");
-			sql  = 	" SELECT ExhID, ExhName , ArtistName , ExhPlace,  ExhStartDate , ExhEndDate , ImageFile1 FROM artshowdb.artshow WHERE ( ExhName like ? OR ArtistName like ? OR ExhPlace like ? ) AND ActiveFlag='N' GROUP BY ExhID ORDER BY ExhEndDate DESC ";
+			sql  = 	" SELECT ExhID, ExhPlaceAddr1, ExhName , ArtistName , ExhPlace,  ExhStartDate , ExhEndDate , ImageFile1 FROM artshowdb.artshow WHERE ( ExhName like ? OR ArtistName like ? OR ExhPlace like ? ) AND ActiveFlag='N' GROUP BY ExhID ORDER BY ExhEndDate DESC ";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, "%"+search+"%");
 			pstmt.setString(2, "%"+search+"%");
@@ -45,6 +45,7 @@ public class ExhibitionDao {
 			while(rs.next()){
 				dto = new ExhibitionDto();
 				dto.setExhID(rs.getInt("ExhID"));
+				dto.setExhPlaceAddr1(rs.getString("ExhPlaceAddr1"));
 				dto.setExhName(rs.getString("ExhName"));
 				dto.setArtistName(rs.getString("ArtistName"));
 				dto.setExhPlace(rs.getString("ExhPlace"));
@@ -65,6 +66,63 @@ public class ExhibitionDao {
 		return list;
 		
 	}
+	
+	//지도 페이지 넘어가는 처리
+	public ArrayList<ExhibitionDto> searchMapExhibition() {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = "";
+		ArrayList<ExhibitionDto> lists =null;
+		
+		
+		try {
+			conn = ds.getConnection();
+			sql  = 	" SELECT ExhID, ExhPlaceAddr1, ExhName , ArtistName , ExhPlace,  ExhStartDate , ExhEndDate , ImageFile1 FROM artshowdb.artshow WHERE ActiveFlag='N' GROUP BY ExhID ORDER BY ExhEndDate DESC ";
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			lists = new ArrayList<ExhibitionDto>();
+			ExhibitionDto dto =null;
+			
+			while(rs.next()){
+				dto = new ExhibitionDto();
+				dto.setExhID(rs.getInt("ExhID"));
+				dto.setExhPlaceAddr1(rs.getString("ExhPlaceAddr1"));
+				dto.setExhName(rs.getString("ExhName"));
+				dto.setArtistName(rs.getString("ArtistName"));
+				dto.setExhPlace(rs.getString("ExhPlace"));
+				dto.setExhStartDate(rs.getString("ExhStartDate"));
+				dto.setExhEndDate(rs.getString("ExhEndDate"));
+				dto.setImageFile1(rs.getString("ImageFile1"));
+				lists.add(dto);
+				}
+				 
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				try {if (rs != null) rs.close();} catch(Exception e) {}
+				try {if (pstmt != null) pstmt.close();} catch(Exception e) {}
+				try {if (conn != null) conn.close();} catch(Exception e) {}
+			}
+		
+		return lists;
+		
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	//전시목록을 출력하는 메서드(전체보기, 내림차순)
 	public List<ExhibitionDto> selectList() throws Exception{
 		System.out.println("##4번 ExhibitionDao실행 - selectList()");
