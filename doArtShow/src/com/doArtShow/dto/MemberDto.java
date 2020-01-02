@@ -2,53 +2,65 @@ package com.doArtShow.dto;
 
 // 회원 정보
 public class MemberDto {
-	private String id;
-	private String email;
-	private String name;
-	private String pw;
-	private String img;
+	private String 	email;
+	private String 	name;
+	private String 	birth;
+	private String 	gender;
+	private String 	pw;
+	private String 	profileImg;
+
 	
-	public MemberDto() {}
-
-	public String getId() {
-		return id;
-	}
-
-	public void setId(String id) {
-		this.id = id;
-	}
-
 	public String getEmail() {
 		return email;
 	}
 
-	public void setEmail(String email) {
+	public MemberDto setEmail(String email) {
 		this.email = email;
+		return this;
 	}
 
 	public String getName() {
 		return name;
 	}
 
-	public void setName(String name) {
+	public MemberDto setName(String name) {
 		this.name = name;
+		return this;
+	}
+
+	public String getBirth() {
+		return birth;
+	}
+
+	public MemberDto setBirth(String birth) {
+		this.birth = birth;
+		return this;
+	}
+
+	public String getGender() {
+		return gender;
+	}
+	
+	public MemberDto setGender(String gender) {
+		this.gender = gender;
+		return this;
 	}
 
 	public String getPw() {
 		return pw;
 	}
 
-	public void setPw(String pw) {
+	public MemberDto setPw(String pw) {
 		this.pw = pw;
-	}
-
-	public String getImg() {
-		return img;
-	}
-
-	public void setImg(String img) {
-		this.img = img;
+		return this;
 	}
 	
+	public String getProfileImg() {
+		return profileImg;
+	}
 	
+	public MemberDto setProfileImg(String profileImg) {
+		this.profileImg = profileImg;
+		return this;
+	}
 }
