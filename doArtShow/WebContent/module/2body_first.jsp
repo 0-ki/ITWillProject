@@ -129,7 +129,6 @@
                                <!-- <button id="kakaoBtn" onclick="javascript:loginWithKakao()"><img src="/doArtShow/images/kakao_account_login_btn_medium_narrow.png" alt="카카오로그인"></button> -->
                             <br>
                             <input  type="button"  class="btn btn-danger" value="회원가입" onclick="<%=request.getContextPath()%>/client/auth/memberAdd.do">
-                            <input  type="button"  class="btn btn-danger" id="submitSignUp" value="회원가입" onclick="validateLogin(this.form)">
                             </div>
 
 
