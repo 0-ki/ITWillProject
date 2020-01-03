@@ -5,128 +5,149 @@
 <body>
 <jsp:include page="/module/2body_first.jsp"></jsp:include>
 
+<style>
+
+    .wrap {position: absolute;left: 0;bottom: 40px;width: 288px;height: 132px;margin-left: -138px;text-align: left;overflow: hidden;font-size: 12px;font-family: 'Malgun Gothic', dotum, '돋움', sans-serif;line-height: 1.5;}
+    .wrap * {padding: 0;margin: 0;}
+    .wrap .info {width: 286px;height: 120px;border-radius: 5px;border-bottom: 2px solid #ccc;border-right: 1px solid #ccc;overflow: hidden;background: #fff;}
+    .wrap .info:nth-child(1) {border: 0;box-shadow: 0px 1px 2px #888;}
+    .info .title {padding: 5px 0 0 10px;height: 30px;background: #eee;border-bottom: 1px solid #ddd;font-size: 18px;font-weight: bold;}
+    .info .close {position: absolute;top: 10px;right: 10px;color: #888;width: 17px;height: 17px;background: url('http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/overlay_close.png');}
+    .info .close:hover {cursor: pointer;}
+    .info .body {position: relative;overflow: hidden;}
+    .info .desc {position: relative;margin: 13px 0 0 90px;height: 75px;}
+    .desc .ellipsis {overflow: hidden;text-overflow: ellipsis;white-space: nowrap;}
+    .desc .jibun {font-size: 11px;color: #888;margin-top: -2px;}
+    .info .img {position: absolute;top: 6px;left: 5px;width: 73px;height: 71px;border: 1px solid #ddd;color: #888;overflow: hidden;}
+    .info:after {content: '';position: absolute;margin-left: -12px;left: 50%;bottom: 0;width: 22px;height: 12px;background: url('http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/vertex_white.png')}
+    .info .link {color: #5085BB;}
+
+</style>
+
 <div class="container">
-<div id="map" style="width:100%;height:84vh;"></div>
+<div id="map" style="width:100%;height:72vh; margin-bottom: 200px;"></div>
 </div>
 
-<jsp:include page="/module/3body_last.html" />
-<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=3f954d79af6a536ec76db999e7f2ba5b&libraries=services,clusterer,drawing"></script>
 
+
+<jsp:include page="/module/3body_last.html" />
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=3f954d79af6a536ec76db999e7f2ba5b&libraries=services,clusterer,drawing" ></script>
 
 
 <script>
-console.log('1');
 
 var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
 mapOption = {
-    center: new kakao.maps.LatLng(36.2683, 127.6358), // 지도의 중심좌표
-    level: 12 // 지도의 확대 레벨
+    center: new kakao.maps.LatLng(37.2683, 127.6358), // 지도의 중심좌표
+    level: 11 // 지도의 확대 레벨
 };  
 var map = new kakao.maps.Map(mapContainer, mapOption);
+//일반 지도와 스카이뷰로 지도 타입을 전환할 수 있는 지도타입 컨트롤을 생성합니다
+var mapTypeControl = new kakao.maps.MapTypeControl();
+
+// 지도에 컨트롤을 추가해야 지도위에 표시됩니다
+// kakao.maps.ControlPosition은 컨트롤이 표시될 위치를 정의하는데 TOPRIGHT는 오른쪽 위를 의미합니다
+map.addControl(mapTypeControl, kakao.maps.ControlPosition.TOPRIGHT);
+
+// 지도 확대 축소를 제어할 수 있는  줌 컨트롤을 생성합니다
+var zoomControl = new kakao.maps.ZoomControl();
+map.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT);
 
 
-// 마커 클러스터러를 생성합니다 
-var clusterer = new kakao.maps.MarkerClusterer({
-    map: map, // 마커들을 클러스터로 관리하고 표시할 지도 객체 
-    averageCenter: true, // 클러스터에 포함된 마커들의 평균 위치를 클러스터 마커 위치로 설정 
-    minLevel: 10 // 클러스터 할 최소 지도 레벨 
-});
+<c:forEach var="lists" items="${mapLists}" varStatus="vs">
 
 
-console.log('2');
-/* var lists='<c:forEach var="lists" items="${mapLists}" ><c:out value="${lists.exhPlaceAddr1}"/></c:forEach>'; */
+// 주소-좌표 변환 객체를 생성합니다
+var geocoder<c:out value="${vs.index}"/> = new kakao.maps.services.Geocoder();
 
-
-
-//주소-좌표 변환 객체를 생성합니다
-var geocoder = new kakao.maps.services.Geocoder();
-
-
-
-
-</script>
-<c:forEach var="lists" items="${mapLists}" >
-<script>
-coords = new Array(); 
 // 주소로 좌표를 검색합니다
-geocoder.addressSearch('${lists.exhPlaceAddr1}', function(result, status) {
+geocoder<c:out value="${vs.index}"/>.addressSearch('<c:out value="${lists.exhPlaceAddr1}"/>',function(result, status) {
 
+	
+	
+	
+	
+    imageSize = new kakao.maps.Size(34, 39), // 마커이미지의 크기입니다
+    imageOption = {offset: new kakao.maps.Point(12, 39)}; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
+      
+	// 마커의 이미지정보를 가지고 있는 마커이미지를 생성합니다
+	var markerImage = new kakao.maps.MarkerImage('/doArtShow/resourceImages/mapmarker.png', imageSize, imageOption);
+
+	
+	
+	
+	
+	
     // 정상적으로 검색이 완료됐으면 
      if (status === kakao.maps.services.Status.OK) {
 
-        coords.push(new kakao.maps.LatLng(result[0].y, result[0].x));
-     }
-});
-console.dir(coords);
+        var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
 
-</script>
-</c:forEach>
-<script>
-
-        
-        var positions = [
-            {
-                title: '카카오', 
-                latlng: new kakao.maps.LatLng(33.450705, 126.570677)
-            },
-            {
-                title: '생태연못', 
-                latlng: new kakao.maps.LatLng(33.450936, 126.569477)
-            },
-            {
-                title: '텃밭', 
-                latlng: new kakao.maps.LatLng(33.450879, 126.569940)
-            },
-            {
-                title: '근린공원',
-                latlng: new kakao.maps.LatLng(33.451393, 126.570738)
-            }
-        ];
-
-        // 마커 이미지의 이미지 주소입니다
-        var imageSrc = "http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png"; 
-            
-        for (var i = 0; i < positions.length; i ++) {
-            
-            // 마커 이미지의 이미지 크기 입니다
-            var imageSize = new kakao.maps.Size(24, 35); 
-            
-            // 마커 이미지를 생성합니다    
-            var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize); 
-            
-            // 마커를 생성합니다
-            var marker = new kakao.maps.Marker({
-                map: map, // 마커를 표시할 지도
-                position: positions[i].latlng, // 마커를 표시할 위치
-                title : positions[i].title, // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다
-                image : markerImage // 마커 이미지 
-            });
-        }
-        
-        
-</script>
-
-
-
-
-
-
-
-
-<!--  // 데이터를 가져오기 위해 jQuery를 사용합니다
-// 데이터를 가져와 마커를 생성하고 클러스터러 객체에 넘겨줍니다
-$.get("chicken.php", function(data) {
-    // 데이터에서 좌표 값을 가지고 마커를 표시합니다
-    // 마커 클러스터러로 관리할 마커 객체는 생성할 때 지도 객체를 설정하지 않습니다
-    var markers = $(data.positions).map(function(i, position) {
-        return new kakao.maps.Marker({
-            position : new kakao.maps.LatLng(position.lat, position.lng)
+        // 결과값으로 받은 위치를 마커로 표시합니다
+        var marker = new kakao.maps.Marker({
+            map: map,
+            position: coords,
+            image: markerImage
         });
-    });
+        // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
+        /* map.setCenter(coords); */
+         var content = document.createElement('div');
+         /* <div class="close" id="closer" title="닫기"></div> */
+        
+        content.innerHTML = 
+'<div class="wrap">' + 
+'    <div class="info">' + 
+'        <div class="title" id="title">' + 
+'            <c:out value="${lists.exhName}"/>' + 
+'            <div class="" onclick="closeOverlay()" title="닫기"></div>' + 
+'        </div>' + 
+'        <div class="body">' + 
+'            <div class="img">' +
+'                <img src="/doArtShow/sampleImages/${lists.imageFile1}.jpg" width="73" height="70">' +
+'           </div>' + 
+'            <div class="desc">' + 
+'                <div class="ellipsis">${lists.artistName}</div>' + 
+'                <div class="jibun ellipsis">${lists.exhPlace}</div>' + 
+'                <div><a href="<%=request.getContextPath()%>/client/ExContentView.do?exhID=${lists.exhID}" target="_blank" class="link">상세보기</a></div>' + 
+'            </div>' + 
+'        </div>' + 
+'    </div>' +    
+'</div>';
 
-    // 클러스터러에 마커들을 추가합니다
-    clusterer.addMarkers(markers);
-}); -->
+var closeBtn = document.createElement('div');
+closeBtn.appendChild(document.createTextNode('닫기'));
+closeBtn.className+='close';
+closeBtn.style.position='absolute';
+closeBtn.style.marginTop='-76px';
+closeBtn.style.right='-140px';
+closeBtn.onclick = function() { overlay.setMap(null); console.log(closeBtn.className)};
+content.appendChild(closeBtn);
+
+
+		// 마커를 클릭했을 때 커스텀 오버레이를 표시합니다
+		kakao.maps.event.addListener(marker, 'click', function() {
+			overlay.setMap(map);
+		});
+    
+        // 인포윈도우로 장소에 대한 설명을 표시합니다
+        var overlay = new kakao.maps.CustomOverlay({
+			content: content,
+		 	position: marker.getPosition()
+		});
+
+     } 
+    
+});    
+
+</c:forEach>
+
+
+
+
+
+
+
+
 
 
 
@@ -136,6 +157,17 @@ $.get("chicken.php", function(data) {
 
  
 
+/* 
+// 마커 클러스터러를 생성합니다 
+var clusterer = new kakao.maps.MarkerClusterer({
+    map: map, // 마커들을 클러스터로 관리하고 표시할 지도 객체 
+    averageCenter: true, // 클러스터에 포함된 마커들의 평균 위치를 클러스터 마커 위치로 설정 
+    minLevel: 10 // 클러스터 할 최소 지도 레벨 
+});
+*/
+
+
+</script>
 
 
 
