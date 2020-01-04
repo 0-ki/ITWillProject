@@ -103,7 +103,7 @@ geocoder<c:out value="${vs.index}"/>.addressSearch('<c:out value="${lists.exhPla
 '        </div>' + 
 '        <div class="body">' + 
 '            <div class="img">' +
-'                <img src="/doArtShow/sampleImages/${lists.imageFile1}.jpg" width="73" height="70">' +
+'                <img src="/doArtShow/sampleImages/${lists.imageFile1}" width="73" height="70">' +
 '           </div>' + 
 '            <div class="desc">' + 
 '                <div class="ellipsis">${lists.artistName}</div>' + 
