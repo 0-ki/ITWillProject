@@ -17,7 +17,7 @@
 			<table class="table nanum">
 				<tr>
 					<td rowspan="7">
-						<img src="/doArtShow/ExbitionImages/${listOne.imageFile1}" id="exhImage" style="height: 450px; width: 330px;"/>
+						<img src="/doArtShow/exhibitionImages/${listOne.imageFile1}" id="exhImage" style="height: 450px; width: 330px;"/>
 					</td>
 					<td>&nbsp;기간 : ${listOne.exhStartDate}&nbsp;~&nbsp;${listOne.exhEndDate}</td>
 				</tr>

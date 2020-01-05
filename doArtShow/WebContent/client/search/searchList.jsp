@@ -29,7 +29,7 @@
 							<div id="content_list_div">
 								<a href="ExContentView.do?exhID=${list.exhID}">
 									<!-- 아무데나 눌러도 상세페이지로 넘어가게 --> <img
-									src="/doArtShow/sampleImages/${list.imageFile1}"
+									src="/doArtShow/exhibitionImages/${list.imageFile1}"
 									style="height: 370px; width: 275px;" /><br>
 									${list.exhName}<br> ${list.exhPlace}<br>
 									${list.exhStartDate}&nbsp;~&nbsp;${list.exhEndDate}

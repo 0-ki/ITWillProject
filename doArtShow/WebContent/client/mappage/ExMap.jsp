@@ -71,7 +71,7 @@ geocoder<c:out value="${vs.index}"/>.addressSearch('<c:out value="${lists.exhPla
     imageOption = {offset: new kakao.maps.Point(12, 39)}; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
       
 	// 마커의 이미지정보를 가지고 있는 마커이미지를 생성합니다
-	var markerImage = new kakao.maps.MarkerImage('/doArtShow/resourceImages/mapmarker.png', imageSize, imageOption);
+	var markerImage = new kakao.maps.MarkerImage('/doArtShow/resourcesImages/mapmarker.png', imageSize, imageOption);
 
 	
 	
@@ -103,7 +103,7 @@ geocoder<c:out value="${vs.index}"/>.addressSearch('<c:out value="${lists.exhPla
 '        </div>' + 
 '        <div class="body">' + 
 '            <div class="img">' +
-'                <img src="/doArtShow/sampleImages/${lists.imageFile1}" width="73" height="70">' +
+'                <img src="/doArtShow/exhibitionImages/${lists.imageFile1}" width="73" height="70">' +
 '           </div>' + 
 '            <div class="desc">' + 
 '                <div class="ellipsis">${lists.artistName}</div>' + 

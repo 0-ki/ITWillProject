@@ -29,7 +29,7 @@
                 
                 <!-- Modal footer -->
                 <div id="shareModal-footer">
-                    <button type="button" class="btn btn-danger" data-dismiss="modal">닫기</button>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">ë«ê¸°</button>
                 </div>
             </div>
         </div>
@@ -66,7 +66,7 @@
 			objectType: 'feed',
 			content: {
 				title: encodeURIComponent(document.title),
-				imageUrl: /* 해당 전시회의 포스터 이미지 */,
+				imageUrl: /*  해당 전시회의 포스터 이미지*/,
 				link: {
 					mobileWeUrl: encodeURIComponent(document.URL),
 					webUrl: encodeURIComponent(document.URL),

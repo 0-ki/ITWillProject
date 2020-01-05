@@ -39,7 +39,7 @@ public class MemberLogInController implements Controller{
 		     }
 		//로그인 폼 요청
 		} else {
-			return "/clientView/auth/memberLogInForm.jsp";
+			return "/client/auth/memberLogInForm.jsp";
 
 		}
 	}

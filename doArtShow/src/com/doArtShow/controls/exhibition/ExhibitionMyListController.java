@@ -26,6 +26,6 @@ public class ExhibitionMyListController implements Controller {
 		List<ExhibitionDto> exhibitionList = exhibitionDao.selectExhibitionMyList("id01");
 		model.put("exhibitionList", exhibitionList);
 
-		return "/clientView/exhibition/myList.jsp";
+		return "/client/exhibition/myList.jsp";
 	}
 }

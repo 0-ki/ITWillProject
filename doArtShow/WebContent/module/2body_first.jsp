@@ -17,7 +17,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand page-scroll" id="top-mainlogo-a" href="/doArtShow"><img src="/doArtShow/resourceImages/mainlogo2.png" id="top-mainlogo-img" alt="전시:해"></a>
+                <a class="navbar-brand page-scroll" id="top-mainlogo-a" href="/doArtShow"><img src="/doArtShow/resourcesImages/mainlogo2.png" id="top-mainlogo-img" alt="전시:해"></a>
             </div>
 
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -48,7 +48,7 @@
                         <a href="#page-top"></a>
                     </li>
                     <li>
-                        <a class="page-scroll sm-link sm-link_padding-all sm-link1" href="<%=request.getContextPath()%>/client/ExListView.do" id="top-list">
+                        <a class="page-scroll sm-link sm-link_padding-all sm-link1" href="<%=request.getContextPath()%>/client/exhibition/ExListView.do" id="top-list">
                        <span class="sm-link__label">전시목록</span>
                         </a>
                     </li>
@@ -153,7 +153,7 @@
         <a href="
         <c:choose>
         <c:when test="${!empty isLogin}">
-        <%=request.getContextPath() %>/exhibition/addForm.do 		
+        <%=request.getContextPath() %>/client/exhibition/addForm.do 		
         </c:when>
         
         <c:when test="${empty isLogin}">

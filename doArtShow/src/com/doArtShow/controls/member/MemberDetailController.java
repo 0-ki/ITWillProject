@@ -20,7 +20,7 @@ public class MemberDetailController implements Controller{
 	public String execute(Map<String, Object> model) throws Exception {
 		String email = (String)model.get("email");
 		MemberDto member = memberDao.selectInfo(email);
-		return "/clientView/auth/memberDetail.jsp";			
+		return "/client/auth/memberDetail.jsp";			
 	}
 
 }

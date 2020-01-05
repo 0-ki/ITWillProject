@@ -56,7 +56,7 @@
 	    	<c:forEach var="list" items="${lists}">
 		    <div id="content_list_div">
 		        <a href="ExContentView.do?exhID=${list.exhID}&exhName=${list.exhName}" id="ExContentView" data-toggle="modal"><!-- 아무데나 눌러도 상세페이지로 넘어가게 -->
-		        	<img src="/doArtShow/ExbitionImages/${list.imageFile1}" style="height: 370px; width: 275px;"/><br>
+		        	<img src="/doArtShow/exhibitionImages/${list.imageFile1}" style="height: 370px; width: 275px;"/><br>
 		            ${list.exhName}<br>
 		            ${list.exhPlace}<br>
 		            ${list.exhStartDate}&nbsp;~&nbsp;${list.exhEndDate}

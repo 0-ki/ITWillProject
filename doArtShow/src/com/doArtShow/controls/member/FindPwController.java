@@ -42,11 +42,11 @@ public class FindPwController implements Controller{
 			
 			EmailUtil.sendMail(member.getEmail(), subject, msg);
 			
-			return "/clientView/auth//findPwResult.jsp";
+			return "/client/auth//findPwResult.jsp";
 			
 		} else {
 			
-			return "/clientView/auth/findPwForm.jsp";
+			return "/client/auth/findPwForm.jsp";
 		}
 	}
 

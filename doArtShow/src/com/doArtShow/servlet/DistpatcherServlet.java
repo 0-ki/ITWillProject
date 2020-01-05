@@ -123,16 +123,16 @@ public class DistpatcherServlet extends HttpServlet {
 			    		  
 			    		  model.put("search", request.getParameter("search"));
 			    	  }
-			  } else if("/clientView/exhibition/ExContentView.do".equals(servletPath)){
+			  } else if("/client/exhibition/ExContentView.do".equals(servletPath)){
 		    	  if(request.getParameter("exhID") != null){
 		    		  int exhID = Integer.parseInt(request.getParameter("exhID"));
 
 		    		  model.put("exhID", exhID);
 		    	  }
-		      } else if ("/clientView/exhibition/addForm.do".equals(servletPath)) {
+		      } else if ("/client/exhibition/addForm.do".equals(servletPath)) {
 		   
 		  				 
-		      } else if ("/clientView/exhibition/add.do".equals(servletPath)) {
+		      } else if ("/client/exhibition/add.do".equals(servletPath)) {
 		    	  String[] filename = new String[4];
 		    	  String realFolder = "";
 		    	  MultipartRequest multi = null;
@@ -208,7 +208,7 @@ public class DistpatcherServlet extends HttpServlet {
 		  		  model.put("exhibition", exhibitionDto);
 		  		  // }
 		  		  // }
-		      } else if ("/clientView/exhibition/update.do".equals(servletPath)) {
+		      } else if ("/client/exhibition/update.do".equals(servletPath)) {
 		    	  if (request.getParameter("exhID") != null) {
 		  			  System.out.println("$$$" + request.getParameter("exhID"));
 		  			  model.put("exhID", request.getParameter("exhID"));
@@ -293,7 +293,7 @@ public class DistpatcherServlet extends HttpServlet {
 		  			  model.put("exhibition", exhibitionDto);
 		  			  // }
 		  		  }
-		  	  } else if ("/clientView/exhibition/list.do".equals(servletPath)) {
+		  	  } else if ("/client/exhibition/list.do".equals(servletPath)) {
 		  		  model.put("id", "id01");
 
 		  	  }
