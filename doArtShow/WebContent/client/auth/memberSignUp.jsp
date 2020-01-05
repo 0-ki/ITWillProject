@@ -3,89 +3,94 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
-<script src="../js/checkForm.js"></script>
-<script src="../js/validateForm.js"></script>
-<script type="text/javascript"></script>
-<script>
-//중복확인을 하기 전 입력된 아이디가 있는지 확인한다.
-function emailChkModal()
-{
-	if($("#input_email").val()==""){
-		$("#email_check").text("아이디를 입력하세요");
-		$("#email_check").css('color','red');
-		$("#emailChkButton").attr("disabled", true);
-		return;
-	} else {
-		url = "chkEmail.jsp?email=" + document.signUpForm.email.value;
-		
-		window.open(url, "confirm", "toolbar=no, location=no, status=no, menubar=no, scrollbars=no, resizable=no, width=500, height=200");	
-		$("#input_email").attr("disabled", true);
-		$("#emailChkButton").attr("disabled", true);
-	}
-} 
-</script>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>회원가입 페이지</title>
+<style>
+th{
+	width:150px;
+}
+tr{
+   height:40px;
+}
+
+.check_tr{
+	overflow:hidden;
+	height:25px;
+}
+.form-check-input{
+	width:45px;
+}
+.checkbox{
+	width:45px;
+	margin:0px;
+}
+</style>
 </head>
+<jsp:include page="../../module/1doctype_head.jsp"></jsp:include>
 <body>
-<h2>회원가입</h2>
-	<form method="post" name="signUpForm">
-    	<table>
+<jsp:include page="../../module/2body_first.jsp"></jsp:include>
+	<form class="container border" method="post" name="signUpForm">
+        <div style="font-size: 18pt; color:black; margin-top:50px;" align="center"><b>회원가입</b></div>
+        <br>
+        <br>
+    	<table align="center">
     	 		<tr>
-	                <td>이메일</td>
-	                <td><input type="text" name="email" id="input_email"></td>
- 	                <td><input type="button" id="emailChkButton" value="중복확인" onclick="emailChkModal(document.signUpForm.email.value)"></td>
+	                <th>이메일</th>
+	                <td><input class="form-control" type="text" name="email" id="input_email"></td>
+ 	                <td><input class="btn btn-light" type="button" id="emailChkButton" value="중복확인" onclick="emailChkModal(document.signUpForm.email.value)"></td>
  	            </tr>
-	            <tr>
+	            <tr class="check_tr">
 	                <td colspan="3"><div id="email_check"></div></td>
 	            </tr>
 	            <tr>
-	                <td>이름</td>
+	                <th>이름</th>
 	                <td>
-	                    <input type="text" name="name" id="input_name">
+	                    <input class="form-control" type="text" name="name" id="input_name">
 	                </td>
 	            </tr>
-	            <tr>
+	            <tr class="check_tr">
 	                <td colspan="2"><div id="name_check"></div></td>
 	            </tr>
 	            <tr>
-	                <td>생년월일</td>
+	                <th>생년월일</th>
 	                <td>
-	                    <input type="text" name="birth" id="input_birth" placeholder="0000-00-00">
+	                    <input class="form-control" type="text" name="birth" id="input_birth" placeholder="0000-00-00">
 	                </td>
 	            </tr>
-	            <tr>
+	            <tr class="check_tr">
 	                <td colspan="2"><div id="birth_check"></div></td>
 	            </tr>
 	            <tr>
-	                <td>성별</td>
+	                <th>성별</th>
 	                <td>
-	                    <input type="radio" name="gender" id="male" value="남성">남
-	                	<input type="radio" name="gender" id="female" checked="checked" value="여성">여
-	                </td>
+	                    <input class="form-check-input" type="radio" name="gender" id="male" value="남성">남
+	                    <input class="form-check-input" type="radio" name="gender" id="female" checked="checked" value="여성">여
+                    </td>
+	            </tr>
+	            <tr class="check_tr">
+	                <td colspan="2"><div></div></td>
 	            </tr>
 	            <tr>
-	                <td>비밀번호</td>
-	                <td><input type="password" name="pw" id="input_pw"></td>
+	                <th>비밀번호</th>
+	                <td><input class="form-control" type="password" name="pw" id="input_pw"></td>
 	            </tr>
-	            <tr>
+	            <tr class="check_tr">
 	                <td colspan="2"><div  id="pw_check"></div></td>
 	            </tr>
 	            <tr>
-	                <td>비밀번호 확인</td>
-	                <td><input type="password" name="pw2" id="input_pw2"></td>
+	                <th>비밀번호 확인</th>
+	                <td><input class="form-control" type="password" name="pw2" id="input_pw2"></td>
 	            </tr>
-	            <tr>
+	            <tr class="check_tr">
 	                <td colspan="2"><div id="pw2_check"></div></td>
 	            </tr>
 	            <tr>
 	                <td colspan="2">
-	                    <input type="checkbox" id="agreeAll">모두 동의합니다.
+	                    <input class="checkbox" type="checkbox" id="agreeAll">&nbsp;모두 동의합니다.
 	                </td>
 	            </tr>
 	            <tr>
-	                <td colspan="2">개인정보 수집 / 이용 동의(필수)</td>
+	                <td colspan="2"><b>개인정보 수집 / 이용 동의(필수)</b></td>
 	            </tr>
 	            <tr>
 	                <td colspan="2">
@@ -94,32 +99,38 @@ function emailChkModal()
 	            </tr>
 	            <tr>
 	                <td colspan="2">
-	                    <input type="checkbox" name="agree">위의 이용 약관에 동의합니다.
+	                    <input style="width:20px" class="checkbox" type="checkbox" name="agree">&nbsp;위의 이용 약관에 동의합니다.
 	                </td>
 	            </tr>
 	            <tr>
-	                <td colspan="2">이용 약관 동의(필수)</td>
-	            </tr>
-	            <tr>
-	                <td colspan="2">
-	                    <iframe width="" src="../etc/constraint2.html"></iframe>
-	                </td>
+	                <td colspan="2"><b>이용 약관 동의(필수)</b></td>
 	            </tr>
 	            <tr>
 	                <td colspan="2">
-	                    <input type="checkbox" name="agree">위의 이용 약관에 동의합니다.
+	                    <iframe src="../etc/constraint2.html"></iframe>
 	                </td>
 	            </tr>
 	            <tr>
-	                <td>
-	                    <input type="button" value="회원가입" id="submitBtn" onclick="javascript:validateSignUp(this.form)">
+	                <td colspan="2">
+	                    <input class="checkbox" type="checkbox" name="agree">&nbsp;위의 이용 약관에 동의합니다.
 	                </td>
-	                <td>
+                </tr>
+                <tr>
+                    <td>
 	                	<div id="checkbox_check"></div>
+	                </td>
+                </tr>
+	            <tr>
+	                <td>
+	                    <input class="btn btn-light" type="button" value="회원가입" id="submitBtn" onclick="javascript:validateSignUp(this.form)">
 	                </td>
 	            </tr>
 		</table>
 	</form>
+	<jsp:include page="../../module/3body_last.html"></jsp:include>
+	<script type="text/javascript">
+	
+	</script>
     <script>
         $(document).ready(function(){
             $("#agreeAll").click(function(){

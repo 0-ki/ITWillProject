@@ -88,13 +88,14 @@ public class MemberDao {
 			rs = pstmt.executeQuery();
 			
 			member = new MemberDto();
-			
+
 			while(rs.next()){
 				member.setBirth(rs.getString("birth"));
 				member.setGender(rs.getString("gender"));
 				member.setPw(rs.getString("pw"));
 				member.setEmail(rs.getString("email"));
 				member.setName(rs.getString("name"));
+				member.setProfileImg(rs.getString("profileImg"));
 			}
 			
 		} catch (SQLException e) {
@@ -107,6 +108,7 @@ public class MemberDao {
 		
 		return member;
 	}
+
 
 	public MemberDto selectInfo(String email) {
 		Connection conn = null;
@@ -131,6 +133,7 @@ public class MemberDao {
 				member.setPw(rs.getString("pw"));
 				member.setBirth(rs.getString("birth"));
 				member.setName(rs.getString("name"));
+				member.setProfileImg(rs.getString("profileImg"));
 			}
 			
 		} catch (SQLException e) {
@@ -144,17 +147,20 @@ public class MemberDao {
 		return member;
 	}
 
-	public void updateBirth(String birth, String email) {
+	public void updateMember(String birth, String gender, String pw, String profileImg, String email) {
 		Connection 			conn 	= null;
 		PreparedStatement 	pstmt 	= null;
 		String 				sql 	= null;
 		
 		try {
 			conn = ds.getConnection();
-			sql = "UPDATE artshowdb.MEMBER SET birth=? WHERE email=?";
+			sql = "UPDATE artshowdb.MEMBER SET birth=?, gender=?, pw=?, profileImg=? WHERE email=?";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, birth);
-			pstmt.setString(2, email);
+			pstmt.setString(2, gender);
+			pstmt.setString(3, pw);
+			pstmt.setString(4, profileImg);
+			pstmt.setString(5, email);
 			
 			pstmt.executeUpdate();
 
@@ -290,6 +296,27 @@ public class MemberDao {
 			pstmt.setString(2, email);
 			pstmt.setString(3, birth);
 			
+			pstmt.executeUpdate();			
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {if(pstmt	!= null)pstmt.close();	} catch (SQLException e) {}
+			try {if(conn	!= null)conn.close();	} catch (SQLException e) {}
+		}
+	}
+
+	public void deleteMember(String email) {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		String sql = null;
+		
+		try {
+			conn = ds.getConnection();
+			sql = "DELETE FROM artshowdb.MEMBER WHERE email=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, email);
+
 			pstmt.executeUpdate();			
 			
 		} catch (SQLException e) {

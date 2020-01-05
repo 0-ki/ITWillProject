@@ -16,6 +16,7 @@ import com.doArtShow.controls.exhibition.ExhibitionAddFormController;
 import com.doArtShow.controls.exhibition.ExhibitionMyListController;
 import com.doArtShow.controls.exhibition.ExhibitionUpdateController;
 import com.doArtShow.controls.member.MemberAddController;
+import com.doArtShow.controls.member.MemberDeleteController;
 import com.doArtShow.controls.member.MemberDetailController;
 import com.doArtShow.controls.member.MemberEmailChkController;
 import com.doArtShow.controls.member.MemberLogInController;
@@ -62,7 +63,9 @@ public class ContextLoaderListener implements ServletContextListener{
 			
 			//--------------------------------------------------------------------------------------
 			//각자 추가하는 Controller에 따라서 수정될 수 있습니다.		
-			
+			//-------------------------------------------------------------------------------------------------------------
+			//			programmed by jungmi - begin
+			//-------------------------------------------------------------------------------------------------------------			
 			sc.setAttribute("/client/auth/checkEmail.do", 	new MemberEmailChkController().setMemberDao(memberDao) );
 			
 			//회원 가입(추가)
@@ -96,6 +99,16 @@ public class ContextLoaderListener implements ServletContextListener{
 			
 			//회원 로그인
 			sc.setAttribute("/client/auth/memberLogIn.do", new MemberLogInController().setMemberDao(memberDao));
+			
+			//회원 로그인
+			sc.setAttribute("/client/auth/memberDelete.do", new MemberDeleteController().setMemberDao(memberDao));
+			
+			
+			//-------------------------------------------------------------------------------------------------------------
+			//			programmed by jungmi- end
+			//-------------------------------------------------------------------------------------------------------------			
+			
+			
 			
 			//전시 목록 
 			sc.setAttribute("/client/ExListView.do", new ExhibitionListController().setExhibitionDao(exhibitionDao));

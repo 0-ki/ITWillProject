@@ -7,6 +7,7 @@ public class MemberDto {
 	private String 	birth;
 	private String 	gender;
 	private String 	pw;
+	private String 	profileImg;
 
 	
 	public String getEmail() {
@@ -35,7 +36,7 @@ public class MemberDto {
 		this.birth = birth;
 		return this;
 	}
-	
+
 	public String getGender() {
 		return gender;
 	}
@@ -51,6 +52,15 @@ public class MemberDto {
 
 	public MemberDto setPw(String pw) {
 		this.pw = pw;
+		return this;
+	}
+	
+	public String getProfileImg() {
+		return profileImg;
+	}
+	
+	public MemberDto setProfileImg(String profileImg) {
+		this.profileImg = profileImg;
 		return this;
 	}
 }

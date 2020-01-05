@@ -78,20 +78,23 @@
 
                     <div id="login-wrap">
                     
-                        <form>
+                        <form method="post" name="loginForm" action="<%=request.getContextPath()%>/client/auth/memberLogIn.do">
                             <div class="login-input">
-                                <input class="form-control" type="text" placeholder="ID" name="id" id="input_id">
+                                <input class="form-control" type="text" placeholder="EMAIL" name="email" id="input_email">
+                                <div style="margin-top:5px" id="chkEmail"></div>
                             </div>
-                            <div class="login-input"><input class="form-control" type="password" placeholder="PASSWORD" name="pw" id="input_pw"></div>
-
+                            
                             <div class="login-input">
-                                <a href="findId.jsp">아이디</a> / <a href="findPw.jsp">비밀번호 찾기</a><br>
-                                <a href=""></a>
-
+                            	<input class="form-control" type="password" placeholder="PASSWORD" name="pw" id="input_pw">
+                            	<div style="margin-top:5px" id="chkPw"></div>
+                            </div>
+                            <div class="login-input">
+                                <a href="<%=request.getContextPath()%>/client/auth/findEmail.do">아이디</a> 
+                                / <a href="<%=request.getContextPath()%>/client/auth/findPw.do">비밀번호 찾기</a><br>
                             </div>
                             <hr>
                             <div id="login-btngroup">
-                                <input type="submit" class="btn btn-info" id="submitLogin" value="로그인" onclick="validateLogin(this.form)">
+                                <input type="button" class="btn btn-info" id="submitBtn" value="로그인" onclick="validateLogin(this.form)">
                                 <br>	
                                 
                                  <a id="kakao-login-btn"></a>
@@ -105,7 +108,7 @@
 							<!-- <a id="kakaoBtn" href="javascript:loginWithKakao()"><img src="/doArtShow/images/kakao_account_login_btn_medium_narrow.png" alt="카카오로그인"></a> -->
                                <!-- <button id="kakaoBtn" onclick="javascript:loginWithKakao()"><img src="/doArtShow/images/kakao_account_login_btn_medium_narrow.png" alt="카카오로그인"></button> -->
                             <br>
-                            <input  type="button"  class="btn btn-danger" id="submitSignUp" value="회원가입" onclick="validateLogin(this.form)">
+                             <a class="btn btn-danger" href="<%=request.getContextPath()%>/client/auth/memberAdd.do">회원가입</a>
                             </div>
 
 
@@ -139,7 +142,7 @@
     	
     	<c:when test="${!empty isLogin}">
     	
-    	<a data-toggle="modal" href="myBtn" id="myBtn" style="line-height:750%;">
+    	<a href="<%=request.getContextPath()%>/client/auth/memberLogOut.do" id="myBtn" style="line-height:750%;">
         <span class="item" style="color: #F17F42; align-items: center; font-family: 'Noto Sans KR', sans-serif;">로그아웃</span>
         </a>
     	

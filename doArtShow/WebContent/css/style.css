@@ -106,8 +106,10 @@ header img {
     display: block;
     text-align: center;
     margin: auto;
-    margin-bottom: 2vh;
+    /* margin-bottom: 2vh; */
     width: 50%;
+    overflow:hidden;
+    height:60px;
 }
 
 #login-footer {
@@ -118,6 +120,12 @@ header img {
 }
 
 #login-btngroup input {
+    width: 222px;
+    height: 49px;
+    margin-bottom: .7vh;
+    margin-top: .7vh;
+}
+#login-btngroup a {
     width: 222px;
     height: 49px;
     margin-bottom: .7vh;

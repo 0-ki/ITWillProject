@@ -41,13 +41,18 @@ public class DistpatcherServlet extends HttpServlet {
 		      HashMap<String,Object> model = new HashMap<String,Object>();
 		      HttpSession session = request.getSession();
 		      model.put("session", request.getSession());
-		      System.out.println("getContextPath ==>>"+request.getContextPath());
+		      
 		      //페이지컨트롤러는 ServletContext보관소에 저장되어있으므로 이 보관소에서 페이지컨트롤러를 꺼낼때 서블릿 URL을 사용한다
 		      Controller pageController = (Controller) sc.getAttribute(servletPath);
 		      System.out.println("servletPath : "+servletPath);
 		      
 		      //--------------------------------------------------------------------------------------
 			  //각자 추가하는 Controller에 따라서 수정될 수 있습니다.
+		      
+		      //--------------------------------------------------------------------------------------
+		      //jungmi-start
+		      //--------------------------------------------------------------------------------------
+		      //회원 가입 시 이메일 중복확인
 		      if("/client/auth/checkEmail.do".equals(servletPath)){
 		             if(request.getParameter("email")!=null){
 		                JSONObject jsonObj = new JSONObject();
@@ -56,66 +61,64 @@ public class DistpatcherServlet extends HttpServlet {
 		                model.put("checkEmailInfo", request.getParameter("email"));
 		                 
 		             }
-		          } else if ("/client/auth/memberAdd.do".equals(servletPath)) {
-		             if(request.getParameter("email")!=null){
-		                  model.put("member", new MemberDto()
-		                        .setEmail(request.getParameter("email"))
-		                        .setName(request.getParameter("name"))
-		                        .setBirth(request.getParameter("birth"))
-		                        .setGender(request.getParameter("gender"))
-		                        .setPw(request.getParameter("pw")));
-		               }
-		               
-		            } else if("/client/auth/memberLogIn.do".equals(servletPath)){
-		               if(request.getParameter("email")!=null){
-		                  model.put("loginInfo", new MemberDto()
-		                        .setEmail(request.getParameter("email"))
-		                        .setPw(request.getParameter("pw"))); 
-		               }
-		               
-		            } else if("/client/auth/memberDetail.do".equals(servletPath)){
-		               if(session.getAttribute("member")!=null){
-		                  MemberDto member = (MemberDto)session.getAttribute("member");
-		                  model.put("email", member.getEmail()); 
-		               }
-		               
-		            } else if("/client/auth/memberUpdate.do".equals(servletPath)){
-		              if(request.getParameter("birth")!=null) {
-		                 model.put("birth",request.getParameter("birth"));
-		                 
-		                 MemberDto member = (MemberDto)session.getAttribute("member");
-		                 String email = member.getEmail();
-		                 model.put("email", email);
-		              }
-		              if(request.getParameter("gender")!=null) {
-		                 model.put("gender",request.getParameter("gender"));
-		                 
-		                 MemberDto member = (MemberDto)session.getAttribute("member");
-		                 String email = member.getEmail();
-		                 model.put("email", email);
-		              }
-		              if(request.getParameter("pw")!=null) {
-		                 model.put("pw",request.getParameter("pw"));
-		                 
-		                 MemberDto member = (MemberDto)session.getAttribute("member");
-		                 String email = member.getEmail();
-		                 model.put("email", email);
-		              }
-		              
-		            } else if("/client/auth/findEmail.do".equals(servletPath)){
+		      //회원가입
+		      } else if ("/client/auth/memberAdd.do".equals(servletPath)) {
+		    	  if(request.getParameter("email")!=null){
+		    		  model.put("member", new MemberDto()
+		    				  .setEmail(request.getParameter("email"))
+		    				  .setName(request.getParameter("name"))
+		                      .setBirth(request.getParameter("birth"))
+		                      .setGender(request.getParameter("gender"))
+		                      .setPw(request.getParameter("pw")));
+		    	  }
+		      //회원 로그인   
+		      } else if("/client/auth/memberLogIn.do".equals(servletPath)){
+		    	  if(request.getParameter("email")!=null){
+	                  model.put("loginInfo", new MemberDto()
+	                        .setEmail(request.getParameter("email"))
+	                        .setPw(request.getParameter("pw"))); 
+	               }
+		      //회원정보 불러오기
+		      } else if("/client/auth/memberDetail.do".equals(servletPath)){
+		    	  if(session.getAttribute("member")!=null){
+		    		  MemberDto member = (MemberDto)session.getAttribute("member");
+		              model.put("email", member.getEmail()); 
+		          }
+		      //회원정보수정
+		      } else if("/client/auth/memberUpdate.do".equals(servletPath)){
+		    	  if(request.getParameter("birth")!=null){
+		    		  model.put("member", new MemberDto()
+		    				  .setBirth(request.getParameter("birth"))
+		    				  .setGender(request.getParameter("gender"))
+		    				  .setPw(request.getParameter("pw"))
+		    				  .setProfileImg(request.getParameter("profileImg")));
+		    	  }
+		          MemberDto member = (MemberDto)session.getAttribute("member");
+	              model.put("email", member.getEmail());
+		      //이메일찾기
+		      } else if("/client/auth/findEmail.do".equals(servletPath)){
 		               if(request.getParameter("name")!=null) {
 		                  model.put("findEmailInfo", new MemberDto()
 		                        .setName(request.getParameter("name"))
 		                        .setBirth(request.getParameter("birth")));
 		               }
-		               
-		            } else if("/client/auth/findPw.do".equals(servletPath)){
+		      //비밀번호찾기     
+		      } else if("/client/auth/findPw.do".equals(servletPath)){
 		               if(request.getParameter("email")!=null) {
 		                  model.put("findPwInfo", new MemberDto()
 		                        .setEmail(request.getParameter("email"))
 		                        .setBirth(request.getParameter("birth")));
 		               }
-		    	  
+		      //회원탈퇴
+		      } else if("/client/auth/memberDelete.do".equals(servletPath)){
+		    	  if(request.getParameter("email")!=null) {
+		    		  model.put("memberDelInfo", new MemberDto()
+		    				  .setEmail(request.getParameter("email")));		    	  }
+		               
+		      //--------------------------------------------------------------------------------------
+		 	  //jungmi-end
+		 	  //--------------------------------------------------------------------------------------
+		 		      
 		      } else if("/search.do".equals(servletPath)){
 			    	  if(request.getParameter("search")!=null) {
 			    		  System.out.println(request.getParameter("search"));
@@ -321,7 +324,7 @@ public class DistpatcherServlet extends HttpServlet {
 		    	  response.setContentType("json:application/json");
 		    	  response.getWriter().print(viewUrl.substring(5));
 			      return;
-			        
+			      
 			  } else {
 		        RequestDispatcher rd = request.getRequestDispatcher(viewUrl);
 		        rd.include(request, response);
