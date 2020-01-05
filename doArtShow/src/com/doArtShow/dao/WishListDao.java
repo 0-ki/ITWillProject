@@ -9,4 +9,6 @@ public class WishListDao {
 	public void setDataSource(DataSource ds){
 		this.ds = ds;
 	}
+	
+	
 }

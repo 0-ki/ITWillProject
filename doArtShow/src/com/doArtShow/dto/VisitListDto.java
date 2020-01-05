@@ -2,32 +2,25 @@ package com.doArtShow.dto;
 
 // 갔다온 전시 정보
 public class VisitListDto {
-	private String id;
-	private int ExhID;
-	private int revCheck;
+	private String 	email;
+	private int 	exhID;
+	private int 	revCheck;
 	
-	public VisitListDto() {}
-
-	public String getId() {
-		return id;
+	public String getEmail() {
+		return email;
 	}
-
-	public void setId(String id) {
-		this.id = id;
+	public void setEmail(String email) {
+		this.email = email;
 	}
-
 	public int getExhID() {
-		return ExhID;
+		return exhID;
 	}
-
 	public void setExhID(int exhID) {
-		ExhID = exhID;
+		this.exhID = exhID;
 	}
-
 	public int getRevCheck() {
 		return revCheck;
 	}
-
 	public void setRevCheck(int revCheck) {
 		this.revCheck = revCheck;
 	}

@@ -2,11 +2,10 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
-	<jsp:include page="../module/1doctype_head.jsp"></jsp:include>
+	<jsp:include page="../../module/1doctype_head.jsp"></jsp:include>
 	
 <body>
- 	
- 	<jsp:include page="../module/2body_first.jsp"></jsp:include>
+ 	<jsp:include page="../../module/2body_first.jsp"></jsp:include>
 	
 	<div class="container">
 		<div id="ctgBox">
@@ -14,7 +13,7 @@
 				<li><b>태그로 찾을래요</b></li>
 				<li><a href="#데이트" id="ctg">#데이트</a></li>
 				<li><a href="#인생샷" id="ctg">#인생샷</a></li>
-				<li><a href="#친구와함께" id="ctg">#친구화함께</a></li>
+				<li><a href="#친구와함께" id="ctg">#친구와함께</a></li>
 				<li><a href="#나혼자문화생활" id="ctg">#나혼자문화생활</a></li>
 				<li><a href="#부모님과함께" id="ctg">#부모님과함께</a></li>
 				<li><a href="#아이와함께" id="ctg">#아이와함께</a></li>
@@ -56,8 +55,8 @@
 	    <div id="content_list">  
 	    	<c:forEach var="list" items="${lists}">
 		    <div id="content_list_div">
-		        <a href="ExContentView.do?exhID=${list.exhID}"><!-- 아무데나 눌러도 상세페이지로 넘어가게 -->
-		        	<img src="/doArtShow/sampleImages/${list.imageFile1}" style="height: 370px; width: 275px;"/><br>
+		        <a href="ExContentView.do?exhID=${list.exhID}&exhName=${list.exhName}" id="ExContentView" data-toggle="modal"><!-- 아무데나 눌러도 상세페이지로 넘어가게 -->
+		        	<img src="/doArtShow/ExbitionImages/${list.imageFile1}" style="height: 370px; width: 275px;"/><br>
 		            ${list.exhName}<br>
 		            ${list.exhPlace}<br>
 		            ${list.exhStartDate}&nbsp;~&nbsp;${list.exhEndDate}
@@ -121,9 +120,19 @@
 			});
 		}); */
 		
+		
+		/* ExContentView(모달로 변경) 띄우는 함수 */
+		/* $(document).ready(function(){
+			$("#ExContentView").click(function(){
+				$("#ExcontentModal").modal({
+					backdrop: true
+				});	
+			});
+		}); */
+		
 	</script>
-	
-	<jsp:include page="../module/3body_last.html"></jsp:include>
+
+	<jsp:include page="../../module/3body_last.html"></jsp:include>
 	
 </body>
 </html>
