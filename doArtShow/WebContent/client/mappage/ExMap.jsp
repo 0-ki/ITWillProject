@@ -11,13 +11,13 @@
     .wrap * {padding: 0;margin: 0;}
     .wrap .info {width: 286px;height: 120px;border-radius: 5px;border-bottom: 2px solid #ccc;border-right: 1px solid #ccc;overflow: hidden;background: #fff;}
     .wrap .info:nth-child(1) {border: 0;box-shadow: 0px 1px 2px #888;}
-    .info .title {padding: 5px 0 0 10px;height: 30px;background: #eee;border-bottom: 1px solid #ddd;font-size: 18px;font-weight: bold;}
+    .info .title {text-align:center;font-family: 'Noto Sans KR', sans-serif; padding: 5px 0 0 10px;height: 30px;background: #eee;border-bottom: 1px solid #ddd;font-size: 18px;font-weight: bold;}
     .info .close {position: absolute;top: 10px;right: 10px;color: #888;width: 17px;height: 17px;background: url('http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/overlay_close.png');}
     .info .close:hover {cursor: pointer;}
     .info .body {position: relative;overflow: hidden;}
     .info .desc {position: relative;margin: 13px 0 0 90px;height: 75px;}
-    .desc .ellipsis {overflow: hidden;text-overflow: ellipsis;white-space: nowrap;}
-    .desc .jibun {font-size: 11px;color: #888;margin-top: -2px;}
+    .desc .ellipsis {font-family: 'Noto Sans KR', sans-serif; font-size: 1.3em; overflow: hidden;text-overflow: ellipsis;white-space: nowrap;}
+    .desc .jibun {font-family: 'Noto Sans KR', sans-serif; font-size: 1.2em;color: #888;margin-top: -2px;}
     .info .img {position: absolute;top: 6px;left: 5px;width: 73px;height: 71px;border: 1px solid #ddd;color: #888;overflow: hidden;}
     .info:after {content: '';position: absolute;margin-left: -12px;left: 50%;bottom: 0;width: 22px;height: 12px;background: url('http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/vertex_white.png')}
     .info .link {color: #5085BB;}
@@ -42,12 +42,13 @@ mapOption = {
     level: 11 // 지도의 확대 레벨
 };  
 var map = new kakao.maps.Map(mapContainer, mapOption);
-//일반 지도와 스카이뷰로 지도 타입을 전환할 수 있는 지도타입 컨트롤을 생성합니다
+
+/* //일반 지도와 스카이뷰로 지도 타입을 전환할 수 있는 지도타입 컨트롤을 생성합니다
 var mapTypeControl = new kakao.maps.MapTypeControl();
 
 // 지도에 컨트롤을 추가해야 지도위에 표시됩니다
 // kakao.maps.ControlPosition은 컨트롤이 표시될 위치를 정의하는데 TOPRIGHT는 오른쪽 위를 의미합니다
-map.addControl(mapTypeControl, kakao.maps.ControlPosition.TOPRIGHT);
+map.addControl(mapTypeControl, kakao.maps.ControlPosition.TOPRIGHT); */
 
 // 지도 확대 축소를 제어할 수 있는  줌 컨트롤을 생성합니다
 var zoomControl = new kakao.maps.ZoomControl();
@@ -64,18 +65,11 @@ var geocoder<c:out value="${vs.index}"/> = new kakao.maps.services.Geocoder();
 geocoder<c:out value="${vs.index}"/>.addressSearch('<c:out value="${lists.exhPlaceAddr1}"/>',function(result, status) {
 
 	
-	
-	
-	
     imageSize = new kakao.maps.Size(34, 39), // 마커이미지의 크기입니다
     imageOption = {offset: new kakao.maps.Point(12, 39)}; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
       
 	// 마커의 이미지정보를 가지고 있는 마커이미지를 생성합니다
 	var markerImage = new kakao.maps.MarkerImage('/doArtShow/resourcesImages/mapmarker.png', imageSize, imageOption);
-
-	
-	
-	
 	
 	
     // 정상적으로 검색이 완료됐으면 
@@ -115,7 +109,7 @@ geocoder<c:out value="${vs.index}"/>.addressSearch('<c:out value="${lists.exhPla
 '</div>';
 
 var closeBtn = document.createElement('div');
-closeBtn.appendChild(document.createTextNode('닫기'));
+closeBtn.appendChild(document.createTextNode('X'));
 closeBtn.className+='close';
 closeBtn.style.position='absolute';
 closeBtn.style.marginTop='-76px';
