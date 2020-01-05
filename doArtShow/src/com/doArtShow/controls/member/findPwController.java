@@ -7,11 +7,14 @@ import javax.servlet.http.HttpSession;
 import com.doArtShow.controls.Controller;
 import com.doArtShow.dao.MemberDao;
 import com.doArtShow.dto.MemberDto;
+import com.doArtShow.util.EmailUtil;
+import com.doArtShow.util.FindUtil;
 
-public class findPwController implements Controller{
+public class FindPwController implements Controller{
 	MemberDao memberDao;
+	HttpSession session;
 	
-	public findPwController setMemberDao(MemberDao memberDao){
+	public FindPwController setMemberDao(MemberDao memberDao){
 		this.memberDao = memberDao;
 		return this;
 	}
@@ -20,17 +23,31 @@ public class findPwController implements Controller{
 	public String execute(Map<String, Object> model) throws Exception {
 		if(model.get("findPwInfo") != null) {
 			MemberDto member = (MemberDto)model.get("findPwInfo");
-			String pw = memberDao.findPw(member.getEmail(), member.getBirth());
 			
-			HttpSession session = (HttpSession)model.get("session");
-	        session.setAttribute("pw", pw);
-	        
-			return "/client/auth/findPwResult.jsp";
+			String newPw = FindUtil.createKey();
+
+			memberDao.changePw(newPw, member.getEmail(), member.getBirth());
+			
+			String subject = "[전시해] 임시 비밀번호 발급";
+			
+			String msg = "";
+			
+			msg += "<div align='center' style='border: 1px solid black; font-family:verdana; padding: 50px;'>";
+			msg += "<h3><strong>" + member.getEmail() + "님</strong>의 임시 비밀번호 입니다.</h3>";
+			msg += "<h3>로그인 후 비밀번호를 변경하세요.</h3>";
+			msg += "<p style='color:blue';>임시 비밀번호 : <strong>"+ newPw +"</strong></p>";
+			msg += "<a href=\"http://localhost:8888/doArtShow/\">전시해 홈페이지 바로가기</a>&nbsp;";
+			msg += "<a href=\"http://localhost:8888/doArtShow/client/auth/memberLogIn.do\">로그인 하러 가기</a>";
+			msg += "</div>";
+			
+			EmailUtil.sendMail(member.getEmail(), subject, msg);
+			
+			return "/client/auth//findPwResult.jsp";
 			
 		} else {
+			
 			return "/client/auth/findPwForm.jsp";
 		}
 	}
-	
 
 }
