@@ -53,7 +53,7 @@ public class ExhibitionUpdateController implements Controller {
 				//ExhibitionDto exhibition = (ExhibitionDto)model.get("exhibition");
 				exhibitionDao.updateExhibition(exhibition);
 				// return "redirect:list.do";
-				return "../index.jsp";
+				return "../../index.jsp";
 			}
 		//}
 	}

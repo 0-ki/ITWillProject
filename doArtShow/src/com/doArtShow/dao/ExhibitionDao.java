@@ -426,7 +426,7 @@ public class ExhibitionDao {
 					+ "							tel 				=?, "
 					+ "							admFee 			=?, "
 					+ "							imageFile1 		=?, "
-					+ "							imageFile2 		=? "
+					+ "							imageFile2 		=?, "		// modified by Hojeong (20/01/03) ; 맨끝에 쉼표 추가함
 					+ "							imageFile3 		=?, "
 					+ "							imageFile4 		=? "
 					+ "							WHERE exhID 	=? ";
@@ -521,6 +521,8 @@ public class ExhibitionDao {
 				exhibition.setAdmFee(rs.getString("admFee"));
 				exhibition.setImageFile1(rs.getString("imageFile1"));
 				exhibition.setImageFile2(rs.getString("imageFile2"));
+				exhibition.setImageFile3(rs.getString("imageFile3"));	//added by Hojeong 20/01/03
+				exhibition.setImageFile4(rs.getString("imageFile4"));	//added by Hojeong 20/01/03
 				exhibition.setRegisterDate(rs.getTimestamp("registerDate"));
 				exhibition.setActiveFlag(rs.getString("activeFlag"));
 			}
@@ -628,6 +630,8 @@ public class ExhibitionDao {
 					exhibition.setAdmFee(rs.getString("admFee"));
 					exhibition.setImageFile1(rs.getString("imageFile1"));
 					exhibition.setImageFile2(rs.getString("imageFile2"));
+					exhibition.setImageFile3(rs.getString("imageFile3"));	//added by Hojeong 20/01/03
+					exhibition.setImageFile4(rs.getString("imageFile4"));	//added by Hojeong 20/01/03
 					exhibition.setRegisterDate(rs.getTimestamp("registerDate"));
 					exhibition.setActiveFlag(rs.getString("activeFlag"));
 					System.out.println("dao:"+exhibition.toString());

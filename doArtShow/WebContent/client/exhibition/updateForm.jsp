@@ -323,32 +323,38 @@ try {
                         무료<input type="radio" name="admFee" id="admFee" value="무료" 	<%if(exhibition.getAdmFee().equals("무료"))	{ %>checked<%} %>> 
                     </td>
                 </tr>                
-                <tr>
 					<th class="td_left"><label for="">포스터</label></th>
-					<td class="td_right">
-                    	<input type="file" name="file1" id="file1" ><%=exhibition.getImageFile1() %>
-                    	<input type="file" name="file1" id="file1" ><img src="clientImages\<%=exhibition.getImageFile1()%>">
+					<td class="td_right"><pre class="brush:html">
+						<input type="file" name="file1" id="profile_pt1" accept="image/*" onchange="previewImage(this,'View_area1')">
+						<div id='View_area1' style='position:relative; width: 100px; height: 100px; color: black; border: 0px solid black; dispaly: inline; '></div>
+					</pre>							
 					</td>
-				</tr>                              
-               	<tr> 
+				</tr>
+				<tr> 
 					<th class="td_left"><label for="">작품사진1</label></th>
-					<td class="td_right">
-                    	<input type="file" name="file2" id="file2" ><%=exhibition.getImageFile2() %>
-
+					<td class="td_right"><pre class="brush:html">
+						<input type="file" name="file2" id="profile_pt2" 
+							 accept="image/*"  onchange="previewImage2(this,'View_area2')"> 
+						<div id='View_area2' style='position:relative; width: 100px; height: 100px; color: black; border: 0px solid black; dispaly: inline; '></div>
+					</pre>							
 					</td>
-			   	</tr> 
-			   		<th class="td_left"><label for="">작품사진2</label></th>
-					<td class="td_right">
-                    	<input type="file" name="file3" id="file3" ><%=exhibition.getImageFile3() %>
-
+				</tr>
+				<tr> 
+					<th class="td_left"><label for="">작품사진2</label></th>
+					<td class="td_right"><pre class="brush:html">
+						<input type="file" name="file3" id="profile_pt3" accept="image/*" onchange="previewImage3(this,'View_area3')">
+						<div id='View_area3' style='position:relative; width: 100px; height: 100px; color: black; border: 0px solid black; dispaly: inline; '></div>
+					</pre>							
 					</td>
-			   	</tr> 
-					<th class="td_left"><label for="">작품사진4</label></th>
-					<td class="td_right">
-                    	<input type="file" name="file4" id="file4" ><%=exhibition.getImageFile4() %>
-
+				</tr>
+				<tr> 
+					<th class="td_left"><label for="">작품사진3</label></th>
+					<td class="td_right"><pre class="brush:html">
+						<input type="file" name="file4" id="profile_pt4" accept="image/*" onchange="previewImage4(this,'View_area4')">
+						<div id='View_area4' style='position:relative; width: 100px; height: 100px; color: black; border: 0px solid black; dispaly: inline; '></div>
+					</pre>							
 					</td>
-			   	</tr> 			   	
+				</tr>			   	
 				<!-- <tr>
 					<th class="td_left"><label for="">작품사진</label></th>
 					<td class="td_right"><input type="file" name="file2" id="#"></td>

@@ -257,7 +257,7 @@ try {
 					</td>
 				</tr>
 				<tr> 
-				<th class="td_left"><label for="">작품사진1</label></th>
+					<th class="td_left"><label for="">작품사진1</label></th>
 					<td class="td_right"><pre class="brush:html">
 						<input type="file" name="file2" id="profile_pt2" 
 							 accept="image/*"  onchange="previewImage2(this,'View_area2')"> 
@@ -266,7 +266,7 @@ try {
 					</td>
 				</tr>
 				<tr> 
-				<th class="td_left"><label for="">작품사진2</label></th>
+					<th class="td_left"><label for="">작품사진2</label></th>
 					<td class="td_right"><pre class="brush:html">
 						<input type="file" name="file3" id="profile_pt3" accept="image/*" onchange="previewImage3(this,'View_area3')">
 						<div id='View_area3' style='position:relative; width: 100px; height: 100px; color: black; border: 0px solid black; dispaly: inline; '></div>
@@ -274,7 +274,7 @@ try {
 					</td>
 				</tr>
 				<tr> 
-				<th class="td_left"><label for="">작품사진3</label></th>
+					<th class="td_left"><label for="">작품사진3</label></th>
 					<td class="td_right"><pre class="brush:html">
 						<input type="file" name="file4" id="profile_pt4" accept="image/*" onchange="previewImage4(this,'View_area4')">
 						<div id='View_area4' style='position:relative; width: 100px; height: 100px; color: black; border: 0px solid black; dispaly: inline; '></div>

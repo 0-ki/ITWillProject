@@ -117,25 +117,24 @@ public class ContextLoaderListener implements ServletContextListener{
 
 			//전시글 상세내용 보기 
 			sc.setAttribute("/client/exhibition/ExContentView.do", 	new ExhibitionContentController().setExhibitionDao(exhibitionDao));
+			
 			//-------------------------------------------------------------------------------------------------------------
 			//			programmed by Hojeong - begin
 			//-------------------------------------------------------------------------------------------------------------			
 			//전시회 등록폼
-			sc.setAttribute("/client/exhibition/addForm.do", 		new ExhibitionAddFormController().setExhibitionDao(exhibitionDao));
+			sc.setAttribute("/client/exhibition/addForm.do", new ExhibitionAddFormController().setExhibitionDao(exhibitionDao));
 			
 			//전시회 등록
-			sc.setAttribute("/client/exhibition/add.do", 			new ExhibitionAddController().setExhibitionDao(exhibitionDao));
+			sc.setAttribute("/client/exhibition/add.do", new ExhibitionAddController().setExhibitionDao(exhibitionDao));
 			
 			//전시회 수정
-			sc.setAttribute("/client/exhibition/update.do", 		new ExhibitionUpdateController().setExhibitionDao(exhibitionDao));
+			sc.setAttribute("/client/exhibition/update.do", new ExhibitionUpdateController().setExhibitionDao(exhibitionDao));
 			
 			//마이 전시회 리스트 
-			sc.setAttribute("/client/exhibition/myList.do", 		new ExhibitionMyListController().setExhibitionDao(exhibitionDao));
+			sc.setAttribute("/client/exhibition/myList.do", new ExhibitionMyListController().setExhibitionDao(exhibitionDao));
 			//-------------------------------------------------------------------------------------------------------------
 			//			programmed by Hojeong - end
 			//-------------------------------------------------------------------------------------------------------------			
-			
-			//--------------------------------------------------------------------------------------
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
