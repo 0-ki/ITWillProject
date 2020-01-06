@@ -118,7 +118,7 @@ try {
         <form action="update.do" method="post" enctype="multipart/form-data" name="exhUpdateform">   
 			<!-- <table class="table table-bordered table-striped nanum table-hover" > -->
 			<table class="table nanum table-hover" >
-				<input type="hidden" name="exhID" value="<%=exhibition.getExhID() %>">
+				<input type="hidden" name="exhID" value="<%=exhibition.getExhID() %>" class="updateForm">
 				<colgroup>
 					<col class="col-sm-1">
 					<col class="col-sm-3">
@@ -140,7 +140,7 @@ try {
                     <th>
                         <lable for="">*신청자</lable> <!-- member 테이블에서 가져온다. readonly-->
                     </th>
-                    <td><input type="text" name="memberID" id="memberID" value="${exhibition.memberID }" readOnly style="width:100%; padding: .8em .5em;" ></td>
+                    <td><input type="text" name="memberID" id="memberID" value="${exhibition.memberID }" readOnly style="width:100%; padding: .8em .5em;" class="updateForm"></td>
                 </tr>
                 <tr>
                     <th>
@@ -164,22 +164,22 @@ try {
                 <tr>
                     <th><lable for="">*태그</lable></th>
                     <td style="padding: .8em .5em;">
-                        #데이트				<input name="exhGubun3" type="checkbox" value="데이트" 				<%for(int i=0; i<tagList.size(); i++) if ("데이트".equals(tagList.get(i).getExhTagName())) 			{%>checked<%} %>>
-                    	#인생샷				<input name="exhGubun3" type="checkbox" value="인생샷" 				<%for(int i=0; i<tagList.size(); i++) if ("인생샷".equals(tagList.get(i).getExhTagName())) 			{%>checked<%} %>>
-                    	#친구와함께		<input name="exhGubun3" type="checkbox" value="친구와함께" 		 	<%for(int i=0; i<tagList.size(); i++) if ("친구와함께".equals(tagList.get(i).getExhTagName()))		{%>checked<%} %>>
-                    	#나혼자문화생활	<input name="exhGubun3" type="checkbox" value="나혼자문화생활"		<%for(int i=0; i<tagList.size(); i++) if ("나혼자문화생활".equals(tagList.get(i).getExhTagName())) {%>checked<%} %>>
-                    	#부모님과함께		<input name="exhGubun3" type="checkbox" value="부모님과함께" 		<%for(int i=0; i<tagList.size(); i++) if ("부모님과함께".equals(tagList.get(i).getExhTagName()))	{%>checked<%} %>>
-                    	#아이와함께		<input name="exhGubun3" type="checkbox" value="아이와함께" 			<%for(int i=0; i<tagList.size(); i++) if ("아이와함께".equals(tagList.get(i).getExhTagName())) 		{%>checked<%} %>>
-                    	#교육전시			<input name="exhGubun3" type="checkbox" value="교육전시" 			<%for(int i=0; i<tagList.size(); i++) if ("교육전시".equals(tagList.get(i).getExhTagName())) 			{%>checked<%} %>>
+                        #데이트				<input name="exhGubun3" type="checkbox" value="데이트" class="updateForm"				<%for(int i=0; i<tagList.size(); i++) if ("데이트".equals(tagList.get(i).getExhTagName())) 			{%>checked<%} %>>
+                    	#인생샷				<input name="exhGubun3" type="checkbox" value="인생샷" class="updateForm"				<%for(int i=0; i<tagList.size(); i++) if ("인생샷".equals(tagList.get(i).getExhTagName())) 			{%>checked<%} %>>
+                    	#친구와함께		<input name="exhGubun3" type="checkbox" value="친구와함께" class="updateForm"		 	<%for(int i=0; i<tagList.size(); i++) if ("친구와함께".equals(tagList.get(i).getExhTagName()))		{%>checked<%} %>>
+                    	#나혼자문화생활	<input name="exhGubun3" type="checkbox" value="나혼자문화생활"	class="updateForm"	<%for(int i=0; i<tagList.size(); i++) if ("나혼자문화생활".equals(tagList.get(i).getExhTagName())) {%>checked<%} %>>
+                    	#부모님과함께		<input name="exhGubun3" type="checkbox" value="부모님과함께" class="updateForm"		<%for(int i=0; i<tagList.size(); i++) if ("부모님과함께".equals(tagList.get(i).getExhTagName()))	{%>checked<%} %>>
+                    	#아이와함께		<input name="exhGubun3" type="checkbox" value="아이와함께" 	class="updateForm"		<%for(int i=0; i<tagList.size(); i++) if ("아이와함께".equals(tagList.get(i).getExhTagName())) 		{%>checked<%} %>>
+                    	#교육전시			<input name="exhGubun3" type="checkbox" value="교육전시" class="updateForm"			<%for(int i=0; i<tagList.size(); i++) if ("교육전시".equals(tagList.get(i).getExhTagName())) 			{%>checked<%} %>>
                     </td>	
                 </tr>
                 <tr>
                     <th><label for="">*전시회명</label></th>
-                    <td><input type="text" name="exhName" id="exhName" value="${exhibition.exhName }" style="width:100%;"></td>
+                    <td><input type="text" class="updateForm" name="exhName" id="exhName" value="${exhibition.exhName }" style="width:100%;"></td>
                 </tr>
                 <tr>
                     <th><label for="">*작가명</label></th>
-                    <td><input type="text" name="artistName" id="artistName" value="<%=exhibition.getArtistName()%>" style="width:100%;"></td>
+                    <td><input type="text" class="updateForm" name="artistName" id="artistName" value="<%=exhibition.getArtistName()%>" style="width:100%;"></td>
                 </tr>
                 <tr>
                     <th>	<label for="">작가정보</label>
@@ -196,14 +196,14 @@ try {
                 <tr>
                  	<th>*전시관</th>
                 	<td>
-                		<input type="text" name="exhPlace" id="exhPlace" value="${exhibition.exhPlace }" style="width:100%;">
+                		<input type="text" class="updateForm" name="exhPlace" id="exhPlace" value="${exhibition.exhPlace }" style="width:100%;">
                 	</td>
                 </tr>
                 <tr>
                         <th>*전시관 주소</th>
                         <td>
-               			<input type="text" id="exhPlaceAddr1" name="exhPlaceAddr1" id="exhPlaceAddr1" value="${exhibition.exhPlaceAddr1}" style="width:90%;"> 
-                		<input type="button" onclick="sample5_execDaumPostcode()" value="주소 검색" style="width:9%;"><br> 
+               			<input type="text"  class="updateForm"id="exhPlaceAddr1" name="exhPlaceAddr1" id="exhPlaceAddr1" value="${exhibition.exhPlaceAddr1}" style="width:90%;"> 
+                		<input type="button" class="updateForm" onclick="sample5_execDaumPostcode()" value="주소 검색" style="width:9%;"><br> 
 						<div id="map" style="width:300px;height:300px;margin-top:10px;display:none"></div>
 						</td>
 				</tr>
@@ -266,18 +266,18 @@ try {
                 </tr>
                 <tr>
                     <th><label for="">전시회 홈페이지 주소</label></th>
-                    <td><input type="text" name="exhUrl" id="exhUrl" value="${exhibition.exhUrl }" style="width:100%;"></td>
+                    <td><input type="text" class="updateForm" name="exhUrl" id="exhUrl" value="${exhibition.exhUrl }" style="width:100%;"></td>
                 </tr>
                 <tr>
                 	<th>*전시일정</th>
                 	<td>
-                		<input type="date" name="exhStartDate" id="exhStartDate" value=${exhibition.exhStartDate } style="width:30%;">부터 
-                		<input type="date" name="exhEndDate" id="exhEndDate" value=${exhibition.exhStartDate } style="width:30%;">까지
+                		<input type="date" class="updateForm" name="exhStartDate" id="exhStartDate" value=${exhibition.exhStartDate } style="width:30%;">부터 
+                		<input type="date" class="updateForm" name="exhEndDate" id="exhEndDate" value=${exhibition.exhStartDate } style="width:30%;">까지
                 	</td>
                 </tr>
                 <tr>
                     <th><label for="">*전시운영시간</label></th>
-                    <td><input type="text" name="opTime" id="opTime" value="${exhibition.opTime }" style="width:100%;"></td>
+                    <td><input type="text" class="updateForm" name="opTime" id="opTime" value="${exhibition.opTime }" style="width:100%;"></td>
                 </tr>    
              	<tr>   
 					<th><label>전화번호</label></th>
@@ -309,23 +309,23 @@ try {
 							<option value="019" <%if(telArr[0].equals("019"))	{ %>selected<%} %>>019</option>
 						</select>
 						-
-						<input type="text" name="tel2" id="tel2"
+						<input type="text" name="tel2" id="tel2" class="updateForm"
 							maxlength="4" value="<%=telArr[1]%>" style="width:20%;">
 						-	
-						<input type="text" name="tel3" id="tel3"
+						<input type="text" name="tel3" id="tel3" class="updateForm"
 							maxlength="4" value="<%=telArr[2]%>" style="width:20%;">
 						</div>	
 					</td>		
 				</tr>                
                 <tr>
                     <th><label for="">*입장료</label></th>
-                    <td>유료<input type="radio" name="admFee" id="admFee" value="유료"  <%if(exhibition.getAdmFee().equals("유료"))	{             %>checked<%} %>>
-                        무료<input type="radio" name="admFee" id="admFee" value="무료" 	<%if(exhibition.getAdmFee().equals("무료"))	{ %>checked<%} %>> 
+                    <td>유료<input type="radio" class="updateForm" name="admFee" id="admFee" value="유료"  <%if(exhibition.getAdmFee().equals("유료"))	{             %>checked<%} %>>
+                        무료<input type="radio" class="updateForm" name="admFee" id="admFee" value="무료" 	<%if(exhibition.getAdmFee().equals("무료"))	{ %>checked<%} %>> 
                     </td>
                 </tr>                
 					<th class="td_left"><label for="">포스터</label></th>
 					<td class="td_right"><pre class="brush:html">
-						<input type="file" name="file1" id="profile_pt1" accept="image/*" onchange="previewImage(this,'View_area1')">
+						<input type="file" class="updateForm" name="file1" id="profile_pt1" accept="image/*" onchange="previewImage(this,'View_area1')">
 						<div id='View_area1' style='position:relative; width: 100px; height: 100px; color: black; border: 0px solid black; dispaly: inline; '></div>
 					</pre>							
 					</td>
@@ -333,7 +333,7 @@ try {
 				<tr> 
 					<th class="td_left"><label for="">작품사진1</label></th>
 					<td class="td_right"><pre class="brush:html">
-						<input type="file" name="file2" id="profile_pt2" 
+						<input type="file" class="updateForm" name="file2" id="profile_pt2" 
 							 accept="image/*"  onchange="previewImage2(this,'View_area2')"> 
 						<div id='View_area2' style='position:relative; width: 100px; height: 100px; color: black; border: 0px solid black; dispaly: inline; '></div>
 					</pre>							
@@ -342,7 +342,7 @@ try {
 				<tr> 
 					<th class="td_left"><label for="">작품사진2</label></th>
 					<td class="td_right"><pre class="brush:html">
-						<input type="file" name="file3" id="profile_pt3" accept="image/*" onchange="previewImage3(this,'View_area3')">
+						<input type="file" class="updateForm" name="file3" id="profile_pt3" accept="image/*" onchange="previewImage3(this,'View_area3')">
 						<div id='View_area3' style='position:relative; width: 100px; height: 100px; color: black; border: 0px solid black; dispaly: inline; '></div>
 					</pre>							
 					</td>
@@ -350,7 +350,7 @@ try {
 				<tr> 
 					<th class="td_left"><label for="">작품사진3</label></th>
 					<td class="td_right"><pre class="brush:html">
-						<input type="file" name="file4" id="profile_pt4" accept="image/*" onchange="previewImage4(this,'View_area4')">
+						<input type="file" class="updateForm" name="file4" id="profile_pt4" accept="image/*" onchange="previewImage4(this,'View_area4')">
 						<div id='View_area4' style='position:relative; width: 100px; height: 100px; color: black; border: 0px solid black; dispaly: inline; '></div>
 					</pre>							
 					</td>

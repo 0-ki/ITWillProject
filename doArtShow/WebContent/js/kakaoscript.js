@@ -1,7 +1,7 @@
 
 //검색어를 입력하지 않고 검색창에서 엔터를 입력할 시 alert
 function chkSearch(searchForm){
-	var _search = $('#search');
+	var _search = $('#inpt_search');
 	if(!_search.val()){
 		alert('검색어를 입력해주세요.');
 		_search.focus();

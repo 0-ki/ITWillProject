@@ -22,12 +22,9 @@
 
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 
-                <div id="top-searchbar" class="nav justify-content-center">
-                 	<form name="searchForm" action="<%=request.getContextPath()%>/search.do" onsubmit="return chkSearch(this.form)" method="get">
-                    	<input type="search" class="form-control" placeholder="전시 검색" id="search" name="search">
-                    	<input type="submit" class="hidden" value="검색">
-                    </form>
-                </div>
+<!--                 <div id="top-searchbar" class="nav justify-content-center"> --> 
+
+    <!--             </div> -->
 
 <!-- 
 
@@ -39,21 +36,32 @@
     </div>
 </div>
 
-
  -->
 
-
                 <ul class="nav navbar-nav navbar-right">
-                    <li class="hidden">
-                        <a href="#page-top"></a>
-                    </li>
-                    <li>
-                        <a class="page-scroll sm-link sm-link_padding-all sm-link1" href="<%=request.getContextPath()%>/client/exhibition/ExListView.do" id="top-list">
-                       <span class="sm-link__label">전시목록</span>
+                	
+                	<li style="margin-top: 10px;">
+                		<form name="searchForm" action="<%=request.getContextPath()%>/search.do" onsubmit="return chkSearch(this.form)" method="get">
+						<div class="cntr" style="display:contents;">
+							<div class="cntr-innr" style="display: inline-block;">
+								<label class="search" for="inpt_search">
+                    				<input type="text" id="inpt_search" name="search" style="font-family: 'Noto Sans KR', sans-serif;" />
+                    				<input type="submit" class="hidden" value="검색">
+                    			</label>
+                    		</div>
+                    	</div>
+                    	</form>
+                	</li>
+                    
+                    <li style="margin: 0 30px;">
+                        <a class="page-scroll acss" href="<%=request.getContextPath()%>/client/exhibition/ExListView.do" id="top-list">
+                    	  	 전시목록
                         </a>
                     </li>
                     <li>
-                        <a class="page-scroll" href="<%=request.getContextPath()%>/searchMap.do" id="top-list">지도</a>
+                        <a class="page-scroll acss" href="<%=request.getContextPath()%>/searchMap.do" id="top-list">
+                        	지도
+                        </a>
                     </li>
                 </ul>
             </div>
@@ -126,6 +134,171 @@
     </div>
 
 
+
+
+
+<div class="float-button-container">
+  <div class="open-button" id="backtop">
+  </div>
+  <a href="#" alt="Settings" title="Settings"><div class="item01"></div></a>
+  <a href="#" alt="Notifications" title="Notifications"><div class="item02"></div></a>
+  <a href="#" alt="전시등록" title="전시등록"><div class="item03"></div></a>
+  <a href="#" id="myBtn" alt="My profile" title="마이 페이지"><div class="item04"></div></a>
+</div>
+
+
+<style>
+
+
+
+
+
+
+
+
+.acss {
+/*   position: relative;
+  margin: 3rem;
+  text-decoration: none;
+  color: black;
+  font-family: sans-serif;
+  font-size: 2rem; */
+}
+.acss::after {
+  content: "";
+  display: block;
+  position: absolute;
+}
+.acss::before {
+  content: "";
+  display: block;
+  position: absolute;
+}
+
+.acss:first-of-type::after {
+  left: 50%;
+  bottom: -0.5rem;
+  width: 0%;
+  height: 0.2rem;
+  background-color: black;
+  transform: translateX(-50%);
+  transition: all 0.3s;
+}
+.acss:first-of-type:hover::after {
+  width: 100%;
+}
+
+
+
+
+
+
+
+
+
+
+.float-button-container {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  height: 70px;
+  width: 70px;
+  cursor: pointer;
+  z-index: 9999;
+}
+.open-button {
+  position: absolute;
+  background: #ffaf66;
+  height: 70px;
+  width: 70px;
+  bottom: 0;
+  transform: scale(0.8, 0.8);
+  border-radius: 100px;
+  z-index: 999;
+  transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+.open-button:before, .item01:before, .item02:before, .item03:before, .item04:before {
+  position: absolute;
+  font-family: "FontAwesome";
+  font-size: 3.5rem;
+  top: 50%;
+  left: 50%;
+  color: black;
+  transform: translate(-50%, -50%);
+}
+.open-button:before {
+  content: "\f0aa";
+  color: white;
+}
+.item01:before {
+  content: "\f013";
+}
+.item02:before {
+  content: "\f0f3";
+}
+.item03:before {
+  content: "\f040";
+}
+.item04:before {
+  content: "\f007";
+}
+.item01, .item02, .item03, .item04 {
+  position: absolute;
+  background: #fff;
+  height: 100px;
+  width: 100px;
+  border-radius: 100px;
+  bottom: 0;
+  transform: scale(0.4, 0.4);
+  transition: all 0.3s cubic-bezier(0.68, -0.15, 0.265, 1.15);
+}
+.item01:hover, .item02:hover, .item03:hover, .item04:hover {
+  background: #ff7a00;
+}
+.float-button-container:hover {
+  height: 100%;
+}
+.float-button-container:hover .open-button {
+  transform: scale(1, 1);
+}
+.float-button-container:hover .item01,
+.float-button-container:hover .item02,
+.float-button-container:hover .item03,
+.float-button-container:hover .item04 {
+  transform: scale(0.6, 0.6);
+}
+.float-button-container:hover .item01 {
+  bottom: 90px;
+}
+.float-button-container:hover .item02 {
+  bottom: 160px;
+}
+.float-button-container:hover .item03 {
+  bottom: 230px;
+}
+.float-button-container:hover .item04 {
+  bottom: 300px;
+}
+
+</style>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<%-- 
     <div id="back-top">
     
     	
@@ -169,12 +342,81 @@
         <a href="#" id="backtop"><i class="fa fa-angle-up"></i></a>
 <!--         <a href="#page-top"><i class="fa fa-angle-up"></i></a> -->
     </div>
+    --%>
+   
+   
+   
+   
+   <style>
+
+
+.cntr {
+  display: table;
+  width: 100%;
+  height: 100%;
+}
+.cntr .cntr-innr {
+  display: table-cell;
+  text-align: center;
+  vertical-align: middle;
+}
+/*** STYLES ***/
+.search {
+  display: inline-block;
+  position: relative;
+  height: 35px;
+  width: 35px;
+  box-sizing: border-box;
+  margin: 0px 8px 7px 0px;
+  padding: 2px 9px 0px 9px;
+  border: 3px solid #888888;
+  border-radius: 25px;
+  transition: all 200ms ease;
+  cursor: text;
+}
+.search:after {
+  content: "";
+  position: absolute;
+  width: 3px;
+  height: 20px;
+  right: -5px;
+  top: 21px;
+  background: #888888;
+  border-radius: 3px;
+  -webkit-transform: rotate(-45deg);
+          transform: rotate(-45deg);
+  transition: all 200ms ease;
+}
+.search.active,
+.search:hover {
+  width: 200px;
+  margin-right: 0px;
+}
+.search.active:after,
+.search:hover:after {
+  height: 0px;
+}
+.search input {
+  width: 100%;
+  border: none;
+  box-sizing: border-box;
+  font-family: Helvetica;
+  font-size: 15px;
+  color: #f06b05;
+  background: transparent;
+  outline-width: 0px;
+}
+
+
+</style>
+   
+   
+   
+   
    
     <style>
-    
-/*
-* core styles
-*/
+/*     
+
 
 .sm-link{
 	--uismLinkDisplay: var(--smLinkDisplay, inline-flex);	
@@ -387,7 +629,7 @@ SETTINGS
 .sm-link_bg{
 	--smLinkTextColorHover: #fff;
 }
-    
+     */
     
     </style>
     

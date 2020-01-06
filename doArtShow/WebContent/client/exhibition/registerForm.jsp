@@ -63,7 +63,7 @@ try {
                     <th>
                         <lable for="">*신청자</lable>
                     </th>
-                    <td><input type="text" name="memberID" id="memberID" placeholder="필수입력사항"></td>
+                    <td><input type="text" class="updateForm" name="memberID" id="memberID" placeholder="필수입력사항"></td>
                 </tr>
                 <tr>
                     <th>
@@ -87,23 +87,23 @@ try {
                 <tr>
                     <th><lable for="">*태그</lable></th>
                     <td>
-                    	#데이트				<input name="exhGubun3" type="checkbox" value="데이트" >
-                    	#인생샷				<input name="exhGubun3" type="checkbox" value="인생샷" >
-                    	#친구와함께		<input name="exhGubun3" type="checkbox" value="친구와함께" >
-                    	#나혼자문화생활	<input name="exhGubun3" type="checkbox" value="나혼자문화생활" >
-                    	#부모님과함께		<input name="exhGubun3" type="checkbox" value="부모님과함께" >
-                    	#아이와함께		<input name="exhGubun3" type="checkbox" value="아이와함께" >
-                    	#교육전시			<input name="exhGubun3" type="checkbox" value="교육전시" >
+                    	#데이트				<input class="updateForm" name="exhGubun3" type="checkbox" value="데이트" >
+                    	#인생샷				<input class="updateForm" name="exhGubun3" type="checkbox" value="인생샷" >
+                    	#친구와함께		<input class="updateForm" name="exhGubun3" type="checkbox" value="친구와함께" >
+                    	#나혼자문화생활	<input class="updateForm" name="exhGubun3" type="checkbox" value="나혼자문화생활" >
+                    	#부모님과함께		<input class="updateForm" name="exhGubun3" type="checkbox" value="부모님과함께" >
+                    	#아이와함께		<input class="updateForm" name="exhGubun3" type="checkbox" value="아이와함께" >
+                    	#교육전시			<input class="updateForm" name="exhGubun3" type="checkbox" value="교육전시" >
                     </td>	
                 </tr>
                 <tr>
                     <th><label for="">*전시회명</label></th>
-                    <td><input type="text" name="exhName" id="exhName" placeholder="필수입력사항"></td>
+                    <td><input type="text" class="updateForm" name="exhName" id="exhName" placeholder="필수입력사항"></td>
                 </tr>
                 <tr>
               <tr>
                     <th><label for="">*작가명</label></th>
-                    <td><input type="text" name="artistName" id="artistName" placeholder="필수입력사항"></td>
+                    <td><input type="text" class="updateForm" name="artistName" id="artistName" placeholder="필수입력사항"></td>
                 </tr>
                 <tr>                
                     <th>	<label for="">작가정보</label>
@@ -121,14 +121,14 @@ try {
                 	<!--  전시관 주소 등록 기능 To be required -->
                 	<th>*전시관</th>
                 	<td>
-                		<input type="text" name="exhPlace" id="exhPlace" placeholder="필수입력사항">
+                		<input type="text" class="updateForm" name="exhPlace" id="exhPlace" placeholder="필수입력사항">
                 	</td>
                 </tr>
                 <tr>
                         <th>*전시관 주소</th>
                         <td>
-               			<input type="text" id="exhPlaceAddr1" name="exhPlaceAddr1" id="exhPlaceAddr1" placeholder="주소" style="width:90%;" readOnly> 
-                		<input type="button" onclick="sample6_execDaumPostcode_1()" value="주소 검색" style="width:9%;"><br> 
+               			<input type="text" class="updateForm" id="exhPlaceAddr1" name="exhPlaceAddr1" id="exhPlaceAddr1" placeholder="주소" style="width:90%;" readOnly> 
+                		<input type="button" class="updateForm" onclick="sample6_execDaumPostcode_1()" value="주소 검색" style="width:9%;"><br> 
 						<!--  <div id="map" style="width:300px;height:300px;margin-top:10px;display:none"></div>-->
 						<!-- <input type="button" onclick="execDaumPostcode()" value="주소 검색" style="width:9%;"><br> 
 						<div id="conDiv" style="border:1px solid;width:500px;height:300px;margin:0 0;padding:0 0;position:relative"></div> -->   
@@ -194,18 +194,18 @@ try {
                 </tr>
                 <tr>
                     <th><label for="">전시회 홈페이지 주소</label></th>
-                    <td><input type="text" name="exhUrl" id="exhUrl"></td>
+                    <td><input type="text" class="updateForm" name="exhUrl" id="exhUrl"></td>
                 </tr>
                 <tr>
                 	<th>*전시일정</th>
                 	<td>
-                		<input type="date" name="exhStartDate" id = "exhStartDate" style="width:30%;">부터 
-                		<input type="date" name="exhEndDate" id = "exhEndDate" style="width:30%;">까지
+                		<input type="date" class="updateForm" name="exhStartDate" id = "exhStartDate" style="width:30%;">부터 
+                		<input type="date" class="updateForm" name="exhEndDate" id = "exhEndDate" style="width:30%;">까지
                 	</td>
                 </tr>
                 <tr>
                     <th><label for="">*전시운영시간</label></th>
-                    <td><input type="text" name="opTime" id="opTime"></td>
+                    <td><input type="text" class="updateForm" name="opTime" id="opTime"></td>
                 </tr>    
              	<tr>   
 					<th><label>*전화번호</label></th>
@@ -236,22 +236,22 @@ try {
 							<option value="019">019</option>
 						</select>
 						-
-						<input type="text" name="tel2"  id="tel2"
+						<input type="text" name="tel2"  id="tel2" class="updateForm"
 							maxlength="4" style="width:20%;">
-						<input type="text" name="tel3" id="tel3" 
+						<input type="text" name="tel3" id="tel3"  class="updateForm"
 							maxlength="4" placeholder="Tel" style="width:20%;">
 					</td>		
 				</tr>                
                 <tr>
                     <th><label for="">*입장료</label></th>
-                    <td> 	유료<input type="radio" name="admFee" value="유료" style="width:5%;" required>
-                    	   	무료<input type="radio" name="admFee" value="무료" style="width:5%;" required>
+                    <td> 	유료<input type="radio" class="updateForm" name="admFee" value="유료" style="width:5%;" required>
+                    	   	무료<input type="radio" class="updateForm" name="admFee" value="무료" style="width:5%;" required>
                     </td>
                 </tr>                
                 <tr>
 					<th class="td_left"><label for="">포스터</label></th>
 					<td class="td_right"><pre class="brush:html">
-						<input type="file" name="file1" id="profile_pt1" accept="image/*" onchange="previewImage(this,'View_area1')">
+						<input type="file" class="updateForm" name="file1" id="profile_pt1" accept="image/*" onchange="previewImage(this,'View_area1')">
 						<div id='View_area1' style='position:relative; width: 100px; height: 100px; color: black; border: 0px solid black; dispaly: inline; '></div>
 					</pre>							
 					</td>
@@ -259,7 +259,7 @@ try {
 				<tr> 
 					<th class="td_left"><label for="">작품사진1</label></th>
 					<td class="td_right"><pre class="brush:html">
-						<input type="file" name="file2" id="profile_pt2" 
+						<input type="file" class="updateForm" name="file2" id="profile_pt2" 
 							 accept="image/*"  onchange="previewImage2(this,'View_area2')"> 
 						<div id='View_area2' style='position:relative; width: 100px; height: 100px; color: black; border: 0px solid black; dispaly: inline; '></div>
 					</pre>							
@@ -268,7 +268,7 @@ try {
 				<tr> 
 					<th class="td_left"><label for="">작품사진2</label></th>
 					<td class="td_right"><pre class="brush:html">
-						<input type="file" name="file3" id="profile_pt3" accept="image/*" onchange="previewImage3(this,'View_area3')">
+						<input type="file" class="updateForm" name="file3" id="profile_pt3" accept="image/*" onchange="previewImage3(this,'View_area3')">
 						<div id='View_area3' style='position:relative; width: 100px; height: 100px; color: black; border: 0px solid black; dispaly: inline; '></div>
 					</pre>							
 					</td>
@@ -276,7 +276,7 @@ try {
 				<tr> 
 					<th class="td_left"><label for="">작품사진3</label></th>
 					<td class="td_right"><pre class="brush:html">
-						<input type="file" name="file4" id="profile_pt4" accept="image/*" onchange="previewImage4(this,'View_area4')">
+						<input type="file" class="updateForm" name="file4" id="profile_pt4" accept="image/*" onchange="previewImage4(this,'View_area4')">
 						<div id='View_area4' style='position:relative; width: 100px; height: 100px; color: black; border: 0px solid black; dispaly: inline; '></div>
 					</pre>							
 					</td>

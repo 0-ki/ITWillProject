@@ -29,6 +29,19 @@
 	<script src="/doArtShow/client/js/validateForm.js"></script>
 	<script src="/doArtShow/client/js/checkForm.js"></script>
 	<script>
+	
+	$("#inpt_search").on('focus', function () {
+		$(this).parent('label').addClass('active');
+	});
+
+	$("#inpt_search").on('blur', function () {
+		if($(this).val().length == 0)
+			$(this).parent('label').removeClass('active');
+	});
+	
+	
+	
+	
 	//중복확인을 위한 jsp페이지
 	function emailChkModal()
 	{

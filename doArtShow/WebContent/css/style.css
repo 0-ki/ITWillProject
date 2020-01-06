@@ -80,7 +80,7 @@ header img {
 }
 
 /* ------  툴바 버튼 3개 부분   ------- */
-
+/* 
 .item {
     display: contents;
     justify-content: center;
@@ -91,7 +91,7 @@ header img {
     font-size: 20px;
     font-weight: 900;
     text-shadow: 3px 0 0 rgba(white, .5);
-}
+} */
 
 /*
 
@@ -398,7 +398,7 @@ input::placeholder {
 
 .navbar-default .nav li a:hover,
 .navbar-default .nav li a:focus {
-    color: #fed136;
+    color: #193cfc;
     outline: 0
 }
 
@@ -425,7 +425,8 @@ input::placeholder {
     }
 
     .navbar-default .navbar-brand {
-        font-size: 2em;
+        font-size: 1.5em;
+        margin-top: 10px;
         -webkit-transition: all .3s;
         -moz-transition: all .3s;
         transition: all .3s
@@ -442,7 +443,7 @@ input::placeholder {
     }
 
     .navbar-default.navbar-shrink .navbar-brand {
-        font-size: 1.5em;
+        font-size: 1.2em;
         margin-top: 10px;
     }
 }
