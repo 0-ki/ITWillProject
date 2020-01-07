@@ -28,6 +28,11 @@
 .heart-switch:active {
   --s: .95;
 }
+.heart-switch input:focus{
+	outline-color : #fff;
+	outline-style: solid;
+	outline-width : 0px;
+}
 .heart-switch input {
   -webkit-appearance: none;
   -moz-appearance: none;
