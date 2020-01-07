@@ -9,14 +9,12 @@
 </head>
 <jsp:include page="../../module/2body_first.jsp"></jsp:include>
 <body>
-	<br>
-    <div class="container">
-        <div style="font-size: 18pt;" align="left"><b>회원탈퇴신청</b></div>
-        <br><br><br>
+    <div class="container" id="mainContainer">
+        <div id="formTitle">회원탈퇴신청</div>
         <div>
             <p><b>회원 탈퇴 신청에 앞서 아래 내용을 반드시 확인해 주세요.</b></p>
         </div>
-        <div class="container border">
+        <div class="container">
             <p>회원탈퇴 시 처리내용</p>
             <ul>
                 <li>전시해 회원가입 정보가 삭제됩니다.</li>

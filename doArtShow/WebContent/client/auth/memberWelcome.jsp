@@ -6,9 +6,20 @@
 <meta charset="UTF-8">
 <title>환영 페이지</title>
 </head>
+<jsp:include page="../../module/1doctype_head.jsp"></jsp:include>
 <body>
-	가입을 축하드립니다. 로그인을 해주세요!
-	<a href="memberLogInForm.jsp">로그인 바로가기</a>
-	<a href="index.jsp">메인화면으로 바로가기</a>
+<jsp:include page="../../module/2body_first.jsp"></jsp:include>
+	<div class="container" id="mainContainer">
+        <div id="pDiv">
+		<center>
+			가입을 축하드립니다. 로그인을 해주세요!
+		</center>
+		</div>
+		<div align="center" >
+			<a class="btn" href="javascript:addFormLogin();">로그인 하러 가기</a>
+			<a class="btn" href="<%=request.getContextPath()%>/index.jsp">메인화면으로 가기</a>
+		</div>
+	</div>
+<jsp:include page="../../module/3body_last.html"></jsp:include>
 </body>
 </html>

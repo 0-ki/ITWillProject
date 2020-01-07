@@ -6,47 +6,30 @@
 <head>
 <meta charset="UTF-8">
 <title>회원정보수정</title>
-<style>
-	.tableLabel{
-		margin-right: 50px;
-		width:150px;
-    }
-    .form-control{
-     	width: 200px;
-    }
-    tr{
-    	height:40px;
-    }
-    .form-check-input{
-    	width:20px;
-    }
-    .check_tr{
-    	overflow:hidden;
-    	height:25px;
-    }
-    #updateForm{
-    	margin:40px;
-    }
-    
-</style>   
 </head>
 <jsp:include page="../../module/1doctype_head.jsp"></jsp:include>
 <body>
 <jsp:include page="../../module/2body_first.jsp"></jsp:include>
 <c:if test="${!empty sessionScope.member}">
-	<br>
-    <div class="container">
+    <div class="container" id="mainContainer">
         <form method="post" name="updateForm" id="updateForm">
-        <div style="font-size: 18pt;" align="center"><b>회원정보수정</b></div>
-        <br>
         <table align="center">
+        <tr>
+        	<td id="formTitle" colspan="3">회원정보수정</td>
+        	<td>
+        		<a href="<%=request.getContextPath()%>/client/auth/memberDelete.do?email=${member.email}"
+        	 	style="color:gray; font-size:0.8em">탈퇴하기</a>
+        	</td>
+        </tr>
+        <tr>
+            <td class="check_tr" colspan="3"></td>
+        </tr>
         <tr>
             <th><label class="tableLabel">이메일</label></th>
             <td>${member.email}</td>
-            <td colspan="3"><a href="<%=request.getContextPath()%>/client/auth/memberDelete.do?email=${member.email}" style="color:gray">탈퇴하기</a></td>
         </tr>
         <tr>
-        	<td colspan="3"><div></div></td>    
+        	<td class="check_tr" colspan="3"><div></div></td>    
         </tr>
         <tr>
             <th><label class="tableLabel">이름</label></th>
@@ -54,21 +37,23 @@
         </tr>
         
         <tr>
-        	<td colspan="3"><div></div></td>    
+        	<td  class="check_tr" colspan="3"><div></div></td>    
         </tr>
         <tr>
             <th><label class="tableLabel">비밀번호</label></th>
             <td><input class="form-control" type="password" value="${member.pw}" name="pw" id="input_pw"></td>
         </tr>
         <tr>
-        	<td colspan="3"><div id="pw_check"></div></td>    
+        	<td></td>
+        	<td class="check_tr" colspan="2"><div id="pw_check"></div></td>    
         </tr>
         <tr>
             <th><label class="tableLabel">생년월일</label></th>
-            <td><input class="form-control" type="text" value="${member.birth}" name="birth" id="input_birth" placeholder="0000-00-00"></td>
+            <td><input class="form-control" type="text" value="${member.birth}" name="birth" id="input_birth" placeholder="생년월일(8자리)"></td>
         </tr>
         <tr>
-        	<td colspan="3"><div id="birth_check"></div></td>
+        	<td></td>
+        	<td class="check_tr" colspan="2"><div id="birth_check"></div></td>
         </tr>
         <tr>
             <th><label class="tableLabel">성별</label></th>
@@ -78,7 +63,7 @@
             </td>
         </tr>
         <tr>
-        	<td colspan="3"><div></div></td>    
+        	<td class="check_tr" colspan="3"><div></div></td>    
         </tr>
         <tr>
             <th><label class="tableLabel">프로필 사진</label></th>
@@ -87,27 +72,34 @@
             </td>
         </tr>
         <tr>
-        	<td colspan="3"><div></div></td>    
+        	<td class="check_tr" colspan="3"><div></div></td>    
         </tr>
         <tr>
         	<th></th>
         	<td><img src="../../memberProfileImages/${member.profileImg}" width="120px" height="120px"></td>
         </tr>
         <tr>
-        	<td colspan="3"><div></div></td>    
+        	<td class="check_tr" colspan="3"><div></div></td>    
         </tr>
         <tr>
-            <td colspan="3"><input class="btn" type="button" onclick="checkUpdateForm(this.form)" value="수정"></td>
+            <td class="check_tr" colspan="3">
+            	<input class="btn" type="button" onclick="checkUpdateForm(this.form)" value="수정">
+            </td>
         </tr>
         </table>
         </form>
     </div>
 </c:if>
 <c:if test="${empty sessionScope.member}">
-<div class="container p-3" style="padding-top:50px; text-align: center; height:700px;">
-        <h3>로그인이 필요한 페이지 입니다. 로그인해주세요</h3>
-        <br>
-        <a href="javascript:addFormLogin();">로그인 하러 가기</a>
+<div class="container" id="mainContainer">
+        <div id="pDiv">
+		<center>
+			로그인이 필요한 페이지 입니다.
+		</center>
+	</div>
+	<div align="center" >
+		<a class="btn" href="javascript:addFormLogin();">로그인 하러 가기</a>
+	</div>
 </div>
 </c:if>
 <jsp:include page="../../module/3body_last.html"></jsp:include>

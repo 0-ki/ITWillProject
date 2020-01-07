@@ -4,10 +4,13 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import javax.sql.DataSource;
 
+import com.doArtShow.dto.ExhibitionDto;
 import com.doArtShow.dto.MemberDto;
+import com.doArtShow.dto.ReviewDto;
 
 // 회원 정보 dao
 public class MemberDao {
@@ -16,7 +19,9 @@ public class MemberDao {
 	public void setDataSource(DataSource ds){
 		this.ds = ds;
 	}
-	
+	//-------------------------------------------------------------------
+	// 회원가입 시 이메일 중복확인
+	//-------------------------------------------------------------------
 	public int checkEmail(String email) throws Exception{
 		Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -108,6 +113,7 @@ public class MemberDao {
 		
 		return member;
 	}
+
 
 	public MemberDto selectInfo(String email) {
 		Connection conn = null;
@@ -325,4 +331,250 @@ public class MemberDao {
 			try {if(conn	!= null)conn.close();	} catch (SQLException e) {}
 		}
 	}
+	
+	//-------------------------------------------------------------------
+	// 회원페이지(memberPage.jsp)에 쓸 가고 싶은 전시 목록을 구성
+	//-------------------------------------------------------------------
+	public ArrayList<ExhibitionDto> selectWishList(String email) throws Exception{
+		ArrayList<ExhibitionDto> 	wishList = null;
+		ExhibitionDto 				exhibitionDto;
+		
+		Connection 			conn 	= null;
+		PreparedStatement 	pstmt 	= null;
+		ResultSet 			rs 		= null;
+		String 				sql 	= "";
+		
+		try {
+			conn 	= ds.getConnection();
+			sql  	=  "SELECT  exhID, exhName, imageFile1 ";
+			sql		+= "FROM	artshow ";
+			sql		+= "WHERE 	exhID	IN ( SELECT exhID ";
+			sql 	+= 						"FROM   wishart ";
+			sql		+= 						"WHERE  email=?)";
+			
+			pstmt 	= conn.prepareStatement(sql);
+			pstmt.setString(1, email);
+			rs 		= pstmt.executeQuery();
+			
+			wishList = new ArrayList<ExhibitionDto>();
+			
+			while(rs.next()) {
+				exhibitionDto 	= new ExhibitionDto();
+				exhibitionDto.setExhID(rs.getInt("exhID"));
+				exhibitionDto.setExhName(rs.getString("exhName"));
+				exhibitionDto.setImageFile1(rs.getString("imageFile1"));
+				
+				System.out.println(exhibitionDto.toString());
+				
+				wishList.add(exhibitionDto);
+				for(ExhibitionDto exh : wishList) {
+					System.out.println(exh.toString());
+				}
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			
+		} finally {
+			if(rs    != null) try {rs.close();   } catch(SQLException ex) {}
+			if(pstmt != null) try {pstmt.close();} catch(SQLException ex) {}
+			if(conn  != null) try {conn.close(); } catch(SQLException ex) {}
+		}
+		return wishList;
+	}
+	//-------------------------------------------------------------------
+	// 회원페이지(memberPage.jsp) 회원이 가고 싶어 하는 전시의 개수를 찾는다.
+	//-------------------------------------------------------------------
+	public int countWishExh(String email) {
+		Connection 			conn 	= null;
+		PreparedStatement 	pstmt 	= null;
+		ResultSet 			rs 		= null;
+		String 				sql 	= "";
+		
+		int wishCount = 0;
+		
+		try {
+			conn 	= ds.getConnection();
+			sql  	=  "SELECT  count(*) ";
+			sql		+= "FROM	wishart	 ";
+			sql		+= "WHERE   email=?	 ";
+			
+			pstmt 	= conn.prepareStatement(sql);
+			pstmt.setString(1, email);
+			rs 		= pstmt.executeQuery();
+			
+			if(rs.next()) {
+				wishCount = rs.getInt(1);
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			
+		} finally {
+			if(rs    != null) try {rs.close();   } catch(SQLException ex) {}
+			if(pstmt != null) try {pstmt.close();} catch(SQLException ex) {}
+			if(conn  != null) try {conn.close(); } catch(SQLException ex) {}
+		}
+		return wishCount;
+	}
+	
+	//-------------------------------------------------------------------
+	// 회원페이지(memberPage.jsp)에 쓸 다녀온 전시 목록을 구성
+	//-------------------------------------------------------------------
+	public ArrayList<ExhibitionDto> selectVisitList(String email) throws Exception{
+		ArrayList<ExhibitionDto> 	visitList 		= null;
+		ExhibitionDto 				exhibitionDto;
+				
+		Connection 			conn 	= null;
+		PreparedStatement 	pstmt 	= null;
+		ResultSet 			rs 		= null;
+		String 				sql 	= "";
+				
+		try {
+			conn 	= ds.getConnection();
+			conn 	= ds.getConnection();
+			sql  	=  "SELECT  exhID, exhName, imageFile1 ";
+			sql		+= "FROM	artshow ";
+			sql		+= "WHERE 	exhID	IN ( SELECT exhID 	 ";
+			sql 	+= 						"FROM   visitart ";
+			sql		+= 						"WHERE  email=?) ";
+			pstmt 	= conn.prepareStatement(sql);
+			pstmt.setString(1, email);
+			rs 		= pstmt.executeQuery();
+			
+			visitList 		= new ArrayList<ExhibitionDto>();
+			
+			while(rs.next()) {
+				exhibitionDto 	= new ExhibitionDto();
+				exhibitionDto.setMemberID(rs.getString("email"));
+				exhibitionDto.setExhID(rs.getInt("exhID"));
+				visitList.add(exhibitionDto);
+			}
+					
+			} catch (Exception e) {
+				e.printStackTrace();
+					
+			} finally {
+				if(rs    != null) try {rs.close();   } catch(SQLException ex) {}
+				if(pstmt != null) try {pstmt.close();} catch(SQLException ex) {}
+				if(conn  != null) try {conn.close(); } catch(SQLException ex) {}
+			}
+			return visitList;
+	}
+	
+	//-------------------------------------------------------------------
+	// 회원페이지(memberPage.jsp) 다녀온 전시 개수를 찾는 메소드
+	//-------------------------------------------------------------------
+	public int countVisitExh(String email) {
+		Connection 			conn 	= null;
+		PreparedStatement 	pstmt 	= null;
+		ResultSet 			rs 		= null;
+		String 				sql 	= "";
+		
+		int visitCount = 0;
+		
+		try {
+			conn 	= ds.getConnection();
+			sql  	=  "SELECT  count(*) ";
+			sql		+= "FROM	visitart ";
+			sql		+= "WHERE   email=?	 ";
+			
+			pstmt 	= conn.prepareStatement(sql);
+			pstmt.setString(1, email);
+			rs 		= pstmt.executeQuery();
+			
+			if(rs.next()) {
+				visitCount = rs.getInt(1);
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			
+		} finally {
+			if(rs    != null) try {rs.close();   } catch(SQLException ex) {}
+			if(pstmt != null) try {pstmt.close();} catch(SQLException ex) {}
+			if(conn  != null) try {conn.close(); } catch(SQLException ex) {}
+		}
+		return visitCount;
+	}
+	
+	//-------------------------------------------------------------------
+	// 회원페이지(memberPage.jsp)에 쓸 리뷰 목록을 구성
+	//-------------------------------------------------------------------
+	public ArrayList<ReviewDto> selectReviewList(String email) throws Exception{
+		ArrayList<ReviewDto> 	reviewList 		= null;
+		ReviewDto 				reviewDto;
+		
+		Connection 			conn 	= null;
+		PreparedStatement 	pstmt 	= null;
+		ResultSet 			rs 		= null;
+		String 				sql 	= "";
+		
+		try {
+			conn 	= ds.getConnection();
+			sql  	= "SELECT * FROM artshowdb.REVIEW WHERE EMAIL=? ORDER BY EXHID";
+			pstmt 	= conn.prepareStatement(sql);
+			pstmt.setString(1, email);
+			rs 		= pstmt.executeQuery();
+			
+			reviewList 		= new ArrayList<ReviewDto>();
+			
+			while(rs.next()) {
+				reviewDto	 	= new ReviewDto();
+				reviewDto.setRevNo(rs.getInt("revNo"));
+				reviewDto.setEmail(rs.getString("email"));
+				reviewDto.setExhID(rs.getInt("exhID"));
+				reviewDto.setRevContent(rs.getString("revContent"));
+				reviewDto.setRevDate(rs.getTimestamp("revDate"));
+				reviewList.add(reviewDto);
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			
+		} finally {
+			if(rs    != null) try {rs.close();   } catch(SQLException ex) {}
+			if(pstmt != null) try {pstmt.close();} catch(SQLException ex) {}
+			if(conn  != null) try {conn.close(); } catch(SQLException ex) {}
+		}
+		return reviewList;
+	}
+	
+	//-------------------------------------------------------------------
+	// 회원페이지(memberPage.jsp) 회원이 작성한 리뷰에 해당하는 전시 정보를 가져온다.
+	//-------------------------------------------------------------------
+	public ExhibitionDto selectInfoForRev(int exhID) throws Exception{
+		ExhibitionDto		exhibitionDto = null;
+				
+		Connection 			conn 	= null;
+		PreparedStatement 	pstmt 	= null;
+		ResultSet 			rs 		= null;
+		String 				sql 	= "";
+				
+		try {
+			conn 	= ds.getConnection();
+			sql  	= "SELECT * FROM artshowdb.ARTSHOW WHERE exhID=? ORDER BY EXHID";
+			pstmt 	= conn.prepareStatement(sql);
+			pstmt.setInt(1, exhID);
+			rs 		= pstmt.executeQuery();
+								
+			if(rs.next()) {
+				exhibitionDto 	= new ExhibitionDto();
+				exhibitionDto.setExhName(rs.getString("exhName"));
+				exhibitionDto.setImageFile1(rs.getString("imageFile1"));
+			}
+					
+			} catch (Exception e) {
+				e.printStackTrace();
+					
+			} finally {
+				if(rs    != null) try {rs.close();   } catch(SQLException ex) {}
+				if(pstmt != null) try {pstmt.close();} catch(SQLException ex) {}
+				if(conn  != null) try {conn.close(); } catch(SQLException ex) {}
+			}
+			return exhibitionDto;
+	}
+	
+	
+	
 }

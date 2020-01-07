@@ -1,14 +1,14 @@
 // 회원 로그인 유효성 검사
 function validateLogin(loginForm){
     if(!loginForm.email.value){
-        $("#chkEmail").text("이메일을 입력하세요");
-        $("#chkEmail").css('color','red');
+        $("#chkLoginEmail").text("이메일을 입력하세요");
+        $("#chkLoginEmail").css('color','red');
         loginForm.email.focus();
         return false;
     }
     if(!loginForm.pw.value){
-        $("#chkPw").text("비밀번호를 입력하세요");
-        $("#chkPw").css('color','red');
+        $("#chkLoginPw").text("비밀번호를 입력하세요");
+        $("#chkLoginPw").css('color','red');
         loginForm.pw.focus();
         return false;
     }
@@ -16,20 +16,21 @@ function validateLogin(loginForm){
     loginForm.submit();
 }
 $(document).ready(function(){
-	$("#input_email").keyup(function(){
-		if($("#input_email").val() != ""){
-			$("#chkEmail").text("")
+	$("#login_email").keyup(function(){
+		if($("#login_email").val() != ""){
+			$("#chkLoginEmail").text("")
 		}
 	});
-	$("#input_pw").keyup(function(){
-		if($("#input_pw").val() != ""){
-			$("#chkPw").text("")
+	$("#login_pw").keyup(function(){
+		if($("#login_pw").val() != ""){
+			$("#chkLoginPw").text("")
 		}
 	});
 });
 
 //회원가입 유효성 검사
 function validateSignUp(signUpForm){
+	console.log(signUpForm.email.value);
 	
 	//이메일 입력여부 검사
 	if(!signUpForm.email.value){
@@ -38,14 +39,6 @@ function validateSignUp(signUpForm){
 		signUpForm.email.focus();
 		return false;  
 	}
-	
-//	if(!signUpForm.email.readonly){
-//		$("#email_check").text("이메일 중복확인을 해주세요");
-//		$("#email_check").css('color','red');
-//		return false;
-//	} else {
-//		$("#email_check").text("");
-//	}
 
 	//이름 입력여부 검사
 	if(!signUpForm.name.value){
@@ -87,7 +80,7 @@ function validateSignUp(signUpForm){
 	} else {
 		$("#checkbox_check").text("");
 	}
-	signUpForm.action = "memberAdd.do";
+	signUpForm.action = "memberAdd.do?email="+signUpForm.email.value;
 	signUpForm.submit();
 }
 
@@ -111,19 +104,20 @@ function checkUpdateForm(updateForm){
 }
 
 //이메일 찾기 폼 유효성 검사
-function chkFindEmailForm(findIdForm){
-	if(!findEmailForm.birth.value){
-        $("#chkBirth").text("생년월일을 입력하세요");
-        $("#chkBirth").css('color','red');
-        findEmailForm.birth.focus();
-        return false;
-    }
+function chkFindEmailForm(findEmailForm){
 	if(!findEmailForm.name.value){
 		$("#chkName").text("이름을 입력하세요");
 		$("#chkName").css('color','red');
 		findEmailForm.name.focus();
 		return false;
 	}
+	if(!findEmailForm.birth.value){
+        $("#chkBirth").text("생년월일을 입력하세요");
+        $("#chkBirth").css('color','red');
+        findEmailForm.birth.focus();
+        return false;
+    }
+	
 	
 	findEmailForm.action="findEmail.do"
 	findEmailForm.submit();

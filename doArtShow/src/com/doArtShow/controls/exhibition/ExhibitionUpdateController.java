@@ -47,13 +47,13 @@ public class ExhibitionUpdateController implements Controller {
 					}
 				model.put("exhibition", detailInfo);
 				model.put("tagList", tagList);
-				return "/exhibition/updateForm.jsp";
+				return "/client/exhibition/updateForm.jsp";
 			//전시회 수정을 요청할 때	
 			} else {
 				//ExhibitionDto exhibition = (ExhibitionDto)model.get("exhibition");
 				exhibitionDao.updateExhibition(exhibition);
 				// return "redirect:list.do";
-				return "../index.jsp";
+				return "../../index.jsp";
 			}
 		//}
 	}

@@ -9,10 +9,10 @@ import com.doArtShow.dao.MemberDao;
 import com.doArtShow.dto.MemberDto;
 
 // 회원 로그인 컨트롤러
-public class MemberLoginController implements Controller{
+public class MemberLogInController implements Controller{
 MemberDao memberDao;
 	
-	public MemberLoginController setMemberDao(MemberDao memberDao){
+	public MemberLogInController setMemberDao(MemberDao memberDao){
 		this.memberDao = memberDao;
 		return this;
 	}
@@ -27,7 +27,7 @@ MemberDao memberDao;
 			MemberDto loginInfo = (MemberDto)model.get("loginInfo");
 			
 			MemberDto member = memberDao.checkMember(
-					loginInfo.getId(), loginInfo.getPw());
+					loginInfo.getEmail(), loginInfo.getPw());
 			
 			//로그인 정보에 맞는 회원이 db에 있다면 세션을 생성하고
 			if (member != null) {

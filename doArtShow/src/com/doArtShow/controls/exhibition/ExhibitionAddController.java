@@ -33,7 +33,7 @@ public class ExhibitionAddController implements Controller{
 			exhibitionDao.insertExhibition(exhibition);
 		    
 			//return "redirect:index.do";		 
-			return "../index.jsp";	 
+			return "../../index.jsp";	 
 		//}
 	}
 }

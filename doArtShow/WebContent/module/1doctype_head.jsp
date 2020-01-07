@@ -7,8 +7,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="나만의 전시를 만들어가자! 전시 등록과 가장 인기 있는 전시를 한 눈에">
+    <meta property="og:image" content="https://blogfiles.pstatic.net/MjAyMDAxMDJfMTgg/MDAxNTc3OTUzMDM0NTg0.mUQhLuECjSx5lvE4HxOz8je68sHTSsz5NgDtmw47cfkg.sDN5cQYDWuQVLKI9IU_s7qXwlDgwNS_dxCdXbfaMrrwg.PNG.rladudrl286/%EC%A0%84%EC%8B%9C%ED%95%B43.png"/>
     <meta name="author" content="">
-    <link rel="shortcut icon" href="/doArtShow/resourceImages/artshowtitle_Zn8_icon.ico" type="image/x-icon" />
+    <link rel="shortcut icon" href="/doArtShow/resourcesImages/artshowtitle_Zn8_icon.ico" type="image/x-icon" />
     <link rel="icon" href="favicon.ico">
     <title> 전시:해 </title>
     <!-- Bootstrap 4 가져오기 -->
@@ -23,12 +24,16 @@
     <link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR&display=swap" rel="stylesheet">
     <!--font-family: 'Noto Sans KR', sans-serif;-->
     
-        <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
+    <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
     <!-- 직접 작성한 css 및 폰트 CDN 방식 -end -->
 
     <!-- 직접 작성한 css 및 폰트 CDN 방식 by Hojeong -begin -->
    <link rel="stylesheet" href="/doArtShow/css/HJStyle.css" type="text/css">
     <!-- 직접 작성한 css 및 폰트 CDN 방식 by Hojeong -end -->
+    
+    <!-- 직접 작성한 css 및 폰트 CDN 방식 by jungmi -begin -->
+   <link rel="stylesheet" href="/doArtShow/css/JMStyle.css" type="text/css">
+    <!-- 직접 작성한 css 및 폰트 CDN 방식 by jungmi -end -->
     
     <!-- javascript used by Hojeong : begin -->
  

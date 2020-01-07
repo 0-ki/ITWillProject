@@ -7,24 +7,32 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
 <script src="../js/checkEmail.js"></script>
 <title>이메일 중복확인</title>
+<style>
+    #emailChkModalBtn{
+    	margin : 1vw;
+    }
+</style>
 </head>
+<jsp:include page="../../module/1doctype_head.jsp"></jsp:include>
 <body>
-<form name="emailChkForm">
-    <table>
-	    <tr>
-			<td>이메일</td>
-	    	<td><input type="text" name="email" id="email_value" value="<%= request.getParameter("email")%>"></td>
-	        <td><input type="button" id="emailChkModalBtn" value="중복확인"></td>	                
-		</tr>
-		<tr>
-	        <td colspan="3"><div id="email_result"></div></td>
-	   </tr>
-		<tr>
-			<td>
-			<input type="button" value="이메일 사용" id="emailUseBtn" onclick="setId()"></td>
-		</tr>
-	</table>
-</form>
+<div class="container" id="mainContainer">
+	<form name="emailChkForm">
+        <table align="center">
+        	<tr>
+        		<td id="formTitle">이메일</td>
+        		<td><input class="form-control" type="text" name="email" id="email_value" value="<%= request.getParameter("email")%>"></td>
+	        	<td><input class="btn" type="button" id="emailChkModalBtn" value="중복확인"></td>	                
+        	</tr>
+        	<tr>
+                <td colspan="3" style="overflow:hidden; height:15vh;"><div id="email_result"></div></td>
+            </tr>
+            <tr colspan="3">
+				<td>
+				<input class="btn" type="button" value="이메일 사용" id="emailUseBtn" onclick="setId()"></td>
+			</tr>
+        </table>
+    </form>
+</div>
 <script language="javascript">
 $(document).ready(function(){
 	$("#emailUseBtn").attr("disabled", true);
