@@ -38,6 +38,20 @@
 
  -->
 
+<!-- 
+
+<div class="section">
+    <div class="section__item">
+        <a href="#0" class="sm-link sm-link_padding-all sm-link1">
+            <span class="sm-link__label">Hover effect #1</span>
+        </a>
+    </div>
+</div>
+
+
+ -->
+
+
                 <ul class="nav navbar-nav navbar-right">
                 	
                 	<li style="margin-top: 10px;">
@@ -86,23 +100,23 @@
 
                     <div id="login-wrap">
                     
-                        <form method="post" name="loginForm" action="<%=request.getContextPath()%>/client/auth/memberLogIn.do">
+                         <form method="post" name="loginForm" action="<%=request.getContextPath()%>/client/auth/memberLogIn.do">
                             <div class="login-input">
-                                <input class="form-control" type="text" placeholder="EMAIL" name="email" id="input_email">
-                                <div style="margin-top:5px" id="chkEmail"></div>
+                                <input class="form-control" type="text" placeholder="이메일" name="email" id="login_email">
+                                <div style="margin-top:5px" id="chkLoginEmail"></div>
                             </div>
                             
                             <div class="login-input">
-                            	<input class="form-control" type="password" placeholder="PASSWORD" name="pw" id="input_pw">
-                            	<div style="margin-top:5px" id="chkPw"></div>
+                            	<input class="form-control" type="password" placeholder="비밀번호" name="pw" id="login_pw">
+                            	<div style="margin-top:5px" id="chkLoginPw"></div>
                             </div>
                             <div class="login-input">
-                                <a href="<%=request.getContextPath()%>/client/auth/findEmail.do">아이디</a> 
+                                <a href="<%=request.getContextPath()%>/client/auth/findEmail.do">이메일</a> 
                                 / <a href="<%=request.getContextPath()%>/client/auth/findPw.do">비밀번호 찾기</a><br>
                             </div>
                             <hr>
                             <div id="login-btngroup">
-                                <input type="button" class="btn btn-info" id="submitBtn" value="로그인" onclick="validateLogin(this.form)">
+                                <input type="button" class="btn btn-info"value="로그인" onclick="validateLogin(this.form)">
                                 <br>	
                                 
                                  <a id="kakao-login-btn"></a>
@@ -415,6 +429,8 @@
    
    
     <style>
+
+
 /*     
 
 

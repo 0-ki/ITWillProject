@@ -31,6 +31,10 @@
    <link rel="stylesheet" href="/doArtShow/css/HJStyle.css" type="text/css">
     <!-- 직접 작성한 css 및 폰트 CDN 방식 by Hojeong -end -->
     
+    <!-- 직접 작성한 css 및 폰트 CDN 방식 by jungmi -begin -->
+   <link rel="stylesheet" href="/doArtShow/css/JMStyle.css" type="text/css">
+    <!-- 직접 작성한 css 및 폰트 CDN 방식 by jungmi -end -->
+    
     <!-- javascript used by Hojeong : begin -->
  
     <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>  <!-- sample6_execDaumPostcode() -->

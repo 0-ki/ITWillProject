@@ -26,6 +26,7 @@ import com.doArtShow.controls.member.MemberDetailController;
 import com.doArtShow.controls.member.MemberEmailChkController;
 import com.doArtShow.controls.member.MemberLogInController;
 import com.doArtShow.controls.member.MemberLogOutController;
+import com.doArtShow.controls.member.MemberPageController;
 import com.doArtShow.controls.member.MemberUpdateController;
 import com.doArtShow.controls.member.FindEmailController;
 import com.doArtShow.controls.member.FindPwController;
@@ -94,19 +95,29 @@ public class ContextLoaderListener implements ServletContextListener{
 			//비밀번호 찾기
 			sc.setAttribute("/client/auth/findPw.do", 		new FindPwController().setMemberDao(memberDao));
 			
+			//회원 탈퇴 하기
+			sc.setAttribute("/client/auth/memberDelete.do", new MemberDeleteController().setMemberDao(memberDao));
+						
+			//회원과 관련된 전시목록 가져오기(가고싶은)
+			sc.setAttribute("/client/auth/memberPage.do", new MemberPageController().setMemberDao(memberDao));
+			
+//			//회원과 관련된 전시목록 가져오기(갔다온)
+//			sc.setAttribute("/client/auth/memVisitList.do", new MemberPageController().setVisitListDao(visitListDao));
+//			
+//			//회원과 관련된 전시목록 가져오기(리뷰)
+//			sc.setAttribute("/client/auth/memReviewList.do", new MemberPageController().setReviewDao(reviewDao));
+//			
+//			//회원과 관련된 전시목록 가져오기(등록한)
+//			sc.setAttribute("/client/auth/memExhibitionList.do", new MemberPageController().setExhibitionDao(exhibitionDao));
+//			
 			// 검색기능
 			sc.setAttribute("/search.do", new searchListController().setExhibitionDao(exhibitionDao));
 
 			// 지도 페이지
 			sc.setAttribute("/searchMap.do", new searchMapController().setExhibitionDao(exhibitionDao));
+						
 			
-			sc.setAttribute("/client/auth/memberSignUp.do", new MemberAddController().setMemberDao(memberDao));
 			
-			//회원 로그인
-			sc.setAttribute("/client/auth/memberLogIn.do", 	new MemberLogInController().setMemberDao(memberDao));
-			
-			//회원 로그인
-			sc.setAttribute("/client/auth/memberDelete.do", new MemberDeleteController().setMemberDao(memberDao));
 			//-------------------------------------------------------------------------------------------------------------
 			//			programmed by jungmi- end
 			//-------------------------------------------------------------------------------------------------------------						
