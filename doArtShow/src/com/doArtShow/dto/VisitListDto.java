@@ -9,20 +9,23 @@ public class VisitListDto {
 	public String getEmail() {
 		return email;
 	}
-	public void setEmail(String email) {
+	public VisitListDto setEmail(String email) {
 		this.email = email;
+		return this;
 	}
 	public int getExhID() {
 		return exhID;
 	}
-	public void setExhID(int exhID) {
+	public VisitListDto setExhID(int exhID) {
 		this.exhID = exhID;
+		return this;
 	}
 	public int getRevCheck() {
 		return revCheck;
 	}
-	public void setRevCheck(int revCheck) {
+	public VisitListDto setRevCheck(int revCheck) {
 		this.revCheck = revCheck;
+		return this;
 	}
 	
 }

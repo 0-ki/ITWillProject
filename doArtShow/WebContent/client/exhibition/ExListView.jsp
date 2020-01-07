@@ -5,9 +5,10 @@
 	<jsp:include page="../../module/1doctype_head.jsp"></jsp:include>
 	
 <body>
+
  	<jsp:include page="../../module/2body_first.jsp"></jsp:include>
 	
-	<div class="container">
+	<div class="container" id="mainContainer">
 		<div id="ctgBox">
 			<ul id="ctgList">
 				<li><b>태그로 찾을래요</b></li>
@@ -48,47 +49,42 @@
         			<option value="">곧 끝나는 전시</option>
         		</select>
         	</div>
-		</div>	
-	</div>
-    <br>
-    <div id="content_div" class="container">
-	    <div id="content_list">  
-	    	<c:forEach var="list" items="${lists}">
-		    <div id="content_list_div">
-		        <a href="<%=request.getContextPath()%>/client/exhibition/ExContentView.do?exhID=${list.exhID}&exhName=${list.exhName}" id="ExContentView" data-toggle="modal"><!-- 아무데나 눌러도 상세페이지로 넘어가게 -->
-		        	<img src="/doArtShow/exhibitionImages/${list.imageFile1}" style="height: 370px; width: 275px;"/><br>
-		            ${list.exhName}<br>
-		            ${list.exhPlace}<br>
-		            ${list.exhStartDate}&nbsp;~&nbsp;${list.exhEndDate}
-		       	 </a>
-		    </div>
-		    </c:forEach>
 		</div>
-		<div id="moreBtn_div" align="center">
-			<button type="button" id="more_btn">더보기</button>
+		<br>
+		<div id="content_div">
+		    <c:choose>
+			    <c:when test="listCnt eq 0">
+			    	<div>
+						<div id="pDiv">
+							<center>진행중인 전시가 없습니다!</center><br>
+							<div align="center">
+							   <a class="btn" href="<%=request.getContextPath()%>/index.jsp">메인으로 돌아가기</a>
+							</div>
+						</div>
+					</div>
+				</c:when>
+				<c:otherwise>
+					<div id="content_list">  
+				    	<c:forEach var="list" items="${lists}">
+					    <div id="content_list_div">
+					        <a href="<%=request.getContextPath()%>/client/exhibition/ExContentView.do?exhID=${list.exhID}" id="ExContentView" style="width: 290px; height: 470px;"><!-- 아무데나 눌러도 상세페이지로 넘어가게 -->
+					        	<img src="/doArtShow/exhibitionImages/${list.imageFile1}" style="height: 370px; width: 275px;"/><br>
+					            <b>${list.exhName}</b><br>
+					            ${list.exhPlace}<br>
+					            ${list.exhStartDate}&nbsp;~&nbsp;${list.exhEndDate}
+					       	 </a>
+					    </div>
+					    </c:forEach>
+					</div>
+					<div id="moreBtn_div" align="center">
+						<button type="button" id="more_btn">더보기</button>
+					</div>
+				</c:otherwise>
+			</c:choose>
 		</div>
 	</div>
-	
-	
-	<!-- <script>
-		$(document).ready(function(){
-			$("#ctg").click(function(){
-				$.ajax({
-					url: "/ExListView.do?exhID=",
-					type: "get",
-					cashe: false,
-					dataType: "json",
-					success: function(data){
-						$("#list").html(data);
-					},
-					error : function error(){
-						alert("error");
-					}
-				});
-			});
-		});
-		
-	</script> -->
+  
+    
 	
 	<script>
 		/* 더보기 버튼 */
@@ -117,16 +113,6 @@
 				error: function(error){
 					
 				}
-			});
-		}); */
-		
-		
-		/* ExContentView(모달로 변경) 띄우는 함수 */
-		/* $(document).ready(function(){
-			$("#ExContentView").click(function(){
-				$("#ExcontentModal").modal({
-					backdrop: true
-				});	
 			});
 		}); */
 		

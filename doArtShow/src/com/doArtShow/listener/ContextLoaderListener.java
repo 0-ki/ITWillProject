@@ -16,7 +16,10 @@ import com.doArtShow.controls.exhibition.ExhibitionAddFormController;
 import com.doArtShow.controls.exhibition.ExhibitionContentController;
 import com.doArtShow.controls.exhibition.ExhibitionListController;
 import com.doArtShow.controls.exhibition.ExhibitionMyListController;
+import com.doArtShow.controls.exhibition.ExhibitionReviewFormController;
 import com.doArtShow.controls.exhibition.ExhibitionUpdateController;
+import com.doArtShow.controls.exhibition.VisitChkController;
+import com.doArtShow.controls.exhibition.WishChkController;
 import com.doArtShow.controls.member.MemberAddController;
 import com.doArtShow.controls.member.MemberDeleteController;
 import com.doArtShow.controls.member.MemberDetailController;
@@ -104,19 +107,31 @@ public class ContextLoaderListener implements ServletContextListener{
 			
 			//회원 로그인
 			sc.setAttribute("/client/auth/memberDelete.do", new MemberDeleteController().setMemberDao(memberDao));
-			
-			
 			//-------------------------------------------------------------------------------------------------------------
 			//			programmed by jungmi- end
-			//-------------------------------------------------------------------------------------------------------------			
+			//-------------------------------------------------------------------------------------------------------------						
 			
-			
+			//-------------------------------------------------------------------------------------------------------------
+			//			programmed by seran - begin
+			//-------------------------------------------------------------------------------------------------------------
 			
 			//전시 목록 
 			sc.setAttribute("/client/exhibition/ExListView.do", 		new ExhibitionListController().setExhibitionDao(exhibitionDao));
 
 			//전시글 상세내용 보기 
 			sc.setAttribute("/client/exhibition/ExContentView.do", 	new ExhibitionContentController().setExhibitionDao(exhibitionDao));
+
+			//가고싶어요 체크
+			//sc.setAttribute("", new WishChkController().setWishListDao(wishListDao));
+			
+			//다녀왔어요 체크
+			//sc.setAttribute("", new VisitChkController().setVisitListDao(visitListDao));
+			
+			//리뷰 작성폼
+			sc.setAttribute("/client/exhibition/review.do", new ExhibitionReviewFormController().setReviewDao(reviewDao));
+			//-------------------------------------------------------------------------------------------------------------
+			//			programmed by seran - end
+			//-------------------------------------------------------------------------------------------------------------
 			
 			//-------------------------------------------------------------------------------------------------------------
 			//			programmed by Hojeong - begin

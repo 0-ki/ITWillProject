@@ -4,25 +4,28 @@ package com.doArtShow.dto;
 public class WishListDto {
 	private String 	email;
 	private int 	exhID;
-	private int 	wishArt;
+	private int 	wishCheck;
 	
 	public String getEmail() {
 		return email;
 	}
-	public void setEmail(String email) {
+	public WishListDto setEmail(String email) {
 		this.email = email;
+		return this;
 	}
 	public int getExhID() {
 		return exhID;
 	}
-	public void setExhID(int exhID) {
+	public WishListDto setExhID(int exhID) {
 		this.exhID = exhID;
+		return this;
 	}
-	public int getWishArt() {
-		return wishArt;
+	public int getWishCheck() {
+		return wishCheck;
 	}
-	public void setWishArt(int wishArt) {
-		this.wishArt = wishArt;
+	public WishListDto setWishCheck(int wishCheck) {
+		this.wishCheck = wishCheck;
+		return this;
 	}
 	
 }

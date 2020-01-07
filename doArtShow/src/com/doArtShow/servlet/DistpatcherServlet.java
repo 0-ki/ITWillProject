@@ -21,6 +21,7 @@ import com.doArtShow.controls.exhibition.ExhibitionListController;
 import com.doArtShow.dao.MemberDao;
 import com.doArtShow.dto.ExhibitionDto;
 import com.doArtShow.dto.MemberDto;
+import com.doArtShow.dto.ReviewDto;
 import com.doArtShow.util.UploadUtil;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
@@ -113,8 +114,8 @@ public class DistpatcherServlet extends HttpServlet {
 		      } else if("/client/auth/memberDelete.do".equals(servletPath)){
 		    	  if(request.getParameter("email")!=null) {
 		    		  model.put("memberDelInfo", new MemberDto()
-		    				  .setEmail(request.getParameter("email")));		    	  }
-		               
+		    				  .setEmail(request.getParameter("email")));		    	  
+		    	  }
 		      //--------------------------------------------------------------------------------------
 		 	  //jungmi-end
 		 	  //--------------------------------------------------------------------------------------
@@ -124,13 +125,23 @@ public class DistpatcherServlet extends HttpServlet {
 			    		  
 			    		  model.put("search", request.getParameter("search"));
 			    	  }
-			  } else if("/client/exhibition/ExContentView.do".equals(servletPath)){
+			    	  
+			  //--------------------------------------------------------------------------------------
+			  //seran
+			  //--------------------------------------------------------------------------------------
+			  } else if("/client/exhibition/ExContentView.do".equals(servletPath)){ //전시정보 상세페이지 보기
 		    	  if(request.getParameter("exhID") != null){
 		    		  int exhID = Integer.parseInt(request.getParameter("exhID"));
 
 		    		  model.put("exhID", exhID);
 		    	  }
-		    	  
+			  }else if("/client/exhibition/review.do".equals(servletPath)){ //리뷰 등록
+				  if(request.getParameter("email") != null){
+					  model.put("exhreview", new ReviewDto()
+							  .setEmail(request.getParameter("email"))
+							  .setExhID(Integer.parseInt(request.getParameter("exhID")))
+							  .setRevContent(request.getParameter("revContent")));
+				  }
 		      //--------------------------------------------------------------------------------------
 		  	  // begin - modified by Hojeong 20/01/03(yy/mm/dd)	
 	    	  //--------------------------------------------------------------------------------------

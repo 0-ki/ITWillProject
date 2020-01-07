@@ -8,9 +8,9 @@
  	
  	<jsp:include page="../../module/2body_first.jsp"></jsp:include>
  		
-	<div class="container">
+	<div class="container" id="mainContainer">
 		<div>
-			<h2 id="exhTitle"><b>${listOne.exhName}</b></h2>
+			<h2><b>${listOne.exhName}</b></h2>
 			<h4>${listOne.artistName}</h4>
 		</div>
 		<div>
@@ -37,24 +37,44 @@
 					<td>&nbsp;문의 : ${listOne.tel}</td>
 				</tr>
 				<tr>
-					<td>&nbsp;사이트 : ${listOne.exhUrl}</td>
+					<td>&nbsp;사이트 : <a href="${listOne.exhUrl}">${listOne.exhUrl}</a></td>
 				</tr>
 				<tr>
 					<td colspan="2">
 						<div id="myHist">
-							<a href="javascript:" id="wishBtn" style="color: #3d3d3d;"> <!-- wishArt_func(); -->
-								<i class="fa fa-heart-o fa-2x"></i><br>
-								<label>가고싶어요</label>
-							</a>
+							<c:choose>
+								<c:when test="${!empty sessionScope.member}">
+									<a href="javascript:" id="wishBtn" style="color: #3d3d3d;"> <!-- wishArt_func(); -->
+										<i class="fa fa-heart-o fa-2x"></i><br>
+										<label>가고싶어요</label>
+									</a>
+								</c:when>
+								<c:otherwise>
+									<a href="javascript:login_need();" id="wishBtn" style="color: #3d3d3d;"> <!-- wishArt_func(); -->
+										<i class="fa fa-heart-o fa-2x"></i><br>
+										<label>가고싶어요</label>
+									</a>
+								</c:otherwise>
+							</c:choose>
 								<!-- 
 								가고싶어요 클릭하면 채워진 하트 이모티콘으로 변경
 								<i class="fa fa-heart fa-2x"></i>
 								-->
-							<a href="javascript:" id="visitBtn" style="color: #3d3d3d;"> <!-- visitArt_func(); -->
-								<i class="fa fa-check fa-2x"></i><br>
-								<label>다녀왔어요</label>
-							</a>
-							<a href="javascript:" id="reviewBtn" style="color: #3d3d3d; visibility: hidden;"> <!-- 평소에 숨겨져있다가 다녀왔어요 클릭하면 리뷰작성버튼 show로 변경 -->
+							<c:choose>
+								<c:when test="${!empty sessionScope.member}">
+									<a href="javascript:visitBtn_func();" id="visitBtn" style="color: #3d3d3d;"> <!-- visitArt_func(); -->
+										<i class="fa fa-check fa-2x"></i><br>
+										<label>다녀왔어요</label>
+									</a>
+								</c:when>
+								<c:otherwise>
+									<a href="javascript:login_need(this);" id="visitBtn" style="color: #3d3d3d;"> <!-- visitArt_func(); -->
+										<i class="fa fa-check fa-2x"></i><br>
+										<label>다녀왔어요</label>
+									</a>
+								</c:otherwise>
+							</c:choose>
+							<a href="javascript:;" id="reviewBtn" style="color: #3d3d3d; visibility: hidden;"> <!-- 평소에 숨겨져있다가 다녀왔어요 클릭하면 리뷰작성버튼 show로 변경 -->
 								<i class="fa fa-pencil fa-2x"></i><br> 
 								<label>리뷰작성</label>
 							</a>
@@ -76,35 +96,62 @@
 				<tr>
 					<td colspan="2" style="height: 1500px;">${listOne.exhContent}</td>
 				</tr>
+				<tr>
+					<td><!-- image2,3,4 보여지게 --></td>
+				</tr>
 			</table>
 		</div>
 		<br>
 		<!-- 리뷰 보여지는 부분 (Bootstrap 4 Carousel 기능으로!) -->
 	</div>
-		       
+		   
 	
+	<!-- 리뷰창 모달 -->
+	<div class="modal fade" id="revWriteModal" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content" id="revWriteModal-content">
+                <div class="modal-header">
+                	<button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <!-- Modal body -->
+                <div class="modal-body" style="padding: 30px; padding-bottom: 40px; padding-top: 40px;">
+                	<h4 class="modal-title"><b>다녀온 전시관의 리뷰를 작성해 주세요</b></h4><br><br>
+                	<form action="review.do" method="post" id="revForm">
+                		<table class="table nanum">
+                			<tr>
+	                			<td width="20%">전시 내용</td>
+	                			<td width="80%"><input type="text" readonly="readonly" value="${listOne.exhName}"></td>
+                			</tr>
+                			<tr>
+                				<td>리뷰 내용</td>
+                				<td><textarea cols="60" rows="15" name="revContent" id="revContent" placeholder="리뷰는 50자 이내로 작성 가능합니다."></textarea></td>
+                			</tr>
+                		</table>
+                	</form>
+                </div>
+                <!-- Modal footer -->
+                <div id="shareModal-footer">
+                	<button type="button" class="btn btn-light" onclick="chkreviewForm(this.form)">등록하기</button>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">닫기</button>
+                </div>
+            </div>
+        </div>
+    </div>
+	    
 	
 	<script>
-		/* 가고싶어요 버튼 눌렀을때 적용하는 함수 */
-		$(document).ready(function(){
-				
-		});
+		function login_need(){
+			alert('로그인이 필요합니다');
+		}
 		
 		/* 갔다왔어요 버튼 눌렀을때 적용하는 함수 */
-		$(document).ready(function(){
-				
-		});
+		function visitBtn_func(visitBtn_con){
+			document.getElementById('reviewBtn').style.visibility = "visible";
 			
-		/* 리뷰작성 버튼 눌렀을때 리뷰작성모달 불러오는 함수 */
-		$(document).ready(function(){
-			$("#reviewBtn").click(function(){
-				$("#revWriteModal").modal({
-					backdrop: true
-				});
-			});
-		});
+			visitBtn_con
+		}
 			
-		
 		function sendLinkFaceBook(){
 		    var facebook_share_url = "https://www.facebook.com/sharer/sharer.php?u=" + encodeURI(document.location.href) + "&t=" + encodeURI('${listOne.exhName} 보러갈래?');
 		    window.open(facebook_share_url,
@@ -129,7 +176,6 @@
 		}
 		/* Kakao.init('3f954d79af6a536ec76db999e7f2ba5b'); */ 
 		function sendLinkKakao(){
-		console.log('안녕?');
 			Kakao.Link.sendDefault({
 				objectType: 'feed',
 				content: {
@@ -143,7 +189,7 @@
 				},
 				buttons: [
 					{
-						title: '링크열기',
+						title: '링크 열기',
 						link: {
 							mobileWebUrl: document.location.href,
 							webUrl: document.location.href
@@ -152,9 +198,30 @@
 				]
 			});
 		}
+		
+		function chkreviewForm(revForm){
+			if(!revForm.revContent.value){
+				alert("내용을 작성해주세요");
+				revForm.revConter.focus();
+				return false;
+			}
+			
+			
+		}
 	</script>
 
 	<jsp:include page="../../module/3body_last.html"></jsp:include>
+	
+	<script>
+		/* 리뷰작성 버튼 눌렀을때 리뷰작성모달 불러오는 함수 */
+		$(document).ready(function(){
+			$("#reviewBtn").click(function(){
+				$("#revWriteModal").modal({
+					backdrop: true
+				});
+			});
+		});	
+	</script>
 	
 </body>
 </html>
