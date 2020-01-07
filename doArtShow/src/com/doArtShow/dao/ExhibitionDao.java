@@ -174,7 +174,7 @@ public class ExhibitionDao {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		
-		int rtnCount = 0;
+		int listCnt = 0;
 		String sql = "SELECT count(*) FROM artshow";
 		
 		try {
@@ -183,7 +183,7 @@ public class ExhibitionDao {
 			rs = pstmt.executeQuery();
 					
 			if(rs.next()){
-				rtnCount = rs.getInt(1);
+				listCnt = rs.getInt(1);
 			}
 			
 		} catch (Exception e) {
@@ -194,7 +194,7 @@ public class ExhibitionDao {
 		    try {if (conn != null) conn.close();} catch(Exception e) {}
 		}
 		
-		return rtnCount;
+		return listCnt;
 		
 	}//end - public int getListCount() throws Exception{
 	

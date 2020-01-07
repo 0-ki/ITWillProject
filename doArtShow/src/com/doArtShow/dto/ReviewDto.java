@@ -13,32 +13,37 @@ public class ReviewDto {
 	public int getRevNo() {
 		return revNo;
 	}
-	public void setRevNo(int revNo) {
+	public ReviewDto setRevNo(int revNo) {
 		this.revNo = revNo;
+		return this;
 	}
 	public String getEmail() {
 		return email;
 	}
-	public void setEmail(String email) {
+	public ReviewDto setEmail(String email) {
 		this.email = email;
+		return this;
 	}
 	public int getExhID() {
 		return exhID;
 	}
-	public void setExhID(int exhID) {
+	public ReviewDto setExhID(int exhID) {
 		this.exhID = exhID;
+		return this;
 	}
 	public String getRevContent() {
 		return revContent;
 	}
-	public void setRevContent(String revContent) {
+	public ReviewDto setRevContent(String revContent) {
 		this.revContent = revContent;
+		return this;
 	}
 	public Timestamp getRevDate() {
 		return revDate;
 	}
-	public void setRevDate(Timestamp revDate) {
+	public ReviewDto setRevDate(Timestamp revDate) {
 		this.revDate = revDate;
+		return this;
 	}
 	
 	

@@ -19,8 +19,12 @@ public class ExhibitionListController implements Controller {
 	public String execute(Map<String, Object> model) throws Exception{
 		System.out.println("##3번 ExhibitionListController(페이지컨트롤러)실행");
 //		MemberDao memberDao = (MemberDao)model.get("memberDao"); 제거
+		
+		int listCnt = exhibitionDao.getListCount(); //전시갯수
+		model.put("listCnt", listCnt);
 		model.put("lists", exhibitionDao.selectList()); //exhibitionDao에게 ExList목록 데이터 요청(selectList()메서드에서 쿼리문으로 데이터 처리)
 		//exhibitionDao.selectList()에서 가져온 데이터를 lists라는 이름으로 model(Map객체)에 담는다
+		
 		
 		System.out.println("##5번 다시 ExhibitionListController로 돌아와서 DispatcherRedirect로  url리턴");
 		return "/client/exhibition/ExListView.jsp"; //DispatcherRedirect에게 뷰URL을 반환
