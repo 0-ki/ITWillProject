@@ -142,7 +142,7 @@
   </div>
   <a href="#" alt="Settings" title="Settings"><div class="item01"></div></a>
   <a href="#" alt="Notifications" title="Notifications"><div class="item02"></div></a>
-  <a href="#" alt="전시등록" title="전시등록"><div class="item03"></div></a>
+  <a href="<%=request.getContextPath() %>/client/exhibition/addForm.do" alt="전시등록" title="전시등록"><div class="item03"></div></a>
   <a href="#" id="myBtn" alt="My profile" title="마이 페이지"><div class="item04"></div></a>
 </div>
 

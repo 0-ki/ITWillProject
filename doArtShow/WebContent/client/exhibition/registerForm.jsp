@@ -85,7 +85,7 @@ try {
                     </td>
                 </tr>
                 <tr>
-                    <th><lable for="">*태그</lable></th>
+                    <th><lable for="">*태그</lable> (최대 3개 선택)</th>
                     <td>
                     	#데이트				<input class="updateForm" name="exhGubun3" type="checkbox" value="데이트" >
                     	#인생샷				<input class="updateForm" name="exhGubun3" type="checkbox" value="인생샷" >
@@ -95,6 +95,10 @@ try {
                     	#아이와함께		<input class="updateForm" name="exhGubun3" type="checkbox" value="아이와함께" >
                     	#교육전시			<input class="updateForm" name="exhGubun3" type="checkbox" value="교육전시" >
                     </td>	
+                    
+
+                    
+                    
                 </tr>
                 <tr>
                     <th><label for="">*전시회명</label></th>
@@ -324,6 +328,12 @@ try {
 <!-- </script> -->
 <jsp:include page="/module/3body_last.html" />
 <script>   
+$("input:checkbox").click(function() {
+	var bol = $("input:checkbox:checked").length >= 3;     
+	$("input:checkbox").not(":checked").attr("disabled",bol);
+	});
+
+
 function sample6_execDaumPostcode_1() {
     new daum.Postcode({
         oncomplete: function(data) {
