@@ -23,7 +23,7 @@ public class VisitListDao {
 		
 		try {
 			conn = ds.getConnection();
-			sql = "";
+			sql = "UPDATE ";
 			pstmt = conn.prepareStatement(sql);
 			
 			
