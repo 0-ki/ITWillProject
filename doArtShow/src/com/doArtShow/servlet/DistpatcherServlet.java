@@ -78,6 +78,9 @@ public class DistpatcherServlet extends HttpServlet {
 	                  model.put("loginInfo", new MemberDto()
 	                        .setEmail(request.getParameter("email"))
 	                        .setPw(request.getParameter("pw"))); 
+	                  
+	                  //로그인 후 이전 페이지로 가기 위해 Header를 사용
+	                  model.put("Referer",request.getHeader("Referer"));
 	               }
 		      //회원정보 불러오기
 		      } else if("/client/auth/memberDetail.do".equals(servletPath)){
@@ -110,12 +113,7 @@ public class DistpatcherServlet extends HttpServlet {
 		                        .setEmail(request.getParameter("email"))
 		                        .setBirth(request.getParameter("birth")));
 		               }
-		      //회원탈퇴
-		      } else if("/client/auth/memberDelete.do".equals(servletPath)){
-		    	  if(request.getParameter("email")!=null) {
-		    		  model.put("memberDelInfo", new MemberDto()
-		    				  .setEmail(request.getParameter("email")));		    	  
-		    	  }
+		      	  
 		      //--------------------------------------------------------------------------------------
 		 	  //jungmi-end
 		 	  //--------------------------------------------------------------------------------------

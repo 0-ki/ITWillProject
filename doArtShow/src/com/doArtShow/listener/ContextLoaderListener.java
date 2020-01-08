@@ -7,10 +7,6 @@ import javax.servlet.ServletContextListener;
 import javax.servlet.annotation.WebListener;
 import javax.sql.DataSource;
 
-import com.doArtShow.controls.exhibition.searchListController;
-import com.doArtShow.controls.exhibition.searchMapController;
-import com.doArtShow.controls.exhibition.ExhibitionContentController;
-import com.doArtShow.controls.exhibition.ExhibitionListController;
 import com.doArtShow.controls.exhibition.ExhibitionAddController;
 import com.doArtShow.controls.exhibition.ExhibitionAddFormController;
 import com.doArtShow.controls.exhibition.ExhibitionContentController;
@@ -18,8 +14,13 @@ import com.doArtShow.controls.exhibition.ExhibitionListController;
 import com.doArtShow.controls.exhibition.ExhibitionMyListController;
 import com.doArtShow.controls.exhibition.ExhibitionReviewFormController;
 import com.doArtShow.controls.exhibition.ExhibitionUpdateController;
-import com.doArtShow.controls.exhibition.VisitChkController;
-import com.doArtShow.controls.exhibition.WishChkController;
+import com.doArtShow.controls.exhibition.searchListController;
+import com.doArtShow.controls.exhibition.searchMapController;
+import com.doArtShow.controls.member.FindEmailController;
+import com.doArtShow.controls.member.FindPwController;
+import com.doArtShow.controls.member.MemReviewListController;
+import com.doArtShow.controls.member.MemVisitListController;
+import com.doArtShow.controls.member.MemWishListController;
 import com.doArtShow.controls.member.MemberAddController;
 import com.doArtShow.controls.member.MemberDeleteController;
 import com.doArtShow.controls.member.MemberDetailController;
@@ -28,8 +29,6 @@ import com.doArtShow.controls.member.MemberLogInController;
 import com.doArtShow.controls.member.MemberLogOutController;
 import com.doArtShow.controls.member.MemberPageController;
 import com.doArtShow.controls.member.MemberUpdateController;
-import com.doArtShow.controls.member.FindEmailController;
-import com.doArtShow.controls.member.FindPwController;
 import com.doArtShow.dao.ExhibitionDao;
 import com.doArtShow.dao.ManagerDao;
 import com.doArtShow.dao.MemberDao;
@@ -67,8 +66,6 @@ public class ContextLoaderListener implements ServletContextListener{
 			WishListDao wishListDao = new WishListDao();
 			wishListDao.setDataSource(ds);
 			
-			//--------------------------------------------------------------------------------------
-			//각자 추가하는 Controller에 따라서 수정될 수 있습니다.		
 			//-------------------------------------------------------------------------------------------------------------
 			//			programmed by jungmi - begin
 			//-------------------------------------------------------------------------------------------------------------			
@@ -98,18 +95,18 @@ public class ContextLoaderListener implements ServletContextListener{
 			//회원 탈퇴 하기
 			sc.setAttribute("/client/auth/memberDelete.do", new MemberDeleteController().setMemberDao(memberDao));
 						
-			//회원과 관련된 전시목록 가져오기(가고싶은)
-			sc.setAttribute("/client/auth/memberPage.do", new MemberPageController().setMemberDao(memberDao));
+			//회원페이지 구성
+			sc.setAttribute("/client/auth/memberPage.do", 	new MemberPageController().setMemberDao(memberDao));
 			
-//			//회원과 관련된 전시목록 가져오기(갔다온)
-//			sc.setAttribute("/client/auth/memVisitList.do", new MemberPageController().setVisitListDao(visitListDao));
-//			
-//			//회원과 관련된 전시목록 가져오기(리뷰)
-//			sc.setAttribute("/client/auth/memReviewList.do", new MemberPageController().setReviewDao(reviewDao));
-//			
-//			//회원과 관련된 전시목록 가져오기(등록한)
-//			sc.setAttribute("/client/auth/memExhibitionList.do", new MemberPageController().setExhibitionDao(exhibitionDao));
-//			
+			//회원 리뷰 목록 구성
+			sc.setAttribute("/client/auth/reviewList.do", 	new MemReviewListController().setMemberDao(memberDao));
+			
+			//회원 가고 싶은 전시 목록 구성
+			sc.setAttribute("/client/auth/wishList.do", 	new MemWishListController().setMemberDao(memberDao));
+			
+			//회원 다녀온 전시 목록 구성
+			sc.setAttribute("/client/auth/visitList.do", 	new MemVisitListController().setMemberDao(memberDao));
+									
 			// 검색기능
 			sc.setAttribute("/search.do", new searchListController().setExhibitionDao(exhibitionDao));
 

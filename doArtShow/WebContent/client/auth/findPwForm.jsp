@@ -1,9 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
 <jsp:include page="../../module/1doctype_head.jsp"></jsp:include>
 <title>비밀번호 찾기</title>
 <jsp:include page="../../module/2body_first.jsp"></jsp:include>

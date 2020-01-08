@@ -24,6 +24,8 @@ MemberDao memberDao;
 			return "/auth/memberLogInForm.jsp";
 			
 		} else {
+			String referer = (String)model.get("Referer");
+			
 			MemberDto loginInfo = (MemberDto)model.get("loginInfo");
 			
 			MemberDto member = memberDao.checkMember(
@@ -33,7 +35,7 @@ MemberDao memberDao;
 			if (member != null) {
 		        HttpSession session = (HttpSession)model.get("session");
 		        session.setAttribute("member", member);
-		        return "redirect:../auth/memberDetail.do";
+		        return "redirect:"+referer;
 		        
 		     } else {
 		    	 
