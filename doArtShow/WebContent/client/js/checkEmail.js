@@ -9,7 +9,6 @@ $(document).ready(function(){
 			type : 'GET',
 			datatype : 'JSON',
 			success : function(data){
-				console.log(data);	
 				if(data.res == 1){
 					//이메일이 중복 되는 경우
 					$("#email_result").text("이미 해당 이메일로 가입 되어있습니다.");

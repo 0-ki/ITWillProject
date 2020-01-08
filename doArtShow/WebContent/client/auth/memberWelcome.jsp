@@ -1,11 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>환영 페이지</title>
-</head>
 <jsp:include page="../../module/1doctype_head.jsp"></jsp:include>
 <body>
 <jsp:include page="../../module/2body_first.jsp"></jsp:include>

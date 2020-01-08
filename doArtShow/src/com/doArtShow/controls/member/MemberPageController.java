@@ -13,6 +13,7 @@ import com.doArtShow.dao.VisitListDao;
 import com.doArtShow.dao.WishListDao;
 import com.doArtShow.dto.ExhibitionDto;
 import com.doArtShow.dto.MemberDto;
+import com.doArtShow.dto.MyReviewDto;
 import com.doArtShow.dto.ReviewDto;
 
 public class MemberPageController implements Controller{
@@ -33,6 +34,19 @@ public class MemberPageController implements Controller{
 			MemberDto member = (MemberDto)session.getAttribute("member");
 			
 			String email = member.getEmail();
+			
+			//전시회 리뷰 목록
+			ArrayList<MyReviewDto> reviewList = memberDao.selectReviewList(email);
+			if(reviewList != null) {
+				model.put("reviewList", reviewList);
+			}
+			
+			//리뷰개수
+			int reviewCount = memberDao.countReview(email);
+			if(reviewCount != 0) {
+				model.put("reviewCount", reviewCount);
+			}
+			
 			
 			//가고싶은 전시회 목록
 			ArrayList<ExhibitionDto> wishList = memberDao.selectWishList(email);
@@ -57,24 +71,19 @@ public class MemberPageController implements Controller{
 			if(visitCount != 0) {
 				model.put("visitCount", visitCount);
 			}
-			
-			//전시회 리뷰 목록
-			ArrayList<ReviewDto> reviewList = memberDao.selectReviewList(email);
-			if(reviewList != null) {
-				model.put("reviewList", reviewList);
-				for(ReviewDto review : reviewList) {
-					int exhID = review.getExhID();
-					exhInfoForRev = memberDao.selectInfoForRev(exhID);
-					exhInfoForRevList.add(exhInfoForRev);
-				}
-				model.put("exhInfoForRevList", exhInfoForRevList);
+						
+			//등록한 전시회 목록
+			ArrayList<ExhibitionDto> myExhList = memberDao.selectMyExhList(email);
+			if(myExhList != null) {
+				model.put("myExhList", myExhList);
 			}
 			
-			//리뷰개수
-			
-			//등록한 전시
-			
 			//등록한 전시 개수
+			int myExhCount = memberDao.countMyExh(email);
+			if(myExhCount != 0) {
+				model.put("myExhCount", myExhCount);
+			}
+
 		}
 		
 		return "/client/auth/memberPage.jsp";

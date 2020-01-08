@@ -4,9 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+
 import com.doArtShow.controls.Controller;
 import com.doArtShow.dao.ExhibitionDao;
 import com.doArtShow.dto.ExhibitionDto;
+import com.doArtShow.dto.MemberDto;
 
 public class ExhibitionMyListController implements Controller {
 	ExhibitionDao exhibitionDao;
@@ -21,9 +24,11 @@ public class ExhibitionMyListController implements Controller {
 	@Override
 	public String execute(Map<String, Object> model) throws Exception {
 		//내가 등록한 전시회 리스트를 요청할 때,
-		String id = (String) model.get("id");
-		System.out.println("controller id:" + id);
-		List<ExhibitionDto> exhibitionList = exhibitionDao.selectExhibitionMyList("id01");
+		HttpSession session = (HttpSession)model.get("session");
+		MemberDto member = (MemberDto) session.getAttribute("member");
+		String email = member.getEmail();
+		System.out.println("controller id:" + email);
+		List<ExhibitionDto> exhibitionList = exhibitionDao.selectExhibitionMyList(email);
 		model.put("exhibitionList", exhibitionList);
 
 		return "/client/exhibition/myList.jsp";

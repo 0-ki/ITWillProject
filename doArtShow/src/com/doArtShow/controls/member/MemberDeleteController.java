@@ -2,6 +2,8 @@ package com.doArtShow.controls.member;
 
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+
 import com.doArtShow.controls.Controller;
 import com.doArtShow.dao.MemberDao;
 import com.doArtShow.dto.MemberDto;
@@ -17,14 +19,18 @@ public class MemberDeleteController implements Controller{
 	
 	@Override
 	public String execute(Map<String, Object> model) throws Exception {
-		if((MemberDto)model.get("memberDelInfo")!=null) {
-			MemberDto memberDelInfo = (MemberDto)model.get("memberDelInfo");
+		HttpSession session = (HttpSession)model.get("session");
+		
+		if(session.getAttribute("member")!=null) {
+			MemberDto member = (MemberDto)session.getAttribute("member");
+			memberDao.deleteMember(member.getEmail());
 			
-			memberDao.deleteMember(memberDelInfo.getEmail());
+			//로그인 정보를 없앤다.
+			session.invalidate();
 			
 			return "/index.jsp";
 		} else {
-			return "/client/auth/memberDelete.jsp";
+			return "redirect:/client/auth/memberLogIn.do";
 		}
 	}
 }

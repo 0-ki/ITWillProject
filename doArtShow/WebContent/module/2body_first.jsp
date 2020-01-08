@@ -163,10 +163,12 @@
 
 <style>
 
-
-
-
-
+/* jungmi : myPage의 프로필 부분 */
+@media (min-width: 1340px){
+	#profileDiv{
+		width : 20vw;
+	}
+}
 
 
 
