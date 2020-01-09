@@ -44,11 +44,11 @@ Import Google Fonts
 }
 
 #top-mainlogo-a {
-    height: 3.8em;
+    /* height: 3.8em; */
 }
 
 #top-mainlogo-img {
-    height: 100%;
+    height: 50%;
 }
 
 #bs-example-navbar-collapse-1 {
@@ -321,7 +321,7 @@ section {
 
 ul {
     padding-left: 0;
-    padding-top: 10px;
+    /* padding-top: 10px; */
 }
 
 ul li {
@@ -414,7 +414,7 @@ input::placeholder {
     text-transform: uppercase;
     font-weight: 600;
     letter-spacing: 1px;
-    color: #000;
+    color: #fff;
 }
 
 .navbar-default .nav li a:hover,
@@ -437,7 +437,7 @@ input::placeholder {
 
 @media (min-width:768px) {
     .navbar-default {
-        background-color: rgba(255, 255, 255, 0.65);
+        background-color: rgba(0, 0, 0, 0.45);
         padding: 5px 0;
         -webkit-transition: padding .3s;
         -moz-transition: padding .3s;
@@ -450,7 +450,8 @@ input::placeholder {
         margin-top: 10px;
         -webkit-transition: all .3s;
         -moz-transition: all .3s;
-        transition: all .3s
+        transition: all .3s;
+        background-image: url("/doArtShow/resourcesImages/mainNameWhite.png");
     }
 
     .navbar-default .navbar-nav > .active > a {
@@ -458,14 +459,38 @@ input::placeholder {
     }
 
     .navbar-default.navbar-shrink {
-        background-color: #FFFFFF;
-        border-bottom: 1px solid #E0E3DA;
-        padding: 5px 0
+        background-color: rgba(255,255,255,0.45);
+        border-bottom: 0px none;
+        border-bottom: 0px none;
+        padding: 5px 0;
+        -webkit-transition: all .3s;
+        -moz-transition: all .3s;
+        transition: all .3s;
     }
+    .navbar-default.navbar-shrink ul li a{
+        color:black;
+        -webkit-transition: all .3s;
+        -moz-transition: all .3s;
+        transition: all .3s;
+    }
+    .search.navbar.navbar-shrink{
+		border: 3px solid #000;
+		-webkit-transition: all .3s;
+        -moz-transition: all .3s;
+        transition: all .3s;
+    }
+    .search.navbar.navbar-shrink::after{
+		background: #000;
+    }
+    .search.navbar.navbar-shrink input{
+		color:black;
+	}
 
     .navbar-default.navbar-shrink .navbar-brand {
-        font-size: 1.2em;
-        margin-top: 10px;
+        background-image: url("/doArtShow/resourcesImages/mainNameBlack.png");
+        /* font-size: 1.2em;
+        margin-top: 10px; */
+        
     }
 }
 
@@ -545,9 +570,9 @@ header .intro-text .intro-heading {
 .section-title h2 {
     font-size: 34px;
     text-transform: uppercase;
-    color: #5D5D5D;
+    color: #000;
     font-weight: 800;
-    letter-spacing: -0.6px;
+    letter-spacing: -0.24px;
     position: relative;
     margin-bottom: 20px;
     padding-bottom: 15px;

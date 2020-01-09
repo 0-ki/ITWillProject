@@ -17,39 +17,12 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand page-scroll" id="top-mainlogo-a" href="/doArtShow"><img src="/doArtShow/resourcesImages/mainlogo2.png" id="top-mainlogo-img" alt="전시:해"></a>
+                <%-- top-mainlogo-img --%>
+                <a class="navbar-brand page-scroll" id="top-mainlogo-a" href="/doArtShow"><div class="navbar" style="width:100px;height:30px;"></div></a>
             </div>
 
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 
-<!--                 <div id="top-searchbar" class="nav justify-content-center"> --> 
-
-    <!--             </div> -->
-
-<!-- 
-
-<div class="section">
-    <div class="section__item">
-        <a href="#0" class="sm-link sm-link_padding-all sm-link1">
-            <span class="sm-link__label">Hover effect #1</span>
-        </a>
-    </div>
-</div>
-
- -->
-
-<!-- 
-
-<div class="section">
-    <div class="section__item">
-        <a href="#0" class="sm-link sm-link_padding-all sm-link1">
-            <span class="sm-link__label">Hover effect #1</span>
-        </a>
-    </div>
-</div>
-
-
- -->
 
 
                 <ul class="nav navbar-nav navbar-right">
@@ -58,7 +31,7 @@
                 		<form name="searchForm" action="<%=request.getContextPath()%>/search.do" onsubmit="return chkSearch(this.form)" method="get">
 						<div class="cntr" style="display:contents;">
 							<div class="cntr-innr" style="display: inline-block;">
-								<label class="search" for="inpt_search">
+								<label class="search navbar" for="inpt_search">
                     				<input type="text" id="inpt_search" name="search" style="font-family: 'Noto Sans KR', sans-serif;" />
                     				<input type="submit" class="hidden" value="검색">
                     			</label>
@@ -380,12 +353,12 @@
 .search {
   display: inline-block;
   position: relative;
-  height: 35px;
-  width: 35px;
+  height: 25px;
+  width: 25px;
   box-sizing: border-box;
   margin: 0px 8px 7px 0px;
-  padding: 2px 9px 0px 9px;
-  border: 3px solid #888888;
+  padding: 0px 9px 0px 9px;
+  border: 3px solid #fff;
   border-radius: 25px;
   transition: all 200ms ease;
   cursor: text;
@@ -396,8 +369,8 @@
   width: 3px;
   height: 20px;
   right: -5px;
-  top: 21px;
-  background: #888888;
+  top: 14px;/* 21px; */
+  background: #fff;
   border-radius: 3px;
   -webkit-transform: rotate(-45deg);
           transform: rotate(-45deg);
@@ -406,11 +379,11 @@
 .search.active,
 .search:hover {
   width: 200px;
-  margin-right: 0px;
 }
 .search.active:after,
 .search:hover:after {
   height: 0px;
+  margin-right: 5px;
 }
 .search input {
   width: 100%;
@@ -418,7 +391,7 @@
   box-sizing: border-box;
   font-family: Helvetica;
   font-size: 15px;
-  color: #f06b05;
+  color: #fff;
   background: transparent;
   outline-width: 0px;
 }

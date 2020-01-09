@@ -2,11 +2,104 @@
     pageEncoding="UTF-8"%>
 
 <jsp:include page="/module/1doctype_head.jsp"></jsp:include>
+<style>
+/* @import url(https://fonts.googleapis.com/css?family=Lato:600); */
+.rotating {
+  display: flex;
+  position: absolute;
+  justify-content: center;
+  align-items: center;
+  top: 288px;
+  left: 288px;
+  z-index: 999;
+}
 
+.rotating-text {
+  /* font-family: Lato, sans-serif; */
+  font-weight: 600;
+  font-size: 36px;
+  transform: translateX(-80px);
+}
+.rotating-text p {
+  display: inline-flex;
+  font-size: 55px;
+  margin: 0;
+  vertical-align: top;
+  color: deeppink;
+}
+.rotating-text p .word {
+  position: absolute;
+  left: 250px;
+  display: flex;
+  opacity: 0;
+}
+.rotating-text p .word .letter {
+  transform-origin: center center 25px;
+}
+.rotating-text p .word .letter.out {
+  transform: rotateX(90deg);
+  transition: 0.32s cubic-bezier(0.6, 0, 0.7, 0.2);
+}
+.rotating-text p .word .letter.in {
+  transition: 0.38s ease;
+}
+.rotating-text p .word .letter.behind {
+  transform: rotateX(-90deg);
+}
+
+.alizarin {
+  color: #e74c3c;
+}
+
+.wisteria {
+  color: #8e44ad;
+}
+
+.peter-river {
+  color: #3498db;
+}
+
+.emerald {
+  color: #2ecc71;
+}
+
+.sun-flower {
+  color: #f1c40f;
+}
+
+
+</style>
 <body>
 
 <jsp:include page="/module/2body_first.jsp"></jsp:include>
 
+<div style="margin-bottom: 580px;"></div>
+
+
+<div class="rotating">
+<div class="rotating-text">
+  <p>전시:해는 </p>
+  <p>
+    <span class="word alizarin">놀랍습니다.</span>
+    <span class="word wisteria">아름답습니다.</span>
+    <span class="word peter-river">창조적입니다.</span>
+    <span class="word emerald">굉장합니다.</span>
+    <span class="word sun-flower">재밌습니다.</span>
+  </p>
+</div>
+</div>
+
+
+<div class="mainwall" style="position: absolute; top: 0;">
+			<div class="wallpaper">
+				<div>
+					<div>
+						<img id="wallPaper" src="/doArtShow/resourcesImages/mainwall0.jpg" width="100%" height="550px;"/>
+					</div>
+				</div>
+				
+			</div>
+</div>
 
 
     <!-- Header -->
@@ -19,10 +112,15 @@
                         <div>
                             <h4><a href="#">더 보기 &nbsp;<span class="fa fa-plus"></span> </a></h4>
                             <div class="intro-heading">
-                                <div><img src="/doArtShow/exhibitionImages/1.jpg" alt="1"></div>
-                                <div><img src="/doArtShow/exhibitionImages/2.jpg" alt="2"></div>
-                                <div><img src="/doArtShow/exhibitionImages/3.jpg" alt="3"></div>
-                                <div><img src="/doArtShow/exhibitionImages/4.jpg" alt="4"></div>
+                                <div><img src="/doArtShow/exhibitionImages/1.jpg" alt="1" width="330px" height="360px;"></div>
+                                <div><img src="/doArtShow/exhibitionImages/2.jpg" alt="2" width="330px" height="360px;"></div>
+                                <div><img src="/doArtShow/exhibitionImages/3.jpg" alt="3" width="330px" height="360px;"></div>
+                                <div><img src="/doArtShow/exhibitionImages/4.jpg" alt="4" width="330px" height="360px;"></div>
+                                <div><img src="/doArtShow/exhibitionImages/1.jpg" alt="1" width="330px" height="360px;"></div>
+                                <div><img src="/doArtShow/exhibitionImages/2.jpg" alt="2" width="330px" height="360px;"></div>
+                                <div><img src="/doArtShow/exhibitionImages/3.jpg" alt="3" width="330px" height="360px;"></div>
+                                <div><img src="/doArtShow/exhibitionImages/4.jpg" alt="4" width="330px" height="360px;"></div>
+                                <div><img src="/doArtShow/exhibitionImages/1.jpg" alt="1" width="330px" height="360px;"></div>
                             </div>
                         </div>
                     </div>
@@ -43,7 +141,6 @@
                     </div>
                 </div>
 
-                <div class="intro-lead-in">전시:해 사이트 방문 환영 ~ Carousel로 최근 등록된 전시, 인기가 많은(클릭순) 전시 슬라이드쇼 + 더보기 위치할 예정</div>
                 <div class="intro-heading">
                     예쁜 폰트 구해야겠다. 여기다가 뭘 출력하지
                     I'm gonna get a pretty font.
@@ -330,6 +427,77 @@
 
 
 <jsp:include page="/module/3body_last.html" />
+
+<script>
+$(function(){
+
+    var imgArray = new Array();
+    imgArray[0] = "/doArtShow/resourcesImages/mainwall1.jpg";
+    imgArray[1] = "/doArtShow/resourcesImages/mainwall2.jpg";
+    imgArray[2] = "/doArtShow/resourcesImages/mainwall3.jpg";
+    imgArray[3] = "/doArtShow/resourcesImages/mainwall4.jpg";
+    imgArray[4] = "/doArtShow/resourcesImages/mainwall5.jpg";
+    var cnt = 0;
+
+    setInterval(function() {
+        $('#wallPaper').fadeOut(400,function(){
+        $('#wallPaper').attr("src", imgArray[cnt]);
+        }).fadeIn(400);
+        
+        cnt++;
+        if (cnt == 5) {
+            cnt = 0;
+        }
+    }, 4000);
+});
+
+
+/////////////////////////////
+
+var words = document.querySelectorAll(".word");
+words.forEach(function (word) {
+  var letters = word.textContent.split("");
+  word.textContent = "";
+  letters.forEach(function (letter) {
+    var span = document.createElement("span");
+    span.textContent = letter;
+    span.className = "letter";
+    word.append(span);
+  });
+});
+var currentWordIndex = 0;
+var maxWordIndex = words.length - 1;
+words[currentWordIndex].style.opacity = "1";
+var rotateText = function () {
+  var currentWord = words[currentWordIndex];
+  var nextWord = currentWordIndex === maxWordIndex ? words[0] : words[currentWordIndex + 1];
+  // rotate out letters of current word
+  Array.from(currentWord.children).forEach(function (letter, i) {
+    setTimeout(function () {
+      letter.className = "letter out";
+    }, i * 80);
+  });
+  // reveal and rotate in letters of next word
+  nextWord.style.opacity = "1";
+  Array.from(nextWord.children).forEach(function (letter, i) {
+    letter.className = "letter behind";
+    setTimeout(function () {
+      letter.className = "letter in";
+    }, 340 + i * 80);
+  });
+  currentWordIndex =
+  currentWordIndex === maxWordIndex ? 0 : currentWordIndex + 1;
+};
+rotateText();
+setInterval(rotateText, 4000);
+
+
+
+</script>
+
+
+
+
 </body>
 </html>
 
