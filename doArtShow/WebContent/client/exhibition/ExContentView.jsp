@@ -7,6 +7,7 @@
 <body>
  	
  	<jsp:include page="../../module/2body_first.jsp"></jsp:include>
+ 	<c:set var="member" value="${sessionScope.member}"/>
  		
  		<style>
  		.heart-switch {
@@ -197,27 +198,29 @@ html {
 						<div id="myHist">
 							<c:choose>
 								<c:when test="${!empty sessionScope.member}">
-									<a href="javascript:" id="wishBtn" style="color: #3d3d3d;"> <!-- wishArt_func(); -->
-										<label class="heart-switch">
-											<input type="checkbox"> 
-											<svg viewBox="0 0 33 23" fill="white">
-												<path	d="M23.5,0.5 C28.4705627,0.5 32.5,4.52943725 32.5,9.5 C32.5,16.9484448 21.46672,22.5 16.5,22.5 C11.53328,22.5 0.5,16.9484448 0.5,9.5 C0.5,4.52952206 4.52943725,0.5 9.5,0.5 C12.3277083,0.5 14.8508336,1.80407476 16.5007741,3.84362242 C18.1491664,1.80407476 20.6722917,0.5 23.5,0.5 Z"></path>
-											</svg>
-										   가고싶어요
-										</label>
-									</a>
+										<c:if test="${wishChk == 0}"><!-- 가고싶어요 안누른 전시 -->
+											<label class="heart-switch">
+												<input id="wishBtn" type="checkbox"> <!-- 하트체크박스 가운데로 맞추기 -->
+												<svg viewBox="0 0 33 23" fill="white"><path d="M23.5,0.5 C28.4705627,0.5 32.5,4.52943725 32.5,9.5 C32.5,16.9484448 21.46672,22.5 16.5,22.5 C11.53328,22.5 0.5,16.9484448 0.5,9.5 C0.5,4.52952206 4.52943725,0.5 9.5,0.5 C12.3277083,0.5 14.8508336,1.80407476 16.5007741,3.84362242 C18.1491664,1.80407476 20.6722917,0.5 23.5,0.5 Z"></path></svg>
+												 가고싶어요
+											</label>
+										</c:if>
+										<c:if test="${wishChk == 1}"><!-- 가고싶어요 누른 전시 -->
+											<label class="heart-switch">
+												<input id="wishBtn" type="checkbox" checked="checked"> <!-- 하트체크박스 가운데로 맞추기 -->
+												<svg viewBox="0 0 33 23" fill="white"><path d="M23.5,0.5 C28.4705627,0.5 32.5,4.52943725 32.5,9.5 C32.5,16.9484448 21.46672,22.5 16.5,22.5 C11.53328,22.5 0.5,16.9484448 0.5,9.5 C0.5,4.52952206 4.52943725,0.5 9.5,0.5 C12.3277083,0.5 14.8508336,1.80407476 16.5007741,3.84362242 C18.1491664,1.80407476 20.6722917,0.5 23.5,0.5 Z"></path></svg>
+												 가고싶어요
+											</label>
+										</c:if>
 								</c:when>
 								<c:otherwise>
-									<a href="javascript:login_need();" id="wishBtn" style="color: #3d3d3d;"> <!-- wishArt_func(); -->
-										<i class="fa fa-heart-o fa-2x"></i><br>
-										<label>가고싶어요</label>
-									</a>
+									<label class="heart-switch" onclick="javascript:login_need()">
+										<input type="checkbox" disabled="true"> <!-- content화면 출력시 로그인 되어있는지 확인 후, 로그인 안되있을 경우 ajax에서 처리할 사항 : 체크를 아예 못하게 막아놓기, login_need()로 가게 하기--> 
+										<svg viewBox="0 0 33 23" fill="white"><path d="M23.5,0.5 C28.4705627,0.5 32.5,4.52943725 32.5,9.5 C32.5,16.9484448 21.46672,22.5 16.5,22.5 C11.53328,22.5 0.5,16.9484448 0.5,9.5 C0.5,4.52952206 4.52943725,0.5 9.5,0.5 C12.3277083,0.5 14.8508336,1.80407476 16.5007741,3.84362242 C18.1491664,1.80407476 20.6722917,0.5 23.5,0.5 Z"></path></svg>
+										 가고싶어요
+									</label>
 								</c:otherwise>
 							</c:choose>
-								<!-- 
-								가고싶어요 클릭하면 채워진 하트 이모티콘으로 변경
-								<i class="fa fa-heart fa-2x"></i>
-								-->
 							<c:choose>
 								<c:when test="${!empty sessionScope.member}">
 									<a href="javascript:visitBtn_func();" id="visitBtn" style="color: #3d3d3d;"> <!-- visitArt_func(); -->
@@ -261,12 +264,43 @@ html {
 		</div>
 		<br>
 		<!-- 리뷰 보여지는 부분 (Bootstrap 4 Carousel 기능으로!) -->
+		<div>
+			<p>리뷰 보기</p>
+			<c:choose>
+				<c:when test="${revCnt == 0}">
+					<div>
+						<center>다녀온 전시로 등록하고, 첫 리뷰를 작성해주세요!</center>
+					</div>
+				</c:when>
+				<c:otherwise>
+					<div id="revList">
+						<c:forEach var="revlist" items="${revLists}">
+							<div id="revOne">
+								<table border="1">
+									<tr>
+										<td rowspan="2" width="30%"><img src="/doArtShow/memberProfileImages/${revlist.profileImg}" id="memberProfile" style="height: 150px; width: 150px;"/></td>
+										<td width="70%" height="20%"><input type="text" readonly="readonly" name="memberName" value="${revlist.name}"></td>
+									</tr>
+									<tr>
+										<td height="80%"><input type="text" readonly="readonly" name="reviewContent" value="${revlist.revContent}"></td>
+									</tr>
+									<tr>
+										<td colspan="2">${revlist.revDate}에 작성되었습니다.</td>
+									</tr>
+								</table>
+							</div>
+						</c:forEach>
+					</div>
+				</c:otherwise>
+			</c:choose>
+		</div>
 	</div>
 		   
 	
 	<!-- 리뷰창 모달 -->
 	<div class="modal fade" id="revWriteModal" role="dialog">
         <div class="modal-dialog">
+        <form method="post" name="revForm" id="revForm">
             <!-- Modal content-->
             <div class="modal-content" id="revWriteModal-content">
                 <div class="modal-header">
@@ -275,39 +309,63 @@ html {
                 <!-- Modal body -->
                 <div class="modal-body" style="padding: 30px; padding-bottom: 40px; padding-top: 40px;">
                 	<h4 class="modal-title"><b>다녀온 전시관의 리뷰를 작성해 주세요</b></h4><br><br>
-                	<form action="review.do" method="post" id="revForm">
                 		<table class="table nanum">
                 			<tr>
 	                			<td width="20%">전시 내용</td>
-	                			<td width="80%"><input type="text" readonly="readonly" value="${listOne.exhName}"></td>
+	                			<td width="80%"><input type="text" name="exhName" readonly="readonly" value="${listOne.exhName}"></td>
                 			</tr>
                 			<tr>
                 				<td>리뷰 내용</td>
                 				<td><textarea cols="60" rows="15" name="revContent" id="revContent" placeholder="리뷰는 50자 이내로 작성 가능합니다."></textarea></td>
                 			</tr>
                 		</table>
-                	</form>
                 </div>
                 <!-- Modal footer -->
                 <div id="shareModal-footer">
-                	<button type="button" class="btn btn-light" onclick="chkreviewForm(this.form)">등록하기</button>
+                	<button type="button" class="btn btn-light" onclick="javascript:chkreviewForm(this.form)">등록하기</button>
                     <button type="button" class="btn btn-danger" data-dismiss="modal">닫기</button>
                 </div>
             </div>
+        </form>
         </div>
     </div>
 	    
+	<jsp:include page="../../module/3body_last.html"></jsp:include>
 	
-	<script>
+	<script>	
 		function login_need(){
 			alert('로그인이 필요합니다');
 		}
 		
-		/* 갔다왔어요 버튼 눌렀을때 적용하는 함수 */
-		function visitBtn_func(visitBtn_con){
-			document.getElementById('reviewBtn').style.visibility = "visible";
-			
-			visitBtn_con
+		/* 다녀왔어요 버튼 눌렀을때 적용하는 함수 */
+		function visitBtn_func(){	
+			$.ajax({
+				url : "checkVisit.do",
+				type : "POST",
+				dataType : "JSON",
+				data : {
+					email : '${member.email}',
+					exhID : '${listOne.exhID}'
+				},
+				success : function(data){
+					if(data.checkRev == 1){
+						//visibility 속성 안변함(리뷰버튼 안나타남)
+						alert("이미 리뷰를 작성한 전시입니다.");
+					}else if(data.checkRev == 0){
+						if(data.checkVisit == 0){
+							document.getElementById('reviewBtn').style.visibility = "visible";
+							alert("다녀온 전시로 등록되었습니다.\n나의 다녀온 전시는 마이페이지에서 확인 가능합니다!\n리뷰를 작성해주세요!");
+						}else if(data.checkVisit == 1){
+							document.getElementById('reviewBtn').style.visibility = "visible";
+							alert("이미 다녀온 전시입니다.\n리뷰를 작성해주세요!");
+						}
+					}
+				},
+				error : function(request, status, error){
+					var msg = "ERROR : <br>"
+						msg += reqeust.status +"<br>"+ request.responseText +"<br>"+ error;
+				}
+			});
 		}
 			
 		function sendLinkFaceBook(){
@@ -357,20 +415,46 @@ html {
 			});
 		}
 		
-		function chkreviewForm(revForm){
+		/* 리뷰 작성 폼 유효성 검사 */
+		function chkreviewForm(revForm){			
 			if(!revForm.revContent.value){
 				alert("내용을 작성해주세요");
 				revForm.revConter.focus();
 				return false;
 			}
 			
-			
+			revForm.action = "revAdd.do?exhID="+'${listOne.exhID}'+"&email="+'${member.email}';
+			revForm.submit();
+			alert("리뷰 작성 완료!\n내가 쓴 리뷰는 마이페이지에서도 확인 가능합니다.");
 		}
-	</script>
 
-	<jsp:include page="../../module/3body_last.html"></jsp:include>
 	
-	<script>
+		/* 가고싶어요 버튼 눌렀을때 적용하는 함수 */
+		$("#wishBtn").click(function() {
+			$.ajax({
+				url : "checkWish.do",
+				type : "POST",
+				dataType : "JSON",
+				data : {
+					email : '${member.email}',
+					exhID : '${listOne.exhID}'
+				},
+				success : function(data){
+					if(data.checkWish == 0){
+						$("#wishBtn").attr("checked", "checked");
+						alert("가고싶은 전시로 등록되었습니다.\n나의 가고싶은 전시는 마이페이지에서도 확인 가능합니다!")
+					}else if(data.checkWish == 1){
+						$("#wishBtn").removeAttr("checked");
+						alert("가고싶은 전시가 취소되었습니다.");
+					}
+				},
+				error : function(request, status, error){
+					var msg = "ERROR : <br>"
+						msg += reqeust.status +"<br>"+ request.responseText +"<br>"+ error;
+				}
+			});
+		});
+	
 		/* 리뷰작성 버튼 눌렀을때 리뷰작성모달 불러오는 함수 */
 		$(document).ready(function(){
 			$("#reviewBtn").click(function(){

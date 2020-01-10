@@ -9,6 +9,9 @@
  	<jsp:include page="../../module/2body_first.jsp"></jsp:include>
 	
 	<div class="container" id="mainContainer">
+		<div>
+			
+		</div>
 		<div id="ctgBox">
 			<ul id="ctgList">
 				<li><b>태그로 찾을래요</b></li>
@@ -42,13 +45,6 @@
 				<li><a href="#디자인" id="ctg">디자인</a></li>
 				<li><a href="#공예" id="ctg">공예</a></li>
 			</ul>
-			<div align="right">
-        		<select name="sort_index">
-        			<option value="">최신 전시</option>
-        			<option value="">인기 전시</option>
-        			<option value="">곧 끝나는 전시</option>
-        		</select>
-        	</div>
 		</div>
 		<br>
 		<div id="content_div">

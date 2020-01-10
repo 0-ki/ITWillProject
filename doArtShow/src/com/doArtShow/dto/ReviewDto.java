@@ -1,22 +1,15 @@
 package com.doArtShow.dto;
 
+import java.sql.Date;
 import java.sql.Timestamp;
 
 // 리뷰 정보
 public class ReviewDto {
-	private int 		revNo;
 	private String 		email;
 	private int 		exhID;
 	private String 		revContent;
-	private Timestamp 	revDate;
+	private Date	 	revDate;
 	
-	public int getRevNo() {
-		return revNo;
-	}
-	public ReviewDto setRevNo(int revNo) {
-		this.revNo = revNo;
-		return this;
-	}
 	public String getEmail() {
 		return email;
 	}
@@ -38,10 +31,10 @@ public class ReviewDto {
 		this.revContent = revContent;
 		return this;
 	}
-	public Timestamp getRevDate() {
+	public Date getRevDate() {
 		return revDate;
 	}
-	public ReviewDto setRevDate(Timestamp revDate) {
+	public ReviewDto setRevDate(Date revDate) {
 		this.revDate = revDate;
 		return this;
 	}

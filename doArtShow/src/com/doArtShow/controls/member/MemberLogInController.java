@@ -33,7 +33,7 @@ MemberDao memberDao;
 			if (member != null) {
 		        HttpSession session = (HttpSession)model.get("session");
 		        session.setAttribute("member", member);
-		        return "redirect:../auth/memberDetail.do";
+		        return "redirect:../auth/memberDetail.jsp";
 		        
 		     } else {
 		    	 

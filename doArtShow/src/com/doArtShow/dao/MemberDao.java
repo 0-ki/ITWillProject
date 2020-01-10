@@ -521,11 +521,10 @@ public class MemberDao {
 			
 			while(rs.next()) {
 				reviewDto	 	= new ReviewDto();
-				reviewDto.setRevNo(rs.getInt("revNo"));
 				reviewDto.setEmail(rs.getString("email"));
 				reviewDto.setExhID(rs.getInt("exhID"));
 				reviewDto.setRevContent(rs.getString("revContent"));
-				reviewDto.setRevDate(rs.getTimestamp("revDate"));
+				reviewDto.setRevDate(rs.getDate("revDate"));
 				reviewList.add(reviewDto);
 			}
 			

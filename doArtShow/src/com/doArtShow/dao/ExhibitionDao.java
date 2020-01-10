@@ -10,6 +10,8 @@ import java.util.List;
 import javax.sql.DataSource;
 
 import com.doArtShow.dto.ExhibitionDto;
+import com.doArtShow.dto.ReviewDto;
+import com.doArtShow.dto.ReviewListDto;
 import com.doArtShow.dto.TagDto;
 
 // 전시회 정보 dao
@@ -108,30 +110,16 @@ public class ExhibitionDao {
 		return lists;
 		
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
 	//전시목록을 출력하는 메서드(전체보기, 내림차순)
-	public List<ExhibitionDto> selectList() throws Exception{
+	public List<ExhibitionDto> selectList(){
 		System.out.println("##4번 ExhibitionDao실행 - selectList()");
 		
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		
-		String sql = "SELECT exhID, imageFile1, exhName, exhPlace, exhStartDate, exhEndDate FROM artshow ORDER BY exhID ASC";
+		String sql = "SELECT exhID, imageFile1, exhName, exhPlace, exhStartDate, exhEndDate FROM artshowdb.artshow ORDER BY exhID ASC";
 		ArrayList<ExhibitionDto> lists = null;
 		
 		try {
@@ -165,17 +153,17 @@ public class ExhibitionDao {
 		
 		return lists;
 		
-	}//end - public List<ExhibitionDto> selectList() throws Exception{
+	}//end - public List<ExhibitionDto> selectList(){
 	
 	//전시 총 갯수를 구하는 메서드(artShow테이블의 레코드 건수를 구함)
-	public int getListCount() throws Exception{
+	public int getListCount(){
 		
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		
 		int listCnt = 0;
-		String sql = "SELECT count(*) FROM artshow";
+		String sql = "SELECT count(*) FROM artshowdb.artshow";
 		
 		try {
 			conn = ds.getConnection();
@@ -196,10 +184,10 @@ public class ExhibitionDao {
 		
 		return listCnt;
 		
-	}//end - public int getListCount() throws Exception{
+	}//end - public int getListCount(){
 	
 	//리스트 목록의 content를 불러오는 메서드
-	public ExhibitionDto selectOne(int exhID) throws Exception{
+	public ExhibitionDto selectOne(int exhID){
 		System.out.println("##4-2번 ExhibitionDao실행 - selectOne()");
 		
 		Connection conn = null;
@@ -207,7 +195,7 @@ public class ExhibitionDao {
 		ResultSet rs = null;
 		
 		ExhibitionDto content = null;
-		String sql = "SELECT * FROM artshow WHERE exhID=?";
+		String sql = "SELECT * FROM artshowdb.artshow WHERE exhID=?";
 		
 		try {
 			conn = ds.getConnection();
@@ -247,7 +235,6 @@ public class ExhibitionDao {
 				content.setImageFile3(rs.getString("imageFile3"));
 				content.setImageFile4(rs.getString("imageFile4"));
 			}
-			
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -259,7 +246,7 @@ public class ExhibitionDao {
 		
 		return content;
 		
-	}//end - public ExhibitionDto selectOne(int exhID) throws Exception{
+	}//end - public ExhibitionDto selectOne(int exhID){
 	
 	//조회수 증가하는 메서드
 	public void updateReadCount(int exhID){
@@ -268,13 +255,13 @@ public class ExhibitionDao {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		
-		String sql = "UPDATE artshow SET exhReadCount=exhReadCount+1 WHERE exhID=?";
+		String sql = "UPDATE artshowdb.artshow SET exhReadCount=exhReadCount+1 WHERE exhID=?";
 		
 		try {
 			conn = ds.getConnection();
-			pstmt = conn.prepareStatement(sql);
-					
+			pstmt = conn.prepareStatement(sql);	
 			pstmt.setInt(1, exhID);
+			
 			pstmt.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -285,6 +272,118 @@ public class ExhibitionDao {
 		
 	}//end - public void updateReadCount(int exhID){
 	
+	//exhID에 해당하는 리뷰 목록
+	public List<ReviewListDto> revContent(int exhID){
+		System.out.println("##4-4번 ExhibitionDao실행 - revContent()");
+		
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		String sql = "";
+		ArrayList<ReviewListDto> revLists = null;
+		
+		try {
+			conn = ds.getConnection();
+			sql = "SELECT r.revContent, r.revDate, m.name, m.profileImg "
+				+ "FROM artshow a, review r, member m "
+				+ "WHERE r.email=m.email AND r.exhID=a.ExhID AND a.ExhID=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, exhID);
+			
+			rs = pstmt.executeQuery();
+			
+			revLists = new ArrayList<ReviewListDto>();
+			ReviewListDto rev = null;
+			
+			while(rs.next()) {
+				rev = new ReviewListDto();
+				rev.setRevContent(rs.getString("revContent"));
+				rev.setRevDate(rs.getDate("revDate"));
+				rev.setName(rs.getString("name"));
+				rev.setProfileImg(rs.getString("profileImg"));
+			
+				revLists.add(rev);
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {if (rs != null) rs.close();} catch(Exception e) {}
+		    try {if (pstmt != null) pstmt.close();} catch(Exception e) {}
+		    try {if (conn != null) conn.close();} catch(Exception e) {}
+		}
+		
+		return revLists;
+	}//end - public List<ReviewListDto> revContent(int exhID)
+	
+	//리뷰 총 갯수를 구하는 메서드(테이블의 레코드 건수를 구함)
+	public int getRevCount(int exhID){
+		System.out.println("##4-3번 ExhibitionDao실행 - getRevCount()");
+		
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+			
+		int RevCnt = 0;
+		String sql = "SELECT count(*) FROM artshowdb.review WHERE exhID=?";
+			
+		try {
+			conn = ds.getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, exhID);
+			
+			rs = pstmt.executeQuery();
+						
+			if(rs.next()){
+				RevCnt = rs.getInt(1);
+			}
+				
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {if (rs != null) rs.close();} catch(Exception e) {}
+			try {if (pstmt != null) pstmt.close();} catch(Exception e) {}
+			try {if (conn != null) conn.close();} catch(Exception e) {}
+		}
+			
+		return RevCnt;
+			
+	}//end - public int getRevCount(int exhID)
+	
+	//전시 상세정보를 불러오는 페이지를 로드할때, 로그인 되어있는 경우의 가고싶어요 여부 체크
+	public int wishCheck(String email, int exhID) {
+		System.out.println("##4-1-0번 ExhibitionDao실행 - wishCheck()");
+		
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		int wishchk = 0;
+		String 	sql = null;
+		
+		try {
+			conn = ds.getConnection();
+			sql	= "SELECT wishCheck FROM artshowdb.wishArt WHERE email=? AND exhID=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, email);
+			pstmt.setInt(2, exhID);
+			
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()){
+				wishchk = rs.getInt("wishCheck");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {if(rs!= null)rs.close();} catch (SQLException e) {}
+			try {if(pstmt!=null)pstmt.close();} catch (SQLException e) {}
+			try {if(conn!=null)conn.close();} catch (SQLException e) {}
+		}
+		
+		return wishchk;
+	}//end - public int wishCheck(String email, int exhID)
 	
 //-------------------------------------------------------------------------------------------------------------
 //	programmed by Hojeong - begin
@@ -417,7 +516,7 @@ public class ExhibitionDao {
 					+ "							exhContent 	=?, "
 					+ "							exhPlace 		=?, "
 					+ "						  	exhPlaceZip 	=?, "
-					+ " 							exhPlaceAddr1 =?, "
+					+ " 						exhPlaceAddr1 =?, "
 					+ "							exhPlaceAddr2 =?, "
 					+ "							exhUrl 			=?, "
 					+ "							exhStartDate 	=?, "
@@ -648,6 +747,7 @@ public class ExhibitionDao {
 
 		return exhibitionList;
 	}
+
 }
 //-------------------------------------------------------------------------------------------------------------
 //public List<ExhibitionDto> selectExhibitionMyList(String id) - end

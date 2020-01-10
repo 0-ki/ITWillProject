@@ -19,22 +19,23 @@ public class ReviewDao {
 		this.ds = ds;
 	}
 
-	//
-	public void insertReview(ReviewDto rev) {
-		Connection 			conn 	= null;
-		PreparedStatement 	pstmt 	= null;
+	//리뷰 등록
+	public void insertReview(ReviewDto exhreview) {
+		System.out.println("##4-1번 ReviewDao실행 - insertReview()");
 		
-		String 				sql 	= null;
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		
+		String sql = null;
 		
 		try {
 			conn = ds.getConnection();
-			sql = "INSERT INTO review(revNo, email, exhID, revContent, revDate) VALUES (?,?,?,?,?)";
+			sql = "INSERT INTO artshowdb.review(email, exhID, revContent, revDate) VALUES (?,?,?,?)";
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, rev.getRevNo());
-			pstmt.setString(2, rev.getEmail());
-			pstmt.setInt(3, rev.getExhID());
-			pstmt.setString(4, rev.getRevContent());
-			pstmt.setTimestamp(5, rev.getRevDate());
+			pstmt.setString(1, exhreview.getEmail());
+			pstmt.setInt(2, exhreview.getExhID());
+			pstmt.setString(3, exhreview.getRevContent());
+			pstmt.setDate(4, exhreview.getRevDate());
 			
 			pstmt.executeUpdate();
 
@@ -45,4 +46,30 @@ public class ReviewDao {
 			try {if(conn!=null)conn.close();} catch (SQLException e) {}
 		}		
 	}
+	
+	//리뷰를 등록하면 revCheck를 1로 바꿔줌
+	public void updateRevCheck(String email, int exhID) {
+		System.out.println("##4-2번 ReviewDao실행 - updateRevCheck()");
+			
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		String sql = null;
+			
+		try {
+			conn = ds.getConnection();
+			sql = "UPDATE artshowdb.visitArt SET revCheck=revCheck+1 WHERE email=? AND exhID=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, email);
+			pstmt.setInt(2, exhID);
+				
+			pstmt.executeUpdate();
+
+		} catch (Exception e) {
+			e.printStackTrace();	
+		} finally {
+			try {if(pstmt!=null)pstmt.close();} catch (SQLException e) {}
+			try {if(conn!=null)conn.close();} catch (SQLException e) {}
+		}
+	}
+	
 }

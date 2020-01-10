@@ -191,9 +191,8 @@ header img {
 }
 
 #content_list{
-	display: flex;
+	display: -webkit-inline-box;
 	flex-wrap: wrap;
-	width: 1200px;
 }
 
 #content_list div{ 
@@ -231,7 +230,7 @@ header img {
 	display: inline-block;
 }
 
-#wishBtn, #visitBtn, #reviewBtn, #shareBtn{
+.heart-switch, #visitBtn, #reviewBtn, #shareBtn{
 	padding-right: 20px;
 }
 
@@ -246,6 +245,16 @@ header img {
 	padding-bottom: 100px;
 }
 
+#revList{
+	display: -webkit-inline-box;
+}
+
+#revOne{
+	padding: 10px;
+    padding-left: 25px;
+    padding-right: 25px;
+    display: -webkit-inline-box;
+}
 
 /*--------------------
 1. General

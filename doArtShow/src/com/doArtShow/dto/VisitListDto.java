@@ -5,6 +5,7 @@ public class VisitListDto {
 	private String 	email;
 	private int 	exhID;
 	private int 	revCheck;
+	private int		visitCheck;
 	
 	public String getEmail() {
 		return email;
@@ -25,6 +26,13 @@ public class VisitListDto {
 	}
 	public VisitListDto setRevCheck(int revCheck) {
 		this.revCheck = revCheck;
+		return this;
+	}
+	public int visitCheck() {
+		return visitCheck;
+	}
+	public VisitListDto visitCheck(int visitCheck) {
+		this.visitCheck = visitCheck;
 		return this;
 	}
 	

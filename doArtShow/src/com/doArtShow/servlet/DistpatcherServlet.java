@@ -1,6 +1,7 @@
 package com.doArtShow.servlet;
 
 import java.io.IOException;
+import java.sql.Date;
 import java.sql.Timestamp;
 import java.util.Enumeration;
 import java.util.HashMap;
@@ -22,6 +23,8 @@ import com.doArtShow.dao.MemberDao;
 import com.doArtShow.dto.ExhibitionDto;
 import com.doArtShow.dto.MemberDto;
 import com.doArtShow.dto.ReviewDto;
+import com.doArtShow.dto.VisitListDto;
+import com.doArtShow.dto.WishListDto;
 import com.doArtShow.util.UploadUtil;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
@@ -131,16 +134,43 @@ public class DistpatcherServlet extends HttpServlet {
 			  //--------------------------------------------------------------------------------------
 			  } else if("/client/exhibition/ExContentView.do".equals(servletPath)){ //전시정보 상세페이지 보기
 		    	  if(request.getParameter("exhID") != null){
-		    		  int exhID = Integer.parseInt(request.getParameter("exhID"));
-
-		    		  model.put("exhID", exhID);
+		    		  if(session.getAttribute("member")!=null){ //로그인 되어있는 경우
+		    			  MemberDto member = (MemberDto)session.getAttribute("member");
+			              model.put("email", member.getEmail()); 
+		    			  
+			    		  int exhID = Integer.parseInt(request.getParameter("exhID"));
+			    		  model.put("exhID", exhID);
+		    		  }else{ //로그인 안되있는 경우
+		    			  int exhID = Integer.parseInt(request.getParameter("exhID"));
+			    		  model.put("exhID", exhID);
+		    		  }
 		    	  }
-			  }else if("/client/exhibition/review.do".equals(servletPath)){ //리뷰 등록
-				  if(request.getParameter("email") != null){
+			  }else if("/client/exhibition/revAdd.do".equals(servletPath)){ //리뷰 등록
+				  if(request.getParameter("revContent") != null){
+					  
 					  model.put("exhreview", new ReviewDto()
 							  .setEmail(request.getParameter("email"))
 							  .setExhID(Integer.parseInt(request.getParameter("exhID")))
-							  .setRevContent(request.getParameter("revContent")));
+							  .setRevContent(request.getParameter("revContent"))
+							  .setRevDate(new Date(System.currentTimeMillis())));
+				  }
+			  }else if("/client/exhibition/checkVisit.do".equals(servletPath)){ //다녀왔어요
+				  if(request.getParameter("email") != null){
+					  JSONObject jsonObj = new JSONObject();
+					  model.put("jsonObj", jsonObj);
+		                
+		              model.put("checkVisitInfo", new VisitListDto()
+		            		  .setEmail(request.getParameter("email"))
+		            		  .setExhID(Integer.parseInt(request.getParameter("exhID"))));
+				  }
+			  }else if("/client/exhibition/checkWish.do".equals(servletPath)){ //가고싶어요
+				  if(request.getParameter("email") != null){
+					  JSONObject jsonObj = new JSONObject();
+					  model.put("jsonObj", jsonObj);
+					  
+					  model.put("checkWishInfo", new WishListDto()
+							  .setEmail(request.getParameter("email"))
+		            		  .setExhID(Integer.parseInt(request.getParameter("exhID"))));
 				  }
 		      //--------------------------------------------------------------------------------------
 		  	  // begin - modified by Hojeong 20/01/03(yy/mm/dd)	

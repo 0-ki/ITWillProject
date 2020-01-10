@@ -6,11 +6,9 @@ import com.doArtShow.controls.Controller;
 import com.doArtShow.dao.ReviewDao;
 import com.doArtShow.dao.VisitListDao;
 import com.doArtShow.dto.ReviewDto;
-import com.doArtShow.dto.VisitListDto;
 
 public class ExhibitionReviewFormController implements Controller{
 	ReviewDao reviewDao;
-	VisitListDao visitDao;
 	
 	public ExhibitionReviewFormController setReviewDao(ReviewDao reviewDao) {
 		this.reviewDao = reviewDao;
@@ -21,10 +19,16 @@ public class ExhibitionReviewFormController implements Controller{
 	public String execute(Map<String, Object> model) throws Exception {
 		System.out.println("##3번 ExhibitionReviewFormController(페이지컨트롤러)실행");
 		
-		ReviewDto rev = (ReviewDto)model.get("rev");
-		reviewDao.insertReview(rev);
+		ReviewDto exhreview = (ReviewDto)model.get("exhreview");		
 		
-		return "/client/exhibition/ExContentView.jsp";
+		reviewDao.insertReview(exhreview); //리뷰등록하는 Dao
+		
+		String email = exhreview.getEmail();
+		int exhID = exhreview.getExhID();
+		
+		reviewDao.updateRevCheck(email, exhID); //리뷰 등록하면 revcheck를 1로 바꿔줌
+		
+		return "redirect:ExContentView.do?exhID="+exhID;
 	}
 	
 }
