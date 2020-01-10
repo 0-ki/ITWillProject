@@ -258,7 +258,19 @@ html {
 						</div>
 					</td>
 					<td>
-						해당 전시의 카테고리 보여주기
+						<div id="tagctgList" style="display: inline-flex;">
+							<c:forEach var="ctg" items="${listOneTag}">
+								<div>
+									<label>#</label>${ctg.exhTagName}&nbsp;
+								</div>
+							</c:forEach>
+								<div>
+									${listOne.exhGubun2}&nbsp;
+								</div>
+								<div>
+									${listOne.exhGubun4}
+								</div>
+						</div>
 					</td>
 				</tr>
 				<tr>

@@ -36,7 +36,6 @@ public class ExhibitionContentController implements Controller{
 		exhibitionDao.updateReadCount(exhID); //조회수 1 증가
 		model.put("listOne", exhibitionDao.selectOne(exhID)); //상세페이지에 뿌릴 전시 정보를 가져옴
 		ArrayList<TagDto> taglist = exhibitionDao.getTagList(exhID); //해당전시의 지정된 태그 가져옴
-		System.out.println(taglist.toString());
 		model.put("listOneTag", taglist); 
 		
 		int revCnt = exhibitionDao.getRevCount(exhID); //해당 전시의 리뷰 총 갯수를 가져옴
