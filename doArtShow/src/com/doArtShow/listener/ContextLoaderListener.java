@@ -69,6 +69,8 @@ public class ContextLoaderListener implements ServletContextListener{
 			//-------------------------------------------------------------------------------------------------------------
 			//			programmed by jungmi - begin
 			//-------------------------------------------------------------------------------------------------------------			
+			
+			
 			sc.setAttribute("/client/auth/checkEmail.do", 	new MemberEmailChkController().setMemberDao(memberDao) );
 			
 			//회원 가입(추가)
@@ -106,7 +108,7 @@ public class ContextLoaderListener implements ServletContextListener{
 			
 			//회원 다녀온 전시 목록 구성
 			sc.setAttribute("/client/auth/visitList.do", 	new MemVisitListController().setMemberDao(memberDao));
-									
+			
 			// 검색기능
 			sc.setAttribute("/search.do", new searchListController().setExhibitionDao(exhibitionDao));
 

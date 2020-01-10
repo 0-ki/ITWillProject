@@ -2,71 +2,14 @@
     pageEncoding="UTF-8"%>
 
 <jsp:include page="/module/1doctype_head.jsp"></jsp:include>
+<link rel="stylesheet" type="text/css" href="/doArtShow/libs/swiper/css/swiper.css" />
+<link rel="stylesheet" type="text/css" href="/doArtShow/css/indexStyle.css" />
+<!-- <link href='//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSans-kr.css' rel='stylesheet' type='text/css'> -->
+<!-- font-family: 'Spoqa Han Sans', 'Spoqa Han Sans JP', 'Sans-serif'; -->
+
+<link href="https://fonts.googleapis.com/css?family=Jua&display=swap" rel="stylesheet"> 
+<!-- font-family: 'Jua', sans-serif; -->
 <style>
-/* @import url(https://fonts.googleapis.com/css?family=Lato:600); */
-.rotating {
-  display: flex;
-  position: absolute;
-  justify-content: center;
-  align-items: center;
-  top: 288px;
-  left: 288px;
-  z-index: 999;
-}
-
-.rotating-text {
-  /* font-family: Lato, sans-serif; */
-  font-weight: 600;
-  font-size: 36px;
-  transform: translateX(-80px);
-}
-.rotating-text p {
-  display: inline-flex;
-  font-size: 55px;
-  margin: 0;
-  vertical-align: top;
-  color: deeppink;
-}
-.rotating-text p .word {
-  position: absolute;
-  left: 250px;
-  display: flex;
-  opacity: 0;
-}
-.rotating-text p .word .letter {
-  transform-origin: center center 25px;
-}
-.rotating-text p .word .letter.out {
-  transform: rotateX(90deg);
-  transition: 0.32s cubic-bezier(0.6, 0, 0.7, 0.2);
-}
-.rotating-text p .word .letter.in {
-  transition: 0.38s ease;
-}
-.rotating-text p .word .letter.behind {
-  transform: rotateX(-90deg);
-}
-
-.alizarin {
-  color: #e74c3c;
-}
-
-.wisteria {
-  color: #8e44ad;
-}
-
-.peter-river {
-  color: #3498db;
-}
-
-.emerald {
-  color: #2ecc71;
-}
-
-.sun-flower {
-  color: #f1c40f;
-}
-
 
 </style>
 <body>
@@ -78,13 +21,13 @@
 
 <div class="rotating">
 <div class="rotating-text">
-  <p>전시:해는 </p>
+  <p>전시:해에서 </p>
   <p>
-    <span class="word alizarin">놀랍습니다.</span>
-    <span class="word wisteria">아름답습니다.</span>
-    <span class="word peter-river">창조적입니다.</span>
-    <span class="word emerald">굉장합니다.</span>
-    <span class="word sun-flower">재밌습니다.</span>
+    <span class="word alizarin">지도로  찾아요.</span>
+    <span class="word wisteria">내 전시를 알려요.</span>
+    <span class="word peter-river">#태그로 둘러봐요.</span>
+    <span class="word emerald">최신 전시를 만나요.</span>
+    <span class="word sun-flower">영감을 얻어요.</span>
   </p>
 </div>
 </div>
@@ -100,12 +43,90 @@
 				
 			</div>
 </div>
+<div style="height:80px;"></div>
+
+		<div class="slider-container">
+			<div class="slider-head"><h1 class="slider-h">최근 등록된 전시</h1> <a href="#" class="slider-more">더보기></a></div>
+			<div class="swiper-container">
+				<!-- Additional required wrapper -->
+				<div class="swiper-wrapper">
+					<!-- Slides -->
+					<div class="swiper-slide">
+						<a href="#" onclick="return false">
+							<div class="slide-content">
+							<p class="slide-exhName">제목이야 제목 조금 길지? 잘라내야 할꺼야.#@</p>
+							
+							<p class="slide-exhPlace">장소는 특별 전시관</p>
+							</div>
+							<img src="/doArtShow/exhibitionImages/1.jpg"/>
+						</a>
+					</div>
+					<div class="swiper-slide"><a href="#" onclick="return false"><img src="/doArtShow/exhibitionImages/2.jpg"/></a></div>
+					<div class="swiper-slide"><a href="#" onclick="return false"><img src="/doArtShow/exhibitionImages/3.jpg"/></a></div>
+					<div class="swiper-slide"><a href="#" onclick="return false"><img src="/doArtShow/exhibitionImages/4.jpg"/></a></div>
+					<div class="swiper-slide"><a href="#" onclick="return false"><img src="/doArtShow/exhibitionImages/5.jpg"/></a></div>
+					<div class="swiper-slide"><a href="#" onclick="return false"><img src="/doArtShow/exhibitionImages/6.jpg"/></a></div>
+					<div class="swiper-slide"><a href="#" onclick="return false"><img src="/doArtShow/exhibitionImages/7.jpg"/></a></div>
+					<div class="swiper-slide"><a href="#" onclick="return false"><img src="/doArtShow/exhibitionImages/8.jpg"/></a></div>
+					<div class="swiper-slide"><a href="#" onclick="return false"><img src="/doArtShow/exhibitionImages/9_1.jpg"/></a></div>
+ 				    
+				</div>
+				<!-- 스크롤 바  -->
+				<div class="swiper-scrollbar" style="width:283px;left:37%;"></div>
+				<!-- 좌우 화살표 추가 -->
+				<div class="swiper-button-next"></div>
+				<div class="swiper-button-prev"></div>
+
+			</div>
+		</div>
+		
+		
+		
+		<div class="slider-container">
+		<div class="slider-head"><h1 class="slider-h">지금 주목받는 전시</h1> <a href="#" class="slider-more">더보기></a></div>
+			<div class="swiper-container">
+				<!-- Additional required wrapper -->
+				<div class="swiper-wrapper">
+					<!-- Slides -->
+					<div class="swiper-slide">
+						<a href="#" onclick="return false">
+							<div class="slide-content">
+							<p class="slide-exhName">제목이야 제목 조금 길지? 잘라내야 할꺼야.#@</p>
+							
+							<p class="slide-exhPlace">장소는 특별 전시관</p>
+							</div>
+							<img src="/doArtShow/exhibitionImages/1.jpg"/>
+						</a>
+					</div>
+					<div class="swiper-slide"><a href="#" onclick="return false"><img src="/doArtShow/exhibitionImages/2.jpg"/></a></div>
+					<div class="swiper-slide"><a href="#" onclick="return false"><img src="/doArtShow/exhibitionImages/3.jpg"/></a></div>
+					<div class="swiper-slide"><a href="#" onclick="return false"><img src="/doArtShow/exhibitionImages/4.jpg"/></a></div>
+					<div class="swiper-slide"><a href="#" onclick="return false"><img src="/doArtShow/exhibitionImages/5.jpg"/></a></div>
+					<div class="swiper-slide"><a href="#" onclick="return false"><img src="/doArtShow/exhibitionImages/6.jpg"/></a></div>
+					<div class="swiper-slide"><a href="#" onclick="return false"><img src="/doArtShow/exhibitionImages/7.jpg"/></a></div>
+					<div class="swiper-slide"><a href="#" onclick="return false"><img src="/doArtShow/exhibitionImages/8.jpg"/></a></div>
+					<div class="swiper-slide"><a href="#" onclick="return false"><img src="/doArtShow/exhibitionImages/9_1.jpg"/></a></div>
+ 				    
+				</div>
+				<!-- 스크롤 바  -->
+				<div class="swiper-scrollbar" style="width:283px;left:37%;"></div>
+				<!-- 좌우 화살표 추가 -->
+				<div class="swiper-button-next"></div>
+				<div class="swiper-button-prev"></div>
+
+			</div>
+		</div>
 
 
-    <!-- Header -->
+
+
+
+<!--     Header
     <header id="header">
         <div class="container">
-            <div class="slider-container">
+
+
+			<div class="slider-container">
                 <div class="col-lg-12 text-center">
                     <div class="section-title">
                         <h2>최근 등록된 전시</h2>
@@ -141,17 +162,14 @@
                     </div>
                 </div>
 
-                <div class="intro-heading">
-                    예쁜 폰트 구해야겠다. 여기다가 뭘 출력하지
-                    I'm gonna get a pretty font.
-                    What am I supposed to put here?</div>
                 <a href="#about" class="page-scroll btn btn-xl">Link 더보기 버튼</a>
 
             </div>
+            
         </div>
-    </header>
+    </header> -->
 
-    <section id="portfolio">
+   <!--  <section id="portfolio">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">
@@ -162,7 +180,7 @@
                 </div>
             </div>
             <div class="row row-0-gutter">
-                <!-- start portfolio item -->
+                start portfolio item
                 <div class="col-md-4 col-0-gutter">
                     <div class="ot-portfolio-item">
                         <figure class="effect-bubba">
@@ -175,8 +193,8 @@
                         </figure>
                     </div>
                 </div>
-                <!-- end portfolio item -->
-                <!-- start portfolio item -->
+                end portfolio item
+                start portfolio item
                 <div class="col-md-4 col-0-gutter">
                     <div class="ot-portfolio-item">
                         <figure class="effect-bubba">
@@ -189,8 +207,8 @@
                         </figure>
                     </div>
                 </div>
-                <!-- end portfolio item -->
-                <!-- start portfolio item -->
+                end portfolio item
+                start portfolio item
                 <div class="col-md-4 col-0-gutter">
                     <div class="ot-portfolio-item">
                         <figure class="effect-bubba">
@@ -203,10 +221,10 @@
                         </figure>
                     </div>
                 </div>
-                <!-- end portfolio item -->
+                end portfolio item
             </div>
             <div class="row row-0-gutter">
-                <!-- start portfolio item -->
+                start portfolio item
                 <div class="col-md-4 col-0-gutter">
                     <div class="ot-portfolio-item">
                         <figure class="effect-bubba">
@@ -219,8 +237,8 @@
                         </figure>
                     </div>
                 </div>
-                <!-- end portfolio item -->
-                <!-- start portfolio item -->
+                end portfolio item
+                start portfolio item
                 <div class="col-md-4 col-0-gutter">
                     <div class="ot-portfolio-item">
                         <figure class="effect-bubba">
@@ -233,8 +251,8 @@
                         </figure>
                     </div>
                 </div>
-                <!-- end portfolio item -->
-                <!-- start portfolio item -->
+                end portfolio item
+                start portfolio item
                 <div class="col-md-4 col-0-gutter">
                     <div class="ot-portfolio-item">
                         <figure class="effect-bubba">
@@ -247,10 +265,10 @@
                         </figure>
                     </div>
                 </div>
-                <!-- end portfolio item -->
+                end portfolio item
             </div>
-        </div><!-- end container -->
-    </section>
+        </div>end container
+    </section> -->
 
 
     <section>
@@ -427,6 +445,32 @@
 
 
 <jsp:include page="/module/3body_last.html" />
+<script src="/doArtShow/libs/swiper/js/swiper.js"></script>
+<!-- Initialize Swiper Library Begin - Younggi -->
+  <script>
+  var mySwiper = new Swiper ('.swiper-container', {
+    // Optional parameters
+    direction: 'horizontal',
+    spaceBetween: 55,
+    slidesPerView: 3,
+    slidesPerGroup: 3,
+    // 네비 화살표 처리
+    navigation: {
+      nextEl: '.swiper-button-next',
+      prevEl: '.swiper-button-prev',
+    },
+    // 스크롤바 처리
+     scrollbar: {
+      el: '.swiper-scrollbar',
+      hide: false,
+    },
+  });
+  
+  </script>
+<!-- Swiper Library End - Younggi -->
+
+
+
 
 <script>
 $(function(){
@@ -453,6 +497,7 @@ $(function(){
 
 
 /////////////////////////////
+/* 글자 회전 이펙트  */
 
 var words = document.querySelectorAll(".word");
 words.forEach(function (word) {
@@ -490,7 +535,7 @@ var rotateText = function () {
 };
 rotateText();
 setInterval(rotateText, 4000);
-
+//////////////////////////////////////
 
 
 </script>
