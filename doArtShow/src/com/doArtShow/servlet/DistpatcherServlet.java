@@ -117,7 +117,7 @@ public class DistpatcherServlet extends HttpServlet {
 		      //--------------------------------------------------------------------------------------
 		 	  //jungmi-end
 		 	  //--------------------------------------------------------------------------------------
-		 		      
+		 	  //검색 후 결과를 리스트로 보여주기	      
 		      } else if("/search.do".equals(servletPath)){
 			    	  if(request.getParameter("search")!=null) {
 			    		  
@@ -255,8 +255,13 @@ public class DistpatcherServlet extends HttpServlet {
   			// 마이(회원)페이지에서 내가 등록한 전시회 목록 보기 	
   			} else if ("/client/exhibition/myList.do".equals(servletPath)) {
 	  				model.put("id", "id01");
-
-  			}
+	  		// 메인 페이지에서 슬라이드에 넣는 데이터들.
+  			}else if ("/indexContent.do".equals(servletPath)) {
+  				JSONObject jsonObj = new JSONObject();
+                model.put("jsonObj", jsonObj);
+                
+		    	
+		    }
 	      //--------------------------------------------------------------------------------------
 		  // end - modified by Hojeong 20/01/03(yy/mm/dd)	
 	      //--------------------------------------------------------------------------------------
@@ -268,7 +273,7 @@ public class DistpatcherServlet extends HttpServlet {
 		      // 페이지 컨트롤러를 실행한다.
 		      System.out.println("##2번 페이지컨트롤러 호출");
 		      String viewUrl = pageController.execute(model); //페이지 컨트롤러의 execute()메서드로 이동하며 데이터를 주고받을 바구니 역할을 하는 Map객체(model)를 넘긴다
-		      System.out.println(viewUrl);
+		      System.out.println("viweURL(listner:276)==>"+viewUrl);
 		      //viewUrl은 execute()의 반환값으로 화면에 출력을 수행할 JSP의 URL이다
 		      
 		      // Map 객체에 저장된 값을 ServletRequest에 복사한다.
@@ -281,7 +286,15 @@ public class DistpatcherServlet extends HttpServlet {
 		        response.sendRedirect(viewUrl.substring(9));
 		        return;
 		        
-		      } else if (viewUrl.startsWith("json:")) {
+		        
+		      } else if (viewUrl.equals("json:")) {
+		    	  System.out.println("영기+영기=>"+model.get("jsonObj"));
+		    	  response.setContentType("json:application/json");
+		    	  response.getWriter().print(model.get("jsonObj"));
+			      return;
+			      
+			      
+			  } else if (viewUrl.startsWith("json:")) {
 		    	  response.setContentType("json:application/json");
 		    	  response.getWriter().print(viewUrl.substring(5));
 			      return;

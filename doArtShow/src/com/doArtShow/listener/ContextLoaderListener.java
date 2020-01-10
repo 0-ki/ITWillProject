@@ -14,6 +14,7 @@ import com.doArtShow.controls.exhibition.ExhibitionListController;
 import com.doArtShow.controls.exhibition.ExhibitionMyListController;
 import com.doArtShow.controls.exhibition.ExhibitionReviewFormController;
 import com.doArtShow.controls.exhibition.ExhibitionUpdateController;
+import com.doArtShow.controls.exhibition.IndexListController;
 import com.doArtShow.controls.exhibition.searchListController;
 import com.doArtShow.controls.exhibition.searchMapController;
 import com.doArtShow.controls.member.FindEmailController;
@@ -108,6 +109,9 @@ public class ContextLoaderListener implements ServletContextListener{
 			
 			//회원 다녀온 전시 목록 구성
 			sc.setAttribute("/client/auth/visitList.do", 	new MemVisitListController().setMemberDao(memberDao));
+			
+			//인덱스 페이지에서 슬라이더에 최신/인기 전시 구성
+			sc.setAttribute("/indexContent.do", 	new IndexListController().setExhibitionDao(exhibitionDao));
 			
 			// 검색기능
 			sc.setAttribute("/search.do", new searchListController().setExhibitionDao(exhibitionDao));

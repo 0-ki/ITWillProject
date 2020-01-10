@@ -46,7 +46,7 @@
 <div style="height:80px;"></div>
 
 		<div class="slider-container">
-			<div class="slider-head"><h1 class="slider-h">최근 등록된 전시</h1> <a href="#" class="slider-more">더보기></a></div>
+			<div class="slider-head"><h1 class="slider-h">최근 등록된 전시</h1> <a href="#" onclick="dudrl();" class="slider-more">더보기></a></div>
 			<div class="swiper-container">
 				<!-- Additional required wrapper -->
 				<div class="swiper-wrapper">
@@ -55,7 +55,7 @@
 						<a href="#" onclick="return false">
 							<div class="slide-content">
 							<p class="slide-exhName">제목이야 제목 조금 길지? 잘라내야 할꺼야.#@</p>
-							
+							<%-- $('.slide-exhName').innerHTML = "${exh.List }" --%>
 							<p class="slide-exhPlace">장소는 특별 전시관</p>
 							</div>
 							<img src="/doArtShow/exhibitionImages/1.jpg"/>
@@ -448,6 +448,35 @@
 <script src="/doArtShow/libs/swiper/js/swiper.js"></script>
 <!-- Initialize Swiper Library Begin - Younggi -->
   <script>
+  
+  
+  function dudrl(){
+	  $.ajax({
+	      url : "indexContent.do",
+	      type : "GET",
+	      /* dataType : "JSON", */	
+	      success : function(data){
+	    	  console.log('안녕 영기들?');
+	    	  console.log(data);
+	    	  
+	    	  /* if(data. == 0){
+	            $("#wishBtn").attr("checked", "checked");
+	            alert("가고싶은 전시로 등록되었습니다.\n나의 가고싶은 전시는 마이페이지에서도 확인 가능합니다!")
+	         }else if(data.checkWish == 1){
+	            $("#wishBtn").removeAttr("checked");
+	            alert("가고싶은 전시가 취소되었습니다.");
+	         } */
+	      },
+	      error : function(request, status, error){
+	    	  console.log('에러났다영기들');
+	    	  console.log(error);
+	      }
+	   });
+  }
+  
+   
+  
+  
   var mySwiper = new Swiper ('.swiper-container', {
     // Optional parameters
     direction: 'horizontal',

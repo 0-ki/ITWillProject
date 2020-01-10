@@ -19,7 +19,7 @@ public class ExhibitionDao {
 	public void setDataSource(DataSource ds){
 		this.ds = ds;
 	}
-
+	// 검색어로 전시 검색 실행 메소드
 	public ArrayList<ExhibitionDto> searchExhibition(String search) {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -648,7 +648,6 @@ public class ExhibitionDao {
 
 		return exhibitionList;
 	}
-}
 //-------------------------------------------------------------------------------------------------------------
 //public List<ExhibitionDto> selectExhibitionMyList(String id) - end
 //마이 페이지에서 내가 등록한 전시회 리스트 보기 
@@ -656,3 +655,79 @@ public class ExhibitionDao {
 //-------------------------------------------------------------------------------------------------------------
 //programmed by Hojeong - end
 //-------------------------------------------------------------------------------------------------------------
+	
+	
+// 메인페이지에서 슬라이드에 전시 리스트 보냄.
+	public ArrayList<ExhibitionDto> indexExhibition() {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = "";
+		ArrayList<ExhibitionDto> list =null;
+		
+		try {
+			conn = ds.getConnection();
+			//최신등록순 9개
+			sql  = 	" SELECT ExhID, ExhPlaceAddr1, ExhName , ArtistName , ExhPlace,  ExhStartDate , ExhEndDate , ImageFile1 FROM artshow ORDER BY RegisterDate DESC LIMIT 9 ";
+			pstmt = conn.prepareStatement(sql);
+			//pstmt.setString(1, "%"+search+"%");
+			//pstmt.setString(2, "%"+search+"%");
+			//pstmt.setString(3, "%"+search+"%");
+			rs = pstmt.executeQuery();
+			list = new ArrayList<ExhibitionDto>();
+			ExhibitionDto dto =null;
+			
+			while(rs.next()){
+				dto = new ExhibitionDto();
+				dto.setExhID(rs.getInt("ExhID"));
+				dto.setExhPlaceAddr1(rs.getString("ExhPlaceAddr1"));
+				dto.setExhName(rs.getString("ExhName"));
+				dto.setArtistName(rs.getString("ArtistName"));
+				dto.setExhPlace(rs.getString("ExhPlace"));
+				dto.setExhStartDate(rs.getString("ExhStartDate"));
+				dto.setExhEndDate(rs.getString("ExhEndDate"));
+				dto.setImageFile1(rs.getString("ImageFile1"));
+				list.add(dto);
+				}
+			
+			sql="";
+			dto=null;
+			// 인기 조회순 9개
+			sql = " SELECT ExhID, ExhPlaceAddr1, ExhName , ArtistName , ExhPlace,  ExhStartDate , ExhEndDate , ImageFile1 FROM artshowdb.artshow ORDER BY ExhReadCount DESC LIMIT 9 ";
+			
+			while(rs.next()){
+				dto = new ExhibitionDto();
+				dto.setExhID(rs.getInt("ExhID"));
+				dto.setExhPlaceAddr1(rs.getString("ExhPlaceAddr1"));
+				dto.setExhName(rs.getString("ExhName"));
+				dto.setArtistName(rs.getString("ArtistName"));
+				dto.setExhPlace(rs.getString("ExhPlace"));
+				dto.setExhStartDate(rs.getString("ExhStartDate"));
+				dto.setExhEndDate(rs.getString("ExhEndDate"));
+				dto.setImageFile1(rs.getString("ImageFile1"));
+				list.add(dto);
+				}
+				 
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				try {if (rs != null) rs.close();} catch(Exception e) {}
+				try {if (pstmt != null) pstmt.close();} catch(Exception e) {}
+				try {if (conn != null) conn.close();} catch(Exception e) {}
+			}
+		
+		return list;
+		
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+}
+
+
+
