@@ -194,8 +194,8 @@ html {
 					<td>&nbsp;사이트 : <a href="${listOne.exhUrl}">${listOne.exhUrl}</a></td>
 				</tr>
 				<tr>
-					<td colspan="2">
-						<div id="myHist">
+					<td id="myHist">
+						<div>
 							<c:choose>
 								<c:when test="${!empty sessionScope.member}">
 										<c:if test="${wishChk == 0}"><!-- 가고싶어요 안누른 전시 -->
@@ -221,6 +221,8 @@ html {
 									</label>
 								</c:otherwise>
 							</c:choose>
+						</div>
+						<div>
 							<c:choose>
 								<c:when test="${!empty sessionScope.member}">
 									<a href="javascript:visitBtn_func();" id="visitBtn" style="color: #3d3d3d;"> <!-- visitArt_func(); -->
@@ -235,6 +237,8 @@ html {
 									</a>
 								</c:otherwise>
 							</c:choose>
+						</div>
+						<div>
 							<a href="javascript:;" id="reviewBtn" style="color: #3d3d3d; visibility: hidden;"> <!-- 평소에 숨겨져있다가 다녀왔어요 클릭하면 리뷰작성버튼 show로 변경 -->
 								<i class="fa fa-pencil fa-2x"></i><br> 
 								<label>리뷰작성</label>
@@ -252,6 +256,9 @@ html {
 	                    		<a class="dropdown-item" href="javascript:sendLinkKakao()" id="kakao-link-btn" title="카카오톡으로 공유하기"><img src="/doArtShow/resourcesImages/sns_ka.png" width="36" alt="KakaoTalk"></a>  	 
 	                    	</div>
 						</div>
+					</td>
+					<td>
+						해당 전시의 카테고리 보여주기
 					</td>
 				</tr>
 				<tr>

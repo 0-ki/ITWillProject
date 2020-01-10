@@ -210,10 +210,6 @@ public class ExhibitionDao {
 				content.setExhID(rs.getInt("exhID"));
 				content.setExhGubun1(rs.getString("exhGubun1"));
 				content.setExhGubun2(rs.getString("exhGubun2"));
-				//for문으로 배열에 있는 exhGubun3 빼주기
-//				for(int i=0;i<rs.getString("exhGubun3").length();i++){
-//					content.setExhGubun3();
-//				}
 				content.setExhGubun4(rs.getString("exhGubun4"));
 				content.setExhName(rs.getString("exhName"));
 				content.setExhGubun1(rs.getString("exhGubun1"));
