@@ -1,5 +1,19 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="s" uri="http://java.sun.com/jsp/jstl/sql" %>
+
+<s:setDataSource
+	dataSource="jdbc/artshowdb"
+    var= "artshow"
+    scope="page"/>
+
+<s:query sql=" SELECT ExhID, ExhName , ExhPlace, ImageFile1 FROM artshow ORDER BY RegisterDate DESC LIMIT 9  " var="rs1" dataSource="${artshow}" />
+<s:query sql=" SELECT ExhID, ExhName , ExhPlace, ImageFile1 FROM artshow ORDER BY exhreadcount DESC LIMIT 9  " var="rs2" dataSource="${artshow}" />
+
+
+
+
 
 <jsp:include page="/module/1doctype_head.jsp"></jsp:include>
 <link rel="stylesheet" type="text/css" href="/doArtShow/libs/swiper/css/swiper.css" />
@@ -33,6 +47,7 @@
 </div>
 
 
+
 <div class="mainwall" style="position: absolute; top: 0;">
 			<div class="wallpaper">
 				<div>
@@ -43,32 +58,25 @@
 				
 			</div>
 </div>
-<div style="height:80px;"></div>
+<div style="height:80px;">
+</div>
 
 		<div class="slider-container">
-			<div class="slider-head"><h1 class="slider-h">최근 등록된 전시</h1> <a href="#" onclick="dudrl();" class="slider-more">더보기></a></div>
+			<div class="slider-head"><h1 class="slider-h">최근 등록된 전시</h1> <a href="<%=request.getContextPath()%>/client/exhibition/ExListView.do?" class="slider-more">더보기></a></div>
 			<div class="swiper-container">
-				<!-- Additional required wrapper -->
 				<div class="swiper-wrapper">
-					<!-- Slides -->
+					
+			 <c:forEach  var="i" items="${rs1.rows}" varStatus="vs1" >
 					<div class="swiper-slide">
-						<a href="#" onclick="return false">
+						<a href="client/exhibition/ExContentView.do?exhID=${i.ExhID}">
 							<div class="slide-content">
-							<p class="slide-exhName">제목이야 제목 조금 길지? 잘라내야 할꺼야.#@</p>
-							<%-- $('.slide-exhName').innerHTML = "${exh.List }" --%>
-							<p class="slide-exhPlace">장소는 특별 전시관</p>
+							<p class="slide-exhName">${i.ExhName }</p>
+							<p class="slide-exhPlace">${i.ExhPlace }</p>
 							</div>
-							<img src="/doArtShow/exhibitionImages/1.jpg"/>
+							<img src="/doArtShow/exhibitionImages/${i.ImageFile1 }"/>
 						</a>
 					</div>
-					<div class="swiper-slide"><a href="#" onclick="return false"><img src="/doArtShow/exhibitionImages/2.jpg"/></a></div>
-					<div class="swiper-slide"><a href="#" onclick="return false"><img src="/doArtShow/exhibitionImages/3.jpg"/></a></div>
-					<div class="swiper-slide"><a href="#" onclick="return false"><img src="/doArtShow/exhibitionImages/4.jpg"/></a></div>
-					<div class="swiper-slide"><a href="#" onclick="return false"><img src="/doArtShow/exhibitionImages/5.jpg"/></a></div>
-					<div class="swiper-slide"><a href="#" onclick="return false"><img src="/doArtShow/exhibitionImages/6.jpg"/></a></div>
-					<div class="swiper-slide"><a href="#" onclick="return false"><img src="/doArtShow/exhibitionImages/7.jpg"/></a></div>
-					<div class="swiper-slide"><a href="#" onclick="return false"><img src="/doArtShow/exhibitionImages/8.jpg"/></a></div>
-					<div class="swiper-slide"><a href="#" onclick="return false"><img src="/doArtShow/exhibitionImages/9_1.jpg"/></a></div>
+				</c:forEach>
  				    
 				</div>
 				<!-- 스크롤 바  -->
@@ -83,29 +91,21 @@
 		
 		
 		<div class="slider-container">
-		<div class="slider-head"><h1 class="slider-h">지금 주목받는 전시</h1> <a href="#" class="slider-more">더보기></a></div>
+		<div class="slider-head"><h1 class="slider-h">지금 주목받는 전시</h1> <a href="<%=request.getContextPath()%>/client/exhibition/ExListView.do?" class="slider-more">더보기></a></div>
 			<div class="swiper-container">
-				<!-- Additional required wrapper -->
 				<div class="swiper-wrapper">
-					<!-- Slides -->
+					
+			 <c:forEach  var="i" items="${rs2.rows}" varStatus="vs1" >
 					<div class="swiper-slide">
-						<a href="#" onclick="return false">
+						<a href="client/exhibition/ExContentView.do?exhID=${i.ExhID}">
 							<div class="slide-content">
-							<p class="slide-exhName">제목이야 제목 조금 길지? 잘라내야 할꺼야.#@</p>
-							
-							<p class="slide-exhPlace">장소는 특별 전시관</p>
+							<p class="slide-exhName">${i.ExhName }</p>
+							<p class="slide-exhPlace">${i.ExhPlace }</p>
 							</div>
-							<img src="/doArtShow/exhibitionImages/1.jpg"/>
+							<img src="/doArtShow/exhibitionImages/${i.ImageFile1 }"/>
 						</a>
 					</div>
-					<div class="swiper-slide"><a href="#" onclick="return false"><img src="/doArtShow/exhibitionImages/2.jpg"/></a></div>
-					<div class="swiper-slide"><a href="#" onclick="return false"><img src="/doArtShow/exhibitionImages/3.jpg"/></a></div>
-					<div class="swiper-slide"><a href="#" onclick="return false"><img src="/doArtShow/exhibitionImages/4.jpg"/></a></div>
-					<div class="swiper-slide"><a href="#" onclick="return false"><img src="/doArtShow/exhibitionImages/5.jpg"/></a></div>
-					<div class="swiper-slide"><a href="#" onclick="return false"><img src="/doArtShow/exhibitionImages/6.jpg"/></a></div>
-					<div class="swiper-slide"><a href="#" onclick="return false"><img src="/doArtShow/exhibitionImages/7.jpg"/></a></div>
-					<div class="swiper-slide"><a href="#" onclick="return false"><img src="/doArtShow/exhibitionImages/8.jpg"/></a></div>
-					<div class="swiper-slide"><a href="#" onclick="return false"><img src="/doArtShow/exhibitionImages/9_1.jpg"/></a></div>
+				</c:forEach>
  				    
 				</div>
 				<!-- 스크롤 바  -->
@@ -118,56 +118,6 @@
 		</div>
 
 
-
-
-
-<!--     Header
-    <header id="header">
-        <div class="container">
-
-
-			<div class="slider-container">
-                <div class="col-lg-12 text-center">
-                    <div class="section-title">
-                        <h2>최근 등록된 전시</h2>
-                        <div>
-                            <h4><a href="#">더 보기 &nbsp;<span class="fa fa-plus"></span> </a></h4>
-                            <div class="intro-heading">
-                                <div><img src="/doArtShow/exhibitionImages/1.jpg" alt="1" width="330px" height="360px;"></div>
-                                <div><img src="/doArtShow/exhibitionImages/2.jpg" alt="2" width="330px" height="360px;"></div>
-                                <div><img src="/doArtShow/exhibitionImages/3.jpg" alt="3" width="330px" height="360px;"></div>
-                                <div><img src="/doArtShow/exhibitionImages/4.jpg" alt="4" width="330px" height="360px;"></div>
-                                <div><img src="/doArtShow/exhibitionImages/1.jpg" alt="1" width="330px" height="360px;"></div>
-                                <div><img src="/doArtShow/exhibitionImages/2.jpg" alt="2" width="330px" height="360px;"></div>
-                                <div><img src="/doArtShow/exhibitionImages/3.jpg" alt="3" width="330px" height="360px;"></div>
-                                <div><img src="/doArtShow/exhibitionImages/4.jpg" alt="4" width="330px" height="360px;"></div>
-                                <div><img src="/doArtShow/exhibitionImages/1.jpg" alt="1" width="330px" height="360px;"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-lg-12 text-center">
-                    <div class="section-title">
-                        <h2>인기 있는 전시</h2>
-                        <div>
-                            <h4><a href="#">더 보기 &nbsp;<span class="fa fa-plus"></span> </a></h4>
-                            <div class="intro-heading">
-                                <div><img src="/doArtShow/exhibitionImages/5.jpg" alt="1"></div>
-                                <div><img src="/doArtShow/exhibitionImages/6.jpg" alt="2"></div>
-                                <div><img src="/doArtShow/exhibitionImages/7.jpg" alt="3"></div>
-                                <div><img src="/doArtShow/exhibitionImages/8.jpg" alt="4"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <a href="#about" class="page-scroll btn btn-xl">Link 더보기 버튼</a>
-
-            </div>
-            
-        </div>
-    </header> -->
 
    <!--  <section id="portfolio">
         <div class="container">
@@ -449,23 +399,22 @@
 <!-- Initialize Swiper Library Begin - Younggi -->
   <script>
   
-  
-  function dudrl(){
+/*   function dudrl(){
 	  $.ajax({
 	      url : "indexContent.do",
 	      type : "GET",
-	      /* dataType : "JSON", */	
+	      dataType : "JSON", 
 	      success : function(data){
 	    	  console.log('안녕 영기들?');
 	    	  console.log(data);
 	    	  
-	    	  /* if(data. == 0){
+	    	  if(data. == 0){
 	            $("#wishBtn").attr("checked", "checked");
 	            alert("가고싶은 전시로 등록되었습니다.\n나의 가고싶은 전시는 마이페이지에서도 확인 가능합니다!")
 	         }else if(data.checkWish == 1){
 	            $("#wishBtn").removeAttr("checked");
 	            alert("가고싶은 전시가 취소되었습니다.");
-	         } */
+	         }
 	      },
 	      error : function(request, status, error){
 	    	  console.log('에러났다영기들');
@@ -473,7 +422,7 @@
 	      }
 	   });
   }
-  
+*/
    
   
   
@@ -502,6 +451,7 @@
 
 
 <script>
+//최상단 배경이미지 슬라이드 전환 효과
 $(function(){
 
     var imgArray = new Array();
