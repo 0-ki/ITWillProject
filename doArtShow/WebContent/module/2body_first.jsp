@@ -8,7 +8,7 @@
     <div id="page-top-div"></div>
     <!--최상단 Navigation -->
     <nav class="navbar navbar-default navbar-fixed-top my-nav-top">
-        <div class="container" id="top-container">
+        <div id="top-container">
             <!-- 모바일에서 출력 -->
             <div class="navbar-header page-scroll">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
@@ -18,7 +18,9 @@
                     <span class="icon-bar"></span>
                 </button>
                 <%-- top-mainlogo-img --%>
-                <a class="navbar-brand page-scroll" id="top-mainlogo-a" href="/doArtShow"><div class="navbar" style="width:100px;height:30px;"></div></a>
+                <a class="navbar-brand page-scroll" id="top-mainlogo-a" href="/doArtShow"><div class="navbar" style="width:100px;height:30px;"></div>
+                <!-- <img src="/doArtShow/resourcesImages/mainlogo2.png"> -->
+                </a>
             </div>
 
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -40,7 +42,7 @@
                     	</form>
                 	</li>
                     
-                    <li style="margin: 0 30px;">
+                    <li>
                         <a class="page-scroll acss" href="<%=request.getContextPath()%>/client/exhibition/ExListView.do" id="top-list">
                     	  	 전시목록
                         </a>
@@ -48,6 +50,21 @@
                     <li>
                         <a class="page-scroll acss" href="<%=request.getContextPath()%>/searchMap.do" id="top-list">
                         	지도
+                        </a>
+                    </li>
+                    <li>
+                        <a class="page-scroll acss" href="<%=request.getContextPath() %>/client/exhibition/addForm.do" id="top-list">
+                        	전시등록
+                        </a>
+                    </li>
+                    <li>
+                        <a class="page-scroll acss" href="" onclick="return false" id="myBtn">
+                        	로그인
+                        </a>
+                    </li>
+                    <li>
+                        <a class="page-scroll acss" href="" onclick="return false" id="myBtn">
+                        	문의하기
                         </a>
                     </li>
                 </ul>
@@ -75,7 +92,7 @@
                     
                          <form method="post" name="loginForm" action="<%=request.getContextPath()%>/client/auth/memberLogIn.do">
                             <div class="login-input">
-                                <input class="form-control" type="text" placeholder="이메일" name="email" id="login_email">
+                                <input class="form-control" type="email" placeholder="이메일" name="email" id="login_email">
                                 <div style="margin-top:5px" id="chkLoginEmail"></div>
                             </div>
                             
@@ -83,38 +100,26 @@
                             	<input class="form-control" type="password" placeholder="비밀번호" name="pw" id="login_pw">
                             	<div style="margin-top:5px" id="chkLoginPw"></div>
                             </div>
+                                <input type="submit" class="btn btn-info" value="로그인" onclick="javascript:alert(document.getElementById('login_email').value);" style="margin-bottom: 10px;">
+   						 </form>
+                         
                             <div class="login-input">
                                 <a href="<%=request.getContextPath()%>/client/auth/findEmail.do">이메일</a> 
                                 / <a href="<%=request.getContextPath()%>/client/auth/findPw.do">비밀번호 찾기</a><br>
                             </div>
                             <hr>
+                            	<h5 style="display: inline;font-family: 'Noto Sans KR', sans-serif;font-size: 17px;font-weight: bold;">SNS로 간편 회원가입/로그인</h5>
                             <div id="login-btngroup">
-                                <input type="button" class="btn btn-info"value="로그인" onclick="validateLogin(this.form)">
-                                <br>	
                                 
                                  <a id="kakao-login-btn"></a>
-                                 
-							<script type='text/javascript'>
-
-								//]]>
-							</script>
-							
-							
-							<!-- <a id="kakaoBtn" href="javascript:loginWithKakao()"><img src="/doArtShow/images/kakao_account_login_btn_medium_narrow.png" alt="카카오로그인"></a> -->
-                               <!-- <button id="kakaoBtn" onclick="javascript:loginWithKakao()"><img src="/doArtShow/images/kakao_account_login_btn_medium_narrow.png" alt="카카오로그인"></button> -->
-                            <br>
-                             <a class="btn btn-danger" href="<%=request.getContextPath()%>/client/auth/memberAdd.do">회원가입</a>
+                                 <div id="naverIdLogin"></div>
+                             <a class="btn btn-danger" href="<%=request.getContextPath()%>/client/auth/memberAdd.do">이메일로 회원가입</a>
                             </div>
 
 
-                        </form>
                     </div>
 
 
-                </div>
-                <div id="login-footer">
-
-                    <button type="button" class="btn btn-danger" data-dismiss="modal">닫기</button>
                 </div>
             </div>
         </div>
@@ -144,7 +149,7 @@
 }
 
 
-
+/* 상단 네비게이션 목록들  */
 .acss {
 /*   position: relative;
   margin: 3rem;
@@ -176,9 +181,6 @@
 .acss:first-of-type:hover::after {
   width: 100%;
 }
-
-
-
 
 
 
@@ -234,8 +236,8 @@
 .item01, .item02, .item03, .item04 {
   position: absolute;
   background: #fff;
-  height: 100px;
-  width: 100px;
+  height: 70px;
+  width: 70px;
   border-radius: 100px;
   bottom: 0;
   transform: scale(0.4, 0.4);

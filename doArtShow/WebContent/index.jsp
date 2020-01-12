@@ -62,7 +62,7 @@
 </div>
 
 		<div class="slider-container">
-			<div class="slider-head"><h1 class="slider-h">최근 등록된 전시</h1> <a href="<%=request.getContextPath()%>/client/exhibition/ExListView.do?" class="slider-more">더보기></a></div>
+			<div class="slider-head"><h1 class="slider-h">최근 등록된 전시</h1> <a href="<%=request.getContextPath()%>/client/exhibition/ExListView.do?" class="slider-more">&nbsp;더보기&nbsp;></a></div>
 			<div class="swiper-container">
 				<div class="swiper-wrapper">
 					
@@ -91,7 +91,7 @@
 		
 		
 		<div class="slider-container">
-		<div class="slider-head"><h1 class="slider-h">지금 주목받는 전시</h1> <a href="<%=request.getContextPath()%>/client/exhibition/ExListView.do?" class="slider-more">더보기></a></div>
+		<div class="slider-head"><h1 class="slider-h">지금 주목받는 전시</h1> <a href="<%=request.getContextPath()%>/client/exhibition/ExListView.do?" class="slider-more">&nbsp;더보기&nbsp;></a></div>
 			<div class="swiper-container">
 				<div class="swiper-wrapper">
 					

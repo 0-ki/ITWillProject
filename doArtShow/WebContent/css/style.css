@@ -32,25 +32,14 @@ Import Google Fonts
 /* @import url(http://fonts.googleapis.com/css?family=Open+Sans:300,400,500,600,700,800); */
 
 /*--------------------
-0. Detail adjust by Young-Gi Kim
+0. Detail adjust by Young-Gi
 --------------------*/
-/*---   최상단 Navigation id접두어 (대부분): top-    ---*/
+/*---   최상단 Navigation  ---*/
+@media (min-width: 768px) {
 #page-top-div {
-    margin-top: 8%;
+    margin-top: 150px;
 }
-
-#top-container {
-    width: 70%;
 }
-
-#top-mainlogo-a {
-    /* height: 3.8em; */
-}
-
-#top-mainlogo-img {
-    height: 50%;
-}
-
 #bs-example-navbar-collapse-1 {
     text-align: center;
 }
@@ -60,10 +49,17 @@ Import Google Fonts
     width: 40%;
     margin-top: 20px;
 }
-
-#top-list {
-    font-family: 'Noto Sans KR', sans-serif;
+@media (min-width:768px) {
+#top-container{
+	margin: 0 5vw;
 }
+
+.nav.navbar-nav.navbar-right li{
+	margin-right: 2vw;
+	font-family: 'Noto Sans KR', sans-serif;
+}
+}
+
 
 /* ------   <header>부분  id접두어: header-  ------- */
 header img {
@@ -79,19 +75,6 @@ header img {
     height: 200px;
 }
 
-/* ------  툴바 버튼 3개 부분   ------- */
-/* 
-.item {
-    display: contents;
-    justify-content: center;
-    align-items: center;
-    padding: 20px;
-    box-sizing: border-box;
-    position: relative;
-    font-size: 20px;
-    font-weight: 900;
-    text-shadow: 3px 0 0 rgba(white, .5);
-} */
 
 /*
 
@@ -106,10 +89,9 @@ header img {
     display: block;
     text-align: center;
     margin: auto;
-    /* margin-bottom: 2vh; */
-    width: 50%;
+    margin-bottom: 1vh;
+    width: 45%;
     overflow:hidden;
-    height:60px;
 }
 
 #login-footer {
@@ -130,6 +112,8 @@ header img {
     height: 49px;
     margin-bottom: .7vh;
     margin-top: .7vh;
+    line-height: 26px;
+    font-size: 1.13em;
 }
 
 
@@ -408,7 +392,7 @@ input::placeholder {
 .navbar-default .navbar-toggle:focus {
     background-color: #fed136
 }
-
+@media (min-width:768px) {
 .navbar-default .nav li a {
     font-size: 1.25em;
     text-transform: uppercase;
@@ -434,14 +418,14 @@ input::placeholder {
     color: #fff;
     background-color: #fec503
 }
-
+}
 @media (min-width:768px) {
     .navbar-default {
         background-color: rgba(0, 0, 0, 0.45);
         padding: 5px 0;
         -webkit-transition: padding .3s;
         -moz-transition: padding .3s;
-        transition: padding .3s;
+        transition: all .8s;
         border: 0
     }
 
@@ -465,7 +449,7 @@ input::placeholder {
         padding: 5px 0;
         -webkit-transition: all .3s;
         -moz-transition: all .3s;
-        transition: all .3s;
+        transition: all .7s;
     }
     .navbar-default.navbar-shrink ul li a{
         color:black;
@@ -998,11 +982,11 @@ footer p a span {
 --------------------*/
 
 .modal-content {
-    border-radius: 0;
+    border-radius: 30px;
 }
 
 .modal-header .close {
-    font-size: 30px;
+    font-size: 40px;
 }
 
 .modal-title {

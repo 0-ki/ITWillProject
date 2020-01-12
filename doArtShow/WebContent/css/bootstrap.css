@@ -6023,12 +6023,13 @@ button.close {
 }
 @media (min-width: 768px) {
   .modal-dialog {
-    width: 600px;
-    opacity:.92;
-    margin: 10vh auto;
+    width: 500px;
+    opacity:.98;
+    margin: 13vh auto;
   }
+  
   .modal-content {
-      height: 70vh;
+      height: 550px;
     -webkit-box-shadow: 0 5px 15px rgba(0, 0, 0, .5);
             box-shadow: 0 5px 15px rgba(0, 0, 0, .5);
   }

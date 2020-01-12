@@ -22,6 +22,7 @@
     <link href="/doArtShow/css/style.css" rel="stylesheet" type="text/css">
     
     
+    <script src="/doArtShow/js/naveridlogin_js_sdk_2.0.0.js"></script>
     <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
     <!-- 직접 작성한 css 및 폰트 CDN 방식 -end -->
 

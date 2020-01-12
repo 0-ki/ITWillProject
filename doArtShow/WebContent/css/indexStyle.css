@@ -71,10 +71,26 @@
 	position: relative;
     left: 495px;
     bottom: 40px;
-    color: #fb6005;
-	font-size: 24px;
-	letter-spacing: -0.2px;
 	font-family: 'Jua', sans-serif;
+    border-radius: 30px;
+  	cursor: pointer;
+  	box-shadow: 0px 15px 20px rgba(54, 24, 79, 0.5);
+  color: #ff942e;
+  background-color: white;
+  text-transform: uppercase;
+  font-weight: 600;
+  font-size: 22px;
+  transition: all 0.3s ease;    
+   /*  color: #fb6005;
+	font-size: 24px;
+	letter-spacing: -0.2px; */
+}
+.slider-more:hover{
+  box-shadow: 0px 10px 10px -10px rgba(54, 24, 79, 0.5);
+  transform: translateY(5px);
+  background: #FB8A8A;
+  color: white;
+  text-decoration: none;
 }
 
 /* word rotater begin  */
