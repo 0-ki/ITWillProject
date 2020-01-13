@@ -19,6 +19,7 @@ import com.doArtShow.controls.exhibition.searchListController;
 import com.doArtShow.controls.exhibition.searchMapController;
 import com.doArtShow.controls.member.FindEmailController;
 import com.doArtShow.controls.member.FindPwController;
+import com.doArtShow.controls.member.IndexController;
 import com.doArtShow.controls.member.MemReviewListController;
 import com.doArtShow.controls.member.MemVisitListController;
 import com.doArtShow.controls.member.MemWishListController;
@@ -118,6 +119,8 @@ public class ContextLoaderListener implements ServletContextListener{
 
 			// 지도 페이지
 			sc.setAttribute("/searchMap.do", new searchMapController().setExhibitionDao(exhibitionDao));
+			
+			sc.setAttribute("/start", new IndexController().setExhibitionDao(exhibitionDao));
 						
 			
 			

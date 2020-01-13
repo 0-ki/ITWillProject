@@ -26,7 +26,7 @@ import com.doArtShow.util.UploadUtil;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
-@WebServlet("*.do")
+@WebServlet({"*.do", "/start"})
 public class DistpatcherServlet extends HttpServlet {
 
 	@Override
@@ -60,7 +60,7 @@ public class DistpatcherServlet extends HttpServlet {
 		                model.put("jsonObj", jsonObj);
 		                
 		                model.put("checkEmailInfo", request.getParameter("email"));
-		                 
+		                
 		             }
 		      //회원가입
 		      } else if ("/client/auth/memberAdd.do".equals(servletPath)) {
@@ -267,9 +267,6 @@ public class DistpatcherServlet extends HttpServlet {
 	      //--------------------------------------------------------------------------------------
 		      
 		      
-		      //--------------------------------------------------------------------------------------
-
-		      
 		      // 페이지 컨트롤러를 실행한다.
 		      System.out.println("##2번 페이지컨트롤러 호출");
 		      String viewUrl = pageController.execute(model); //페이지 컨트롤러의 execute()메서드로 이동하며 데이터를 주고받을 바구니 역할을 하는 Map객체(model)를 넘긴다
@@ -286,14 +283,6 @@ public class DistpatcherServlet extends HttpServlet {
 		        response.sendRedirect(viewUrl.substring(9));
 		        return;
 		        
-		        
-		      } else if (viewUrl.equals("json:")) {
-		    	  System.out.println("영기+영기=>"+model.get("jsonObj"));
-		    	  response.setContentType("json:application/json");
-		    	  response.getWriter().print(model.get("jsonObj"));
-			      return;
-			      
-			      
 			  } else if (viewUrl.startsWith("json:")) {
 		    	  response.setContentType("json:application/json");
 		    	  response.getWriter().print(viewUrl.substring(5));

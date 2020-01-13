@@ -689,12 +689,15 @@ public class ExhibitionDao {
 				dto.setImageFile1(rs.getString("ImageFile1"));
 				list.add(dto);
 				}
+			pstmt.close();
+			rs.close();
 			
 			sql="";
 			dto=null;
 			// 인기 조회순 9개
 			sql = " SELECT ExhID, ExhPlaceAddr1, ExhName , ArtistName , ExhPlace,  ExhStartDate , ExhEndDate , ImageFile1 FROM artshowdb.artshow ORDER BY ExhReadCount DESC LIMIT 9 ";
-			
+			pstmt=conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
 			while(rs.next()){
 				dto = new ExhibitionDto();
 				dto.setExhID(rs.getInt("ExhID"));
@@ -707,7 +710,7 @@ public class ExhibitionDao {
 				dto.setImageFile1(rs.getString("ImageFile1"));
 				list.add(dto);
 				}
-				 
+
 			} catch (Exception e) {
 				e.printStackTrace();
 			} finally {

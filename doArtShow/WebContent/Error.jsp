@@ -578,7 +578,8 @@ nav .menu .menu_icon:hover .icon:after {
                 <article>
                     <p>주소가 틀렸거나 게시물이 없어요!</p>
                     <button onclick="history.back()">이전으로 돌아가기</button><br>
-                    <button onclick="javascript:location.replace('/doArtShow')">첫 페이지 가기</button>
+                    <button onclick="javascript:location.replace('/doArtShow')">첫 페이지 가기</button><br>
+                    <button onclick="location.href='<%=request.getContextPath()%>/client/exhibition/addForm.do'">그냥 내가 등록하기</button>
                 </article>
             </div>
 

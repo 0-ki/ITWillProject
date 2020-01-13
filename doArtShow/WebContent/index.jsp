@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@taglib prefix="s" uri="http://java.sun.com/jsp/jstl/sql" %>
+<%-- <%@taglib prefix="s" uri="http://java.sun.com/jsp/jstl/sql" %>
 
 <s:setDataSource
 	dataSource="jdbc/artshowdb"
@@ -10,7 +10,7 @@
 
 <s:query sql=" SELECT ExhID, ExhName , ExhPlace, ImageFile1 FROM artshow ORDER BY RegisterDate DESC LIMIT 9  " var="rs1" dataSource="${artshow}" />
 <s:query sql=" SELECT ExhID, ExhName , ExhPlace, ImageFile1 FROM artshow ORDER BY exhreadcount DESC LIMIT 9  " var="rs2" dataSource="${artshow}" />
-
+ --%>
 
 
 
@@ -60,20 +60,20 @@
 </div>
 <div style="height:80px;">
 </div>
+					
 
 		<div class="slider-container">
 			<div class="slider-head"><h1 class="slider-h">최근 등록된 전시</h1> <a href="<%=request.getContextPath()%>/client/exhibition/ExListView.do?" class="slider-more">&nbsp;더보기&nbsp;></a></div>
 			<div class="swiper-container">
 				<div class="swiper-wrapper">
-					
-			 <c:forEach  var="i" items="${rs1.rows}" varStatus="vs1" >
+			 <c:forEach  var="i" items="${lists}" varStatus="vs1" begin="0" end="8" >
 					<div class="swiper-slide">
-						<a href="client/exhibition/ExContentView.do?exhID=${i.ExhID}">
+						<a href="client/exhibition/ExContentView.do?exhID=${i.exhID}">
 							<div class="slide-content">
-							<p class="slide-exhName">${i.ExhName }</p>
-							<p class="slide-exhPlace">${i.ExhPlace }</p>
+							<p class="slide-exhName">${i.exhName }</p>
+							<p class="slide-exhPlace">${i.exhPlace }</p>
 							</div>
-							<img src="/doArtShow/exhibitionImages/${i.ImageFile1 }"/>
+							<img src="/doArtShow/exhibitionImages/${i.imageFile1 }"/>
 						</a>
 					</div>
 				</c:forEach>
@@ -95,14 +95,14 @@
 			<div class="swiper-container">
 				<div class="swiper-wrapper">
 					
-			 <c:forEach  var="i" items="${rs2.rows}" varStatus="vs1" >
+			 <c:forEach  var="i" items="${lists}" varStatus="vs1" begin="9" end="17">
 					<div class="swiper-slide">
-						<a href="client/exhibition/ExContentView.do?exhID=${i.ExhID}">
+						<a href="client/exhibition/ExContentView.do?exhID=${i.exhID}">
 							<div class="slide-content">
-							<p class="slide-exhName">${i.ExhName }</p>
-							<p class="slide-exhPlace">${i.ExhPlace }</p>
+							<p class="slide-exhName">${i.exhName }</p>
+							<p class="slide-exhPlace">${i.exhPlace }</p>
 							</div>
-							<img src="/doArtShow/exhibitionImages/${i.ImageFile1 }"/>
+							<img src="/doArtShow/exhibitionImages/${i.imageFile1 }"/>
 						</a>
 					</div>
 				</c:forEach>
