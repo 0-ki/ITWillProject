@@ -20,11 +20,6 @@
 
     <!-- 직접 작성한 css 및 폰트 CDN 방식 -begin -->
     <link href="/doArtShow/css/style.css" rel="stylesheet" type="text/css">
-    
-    
-    <script src="/doArtShow/js/naveridlogin_js_sdk_2.0.0.js"></script>
-    <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
-    <!-- 직접 작성한 css 및 폰트 CDN 방식 -end -->
 
     <!-- 직접 작성한 css 및 폰트 CDN 방식 by Hojeong -begin -->
    <link rel="stylesheet" href="/doArtShow/css/HJStyle.css" type="text/css">
@@ -40,7 +35,5 @@
 	<!-- <script src="http://dapi.kakao.com/v2/maps/sdk.js?appkey=c5326277ad64b2569191adafedd5fbbc&libraries=services"></script> -->
 	<!-- javascript used by Hojeong : end -->
 
-    <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
-    <script>Kakao.init('3f954d79af6a536ec76db999e7f2ba5b');</script>
     
 </head>
