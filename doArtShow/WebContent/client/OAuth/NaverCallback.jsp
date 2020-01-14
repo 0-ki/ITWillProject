@@ -26,14 +26,20 @@
          naverLogin.getLoginStatus(function (status) {
 
             if (status) {
-               var email = naverLogin.user.getEmail();
+                var email = naverLogin.user.getEmail();
+                var name = naverLogin.user.getNickName();
+   				var profileImage = naverLogin.user.getProfileImage();
+   				var birthday = naverLogin.user.getBirthday();			
+   				var uniqId = naverLogin.user.getId();
+   				var age = naverLogin.user.getAge();
+   				var gender = naverLogin.user.getGender();
                if( email == undefined || email == null) {
                   alert("이메일은 필수정보입니다. 정보제공을 동의해주세요.");
                   naverLogin.reprompt();
                   return;
                }
                alert( email ); // 로그인 한 이메일 ***@naver.com 이 출력된다.
-               window.location.replace("http://localhost:8888/doArtShow/");
+               window.location.replace("http://" + window.location.hostname + ( (location.port==""||location.port==undefined)?"":":" + location.port) + "/doArtShow");
             } else {
                console.log("callback 처리에 실패하였습니다.");
             }

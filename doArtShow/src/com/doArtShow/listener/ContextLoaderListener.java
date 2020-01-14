@@ -14,7 +14,6 @@ import com.doArtShow.controls.exhibition.ExhibitionListController;
 import com.doArtShow.controls.exhibition.ExhibitionMyListController;
 import com.doArtShow.controls.exhibition.ExhibitionReviewFormController;
 import com.doArtShow.controls.exhibition.ExhibitionUpdateController;
-import com.doArtShow.controls.exhibition.IndexListController;
 import com.doArtShow.controls.exhibition.searchListController;
 import com.doArtShow.controls.exhibition.searchMapController;
 import com.doArtShow.controls.member.FindEmailController;
@@ -31,6 +30,7 @@ import com.doArtShow.controls.member.MemberLogInController;
 import com.doArtShow.controls.member.MemberLogOutController;
 import com.doArtShow.controls.member.MemberPageController;
 import com.doArtShow.controls.member.MemberUpdateController;
+import com.doArtShow.controls.member.NaverLoginController;
 import com.doArtShow.dao.ExhibitionDao;
 import com.doArtShow.dao.ManagerDao;
 import com.doArtShow.dao.MemberDao;
@@ -111,9 +111,6 @@ public class ContextLoaderListener implements ServletContextListener{
 			//회원 다녀온 전시 목록 구성
 			sc.setAttribute("/client/auth/visitList.do", 	new MemVisitListController().setMemberDao(memberDao));
 			
-			//인덱스 페이지에서 슬라이더에 최신/인기 전시 구성
-			sc.setAttribute("/indexContent.do", 	new IndexListController().setExhibitionDao(exhibitionDao));
-			
 			// 검색기능
 			sc.setAttribute("/search.do", new searchListController().setExhibitionDao(exhibitionDao));
 
@@ -122,6 +119,7 @@ public class ContextLoaderListener implements ServletContextListener{
 			
 			sc.setAttribute("/start", new IndexController().setExhibitionDao(exhibitionDao));
 						
+			sc.setAttribute("/NaverCallback", new NaverLoginController());
 			
 			
 			//-------------------------------------------------------------------------------------------------------------

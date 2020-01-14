@@ -26,7 +26,7 @@ import com.doArtShow.util.UploadUtil;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
-@WebServlet({"*.do", "/start"})
+@WebServlet({"*.do", "/start","/NaverCallback"})
 public class DistpatcherServlet extends HttpServlet {
 
 	@Override
@@ -255,12 +255,6 @@ public class DistpatcherServlet extends HttpServlet {
   			// 마이(회원)페이지에서 내가 등록한 전시회 목록 보기 	
   			} else if ("/client/exhibition/myList.do".equals(servletPath)) {
 	  				model.put("id", "id01");
-	  		// 메인 페이지에서 슬라이드에 넣는 데이터들.
-  			}else if ("/indexContent.do".equals(servletPath)) {
-  				JSONObject jsonObj = new JSONObject();
-                model.put("jsonObj", jsonObj);
-                
-		    	
 		    }
 	      //--------------------------------------------------------------------------------------
 		  // end - modified by Hojeong 20/01/03(yy/mm/dd)	
