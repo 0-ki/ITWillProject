@@ -166,7 +166,7 @@ public class ContextLoaderListener implements ServletContextListener{
 			
 			//전시회 수정
 			sc.setAttribute("/client/exhibition/update.do", new ExhibitionUpdateController().setExhibitionDao(exhibitionDao));
-			
+				
 			//마이 전시회 리스트 
 			sc.setAttribute("/client/exhibition/myList.do", new ExhibitionMyListController().setExhibitionDao(exhibitionDao));
 			//-------------------------------------------------------------------------------------------------------------
