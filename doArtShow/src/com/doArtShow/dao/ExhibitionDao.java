@@ -724,7 +724,42 @@ public class ExhibitionDao {
 	}
 	
 	
-	
+	//by jungmi
+			//-------------------------------------------------------------------
+			// 회원페이지(memberPage.jsp) 등록한 전시의 개수
+			//-------------------------------------------------------------------
+			public int countMyExh(String email) {
+				Connection 			conn 	= null;
+				PreparedStatement 	pstmt 	= null;
+				ResultSet 			rs 		= null;
+				String 				sql 	= "";
+				
+				int myExhCount = 0;
+				
+				try {
+					conn 	= ds.getConnection();
+					sql  	=  "SELECT  count(*) ";
+					sql		+= "FROM	artshow ";
+					sql		+= "WHERE   memberID=?	 ";
+					
+					pstmt 	= conn.prepareStatement(sql);
+					pstmt.setString(1, email);
+					rs 		= pstmt.executeQuery();
+					
+					if(rs.next()) {
+						myExhCount = rs.getInt(1);
+					}
+					
+				} catch (Exception e) {
+					e.printStackTrace();
+					
+				} finally {
+					if(rs    != null) try {rs.close();   } catch(SQLException ex) {}
+					if(pstmt != null) try {pstmt.close();} catch(SQLException ex) {}
+					if(conn  != null) try {conn.close(); } catch(SQLException ex) {}
+				}
+				return myExhCount;
+			}
 	
 	
 	

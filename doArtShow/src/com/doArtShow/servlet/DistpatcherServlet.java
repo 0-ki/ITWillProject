@@ -44,13 +44,16 @@ public class DistpatcherServlet extends HttpServlet {
 		      HttpSession session = request.getSession();
 		      model.put("session", request.getSession());
 		      
+		      //로그인 후 이전 페이지로 가기 위해 Header를 사용
+              model.put("Referer",request.getHeader("Referer"));
+              
 		      //페이지컨트롤러는 ServletContext보관소에 저장되어있으므로 이 보관소에서 페이지컨트롤러를 꺼낼때 서블릿 URL을 사용한다
 		      Controller pageController = (Controller) sc.getAttribute(servletPath);
 		      
 		      //--------------------------------------------------------------------------------------
 			  //각자 추가하는 Controller에 따라서 수정될 수 있습니다.
 		      
-		      //--------------------------------------------------------------------------------------
+		    //--------------------------------------------------------------------------------------
 		      //jungmi-start
 		      //--------------------------------------------------------------------------------------
 		      //회원 가입 시 이메일 중복확인
@@ -60,7 +63,7 @@ public class DistpatcherServlet extends HttpServlet {
 		                model.put("jsonObj", jsonObj);
 		                
 		                model.put("checkEmailInfo", request.getParameter("email"));
-		                
+		                 
 		             }
 		      //회원가입
 		      } else if ("/client/auth/memberAdd.do".equals(servletPath)) {
@@ -78,9 +81,7 @@ public class DistpatcherServlet extends HttpServlet {
 	                  model.put("loginInfo", new MemberDto()
 	                        .setEmail(request.getParameter("email"))
 	                        .setPw(request.getParameter("pw"))); 
-	                  
-	                  //로그인 후 이전 페이지로 가기 위해 Header를 사용
-	                  model.put("Referer",request.getHeader("Referer"));
+	                                    
 	               }
 		      //회원정보 불러오기
 		      } else if("/client/auth/memberDetail.do".equals(servletPath)){
@@ -94,11 +95,21 @@ public class DistpatcherServlet extends HttpServlet {
 		    		  model.put("member", new MemberDto()
 		    				  .setBirth(request.getParameter("birth"))
 		    				  .setGender(request.getParameter("gender"))
-		    				  .setPw(request.getParameter("pw"))
-		    				  .setProfileImg(request.getParameter("profileImg")));
+		    				  .setPw(request.getParameter("pw")));
 		    	  }
 		          MemberDto member = (MemberDto)session.getAttribute("member");
 	              model.put("email", member.getEmail());
+	    
+	          //회원 프로필 사진 수정
+		      } else if("/client/auth/profileImgUpdate.do".equals(servletPath)){    	  
+		    	  String saveFolder = "/memberProfileImages";											 
+		    	  int fileSize = 7 * 1024 * 1024;	
+					
+				  String[] filename = new String[1];
+				  filename = UploadUtil.filesUpload(saveFolder, fileSize, request);
+				  
+				  model.put("profileImg", filename[0]);
+		    	  
 		      //이메일찾기
 		      } else if("/client/auth/findEmail.do".equals(servletPath)){
 		               if(request.getParameter("name")!=null) {
@@ -113,10 +124,33 @@ public class DistpatcherServlet extends HttpServlet {
 		                        .setEmail(request.getParameter("email"))
 		                        .setBirth(request.getParameter("birth")));
 		               }
+		               
+		      //리뷰 수정하기     
+		      } else if("/client/auth/revUpdate.do".equals(servletPath)){
+		    	  if(request.getParameter("exhID")!=null) {
+		    		  MemberDto member = (MemberDto)session.getAttribute("member");
+		    		  
+		    		  model.put("revUpdateInfo", new ReviewDto()
+		    				  .setEmail(member.getEmail())
+		    				  .setExhID(Integer.parseInt(request.getParameter("exhID")))
+		    				  .setRevContent(request.getParameter("revContent")));
+		    	  }
+		      //리뷰 삭제하기    
+		      } else if("/client/auth/revDelete.do".equals(servletPath)){
+		    	  if(request.getParameter("exhName")!=null) {
+		    		  ExhibitionDto exhibitionDto = new ExhibitionDto();
+		    		  System.out.println(request.getParameter("exhName"));
+		    		  exhibitionDto.setExhName(request.getParameter("exhName"));
+		    		  model.put("exhName",exhibitionDto);
+		    		  
+		    		  MemberDto member = (MemberDto)session.getAttribute("member");
+		    		  model.put("logInInfo",member.getEmail());
+		    	  }
 		      	  
 		      //--------------------------------------------------------------------------------------
 		 	  //jungmi-end
 		 	  //--------------------------------------------------------------------------------------
+		 	
 		 	  //검색 후 결과를 리스트로 보여주기	      
 		      } else if("/search.do".equals(servletPath)){
 			    	  if(request.getParameter("search")!=null) {
