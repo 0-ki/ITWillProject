@@ -1,6 +1,40 @@
 // 회원 로그인 유효성 검사
 function validateLogin(loginForm){
-    if(!loginForm.email.value){
+	var email 	= loginForm.email.value;
+	var pw 		= loginForm.pw.value;
+	
+	$.ajax({
+		url : 'memberLogIn.do?email='+email+'&pw='+pw,
+		type : 'GET',
+		datatype : 'JSON',
+		success : function(data){
+			if(data.res == 1){
+				//이메일이 중복 되는 경우
+				$("#chkLoginEmail").text("이메일 또는 아이디가 일치하지 않습니다.");
+				$("#chkLoginEmail").css('color','red');
+			} else {
+				//이메일이 중복 되지 않는 경우
+				//이메일 형식 검사
+				var filter =  /^([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
+				if(filter.test(email)){
+					$("#email_result").text("사용가능한 이메일입니다.");
+					$("#email_result").css('color','green');
+					$("#emailUseBtn").attr("disabled", false);
+					$('#email_value').attr('readonly', true);
+				} else {
+					$("#email_result").text("이메일 형식에 맞게 작성해주세요. 예시)123@art.com");
+					$("#email_result").css('color','red');
+					$("#emailUseBtn").attr("disabled", true);
+				}
+			}
+		},
+		error: function(request, status, error){
+			var msg = "ERROR : <br>"
+				msg += reqeust.status +"<br>"+ request.responseText +"<br>"+ error;
+		}
+	});
+	
+	if(!loginForm.email.value){
         $("#chkLoginEmail").text("이메일을 입력하세요");
         $("#chkLoginEmail").css('color','red');
         loginForm.email.focus();
@@ -93,12 +127,13 @@ function checkUpdateForm(updateForm){
         return false;
     }
 	if(!updateForm.pw.value){
-		$("#pw_check").text("수정할 비밀번호를 입력하세요");
+		$("#pw_check").text("본인인증을 위해 비밀번호를 입력하세요");
 		$("#pw_check").css('color','red');
 		updateForm.pw.focus();
 		return false;
 	}
 	
+	confirm("회원정보를 수정하시겠습니까?")
 	updateForm.action="memberUpdate.do"
 	updateForm.submit();
 }

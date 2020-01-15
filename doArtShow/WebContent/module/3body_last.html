@@ -28,7 +28,7 @@
 	
     <!-- jungmi -->
 	<script src="/doArtShow/client/js/validateForm.js"></script>
-	<script src="/doArtShow/client/js/checkForm.js"></script>
+	<script src="/doArtShow/client/js/signUpFormFilter.js"></script>
 	
 	<!-- ================ script  ================  -->
 	<!-- 네이버 아이디 로그인 -->
@@ -186,6 +186,37 @@ $(function(){
 			backdrop : true
 		});
 		
+	}
+	//--------------------------------------------------------------------------------
+	//	myReviewList.jsp
+	//--------------------------------------------------------------------------------
+	function openRevModal(num){
+	$("#revUpdateModal"+num).modal({
+    	backdrop: true
+    });
+	}
+	function confirmDeleteRev(num){
+		confirm("삭제하시겠습니까?");
+		location.href="revDelete.do?exhName="+$("#revExhName"+num).text();
+	}
+	function chkreviewUpdateForm(reviewUpdateForm){         
+	    if(!reviewUpdateForm.revContent.value){
+	       alert("내용을 작성해주세요");
+	       revForm.revConter.focus();
+	       return false;
+	    }
+	    
+	    reviewUpdateForm.action = "revUpdate.do";
+	    reviewUpdateForm.submit();
+	 }
+	
+	//--------------------------------------------------------------------------------
+	//	myList.jsp
+	//--------------------------------------------------------------------------------
+	function openExhModal(num){
+	$("#exhUpdateModal"+num).modal({
+    	backdrop: true
+    });
 	}
 	</script>
 	
