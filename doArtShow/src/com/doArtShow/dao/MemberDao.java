@@ -222,7 +222,28 @@ public class MemberDao {
 			try {if(conn!=null)conn.close();} catch (SQLException e) {}
 		}		
 	}
+	
+	public void updateProfileImg(String profileImg, String email) {
+		Connection 			conn 	= null;
+		PreparedStatement 	pstmt 	= null;
+		String 				sql 	= null;
+		
+		try {
+			conn = ds.getConnection();
+			sql = "UPDATE artshowdb.MEMBER SET profileImg=? WHERE email=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, profileImg);
+			pstmt.setString(2, email);
+			
+			pstmt.executeUpdate();
 
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {if(pstmt!=null)pstmt.close();} catch (SQLException e) {}
+			try {if(conn!=null)conn.close();} catch (SQLException e) {}
+		}		
+	}
 	public String findEmail(String name, String birth) {
 		System.out.println("findEmail실행");
 		System.out.println(name+" "+birth);
@@ -524,7 +545,7 @@ public class MemberDao {
 		
 		try {
 			conn 	= ds.getConnection();
-			sql  	=  "SELECT	review.revContent, review.revDate, artshow.ImageFile1, artshow.ExhName "; 
+			sql  	=  "SELECT		artshow.ExhID, review.revDate, review.revContent, artshow.ImageFile1, artshow.ExhName "; 
 			sql  	+= "FROM		review, artshow ";
 			sql  	+= "WHERE		review.ExhID = artshow.ExhID ";
 			sql  	+= "	AND 	review.email=? "; 
@@ -537,8 +558,9 @@ public class MemberDao {
 			
 			while(rs.next()) {
 				myReview	 	= new MyReviewDto();
-				myReview.setRevContent(rs.getString("revContent"));
+				myReview.setExhID(rs.getInt("ExhID"));
 				myReview.setRevDate(rs.getTimestamp("revDate"));
+				myReview.setRevContent(rs.getString("revContent"));
 				myReview.setImageFile1(rs.getString("ImageFile1"));
 				myReview.setExhName(rs.getString("ExhName"));
 				reviewList.add(myReview);
@@ -666,4 +688,90 @@ public class MemberDao {
 		}
 		return myExhCount;
 	}
+	//-------------------------------------------------------------------
+	// 리뷰페이지(reviewList.jsp) 리뷰 수정 
+	//-------------------------------------------------------------------
+	public void updateReveiw(String email, int exhID, String revContent) {
+		Connection 			conn 	= null;
+		PreparedStatement 	pstmt 	= null;
+		String 				sql 	= null;
+		
+		try {
+			conn = ds.getConnection();
+			sql = "UPDATE artshowdb.review SET revContent=? WHERE email=? and exhID=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, revContent);
+			pstmt.setString(2, email);
+			pstmt.setInt(3, exhID);
+			
+			pstmt.executeUpdate();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {if(pstmt!=null)pstmt.close();} catch (SQLException e) {}
+			try {if(conn!=null)conn.close();} catch (SQLException e) {}
+		}
+	}
+	//-------------------------------------------------------------------
+	// 리뷰페이지(reviewList.jsp) 리뷰 삭제
+	//-------------------------------------------------------------------
+	public void deleteReveiw(String email, int exhID) {
+		Connection 			conn 	= null;
+		PreparedStatement 	pstmt 	= null;
+		String 				sql 	= null;
+		
+		try {
+			conn = ds.getConnection();
+			sql = "DELETE FROM artshowdb.review WHERE email=? and exhID=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, email);
+			pstmt.setInt(2, exhID);
+			
+			pstmt.executeUpdate();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {if(pstmt!=null)pstmt.close();} catch (SQLException e) {}
+			try {if(conn!=null)conn.close();} catch (SQLException e) {}
+		}
+	}
+	
+	//-------------------------------------------------------------------
+	// 리뷰페이지(reviewList.jsp) 리뷰 삭제
+	//-------------------------------------------------------------------
+	public int getExhID(String exhName) {
+		Connection 			conn 	= null;
+		PreparedStatement 	pstmt 	= null;
+		ResultSet 			rs 		= null;
+		String 				sql 	= "";
+		
+		int exhID = 0;
+		
+		try {
+			conn 	= ds.getConnection();
+			sql  	=  "SELECT  exhID ";
+			sql		+= "FROM	artshow ";
+			sql		+= "WHERE   exhName=?	 ";
+			
+			pstmt 	= conn.prepareStatement(sql);
+			pstmt.setString(1, exhName);
+			rs 		= pstmt.executeQuery();
+			
+			if(rs.next()) {
+				exhID = rs.getInt(1);
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			
+		} finally {
+			if(rs    != null) try {rs.close();   } catch(SQLException ex) {}
+			if(pstmt != null) try {pstmt.close();} catch(SQLException ex) {}
+			if(conn  != null) try {conn.close(); } catch(SQLException ex) {}
+		}
+		return exhID;
+	}
+	
 }

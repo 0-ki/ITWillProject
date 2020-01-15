@@ -14,12 +14,13 @@ import com.doArtShow.controls.exhibition.ExhibitionListController;
 import com.doArtShow.controls.exhibition.ExhibitionMyListController;
 import com.doArtShow.controls.exhibition.ExhibitionReviewFormController;
 import com.doArtShow.controls.exhibition.ExhibitionUpdateController;
-import com.doArtShow.controls.exhibition.IndexListController;
 import com.doArtShow.controls.exhibition.searchListController;
 import com.doArtShow.controls.exhibition.searchMapController;
 import com.doArtShow.controls.member.FindEmailController;
 import com.doArtShow.controls.member.FindPwController;
-import com.doArtShow.controls.member.IndexController;
+import com.doArtShow.controls.member.MemProfileUpdateController;
+import com.doArtShow.controls.member.MemRevDeleteController;
+import com.doArtShow.controls.member.MemRevUpdateController;
 import com.doArtShow.controls.member.MemReviewListController;
 import com.doArtShow.controls.member.MemVisitListController;
 import com.doArtShow.controls.member.MemWishListController;
@@ -71,8 +72,6 @@ public class ContextLoaderListener implements ServletContextListener{
 			//-------------------------------------------------------------------------------------------------------------
 			//			programmed by jungmi - begin
 			//-------------------------------------------------------------------------------------------------------------			
-			
-			
 			sc.setAttribute("/client/auth/checkEmail.do", 	new MemberEmailChkController().setMemberDao(memberDao) );
 			
 			//회원 가입(추가)
@@ -89,6 +88,9 @@ public class ContextLoaderListener implements ServletContextListener{
 			
 			//회원 정보 수정
 			sc.setAttribute("/client/auth/memberUpdate.do", new MemberUpdateController().setMemberDao(memberDao));
+			
+			//회원 정보 수정
+			sc.setAttribute("/client/auth/profileImgUpdate.do", new MemProfileUpdateController().setMemberDao(memberDao));
 			
 			//이메일 찾기
 			sc.setAttribute("/client/auth/findEmail.do", 	new FindEmailController().setMemberDao(memberDao));
@@ -110,17 +112,18 @@ public class ContextLoaderListener implements ServletContextListener{
 			
 			//회원 다녀온 전시 목록 구성
 			sc.setAttribute("/client/auth/visitList.do", 	new MemVisitListController().setMemberDao(memberDao));
+									
+			//회원 다녀온 전시 목록 구성
+			sc.setAttribute("/client/auth/revUpdate.do", 	new MemRevUpdateController().setMemberDao(memberDao));
 			
-			//인덱스 페이지에서 슬라이더에 최신/인기 전시 구성
-			sc.setAttribute("/indexContent.do", 	new IndexListController().setExhibitionDao(exhibitionDao));
+			//회원 다녀온 전시 목록 구성
+			sc.setAttribute("/client/auth/revDelete.do", 	new MemRevDeleteController().setMemberDao(memberDao));
 			
 			// 검색기능
 			sc.setAttribute("/search.do", new searchListController().setExhibitionDao(exhibitionDao));
 
 			// 지도 페이지
 			sc.setAttribute("/searchMap.do", new searchMapController().setExhibitionDao(exhibitionDao));
-			
-			sc.setAttribute("/start", new IndexController().setExhibitionDao(exhibitionDao));
 						
 			
 			
