@@ -4,20 +4,24 @@
 <%@ taglib uri = "http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <jsp:include page="../../module/1doctype_head.jsp"></jsp:include>
 <style>
-.boxFull > table{
-	margin-right: 10px;
-	float:left;
-	margin-top:15px;
-	height:auto;
+.mainDiv{
+	padding-left : 50px;
 }
-.revExhName b{
-	display: inline-block;
-	padding:0px;
-	width: 250px;
+.revExhName{
+	width:250px;
+	overflow: hidden;
+}
+.revExhNameSpan{
+	font-weight : bold;
+	font-size : 15pt;
+	display : inline-block;
+	padding : 0px;
+	width: 230px;
 	white-space: nowrap;
 	text-overflow: ellipsis;
 	overflow: hidden;
 }
+
 .exhNameDiv b{
 	display: inline-block;
 	padding:0px;
@@ -59,38 +63,42 @@
 }
 
 
-        .revImg {
-            padding: 10px;
-            height: 190px;
-            width: 200px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            overflow: hidden;
-            float: left;
-        }
+.revImg {
+	padding: 10px;
+    height: 190px;
+    width: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    float: left;
+}
 
         .revImg img {
             height: 150px;
             width: auto;
         }
 
-        .revExhName {
-            min-height: 30px;
-            margin-bottom: 10px;
-        }
+        
 
 
         .revBody {
             float: left;
-            width: 250px;
+            width: 260px;
             height: 190px;
             padding: 10px;
         }
 
         .revContent {
             height: 130px;
-            overflow: hidden;
+            width: 250px;
+            padding : 10px;
+            background-color: #f5f5f5;
+            
+            display: inline-block;
+			white-space: nowrap;
+			text-overflow: ellipsis;
+			overflow: hidden;
         }
 
         .reviewNav {
@@ -100,6 +108,10 @@
         .reviewNav a {
             padding: 0px;
         }
+        .oneRev{
+        float:left;
+	overflow: hidden;
+}
 </style>
 <body>
   <jsp:include page="../../module/2body_first.jsp"></jsp:include>
@@ -117,7 +129,7 @@
             </span>
           </label>
           <a href="<%=request.getContextPath()%>/client/auth/reviewList.do" class="seeAll"
-            style="color: skyblue;">전체보기</a>
+            >전체보기</a>
           <c:choose>
             <c:when test="${empty requestScope.reviewList}">
               <div class="box">
@@ -134,12 +146,17 @@
         </div>
         <div class="revBody">
             <div class="revExhName" id="revExhName<c:out value='${vs.index}'/>">
-                <b>${review.exhName}
-                    <span style="float: right;">
+                <span class="revExhNameSpan">
+                	${review.exhName}
+                </span>
+                
                         <div class="navbar dropleft float-right reviewNav">
+                        
                             <div class="navbar-item dropdown">
+                            
                                 <a class="nav-link" href="#" data-toggle="dropdown">
-                                    <i class="fa fa-ellipsis-v"></i>
+                                    <span style="float: right; font-size: 1.2em;"><i class="fa fa-ellipsis-v"></i>
+                                	</span>
                                 </a>
                                 <div class="dropdown-menu" id="dropdown-menu">
                                     <a class="dropdown-item"
@@ -149,8 +166,6 @@
                                 </div>
                             </div>
                         </div>
-                    </span>
-                </b>
             </div>
             <div class="revContent">
                 ${review.revContent}
@@ -220,7 +235,7 @@
             </span>
           </label>
           <a href="<%=request.getContextPath()%>/client/auth/wishList.do" class="seeAll"
-            style="color: skyblue;">전체보기</a>
+            >전체보기</a>
           <c:choose>
             <c:when test="${empty requestScope.wishList}">
               <div class="  box">
@@ -255,7 +270,7 @@
             </span>
           </label>
           <a href="<%=request.getContextPath()%>/client/auth/visitList.do" class="seeAll"
-            style="color: skyblue;">전체보기</a>
+            >전체보기</a>
           <c:choose>
             <c:when test="${empty requestScope.visitList}">
               <div class="box">
@@ -289,7 +304,7 @@
             </span>
           </label>
           <a href="<%=request.getContextPath()%>/client/exhibition/myList.do" class="seeAll"
-            style="color: skyblue;">전체보기</a>
+            >전체보기</a>
 
           <c:choose>
             <c:when test="${empty requestScope.myExhList}">

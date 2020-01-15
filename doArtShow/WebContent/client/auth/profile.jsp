@@ -1,6 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <style>
+.seeAll{
+      text-align : right;
+      float: right;
+      padding-top: 5px;
+    }
 .box a:link, .iconDiv a:link {
 color: gray;
 text-decoration: none;
@@ -27,20 +32,27 @@ font-size: 1.2em;
 }
 
 .boxFull{
-		min-height : 150px;
+		min-height : 500px;
 		overflow: hidden;
-		margin-bottom : 25px;
 	}
 
 @media(max-width: 1200px){
 	.boxFull{
-		min-width: 80vw;
+		min-width: 100%;
+		height:auto;
+	}
+	.oneRev{
+		min-width: 40vw;
 	}
 
 }
 @media(min-width: 1200px){
 	.boxFull{
-		min-width: 60vw;
+		min-width: 100%;
+		height:auto;
+	}
+	.oneRev{
+		min-width : 30vw;
 	}
 }
 @media(max-width: 1200px){	
@@ -92,7 +104,7 @@ font-size: 1.2em;
 <!-- ======================= profileDiv ================================= -->
 
 
-<div class="container col-lg-4" id="profileDiv" style="margin-top:25px; padding-rigth:20px;">
+<div class="container col-lg-2" id="profileDiv" style="margin-top:25px; padding-rigth:20px;">
     <div id="profileImg">
         <img  style="max-width : 200px;" src="/doArtShow/memberProfileImages/${member.profileImg}" alt="${member.profileImg}">
     </div>

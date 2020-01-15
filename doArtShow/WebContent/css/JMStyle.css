@@ -51,9 +51,9 @@
 		align : left;
 		font-weight: bold;
 	}
-    #mainContainer > div > a:link { color: black; text-decoration: none;}
-	#mainContainer > div > a:visited { color: black; text-decoration: none;}
-	#mainContainer > div > a:hover { color: white; text-decoration: none;}
+    #mainContainer > div > a:link { color: skyblue; text-decoration: none;}
+	#mainContainer > div > a:visited { color: skyblue; text-decoration: none;}
+	#mainContainer > div > a:hover { color: skyblue; text-decoration: none;}
 	#mainContainer > div > a { width:200px; margin:10px;}
    
    #pDiv{
@@ -71,7 +71,7 @@
 		    min-height: 63vh;
 		    margin-top: 17vh;
 		    margin-bottom: 10vh;
-		    width: 85vw;
+		    width: 90vw;
 		}
     }
     @media (min-width: 1340px){
@@ -79,7 +79,7 @@
 		    min-height: 63vh;
 		    margin-top: 17vh;
 		    margin-bottom: 10vh;
-		    width: 84vw;
+		    width: 90vw;
 		}
     }
 
@@ -103,22 +103,7 @@
 	        border : 1px dashed #bcbcbc;
 	    }
     }
-    @media (max-width: 1020px) {
-	    .boxFull{
-	        height : 30vh;
-	        width : 82vw;
-	        margin-bottom : 10vh;
-	        overflow:hidden;
-	    }
-    }
-    @media (min-width: 1020px) {
-	    .boxFull{
-	        height : 30vh;
-	        width : 55vw;
-	        margin-bottom : 10vh;
-	        overflow:hidden;
-	    }
-    }
+
 
     .box a{
       vertical-align: middle;
@@ -136,12 +121,6 @@
 
     .iconDiv label{
       font-size: 11pt;
-    }
-    
-    .seeAll{
-      font-size: 10pt;
-      float: right;
-      padding-top: 5px;
     }
 
     @media (max-width: 1020px) {
