@@ -3,11 +3,18 @@ package com.doArtShow.dto;
 import java.sql.Timestamp;
 
 public class MyReviewDto {
+	private int			exhID;		
 	private String 		revContent;
 	private Timestamp 	revDate;
 	private String 		exhName;
 	private String		imageFile1;
 	
+	public int getExhID() {
+		return exhID;
+	}
+	public void setExhID(int exhID) {
+		this.exhID = exhID;
+	}
 	public String getRevContent() {
 		return revContent;
 	}

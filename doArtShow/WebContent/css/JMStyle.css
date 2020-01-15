@@ -1,168 +1,223 @@
-<style>
-/* top과 bottom 사이의 메인 구조 */
-	th{
-	/* 이부분이 필요한지 모르겠다. memberDetail에서는 필요한데... 그냥 쿠키문제인지 */
-		width : 10vw;
-	}
-	
-	/* 테이블의 tr의 label */
-	.tableLabel{
-		margin-right: 5vw;
-		width:20vw;    
-    }
-    
-    /* input text 칸 */
-    #mainContainer > .form-control{
-     	width: 45vh;
-    }
-    
-    /* 라디오버튼, 체크박스 */
-    .form-check-input, .checkbox{
-    	width : 10vw;
-    	margin : 0;
-    	display : inline;
-    }
-    
-    #mainContainer > tr{
-    	height:15vh;
-    }
-    .check_tr{
-    	overflow:hidden;
-    	height:5vh;
-    }
-    
-    @media (max-width: 1340px) {
-		#mainContainer{
-			min-height: 63vh;
-			margin-top : 22vh;
-			margin-bottom : 10vh;
-		}
-	}
-    @media (min-width: 1340px) {
-		#mainContainer{
-			min-height: 66vh;
-			margin-bottom : 10vh;
-		}
-	}
-	
-	#formTitle{
-		font-size: 1.8em;
-		margin-bottom : 15vh;
-		align : left;
-		font-weight: bold;
-	}
-    #mainContainer > div > a:link { color: black; text-decoration: none;}
-	#mainContainer > div > a:visited { color: black; text-decoration: none;}
-	#mainContainer > div > a:hover { color: white; text-decoration: none;}
-	#mainContainer > div > a { width:200px; margin:10px;}
-   
-   #pDiv{
-   	margin-top : 15vh;
-   	margin-bottom : 10vh;
-   	font-size : 1.8em;
-   }
 
-    .box a:link , .iconDiv a:link { color: gray; text-decoration: none; }
-    .box a:visited, .iconDiv a:visited { color: gray; text-decoration: none; }
-    .box a:hover , .iconDiv a:hover { color: gray; text-decoration: underline; }
-/* mainContainer */
-    @media (max-width: 1340px){
-		#mainContainer {
-		    min-height: 63vh;
-		    margin-top: 17vh;
-		    margin-bottom: 10vh;
-		    width: 85vw;
-		}
+.box{
+	
+	font-size: 1.2em;
+	font-weight: bold;
+	text-align: center;
+}
+@media (max-width: 1020px) {
+    .box {
+        height: 30vh;
+        width: 82vw;
+        margin-bottom: 10vh;
+        border: 1px dashed #bcbcbc;
     }
-    @media (min-width: 1340px){
-		#mainContainer {
-		    min-height: 63vh;
-		    margin-top: 17vh;
-		    margin-bottom: 10vh;
-		    width: 84vw;
-		}
+}
+
+/* mainContainer*/
+@media (max-width: 1340px) {
+    #mainContainer {
+        min-height: 63vh;
+        margin-top: 17vh;
+        margin-bottom: 10vh;
+        width: 85vw;
     }
+}
+
+@media (min-width: 1340px) {
+    #mainContainer {
+        min-height: 63vh;
+        margin-top: 17vh;
+        margin-bottom: 10vh;
+        width: 84vw;
+    }
+}
+
+@media (max-width: 1340px) {
+    #mainContainer {
+        min-height: 63vh;
+        margin-top: 17vh;
+        margin-bottom: 10vh;
+    }
+}
+
+@media (min-width: 1340px) {
+    #mainContainer {
+        min-height: 66vh;
+        margin-bottom: 10vh;
+    }
+}
+
+@media (min-width: 1020px) {
+    .box {
+        height: 30vh;
+        /* width: 75vw; */
+        margin-bottom: 10vh;
+    }
+}
+.box {
+        border: 1px dashed #bcbcbc;
+    }
+
+
+/* top과 bottom 사이의 메인 구조 */
+
+
+
+/* 테이블의 tr의 label */
+.tableLabel {
+    margin-right: 5vw;
+    width: 20vw;
+}
+
+/* input text 칸 */
+#mainContainer>.form-control {
+    width: 45vh;
+}
+
+/* 라디오버튼, 체크박스 */
+.form-check-input,
+.checkbox {
+    width: 10vw;
+    margin: 0;
+    display: inline;
+}
+
+#mainContainer>tr {
+    height: 15vh;
+}
+
+.check_tr {
+    overflow: hidden;
+    height: 5vh;
+}
+
+
+
+#formTitle {
+    font-size: 1.8em;
+    margin-bottom: 15vh;
+    text-align: left;
+    font-weight: bold;
+}
+
+#mainContainer>div>a:link {
+    color: black;
+    text-decoration: none;
+}
+
+#mainContainer>div>a:visited {
+    color: black;
+    text-decoration: none;
+}
+
+#mainContainer>div>a:hover {
+    color: white;
+    text-decoration: none;
+}
+
+#mainContainer>div>a {
+    width: 200px;
+    margin: 10px;
+}
+
+/* 로그인이 필요한 페이지 입니다. */
+#askLogin {
+    height : 60vh;
+    overflow : hidden;
+    text-align: center;
+}
+#pDiv{
+	 font-size: 2.5em;
+	 padding : 50px;
+	 height : 40vh;
+     overflow : hidden;
+}
+#askLogin > div > a {
+	
+	width : 20vw;
+	font-size: 1.8em;
+	color: white;
+}
+
 
 /* memberPage.jsp에 대한 css */
-    #iconBox{
-        float: left;
-    }
-    @media (max-width: 1020px) {
-	    .box{
-	        height : 30vh;
-	        width : 82vw;
-	        margin-bottom : 10vh;
-	        border : 1px dashed #bcbcbc;
-	    }
-    }
-    @media (min-width: 1020px) {
-	    .box{
-	        height : 30vh;
-	        width : 55vw;
-	        margin-bottom : 10vh;
-	        border : 1px dashed #bcbcbc;
-	    }
-    }
-    @media (max-width: 1020px) {
-	    .boxFull{
-	        height : 30vh;
-	        width : 82vw;
-	        margin-bottom : 10vh;
-	        overflow:hidden;
-	    }
-    }
-    @media (min-width: 1020px) {
-	    .boxFull{
-	        height : 30vh;
-	        width : 55vw;
-	        margin-bottom : 10vh;
-	        overflow:hidden;
-	    }
-    }
 
-    .box a{
-      vertical-align: middle;
-      line-height: 250px;
-    }
 
-    .iconDiv{
-      text-align: center;
-      display: inline-block;
-      width: 115px;
-    }
-    .iconDiv label{
-      color: gray;
-    }
 
-    .iconDiv label{
-      font-size: 11pt;
-    }
-    
-    .seeAll{
-      font-size: 10pt;
-      float: right;
-      padding-top: 5px;
-    }
+.seeAll {
+    font-size: 10pt;
+    float: right;
+    padding-top: 5px;
+    text-align: right;
+}
 
-    @media (max-width: 1020px) {
-      #profile{
-        float: left;
-        padding-top: 40px;
-        margin-left: 30px;
-      }
-      #profileImg{
-        float: left;
-      }
-    }
-    #mainBox{
-    	margin-top : 20px;
-    	padding-top : 20px;
-    }
-    
-    iframe {
-    	width : 100%;
-    }
-    
-    
 
-</style>
+#mainDiv {
+    margin-top: 20px;
+    padding-top: 20px;
+}
+
+iframe {
+    width: 100%;
+}
+
+/* myReviewList.jsp */
+.reviewNav {
+    position: relative;
+    min-height: 0px;
+    margin-left: 10px;
+    margin-bottom: 0px;
+}
+
+.oneRevContainer {
+    padding: 20px;
+     !important;
+    width: 100%;
+}
+
+#mainDiv {
+    padding: 0px;
+}
+
+@media (min-width: 992px) {
+    .col-md-8 {
+        width: auto;
+    }
+}
+
+.fa-ellipsis-v {
+    font-size: 1.2em;
+}
+
+#dropdown-menu {
+    min-width: 60px;
+    text-align: center;
+}
+
+#dropdown-menu>a {
+    font-size : 1em;
+}
+
+/* memberPage.jsp */
+.imageForList {
+    width: auto;
+    height: 35vh;
+}
+
+/* memberDelete.jsp */
+#checkIcon {
+    margin-right: 10px;
+}
+
+#deleteList {
+    border: 1px solid #bcbcbc;
+    margin: 2vh;
+    padding-top: 20px;
+
+}
+
+#deleteList>li {
+    margin-left: 5vw;
+    list-style-type: circle;
+}
