@@ -57,15 +57,27 @@
                         	전시등록
                         </a>
                     </li>
+
                     <li>
-                        <a class="page-scroll acss" href="" onclick="return false" id="myBtn">
-                        	로그인
+                        <a class="page-scroll acss" href="" onclick="return false" id="">
+                        	문의하기
                         </a>
                     </li>
                     <li>
+                        <c:choose>
+         
+                        <c:when test="${empty sessionScope.member}">
+                        
                         <a class="page-scroll acss" href="" onclick="return false" id="myBtn">
-                        	문의하기
+                        	로그인
                         </a>
+						</c:when>
+              			<c:when test="${!empty sessionScope.member}">
+                        <a class="page-scroll acss" href="<%=request.getContextPath()%>/client/auth/memberLogOut.do">
+                        	로그아웃
+                        </a>
+                        </c:when>
+                        </c:choose>
                     </li>
                 </ul>
             </div>
