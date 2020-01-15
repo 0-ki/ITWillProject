@@ -23,6 +23,7 @@
     <script language="javascript">
         /* 이미지 불러왔을 때 미리보기 */
         function previewImage(targetObj, img_preview) {
+            $("#imgUseBtn").attr("disabled", false);
             var preview = document.getElementById(img_preview); //div id
             var ua = window.navigator.userAgent;
 
@@ -112,7 +113,7 @@
                     </td>
                 </tr>
                 <tr colspan="2">
-                    <td><input class="btn" type="submit" value="이미지 사용" id="imgUseBtn"></td>
+                    <td><input class="btn" type="submit" value="이미지 사용" id="imgUseBtn" disabled></td>
                     <td><input class="btn" type="button" value="닫기" onclick="javascript:self.close()"></td>
                 </tr>
             </table>
