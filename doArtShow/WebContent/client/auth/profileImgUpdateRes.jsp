@@ -28,9 +28,14 @@
             <center>수정이 완료되었습니다.</center>
         </div>
         <div align="center">
-            <a class="btn" href="javascript:self.close()">닫기</a>
+        <input class="btn" type="button" value="닫기" onClick="closeFn()">
         </div>
     </div>
 </body>
-
+<script>
+	function closeFn(){
+		opener.window.location.reload();
+		self.close();
+	}
+</script>
 </html>

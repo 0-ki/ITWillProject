@@ -18,6 +18,7 @@ import com.doArtShow.controls.exhibition.searchListController;
 import com.doArtShow.controls.exhibition.searchMapController;
 import com.doArtShow.controls.member.FindEmailController;
 import com.doArtShow.controls.member.FindPwController;
+import com.doArtShow.controls.member.IndexController;
 import com.doArtShow.controls.member.MemProfileUpdateController;
 import com.doArtShow.controls.member.MemRevDeleteController;
 import com.doArtShow.controls.member.MemRevUpdateController;

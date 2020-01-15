@@ -63,4 +63,12 @@ public class MemberDto {
 		this.profileImg = profileImg;
 		return this;
 	}
+
+	@Override
+	public String toString() {
+		return "MemberDto [email=" + email + ", name=" + name + ", birth=" + birth + ", gender=" + gender + ", pw=" + pw
+				+ ", profileImg=" + profileImg + "]";
+	}
+	
+	
 }

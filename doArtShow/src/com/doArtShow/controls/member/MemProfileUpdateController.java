@@ -22,10 +22,15 @@ public class MemProfileUpdateController implements Controller{
 		
 		session = (HttpSession)model.get("session");
 		MemberDto member = (MemberDto)session.getAttribute("member");			
-		String email = member.getEmail();
 		
-		memberDao.updateProfileImg(profileImg, email);
+		memberDao.updateProfileImg(profileImg, member.getEmail());
 		
+		member = memberDao.selectInfo(member.getEmail());
+		session.removeAttribute("member");
+		
+		session.setAttribute("member",member);
+		
+		System.out.println(member);
 		return "/client/auth/profileImgUpdateRes.jsp";
 
 	}

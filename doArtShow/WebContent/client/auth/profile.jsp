@@ -36,17 +36,12 @@ font-size: 1.2em;
 	.boxFull{
 		min-width: 80vw;
 	}
-	.oneRev{
-		width:35%;
-	} 
+
 }
 @media(min-width: 1200px){
 	.boxFull{
 		min-width: 60vw;
 	}
-	.oneRev{
-		width:45%;
-	} 
 }
 @media(max-width: 1200px){	
 	#profileImg{
@@ -99,7 +94,7 @@ font-size: 1.2em;
 
 <div class="container col-lg-4" id="profileDiv" style="margin-top:25px; padding-rigth:20px;">
     <div id="profileImg">
-        <img  style="max-width : 200px;" src="/doArtShow/memberProfileImages/${member.profileImg}">
+        <img  style="max-width : 200px;" src="/doArtShow/memberProfileImages/${member.profileImg}" alt="${member.profileImg}">
     </div>
     <div id="profile">
         <div id="profileName" style="font-size: 3em; margin-top:20px;font-weight:bold; margin-bottom:100px;">

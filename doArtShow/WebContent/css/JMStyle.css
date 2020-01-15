@@ -163,18 +163,18 @@ iframe {
 }
 
 /* myReviewList.jsp */
-.reviewNav {
+/* .reviewNav {
     position: relative;
     min-height: 0px;
     margin-left: 10px;
     margin-bottom: 0px;
-}
+} */
 
-.oneRevContainer {
+/* .oneRevContainer {
     padding: 20px;
      !important;
     width: 100%;
-}
+} */
 
 #mainDiv {
     padding: 0px;

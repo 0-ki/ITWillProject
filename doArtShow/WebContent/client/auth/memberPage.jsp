@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ taglib uri = "http://java.sun.com/jsp/jstl/functions" prefix = "fn" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri = "http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <jsp:include page="../../module/1doctype_head.jsp"></jsp:include>
 <style>
 .boxFull > table{
@@ -10,6 +10,96 @@
 	margin-top:15px;
 	height:auto;
 }
+.revExhName b{
+	display: inline-block;
+	padding:0px;
+	width: 250px;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	overflow: hidden;
+}
+.exhNameDiv b{
+	display: inline-block;
+	padding:0px;
+	width: 190px;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	overflow: hidden;
+}
+.oneExhDiv {
+	text-align: center;
+    width: 200px;
+    height : 344px;
+    overflow: hidden;
+    float: left;
+    margin: 10px;
+}
+
+.exhImgDiv {
+	padding: 5px;
+    width: 190px;
+    height: 304px;
+    overflow: hidden;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+.exhImgDiv img {
+    width: 190px;
+    height: auto;
+    overflow: hidden;
+}
+
+.exhNameDiv {
+    height: 30px;
+    overflow: hidden;
+    font-size: 12pt;
+    padding-top: 2px;
+}
+
+
+        .revImg {
+            padding: 10px;
+            height: 190px;
+            width: 200px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            float: left;
+        }
+
+        .revImg img {
+            height: 150px;
+            width: auto;
+        }
+
+        .revExhName {
+            min-height: 30px;
+            margin-bottom: 10px;
+        }
+
+
+        .revBody {
+            float: left;
+            width: 250px;
+            height: 190px;
+            padding: 10px;
+        }
+
+        .revContent {
+            height: 130px;
+            overflow: hidden;
+        }
+
+        .reviewNav {
+            padding: 0px;
+        }
+
+        .reviewNav a {
+            padding: 0px;
+        }
 </style>
 <body>
   <jsp:include page="../../module/2body_first.jsp"></jsp:include>
@@ -38,38 +128,35 @@
             <c:otherwise>
               <div class="boxFull">
                 <c:forEach var="review" items="${reviewList}" varStatus="vs">
-                        <table style="" class="oneRev" id="review <c:out value='${vs.index}'/>">
-                            <tbody style="margin:10px;">
-                            <tr>
-                                <td rowspan="2" style="width:30%"><img src="/doArtShow/exhibitionImages/${review.imageFile1}"
-                                    style="width:auto; height:15vh; margin-bottom:10vh; padding: 5px;" ></td>
-                                <td style="height:10px; overflow:hidden; padding:0px; text-align:left; font-size: 1.2em">
-                                <div style="display: inline-block; padding:0px; width: 250px; white-space: nowrap; text-overflow: ellipsis;
-                                     overflow: hidden;" id="revExhName<c:out value='${vs.index}'/>">
-                                	<b style="font-size: 1.2em">${review.exhName}</b>
+                <div class="oneRev">
+        <div class="revImg">
+            <img src="/doArtShow/exhibitionImages/${review.imageFile1}">
+        </div>
+        <div class="revBody">
+            <div class="revExhName" id="revExhName<c:out value='${vs.index}'/>">
+                <b>${review.exhName}
+                    <span style="float: right;">
+                        <div class="navbar dropleft float-right reviewNav">
+                            <div class="navbar-item dropdown">
+                                <a class="nav-link" href="#" data-toggle="dropdown">
+                                    <i class="fa fa-ellipsis-v"></i>
+                                </a>
+                                <div class="dropdown-menu" id="dropdown-menu">
+                                    <a class="dropdown-item"
+                                        href="javascript:openRevModal(<c:out value='${vs.index}'/>)">수정하기</a>
+                                    <a class="dropdown-item"
+                                        href="javascript:confirmDeleteRev(<c:out value='${vs.index}'/>)">삭제하기</a>
                                 </div>
-                                    
-                                </td>
-                            	<td rowspan="2">
-                            		
-                             		<div class="navbar dropleft float-right reviewNav" style="height:25vh;">		  	 	
-                                    <div class="navbar-item dropdown">
-                                        <a  class="nav-link dropdown-toggle" href="#" data-toggle="dropdown">
-                                        <i class="fa fa-ellipsis-v" style="margin-left:50px;"></i>
-                                        </a>
-                                        <div class="dropdown-menu" id="dropdown-menu">
-                                            <a class="dropdown-item" href="javascript:openRevModal(<c:out value='${vs.index}'/>)">수정하기</a>
-                                            <a class="dropdown-item" href="javascript:confirmDeleteRev(<c:out value='${vs.index}'/>)">삭제하기</a>
-                                        </div>
-                                    </div>
-                                    </div>
-                            	</td>
-                            </tr>
-                            <tr>
-                                <td><div style="height:200px; padding:5px; background-color:#f5f5f5; overflow:hidden;">${review.revContent}</div></td>
-                            </tr>
-                            </tbody>
-                        </table>
+                            </div>
+                        </div>
+                    </span>
+                </b>
+            </div>
+            <div class="revContent">
+                ${review.revContent}
+            </div>
+        </div>
+    </div>
                         <div class="modal fade" id="revUpdateModal<c:out value='${vs.index}'/>" role="dialog">
                                 <div class="modal-dialog">
                                     <form method="post" name="reviewUpdateForm">
@@ -133,7 +220,7 @@
             </span>
           </label>
           <a href="<%=request.getContextPath()%>/client/auth/wishList.do" class="seeAll"
-            style="color: skyblue;">전체보기</a></p>
+            style="color: skyblue;">전체보기</a>
           <c:choose>
             <c:when test="${empty requestScope.wishList}">
               <div class="  box">
@@ -142,18 +229,19 @@
               </div>
             </c:when>
             <c:otherwise>
-              <div class="  boxFull">
+              <div class="boxFull">
                 <c:forEach var="exhibition" items="${wishList}">
-                <div style="text-align:center; width:15vw;; float:left; margin : 10px;">
-                  <div>
-                  <a href="<%=request.getContextPath()%>/client/exhibition/ExContentView.do?exhID=${exhibition.exhID}">
-                  <img class="imageForList" src="/doArtShow/exhibitionImages/${exhibition.imageFile1}" style="width:10vw; height:auto;">
-                  </a>                  	
-                  </div>
-                  <div>
-                    <b>${exhibition.exhName}</b>
-                  </div>
-                </div>
+                <div class="oneExhDiv">
+			        <div class="exhImgDiv">
+			            <a href="<%=request.getContextPath()%>/client/exhibition/ExContentView.do?exhID=${exhibition.exhID}">
+			                <img
+			                    src="/doArtShow/exhibitionImages/${exhibition.imageFile1}">
+			            </a>
+			        </div>
+			        <div class="exhNameDiv">
+			            <b>${exhibition.exhName}</b>
+			        </div>
+			    </div>
                 </c:forEach>
               </div>
             </c:otherwise>
@@ -167,7 +255,7 @@
             </span>
           </label>
           <a href="<%=request.getContextPath()%>/client/auth/visitList.do" class="seeAll"
-            style="color: skyblue;">전체보기</a></p>
+            style="color: skyblue;">전체보기</a>
           <c:choose>
             <c:when test="${empty requestScope.visitList}">
               <div class="box">
@@ -177,16 +265,17 @@
             <c:otherwise>
               <div class="boxFull">
                 <c:forEach var="exhibition" items="${visitList}">
-                  <div style="text-align:center; width:15vw;; float:left; margin : 10px;">
-                  <div>
-                  <a href="<%=request.getContextPath()%>/client/exhibition/ExContentView.do?exhID=${exhibition.exhID}">
-                  	<img class="imageForList" src="/doArtShow/exhibitionImages/${exhibition.imageFile1}" style="width:10vw; height:auto;">
-                  </a>
-                  </div>
-                  <div>
-                    <b>${exhibition.exhName}</b>
-                  </div>
-                </div>
+                <div class="oneExhDiv">
+			        <div class="exhImgDiv">
+			            <a href="<%=request.getContextPath()%>/client/exhibition/ExContentView.do?exhID=${exhibition.exhID}">
+			                <img
+			                    src="/doArtShow/exhibitionImages/${exhibition.imageFile1}">
+			            </a>
+			        </div>
+			        <div class="exhNameDiv">
+			            <b>${exhibition.exhName}</b>
+			        </div>
+			    </div>
                 </c:forEach>
               </div>
             </c:otherwise>
@@ -200,7 +289,7 @@
             </span>
           </label>
           <a href="<%=request.getContextPath()%>/client/exhibition/myList.do" class="seeAll"
-            style="color: skyblue;">전체보기</a></p>
+            style="color: skyblue;">전체보기</a>
 
           <c:choose>
             <c:when test="${empty requestScope.myExhList}">
@@ -211,16 +300,17 @@
             <c:otherwise>
               <div class="boxFull">
                 <c:forEach var="exhibition" items="${myExhList}">
-                  <div style="text-align:center; width:15vw;; float:left; margin:10px;">
-                  <div>
-                  <a href="<%=request.getContextPath()%>/client/exhibition/ExContentView.do?exhID=${exhibition.exhID}">
-                  	<img class="imageForList" src="/doArtShow/exhibitionImages/${exhibition.imageFile1}" style="width:10vw; height:auto;">
-                  </a>
-                  </div>
-                  <div>
-                    <b>${exhibition.exhName}</b>
-                  </div>
-                </div>
+                <div class="oneExhDiv">
+			        <div class="exhImgDiv">
+			            <a href="<%=request.getContextPath()%>/client/exhibition/ExContentView.do?exhID=${exhibition.exhID}">
+			                <img
+			                    src="/doArtShow/exhibitionImages/${exhibition.imageFile1}">
+			            </a>
+			        </div>
+			        <div class="exhNameDiv">
+			            <b>${exhibition.exhName}</b>
+			        </div>
+			    </div>
                 </c:forEach>
               </div>
             </c:otherwise>

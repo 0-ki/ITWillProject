@@ -127,12 +127,13 @@ function checkUpdateForm(updateForm){
         return false;
     }
 	if(!updateForm.pw.value){
-		$("#pw_check").text("수정할 비밀번호를 입력하세요");
+		$("#pw_check").text("본인인증을 위해 비밀번호를 입력하세요");
 		$("#pw_check").css('color','red');
 		updateForm.pw.focus();
 		return false;
 	}
 	
+	confirm("회원정보를 수정하시겠습니까?")
 	updateForm.action="memberUpdate.do"
 	updateForm.submit();
 }
