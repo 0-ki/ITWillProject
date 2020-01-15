@@ -18,6 +18,8 @@ import com.doArtShow.controls.exhibition.ExhibitionListController;
 import com.doArtShow.controls.exhibition.ExhibitionMyListController;
 import com.doArtShow.controls.exhibition.ExhibitionReviewFormController;
 import com.doArtShow.controls.exhibition.ExhibitionUpdateController;
+import com.doArtShow.controls.exhibition.ListSortController;
+import com.doArtShow.controls.exhibition.TagSortController;
 import com.doArtShow.controls.exhibition.VisitChkController;
 import com.doArtShow.controls.exhibition.WishChkController;
 import com.doArtShow.controls.member.MemberAddController;
@@ -140,6 +142,12 @@ public class ContextLoaderListener implements ServletContextListener{
 			
 			//리뷰 작성폼
 			sc.setAttribute("/client/exhibition/revAdd.do", new ExhibitionReviewFormController().setReviewDao(reviewDao));
+			
+			//리스트 정렬
+			sc.setAttribute("/client/exhibition/artListSort.do", new ListSortController().setExhibitionDao(exhibitionDao));
+			
+			//태그 정렬
+			sc.setAttribute("/client/exhibition/artTagSort.do", new TagSortController().setExhibitionDao(exhibitionDao));
 			//-------------------------------------------------------------------------------------------------------------
 			//			programmed by seran - end
 			//-------------------------------------------------------------------------------------------------------------

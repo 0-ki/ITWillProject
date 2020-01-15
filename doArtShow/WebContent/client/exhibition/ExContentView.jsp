@@ -382,7 +382,7 @@ html {
 				},
 				error : function(request, status, error){
 					var msg = "ERROR : <br>"
-						msg += reqeust.status +"<br>"+ request.responseText +"<br>"+ error;
+						msg += request.status +"<br>"+ request.responseText +"<br>"+ error;
 				}
 			});
 		}
@@ -469,7 +469,7 @@ html {
 				},
 				error : function(request, status, error){
 					var msg = "ERROR : <br>"
-						msg += reqeust.status +"<br>"+ request.responseText +"<br>"+ error;
+						msg += request.status +"<br>"+ request.responseText +"<br>"+ error;
 				}
 			});
 		});

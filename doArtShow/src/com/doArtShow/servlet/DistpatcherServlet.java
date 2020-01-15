@@ -172,6 +172,18 @@ public class DistpatcherServlet extends HttpServlet {
 							  .setEmail(request.getParameter("email"))
 		            		  .setExhID(Integer.parseInt(request.getParameter("exhID"))));
 				  }
+			  }else if("/client/exhibition/artListSort.do".equals(servletPath)){ //리스트정렬
+				  JSONObject jsonObj = new JSONObject();
+				  model.put("jsonObj", jsonObj);
+				  
+				  model.put("sortBtn", request.getParameter("sortBtn"));
+				  
+			  }else if("/client/exhibition/artTagSort.do".equals(servletPath)){ //태그정렬
+				  JSONObject jsonObj = new JSONObject();
+				  model.put("jsonObj", jsonObj);
+				  
+				  model.put("ctgBtn", request.getParameter("ctgBtn"));
+				  model.put("ctgName", request.getParameter("ctgName"));
 		      //--------------------------------------------------------------------------------------
 		  	  // begin - modified by Hojeong 20/01/03(yy/mm/dd)	
 	    	  //--------------------------------------------------------------------------------------

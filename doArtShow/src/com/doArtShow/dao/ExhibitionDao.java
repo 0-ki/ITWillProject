@@ -9,6 +9,7 @@ import java.util.List;
 
 import javax.sql.DataSource;
 
+import com.doArtShow.dto.ExhListDto;
 import com.doArtShow.dto.ExhibitionDto;
 import com.doArtShow.dto.ReviewDto;
 import com.doArtShow.dto.ReviewListDto;
@@ -112,7 +113,7 @@ public class ExhibitionDao {
 	}
 
 	//전시목록을 출력하는 메서드(전체보기, 내림차순)
-	public List<ExhibitionDto> selectList(){
+	public List<ExhListDto> selectList(){
 		System.out.println("##4번 ExhibitionDao실행 - selectList()");
 		
 		Connection conn = null;
@@ -120,18 +121,18 @@ public class ExhibitionDao {
 		ResultSet rs = null;
 		
 		String sql = "SELECT exhID, imageFile1, exhName, exhPlace, exhStartDate, exhEndDate FROM artshowdb.artshow ORDER BY exhID ASC";
-		ArrayList<ExhibitionDto> lists = null;
+		ArrayList<ExhListDto> lists = null;
 		
 		try {
 			conn = ds.getConnection();
 			pstmt = conn.prepareStatement(sql);
 			rs = pstmt.executeQuery();
 			
-			lists = new ArrayList<ExhibitionDto>();
-			ExhibitionDto art = null;
+			lists = new ArrayList<ExhListDto>();
+			ExhListDto art = null;
 			
 			while(rs.next()) {
-				art = new ExhibitionDto();
+				art = new ExhListDto();
 				
 				art.setExhID(rs.getInt("exhID"));
 				art.setImageFile1(rs.getString("imageFile1"));
@@ -151,6 +152,7 @@ public class ExhibitionDao {
 		    try {if (conn != null) conn.close();} catch(Exception e) {}
 		}
 		
+		System.out.println("lists : " + lists);
 		return lists;
 		
 	}//end - public List<ExhibitionDto> selectList(){
@@ -185,6 +187,196 @@ public class ExhibitionDao {
 		return listCnt;
 		
 	}//end - public int getListCount(){
+	
+	//정렬로 리스트 출력
+	public List<ExhListDto> selectSortList(String sortBtn){
+		System.out.println("##4-1번 ExhibitionDao실행 - selectSortList()");
+			
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+			
+		String sql = "";
+		ArrayList<ExhListDto> lists = null;
+			
+		try {
+			conn = ds.getConnection();
+			if(sortBtn.equals("sortBtn1")){ //진행중전시
+				sql = "SELECT exhID, imageFile1, exhName, exhPlace, exhStartDate, exhEndDate FROM artshowdb.artshow WHERE DATE(exhStartDate)<=DATE(now()) AND DATE(exhEndDate)>=DATE(now()) ORDER BY exhStartDate DESC";
+			}else if(sortBtn.equals("sortBtn2")){ //인기전시
+				sql = "SELECT exhID, imageFile1, exhName, exhPlace, exhStartDate, exhEndDate FROM artshowdb.artshow ORDER BY exhReadCount DESC";
+			}else if(sortBtn.equals("sortBtn3")){ //곧종료전시
+				sql = "SELECT exhID, imageFile1, exhName, exhPlace, exhStartDate, exhEndDate FROM artshowdb.artshow WHERE DATE(exhEndDate)>=DATE(now()) ORDER BY exhEndDate ASC";
+			}else if(sortBtn.equals("sortBtn4")){ //종료전시
+				sql = "SELECT exhID, imageFile1, exhName, exhPlace, exhStartDate, exhEndDate FROM artshowdb.artshow WHERE DATE(exhEndDate)<DATE(now()) ORDER BY exhEndDate DESC";
+			}
+			pstmt = conn.prepareStatement(sql);
+				
+			rs = pstmt.executeQuery();
+				
+			lists = new ArrayList<ExhListDto>();
+			ExhListDto art = null;
+				
+			while(rs.next()) {
+				art = new ExhListDto();
+					
+				art.setExhID(rs.getInt("exhID"));
+				art.setImageFile1(rs.getString("imageFile1"));
+				art.setExhName(rs.getString("exhName"));
+				art.setExhPlace(rs.getString("exhPlace"));
+				art.setExhStartDate(rs.getString("exhStartDate"));
+				art.setExhEndDate(rs.getString("exhEndDate"));
+					
+				lists.add(art);
+			}
+			
+			
+				
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {if (rs != null) rs.close();} catch(Exception e) {}
+			try {if (pstmt != null) pstmt.close();} catch(Exception e) {}
+			try {if (conn != null) conn.close();} catch(Exception e) {}
+		}
+		
+		return lists;
+			
+	}
+	
+	//정렬로 전시갯수 
+	public int getSortListCount(String sortBtn) {
+		System.out.println("##4-2번 ExhibitionDao실행 - getTagListCount()");
+			
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+			
+		int listCnt = 0;
+		String sql = "SELECT count(*) FROM artshowdb.artshow";
+			
+		try {
+			conn = ds.getConnection();
+			if(sortBtn.equals("sortBtn1")){ //진행중전시
+				sql = "SELECT count(*) FROM artshowdb.artshow WHERE DATE(exhStartDate)<=DATE(now()) AND DATE(exhEndDate)>=DATE(now())";
+			}else if(sortBtn.equals("sortBtn2")){ //인기전시
+				sql = "SELECT count(*) FROM artshowdb.artshow";
+			}else if(sortBtn.equals("sortBtn3")){ //곧종료전시
+				sql = "SELECT count(*) FROM artshowdb.artshow WHERE DATE(exhEndDate)>=DATE(now())";
+			}else if(sortBtn.equals("sortBtn4")){ //종료전시
+				sql = "SELECT count(*) FROM artshowdb.artshow WHERE DATE(exhEndDate)<DATE(now())";
+			}
+			pstmt = conn.prepareStatement(sql);
+			
+			rs = pstmt.executeQuery();
+						
+			if(rs.next()){
+				listCnt = rs.getInt(1);
+			}
+				
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {if (rs != null) rs.close();} catch(Exception e) {}
+		    try {if (pstmt != null) pstmt.close();} catch(Exception e) {}
+		    try {if (conn != null) conn.close();} catch(Exception e) {}
+		}
+			
+		return listCnt;
+	}
+		
+	//태그로 리스트 출력
+	public List<ExhListDto> selectTagList(String ctgBtn, String ctgName){
+		System.out.println("##4-1번 ExhibitionDao실행 - selectTagList()");
+				
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+				
+		String sql = "";
+		ArrayList<ExhListDto> lists = null;
+				
+		try {
+			conn = ds.getConnection();
+			if(ctgBtn.equals("tagCtg")){ //태그로 찾기
+				sql = "SELECT exhID, imageFile1, exhName, exhPlace, exhStartDate, exhEndDate FROM artshowdb.artshow WHERE exhid IN (SELECT exhid FROM artshowdb.artshowtag WHERE tagname=?)";
+			}else if(ctgBtn.equals("locCtg")){ //위치로 찾기
+				sql = "SELECT exhID, imageFile1, exhName, exhPlace, exhStartDate, exhEndDate FROM artshowdb.artshow WHERE ExhGubun4=? ORDER BY registerDate DESC";
+			}else if(ctgBtn.equals("genCtg")){ //장르로 찾기
+				sql = "SELECT exhID, imageFile1, exhName, exhPlace, exhStartDate, exhEndDate FROM artshowdb.artshow WHERE ExhGubun2=? ORDER BY registerDate DESC";
+			}
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, ctgName);
+				
+			rs = pstmt.executeQuery();
+					
+			lists = new ArrayList<ExhListDto>();
+			ExhListDto art = null;
+					
+			while(rs.next()) {
+				art = new ExhListDto();
+						
+				art.setExhID(rs.getInt("exhID"));
+				art.setImageFile1(rs.getString("imageFile1"));
+				art.setExhName(rs.getString("exhName"));
+				art.setExhPlace(rs.getString("exhPlace"));
+				art.setExhStartDate(rs.getString("exhStartDate"));
+				art.setExhEndDate(rs.getString("exhEndDate"));
+						
+				lists.add(art);
+			}
+					
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {if (rs != null) rs.close();} catch(Exception e) {}
+		    try {if (pstmt != null) pstmt.close();} catch(Exception e) {}
+			try {if (conn != null) conn.close();} catch(Exception e) {}
+		}
+				
+		return lists;
+				
+	}
+
+	//태그로 전시갯수 
+	public int getTagListCount(String ctgBtn, String ctgName) {
+		System.out.println("##4-2번 ExhibitionDao실행 - getTagListCount()");
+		
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		int listCnt = 0;
+		String sql = "SELECT count(*) FROM artshowdb.artshow";
+		
+		try {
+			conn = ds.getConnection();
+			if(ctgBtn.equals("tagCtg")){ //태그로 찾기
+				sql = "SELECT count(*) FROM artshowdb.artshow WHERE exhid IN (SELECT exhid FROM artshowdb.artshowtag WHERE tagname=?)";
+			}else if(ctgBtn.equals("locCtg")){ //위치로 찾기
+				sql = "SELECT count(*) FROM artshowdb.artshow WHERE ExhGubun4=?";
+			}else if(ctgBtn.equals("genCtg")){ //장르로 찾기
+				sql = "SELECT count(*) FROM artshowdb.artshow WHERE ExhGubun2=?";
+			}
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, ctgName);
+			
+			rs = pstmt.executeQuery();
+					
+			if(rs.next()){
+				listCnt = rs.getInt(1);
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {if (rs != null) rs.close();} catch(Exception e) {}
+		    try {if (pstmt != null) pstmt.close();} catch(Exception e) {}
+		    try {if (conn != null) conn.close();} catch(Exception e) {}
+		}
+		
+		return listCnt;
+	}
 	
 	//리스트 목록의 content를 불러오는 메서드
 	public ExhibitionDto selectOne(int exhID){
@@ -743,6 +935,8 @@ public class ExhibitionDao {
 
 		return exhibitionList;
 	}
+
+	
 
 }
 //-------------------------------------------------------------------------------------------------------------
