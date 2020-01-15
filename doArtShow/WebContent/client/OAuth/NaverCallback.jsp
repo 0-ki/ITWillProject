@@ -38,7 +38,7 @@
                   naverLogin.reprompt();
                   return;
                }
-               alert( email ); // 로그인 한 이메일 ***@naver.com 이 출력된다.
+               alert( email +'\n'+name+'\n'+profileImage+'\n'+birthday+'\n'+uniqId+'\n'+age+'\n'+gender); // 로그인 한 이메일 ***@naver.com 이 출력된다.
                window.location.replace("http://" + window.location.hostname + ( (location.port==""||location.port==undefined)?"":":" + location.port) + "/doArtShow");
             } else {
                console.log("callback 처리에 실패하였습니다.");
