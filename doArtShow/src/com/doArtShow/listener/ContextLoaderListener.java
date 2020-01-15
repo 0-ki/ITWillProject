@@ -125,7 +125,9 @@ public class ContextLoaderListener implements ServletContextListener{
 
 			// 지도 페이지
 			sc.setAttribute("/searchMap.do", new searchMapController().setExhibitionDao(exhibitionDao));
-						
+			
+			sc.setAttribute("/start", new IndexController().setExhibitionDao(exhibitionDao));
+						 
 			sc.setAttribute("/NaverCallback", new NaverLoginController());
 			
 			
