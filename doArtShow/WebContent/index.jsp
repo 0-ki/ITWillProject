@@ -1,19 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%-- <%@taglib prefix="s" uri="http://java.sun.com/jsp/jstl/sql" %>
-
-<s:setDataSource
-	dataSource="jdbc/artshowdb"
-    var= "artshow"
-    scope="page"/>
-
-<s:query sql=" SELECT ExhID, ExhName , ExhPlace, ImageFile1 FROM artshow ORDER BY RegisterDate DESC LIMIT 9  " var="rs1" dataSource="${artshow}" />
-<s:query sql=" SELECT ExhID, ExhName , ExhPlace, ImageFile1 FROM artshow ORDER BY exhreadcount DESC LIMIT 9  " var="rs2" dataSource="${artshow}" />
- --%>
-
-
-
 
 <jsp:include page="/module/1doctype_head.jsp"></jsp:include>
 <link rel="stylesheet" type="text/css" href="/doArtShow/libs/swiper/css/swiper.css" />
@@ -52,7 +39,7 @@
 			<div class="wallpaper">
 				<div>
 					<div>
-						<img id="wallPaper" src="/doArtShow/resourcesImages/mainwall0.jpg" width="100%" height="550px;"/>
+						<img id="wallPaper" src="/doArtShow/resourcesImages/mainwall0.jpg" width="100%" height="480px;"/>
 					</div>
 				</div>
 				

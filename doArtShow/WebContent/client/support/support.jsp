@@ -5,36 +5,12 @@
 
 <jsp:include page="/module/1doctype_head.jsp"></jsp:include>
 
-<body>    
-<jsp:include page="/module/2body_first.jsp"></jsp:include>
-
-<!-- FAQ -->
-   <section id="contact" class="">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12 text-center">
-                    <div class="section-title">
-                        <h2>F  A  Q</h2>
-                        <p style="margin: 0;">자주 여쭤보시는 질문에 대한 답변입니다</p>
-                    </div>
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-
-
-<div class="container-faq"><!-- Test begin -->
-
 <style>
 /*  선택된 버튼 효과  */
 .btn-checked{
 	background-color: green;
 	color: red;
 }
-
 
 /*  */
 
@@ -58,7 +34,6 @@
 	margin: 0 auto;
 	background-color: aqua;
 }
-
 
 /* 아코디언 */
 .accordion {
@@ -98,10 +73,45 @@
   transition: max-height 0.2s ease-out;
 }
 
-
-
 </style>
 
+
+<body>    
+<jsp:include page="/module/2body_first.jsp"></jsp:include>
+
+
+
+
+    <section id="contact" class="dark-bg">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <div class="section-title">
+                        <h2>공 지 사 항</h2>
+                        <p>질문을 등록해주시면 최대한 빠르게 답변드리겠습니다<br></p>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+            </div>
+        </div>
+    </section>
+
+
+
+
+<!-- FAQ -->
+   <section id="contact" class="">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <div class="section-title">
+                        <h2>F  A  Q</h2>
+                        <p style="margin: 0;">자주 여쭤보시는 질문에 대한 답변입니다</p>
+                    </div>
+                    
+
+<div class="container-faq"><!-- Test begin -->
 
 	<div class="faq-choose1">
 	  <button class="btnCheck1 btn-checked" onclick="changeFaq(event, 'category')">분류별로 보기</button>
@@ -217,8 +227,6 @@
 			</div>		
 		</div>
 	
-	
-	
 	<script>
 	// 검색-카테고리 선택
 	function changeFaq(evt, cityName) {
@@ -268,31 +276,14 @@
 
 </div><!-- Test end -->
                     
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
                 </div>
             </div>
             <div class="row">
-
-
-            
             </div>
         </div>
     </section>
     
     
-    
-    
-    
-<!--  -->
-<br><br>
 <!-- 문의사항 -->
     <section id="contact" class="dark-bg">
         <div class="container">
