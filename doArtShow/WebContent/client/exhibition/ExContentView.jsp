@@ -7,158 +7,231 @@
 <body>
  	
  	<jsp:include page="../../module/2body_first.jsp"></jsp:include>
+ 	<c:set var="member" value="${sessionScope.member}"/>
  		
- 		<style>
+ 	<style>
  		.heart-switch {
-  --duration: .45s;
-  --stroke: #D1D6EE;
-  --stroke-active: #ec4472;
-  --fill: #fff;
-  --fill-active: #ec638e;
-  --shadow: rgba(0, 9, 61, 0.25);
-  cursor: pointer;
-  position: relative;
-  -webkit-transform: scale(var(--s, 1)) translateZ(0);
-          transform: scale(var(--s, 1)) translateZ(0);
-  transition: -webkit-transform .2s;
-  transition: transform .2s;
-  transition: transform .2s, -webkit-transform .2s;
-  -webkit-tap-highlight-color: transparent;
-}
-.heart-switch:active {
-  --s: .95;
-}
-.heart-switch input:focus{
-	outline-color : #fff;
-	outline-style: solid;
-	outline-width : 0px;
-}
-.heart-switch input {
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  position: absolute;
-  outline: none;
-  border: none;
-  pointer-events: none;
-  z-index: 1;
-  margin: 0;
-  padding: 0;
-  left: 1px;
-  top: 1px;
-  width: 18px;
-  height: 18px;
-  border-radius: 50%;
-  background: #fff;
-  box-shadow: 0 1px 3px 0 var(--shadow);
-}
-.heart-switch input + svg {
-  width: 36px;
-  height: 25px;
-  fill: var(--fill);
-  stroke: var(--stroke);
-  stroke-width: 1px;
-  stroke-linejoin: round;
-  display: block;
-  transition: stroke var(--duration), fill var(--duration);
-}
-.heart-switch input:not(:checked) {
-  -webkit-animation: uncheck var(--duration) linear forwards;
-          animation: uncheck var(--duration) linear forwards;
-}
-.heart-switch input:checked {
-  -webkit-animation: check var(--duration) linear forwards;
-          animation: check var(--duration) linear forwards;
-}
-.heart-switch input:checked + svg {
-  --fill: var(--fill-active);
-  --stroke: var(--stroke-active);
-}
-
-@-webkit-keyframes uncheck {
-  0% {
-    -webkit-transform: rotate(-30deg) translateX(13.5px) translateY(8px);
-            transform: rotate(-30deg) translateX(13.5px) translateY(8px);
-  }
-  50% {
-    -webkit-transform: rotate(30deg) translateX(9px);
-            transform: rotate(30deg) translateX(9px);
-  }
-  75% {
-    -webkit-transform: rotate(30deg) translateX(4.5px) scaleX(1.1);
-            transform: rotate(30deg) translateX(4.5px) scaleX(1.1);
-  }
-  100% {
-    -webkit-transform: rotate(30deg);
-            transform: rotate(30deg);
-  }
-}
-
-@keyframes uncheck {
-  0% {
-    -webkit-transform: rotate(-30deg) translateX(13.5px) translateY(8px);
-            transform: rotate(-30deg) translateX(13.5px) translateY(8px);
-  }
-  50% {
-    -webkit-transform: rotate(30deg) translateX(9px);
-            transform: rotate(30deg) translateX(9px);
-  }
-  75% {
-    -webkit-transform: rotate(30deg) translateX(4.5px) scaleX(1.1);
-            transform: rotate(30deg) translateX(4.5px) scaleX(1.1);
-  }
-  100% {
-    -webkit-transform: rotate(30deg);
-            transform: rotate(30deg);
-  }
-}
-@-webkit-keyframes check {
-  0% {
-    -webkit-transform: rotate(30deg);
-            transform: rotate(30deg);
-  }
-  25% {
-    -webkit-transform: rotate(30deg) translateX(4.5px) scaleX(1.1);
-            transform: rotate(30deg) translateX(4.5px) scaleX(1.1);
-  }
-  50% {
-    -webkit-transform: rotate(30deg) translateX(9px);
-            transform: rotate(30deg) translateX(9px);
-  }
-  100% {
-    -webkit-transform: rotate(-30deg) translateX(13.5px) translateY(8px);
-            transform: rotate(-30deg) translateX(13.5px) translateY(8px);
-  }
-}
-@keyframes check {
-  0% {
-    -webkit-transform: rotate(30deg);
-            transform: rotate(30deg);
-  }
-  25% {
-    -webkit-transform: rotate(30deg) translateX(4.5px) scaleX(1.1);
-            transform: rotate(30deg) translateX(4.5px) scaleX(1.1);
-  }
-  50% {
-    -webkit-transform: rotate(30deg) translateX(9px);
-            transform: rotate(30deg) translateX(9px);
-  }
-  100% {
-    -webkit-transform: rotate(-30deg) translateX(13.5px) translateY(8px);
-            transform: rotate(-30deg) translateX(13.5px) translateY(8px);
-  }
-}
-html {
-  box-sizing: border-box;
-  -webkit-font-smoothing: antialiased;
-}
-
-* {
-  box-sizing: inherit;
-}
-*:before, *:after {
-  box-sizing: inherit;
-}
- 		</style>
+		  --duration: .45s;
+		  --stroke: #D1D6EE;
+		  --stroke-active: #ec4472;
+		  --fill: #fff;
+		  --fill-active: #ec638e;
+		  --shadow: rgba(0, 9, 61, 0.25);
+		  cursor: pointer;
+		  position: relative;
+		  -webkit-transform: scale(var(--s, 1)) translateZ(0);
+		          transform: scale(var(--s, 1)) translateZ(0);
+		  transition: -webkit-transform .2s;
+		  transition: transform .2s;
+		  transition: transform .2s, -webkit-transform .2s;
+		  -webkit-tap-highlight-color: transparent;
+		}
+		.heart-switch:active {
+		  --s: .95;
+		}
+		.heart-switch input:focus{
+			outline-color : #fff;
+			outline-style: solid;
+			outline-width : 0px;
+		}
+		.heart-switch input {
+		  -webkit-appearance: none;
+		  -moz-appearance: none;
+		  position: absolute;
+		  outline: none;
+		  border: none;
+		  pointer-events: none;
+		  z-index: 1;
+		  margin: 0;
+		  padding: 0;
+		  left: 1px;
+		  top: 1px;
+		  width: 18px;
+		  height: 18px;
+		  border-radius: 50%;
+		  background: #fff;
+		  box-shadow: 0 1px 3px 0 var(--shadow);
+		}
+		.heart-switch input + svg {
+		  width: 36px;
+		  height: 25px;
+		  fill: var(--fill);
+		  stroke: var(--stroke);
+		  stroke-width: 1px;
+		  stroke-linejoin: round;
+		  display: block;
+		  transition: stroke var(--duration), fill var(--duration);
+		}
+		.heart-switch input:not(:checked) {
+		  -webkit-animation: uncheck var(--duration) linear forwards;
+		          animation: uncheck var(--duration) linear forwards;
+		}
+		.heart-switch input:checked {
+		  -webkit-animation: check var(--duration) linear forwards;
+		          animation: check var(--duration) linear forwards;
+		}
+		.heart-switch input:checked + svg {
+		  --fill: var(--fill-active);
+		  --stroke: var(--stroke-active);
+		}
+		
+		@-webkit-keyframes uncheck {
+		  0% {
+		    -webkit-transform: rotate(-30deg) translateX(13.5px) translateY(8px);
+		            transform: rotate(-30deg) translateX(13.5px) translateY(8px);
+		  }
+		  50% {
+		    -webkit-transform: rotate(30deg) translateX(9px);
+		            transform: rotate(30deg) translateX(9px);
+		  }
+		  75% {
+		    -webkit-transform: rotate(30deg) translateX(4.5px) scaleX(1.1);
+		            transform: rotate(30deg) translateX(4.5px) scaleX(1.1);
+		  }
+		  100% {
+		    -webkit-transform: rotate(30deg);
+		            transform: rotate(30deg);
+		  }
+		}
+		
+		@keyframes uncheck {
+		  0% {
+		    -webkit-transform: rotate(-30deg) translateX(13.5px) translateY(8px);
+		            transform: rotate(-30deg) translateX(13.5px) translateY(8px);
+		  }
+		  50% {
+		    -webkit-transform: rotate(30deg) translateX(9px);
+		            transform: rotate(30deg) translateX(9px);
+		  }
+		  75% {
+		    -webkit-transform: rotate(30deg) translateX(4.5px) scaleX(1.1);
+		            transform: rotate(30deg) translateX(4.5px) scaleX(1.1);
+		  }
+		  100% {
+		    -webkit-transform: rotate(30deg);
+		            transform: rotate(30deg);
+		  }
+		}
+		@-webkit-keyframes check {
+		  0% {
+		    -webkit-transform: rotate(30deg);
+		            transform: rotate(30deg);
+		  }
+		  25% {
+		    -webkit-transform: rotate(30deg) translateX(4.5px) scaleX(1.1);
+		            transform: rotate(30deg) translateX(4.5px) scaleX(1.1);
+		  }
+		  50% {
+		    -webkit-transform: rotate(30deg) translateX(9px);
+		            transform: rotate(30deg) translateX(9px);
+		  }
+		  100% {
+		    -webkit-transform: rotate(-30deg) translateX(13.5px) translateY(8px);
+		            transform: rotate(-30deg) translateX(13.5px) translateY(8px);
+		  }
+		}
+		@keyframes check {
+		  0% {
+		    -webkit-transform: rotate(30deg);
+		            transform: rotate(30deg);
+		  }
+		  25% {
+		    -webkit-transform: rotate(30deg) translateX(4.5px) scaleX(1.1);
+		            transform: rotate(30deg) translateX(4.5px) scaleX(1.1);
+		  }
+		  50% {
+		    -webkit-transform: rotate(30deg) translateX(9px);
+		            transform: rotate(30deg) translateX(9px);
+		  }
+		  100% {
+		    -webkit-transform: rotate(-30deg) translateX(13.5px) translateY(8px);
+		            transform: rotate(-30deg) translateX(13.5px) translateY(8px);
+		  }
+		}
+		html {
+		  box-sizing: border-box;
+		  -webkit-font-smoothing: antialiased;
+		}
+		
+		* {
+		  box-sizing: inherit;
+		}
+		*:before, *:after {
+		  box-sizing: inherit;
+		}
+		
+		
+		#tagctgList div{
+		    border-radius: 15px;
+		    color: white;
+		    margin: 10px;
+		    padding-left: 15px;
+		    padding-right: 10px;
+		    font-size: 15px;
+		    text-align: center;
+		    font-family: 'Noto Sans KR', sans-serif !important;
+		    letter-spacing: 1px;
+		}
+		#tagctgList #gubun1{
+			border: 2px solid #ffb366;
+			background-color: #e68a00;
+		}
+		#tagctgList #gubun2{
+			border: 2px solid #ff6ea3;
+			background-color: #d63c74;
+		}
+		#tagctgList #gubun3{
+			border: 2px solid #58aae8;
+			background-color: #367aad;
+		}
+		
+		
+		#myHist{
+			display: inline-flex;
+			text-align: center;
+			padding-left: 25px;
+		}
+		
+		#imageBtn{
+			display: inline-block;
+		}
+		
+		.heart-switch, #visitBtn, #reviewBtn, #shareBtn{
+			padding-right: 20px;
+		}
+		
+		.dropdown-item{
+			float: left;
+			margin-left: 2.5px;
+		}
+		
+		#modalBody{
+			padding: 30px;
+			padding-top: 50px;
+			padding-bottom: 100px;
+		}
+		
+		input#exhName{
+			width: 100%;
+		}
+		textarea#revContent{
+			width: 100%;
+		    height: 250px;
+		}
+		
+		#revList{
+			display: -webkit-inline-box;
+		}
+		
+		#revOne{
+			padding: 10px;
+		    padding-left: 25px;
+		    padding-right: 25px;
+		    display: -webkit-inline-box;
+		}
+		
+		
+ 	</style>
  		
  		
 	<div class="container" id="mainContainer">
@@ -193,31 +266,35 @@ html {
 					<td>&nbsp;사이트 : <a href="${listOne.exhUrl}">${listOne.exhUrl}</a></td>
 				</tr>
 				<tr>
-					<td colspan="2">
-						<div id="myHist">
+					<td id="myHist">
+						<div>
 							<c:choose>
 								<c:when test="${!empty sessionScope.member}">
-									<a href="javascript:" id="wishBtn" style="color: #3d3d3d;"> <!-- wishArt_func(); -->
-										<label class="heart-switch">
-											<input type="checkbox"> 
-											<svg viewBox="0 0 33 23" fill="white">
-												<path	d="M23.5,0.5 C28.4705627,0.5 32.5,4.52943725 32.5,9.5 C32.5,16.9484448 21.46672,22.5 16.5,22.5 C11.53328,22.5 0.5,16.9484448 0.5,9.5 C0.5,4.52952206 4.52943725,0.5 9.5,0.5 C12.3277083,0.5 14.8508336,1.80407476 16.5007741,3.84362242 C18.1491664,1.80407476 20.6722917,0.5 23.5,0.5 Z"></path>
-											</svg>
-										   가고싶어요
-										</label>
-									</a>
+										<c:if test="${wishChk == 0}"><!-- 가고싶어요 안누른 전시 -->
+											<label class="heart-switch">
+												<input id="wishBtn" type="checkbox"> <!-- 하트체크박스 가운데로 맞추기 -->
+												<svg viewBox="0 0 33 23" fill="white"><path d="M23.5,0.5 C28.4705627,0.5 32.5,4.52943725 32.5,9.5 C32.5,16.9484448 21.46672,22.5 16.5,22.5 C11.53328,22.5 0.5,16.9484448 0.5,9.5 C0.5,4.52952206 4.52943725,0.5 9.5,0.5 C12.3277083,0.5 14.8508336,1.80407476 16.5007741,3.84362242 C18.1491664,1.80407476 20.6722917,0.5 23.5,0.5 Z"></path></svg>
+												 가고싶어요
+											</label>
+										</c:if>
+										<c:if test="${wishChk == 1}"><!-- 가고싶어요 누른 전시 -->
+											<label class="heart-switch">
+												<input id="wishBtn" type="checkbox" checked="checked"> <!-- 하트체크박스 가운데로 맞추기 -->
+												<svg viewBox="0 0 33 23" fill="white"><path d="M23.5,0.5 C28.4705627,0.5 32.5,4.52943725 32.5,9.5 C32.5,16.9484448 21.46672,22.5 16.5,22.5 C11.53328,22.5 0.5,16.9484448 0.5,9.5 C0.5,4.52952206 4.52943725,0.5 9.5,0.5 C12.3277083,0.5 14.8508336,1.80407476 16.5007741,3.84362242 C18.1491664,1.80407476 20.6722917,0.5 23.5,0.5 Z"></path></svg>
+												 가고싶어요
+											</label>
+										</c:if>
 								</c:when>
 								<c:otherwise>
-									<a href="javascript:login_need();" id="wishBtn" style="color: #3d3d3d;"> <!-- wishArt_func(); -->
-										<i class="fa fa-heart-o fa-2x"></i><br>
-										<label>가고싶어요</label>
-									</a>
+									<label class="heart-switch" onclick="javascript:login_need()">
+										<input type="checkbox" disabled="true"> <!-- content화면 출력시 로그인 되어있는지 확인 후, 로그인 안되있을 경우 ajax에서 처리할 사항 : 체크를 아예 못하게 막아놓기, login_need()로 가게 하기--> 
+										<svg viewBox="0 0 33 23" fill="white"><path d="M23.5,0.5 C28.4705627,0.5 32.5,4.52943725 32.5,9.5 C32.5,16.9484448 21.46672,22.5 16.5,22.5 C11.53328,22.5 0.5,16.9484448 0.5,9.5 C0.5,4.52952206 4.52943725,0.5 9.5,0.5 C12.3277083,0.5 14.8508336,1.80407476 16.5007741,3.84362242 C18.1491664,1.80407476 20.6722917,0.5 23.5,0.5 Z"></path></svg>
+										 가고싶어요
+									</label>
 								</c:otherwise>
 							</c:choose>
-								<!-- 
-								가고싶어요 클릭하면 채워진 하트 이모티콘으로 변경
-								<i class="fa fa-heart fa-2x"></i>
-								-->
+						</div>
+						<div>
 							<c:choose>
 								<c:when test="${!empty sessionScope.member}">
 									<a href="javascript:visitBtn_func();" id="visitBtn" style="color: #3d3d3d;"> <!-- visitArt_func(); -->
@@ -232,6 +309,8 @@ html {
 									</a>
 								</c:otherwise>
 							</c:choose>
+						</div>
+						<div>
 							<a href="javascript:;" id="reviewBtn" style="color: #3d3d3d; visibility: hidden;"> <!-- 평소에 숨겨져있다가 다녀왔어요 클릭하면 리뷰작성버튼 show로 변경 -->
 								<i class="fa fa-pencil fa-2x"></i><br> 
 								<label>리뷰작성</label>
@@ -250,6 +329,21 @@ html {
 	                    	</div>
 						</div>
 					</td>
+					<td>
+						<div id="tagctgList" style="display: inline-flex;">
+							<c:forEach var="ctg" items="${listOneTag}">
+								<div id="gubun1">
+									<label>#</label>${ctg.exhTagName}&nbsp;
+								</div>
+							</c:forEach>
+								<div id="gubun2">
+									${listOne.exhGubun4}&nbsp;
+								</div>
+								<div id="gubun3">
+									${listOne.exhGubun2}
+								</div>
+						</div>
+					</td>
 				</tr>
 				<tr>
 					<td colspan="2" style="height: 1500px;">${listOne.exhContent}</td>
@@ -261,12 +355,43 @@ html {
 		</div>
 		<br>
 		<!-- 리뷰 보여지는 부분 (Bootstrap 4 Carousel 기능으로!) -->
+		<div>
+			<p>리뷰 보기</p>
+			<c:choose>
+				<c:when test="${revCnt == 0}">
+					<div>
+						<center>다녀온 전시로 등록하고, 첫 리뷰를 작성해주세요!</center>
+					</div>
+				</c:when>
+				<c:otherwise>
+					<div id="revList">
+						<c:forEach var="revlist" items="${revLists}">
+							<div id="revOne">
+								<table border="1">
+									<tr>
+										<td rowspan="2" width="30%"><img src="/doArtShow/memberProfileImages/${revlist.profileImg}" id="memberProfile" style="height: 150px; width: 150px;"/></td>
+										<td width="70%" height="20%"><input type="text" readonly="readonly" name="memberName" value="${revlist.name}"></td>
+									</tr>
+									<tr>
+										<td height="80%"><input type="text" readonly="readonly" name="reviewContent" value="${revlist.revContent}"></td>
+									</tr>
+									<tr>
+										<td colspan="2">${revlist.revDate}에 작성되었습니다.</td>
+									</tr>
+								</table>
+							</div>
+						</c:forEach>
+					</div>
+				</c:otherwise>
+			</c:choose>
+		</div>
 	</div>
 		   
 	
 	<!-- 리뷰창 모달 -->
 	<div class="modal fade" id="revWriteModal" role="dialog">
         <div class="modal-dialog">
+        <form method="post" name="revForm" id="revForm">
             <!-- Modal content-->
             <div class="modal-content" id="revWriteModal-content">
                 <div class="modal-header">
@@ -275,39 +400,63 @@ html {
                 <!-- Modal body -->
                 <div class="modal-body" style="padding: 30px; padding-bottom: 40px; padding-top: 40px;">
                 	<h4 class="modal-title"><b>다녀온 전시관의 리뷰를 작성해 주세요</b></h4><br><br>
-                	<form action="review.do" method="post" id="revForm">
                 		<table class="table nanum">
                 			<tr>
 	                			<td width="20%">전시 내용</td>
-	                			<td width="80%"><input type="text" readonly="readonly" value="${listOne.exhName}"></td>
+	                			<td width="80%"><input type="text" id="exhName" name="exhName" readonly="readonly" value="${listOne.exhName}"></td>
                 			</tr>
                 			<tr>
                 				<td>리뷰 내용</td>
-                				<td><textarea cols="60" rows="15" name="revContent" id="revContent" placeholder="리뷰는 50자 이내로 작성 가능합니다."></textarea></td>
+                				<td><textarea name="revContent" id="revContent" placeholder="리뷰는 50자 이내로 작성 가능합니다."></textarea></td>
                 			</tr>
                 		</table>
-                	</form>
                 </div>
                 <!-- Modal footer -->
                 <div id="shareModal-footer">
-                	<button type="button" class="btn btn-light" onclick="chkreviewForm(this.form)">등록하기</button>
+                	<button type="button" class="btn btn-light" onclick="javascript:chkreviewForm(this.form)">등록하기</button>
                     <button type="button" class="btn btn-danger" data-dismiss="modal">닫기</button>
                 </div>
             </div>
+        </form>
         </div>
     </div>
 	    
+	<jsp:include page="../../module/3body_last.html"></jsp:include>
 	
-	<script>
+	<script>	
 		function login_need(){
 			alert('로그인이 필요합니다');
 		}
 		
-		/* 갔다왔어요 버튼 눌렀을때 적용하는 함수 */
-		function visitBtn_func(visitBtn_con){
-			document.getElementById('reviewBtn').style.visibility = "visible";
-			
-			visitBtn_con
+		/* 다녀왔어요 버튼 눌렀을때 적용하는 함수 */
+		function visitBtn_func(){	
+			$.ajax({
+				url : "checkVisit.do",
+				type : "POST",
+				dataType : "JSON",
+				data : {
+					email : '${member.email}',
+					exhID : '${listOne.exhID}'
+				},
+				success : function(data){
+					if(data.checkRev == 1){
+						//visibility 속성 안변함(리뷰버튼 안나타남)
+						alert("이미 리뷰를 작성한 전시입니다.");
+					}else if(data.checkRev == 0){
+						if(data.checkVisit == 0){
+							document.getElementById('reviewBtn').style.visibility = "visible";
+							alert("다녀온 전시로 등록되었습니다.\n나의 다녀온 전시는 마이페이지에서 확인 가능합니다!\n리뷰를 작성해주세요!");
+						}else if(data.checkVisit == 1){
+							document.getElementById('reviewBtn').style.visibility = "visible";
+							alert("이미 다녀온 전시입니다.\n리뷰를 작성해주세요!");
+						}
+					}
+				},
+				error : function(request, status, error){
+					var msg = "ERROR : <br>"
+						msg += request.status +"<br>"+ request.responseText +"<br>"+ error;
+				}
+			});
 		}
 			
 		function sendLinkFaceBook(){
@@ -357,20 +506,46 @@ html {
 			});
 		}
 		
-		function chkreviewForm(revForm){
+		/* 리뷰 작성 폼 유효성 검사 */
+		function chkreviewForm(revForm){			
 			if(!revForm.revContent.value){
 				alert("내용을 작성해주세요");
 				revForm.revConter.focus();
 				return false;
 			}
 			
-			
+			revForm.action = "revAdd.do?exhID="+'${listOne.exhID}'+"&email="+'${member.email}';
+			revForm.submit();
+			alert("리뷰 작성 완료!\n내가 쓴 리뷰는 마이페이지에서도 확인 가능합니다.");
 		}
-	</script>
 
-	<jsp:include page="../../module/3body_last.html"></jsp:include>
 	
-	<script>
+		/* 가고싶어요 버튼 눌렀을때 적용하는 함수 */
+		$("#wishBtn").click(function() {
+			$.ajax({
+				url : "checkWish.do",
+				type : "POST",
+				dataType : "JSON",
+				data : {
+					email : '${member.email}',
+					exhID : '${listOne.exhID}'
+				},
+				success : function(data){
+					if(data.checkWish == 0){
+						$("#wishBtn").attr("checked", "checked");
+						alert("가고싶은 전시로 등록되었습니다.\n나의 가고싶은 전시는 마이페이지에서도 확인 가능합니다!")
+					}else if(data.checkWish == 1){
+						$("#wishBtn").removeAttr("checked");
+						alert("가고싶은 전시가 취소되었습니다.");
+					}
+				},
+				error : function(request, status, error){
+					var msg = "ERROR : <br>"
+						msg += request.status +"<br>"+ request.responseText +"<br>"+ error;
+				}
+			});
+		});
+	
 		/* 리뷰작성 버튼 눌렀을때 리뷰작성모달 불러오는 함수 */
 		$(document).ready(function(){
 			$("#reviewBtn").click(function(){

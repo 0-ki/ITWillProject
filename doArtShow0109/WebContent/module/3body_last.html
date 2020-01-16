@@ -1,0 +1,175 @@
+
+    <!-- ============= Footer 셋팅	==================== -->
+    <footer>
+        <div class="container text-center">
+            <p>COPYRIGHT(c) by <span id="footer-company">전시:해</span>.com
+                이 페이지의 저작권은 누구에게도 있고 누구누누구구구구</p>
+        </div>
+    </footer>
+
+    <!-- ============= JavaScript 셋팅	==================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="/doArtShow/js/jquery-3.4.1.js"></script>
+    <script src="/doArtShow/js/jquery.easing.min.js"></script>
+    
+    
+    <script src="/doArtShow/js/bootstrap.min.js"></script>
+    <script src="/doArtShow/js/cbpAnimatedHeader.js"></script>
+    <script src="/doArtShow/js/jquery.appear.js"></script>
+    
+	<!--================ 커스텀 script 파일 ================  -->    
+    <script src="/doArtShow/js/naveridlogin_js_sdk_2.0.0.js"></script>
+    <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
+    <script>Kakao.init('3f954d79af6a536ec76db999e7f2ba5b');</script>
+
+    <script src="/doArtShow/js/kakaoscript.js"></script>
+    <script src="/doArtShow/js/ifReadyscript.js"></script>
+    <script src="/doArtShow/js/exhFunction.js"></script>
+	
+    <!-- jungmi -->
+	<script src="/doArtShow/client/js/validateForm.js"></script>
+	<script src="/doArtShow/client/js/signUpFormFilter.js"></script>
+	
+	<!-- ================ script  ================  -->
+	<!-- 네이버 아이디 로그인 -->
+<script type="text/javascript">
+$(function(){
+	var naverLogin = new naver.LoginWithNaverId({
+		clientId : "QvLk55msCCyAfv2p50Yg",
+		callbackUrl : "http://localhost:8888/doArtShow/NaverCallback",
+		isPopup : false, /* 팝업을 통한 연동처리 여부 */
+		callbackHandle: true,
+		loginButton : {
+			color : "green",
+			type : 3,
+			height : 48
+		}
+	/* 로그인 버튼의 타입을 지정 */
+	});
+
+	/* 설정정보를 초기화하고 연동을 준비 */
+	naverLogin.init();
+
+	});
+	
+	
+	
+	
+/* 	naverLogin.getLoginStatus(function (status) {
+		if (status) {
+			var email = naverLogin.user.getEmail();
+			var name = naverLogin.user.getNickName();
+			var profileImage = naverLogin.user.getProfileImage();
+			var birthday = naverLogin.user.getBirthday();			
+			var uniqId = naverLogin.user.getId();
+			var age = naverLogin.user.getAge();
+			var gender = naverLogin.user.getGender();
+			console.log(email +'\n'+name+'\n'+profileImage+'\n'+birthday+'\n'+age+'\n'+uniqId+'\n'+gender);
+			
+		} else {
+			console.log("AccessToken이 올바르지 않습니다.");
+		}
+	}); */
+	////
+	
+</script>
+
+<script>
+	
+	$("#inpt_search").on('focus', function () {
+		$(this).parent('label').addClass('active');
+	});
+
+	$("#inpt_search").on('blur', function () {
+		if($(this).val().length == 0)
+			$(this).parent('label').removeClass('active');
+	});
+	
+	//--------------------------------------------------------------------------------
+	//	memberSignUp.jsp	중복확인을 위한 jsp페이지
+	//--------------------------------------------------------------------------------
+	function emailChkModal()
+	{
+		if($("#input_email").val()==""){
+			$("#email_check").text("아이디를 입력하세요");
+			$("#email_check").css('color','red');
+			$("#emailChkButton").attr("disabled", true);
+			return;
+		} else {
+			url = "chkEmail.jsp?email=" + document.signUpForm.email.value;
+			
+			window.open(url, "confirm", "toolbar=no, location=no, status=no, menubar=no, scrollbars=no, resizable=no, left=200, right=200, width=500, height=200");	
+			$("#input_email").attr("disabled", true);
+			$("#emailChkButton").attr("disabled", true);
+		}
+	}
+	
+	//--------------------------------------------------------------------------------
+	//	memberSignUp.jsp	?????
+	//--------------------------------------------------------------------------------
+	$(document).ready(function(){
+		   $("#input_email").keyup(function(){
+		      if($("#input_email").val() != ""){
+		         $("#chkEmail").text("")
+		      }
+		   });
+		   $("#input_pw").keyup(function(){
+		      if($("#input_pw").val() != ""){
+		         $("#chkPw").text("")
+		      }
+		   });
+		});
+	
+	//--------------------------------------------------------------------------------
+	//	memberDetail.jsp	프로필 사진 수정을 위한 jsp페이지를 여는 기능
+	//--------------------------------------------------------------------------------
+	function profileImgUpdate()
+	{
+		url = "profileImgUpdate.jsp";
+		
+		window.open(url, "confirm", "toolbar=no, location=no, status=no, menubar=no, scrollbars=no, resizable=no, left=200, right=200, width=500, height=500");				
+	}
+	
+	
+	//--------------------------------------------------------------------------------
+	//	로그인 모달을 띄우는 function
+	//--------------------------------------------------------------------------------
+	function addFormLogin() {
+		$("#myModal").modal({
+			backdrop : true
+		});
+		
+	}
+	//--------------------------------------------------------------------------------
+	//	myReviewList.jsp
+	//--------------------------------------------------------------------------------
+	function openRevModal(num){
+	$("#revUpdateModal"+num).modal({
+    	backdrop: true
+    });
+	}
+	function confirmDeleteRev(num){
+		confirm("삭제하시겠습니까?");
+		location.href="revDelete.do?exhName="+$("#revExhName"+num).text();
+	}
+	function chkreviewUpdateForm(reviewUpdateForm){         
+	    if(!reviewUpdateForm.revContent.value){
+	       alert("내용을 작성해주세요");
+	       revForm.revConter.focus();
+	       return false;
+	    }
+	    
+	    reviewUpdateForm.action = "revUpdate.do";
+	    reviewUpdateForm.submit();
+	 }
+	
+	//--------------------------------------------------------------------------------
+	//	myList.jsp
+	//--------------------------------------------------------------------------------
+	function openExhModal(num){
+	$("#exhUpdateModal"+num).modal({
+    	backdrop: true
+    });
+	}
+	</script>
+	

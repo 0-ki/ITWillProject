@@ -25,6 +25,10 @@ import com.doArtShow.controls.member.MemRevUpdateController;
 import com.doArtShow.controls.member.MemReviewListController;
 import com.doArtShow.controls.member.MemVisitListController;
 import com.doArtShow.controls.member.MemWishListController;
+import com.doArtShow.controls.exhibition.ListSortController;
+import com.doArtShow.controls.exhibition.TagSortController;
+import com.doArtShow.controls.exhibition.VisitChkController;
+import com.doArtShow.controls.exhibition.WishChkController;
 import com.doArtShow.controls.member.MemberAddController;
 import com.doArtShow.controls.member.MemberDeleteController;
 import com.doArtShow.controls.member.MemberDetailController;
@@ -157,19 +161,25 @@ public class ContextLoaderListener implements ServletContextListener{
 			//-------------------------------------------------------------------------------------------------------------
 			
 			//전시 목록 
-			sc.setAttribute("/client/exhibition/ExListView.do", 		new ExhibitionListController().setExhibitionDao(exhibitionDao));
+			sc.setAttribute("/client/exhibition/ExListView.do",	new ExhibitionListController().setExhibitionDao(exhibitionDao));
 
 			//전시글 상세내용 보기 
-			sc.setAttribute("/client/exhibition/ExContentView.do", 	new ExhibitionContentController().setExhibitionDao(exhibitionDao));
+			sc.setAttribute("/client/exhibition/ExContentView.do",	new ExhibitionContentController().setExhibitionDao(exhibitionDao));
 
 			//가고싶어요 체크
-			//sc.setAttribute("", new WishChkController().setWishListDao(wishListDao));
+			sc.setAttribute("/client/exhibition/checkWish.do", new WishChkController().setWishListDao(wishListDao));
 			
 			//다녀왔어요 체크
-			//sc.setAttribute("", new VisitChkController().setVisitListDao(visitListDao));
+			sc.setAttribute("/client/exhibition/checkVisit.do", new VisitChkController().setVisitListDao(visitListDao));
 			
 			//리뷰 작성폼
-			sc.setAttribute("/client/exhibition/review.do", new ExhibitionReviewFormController().setReviewDao(reviewDao));
+			sc.setAttribute("/client/exhibition/revAdd.do", new ExhibitionReviewFormController().setReviewDao(reviewDao));
+			
+			//리스트 정렬
+			sc.setAttribute("/client/exhibition/artListSort.do", new ListSortController().setExhibitionDao(exhibitionDao));
+			
+			//태그 정렬
+			sc.setAttribute("/client/exhibition/artTagSort.do", new TagSortController().setExhibitionDao(exhibitionDao));
 			//-------------------------------------------------------------------------------------------------------------
 			//			programmed by seran - end
 			//-------------------------------------------------------------------------------------------------------------
