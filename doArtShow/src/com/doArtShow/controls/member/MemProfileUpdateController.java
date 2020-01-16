@@ -8,6 +8,7 @@ import com.doArtShow.controls.Controller;
 import com.doArtShow.dao.MemberDao;
 import com.doArtShow.dto.MemberDto;
 
+//회원 프로필사진 수정 컨트롤러
 public class MemProfileUpdateController implements Controller{
 	MemberDao memberDao;
 	HttpSession session;

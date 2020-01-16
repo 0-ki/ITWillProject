@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<jsp:include page="/module/1doctype_head.jsp"></jsp:include>      
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>     
 <%@ page import ="com.doArtShow.dao.ExhibitionDao"%> 
 <%@ page import ="com.doArtShow.dto.ExhibitionDto"%> 
@@ -12,7 +11,6 @@
 <%
 request.setCharacterEncoding("utf-8");
 response.setCharacterEncoding("utf-8");
-String id="";
 ExhibitionDto exhibition = (ExhibitionDto)request.getAttribute("exhibition");
 ArrayList<TagDto> tagList = (ArrayList<TagDto>)request.getAttribute("tagList");
 String tel = exhibition.getTel();
@@ -26,6 +24,8 @@ while(st.hasMoreTokens()){
 if(telArr[0] == null) telArr[0] = ""; 
 if(telArr[1] == null) telArr[1] = "";
 if(telArr[2] == null) telArr[2] = "";
+
+
 
 String test = "010-111-1111";
 StringTokenizer test2 = new StringTokenizer(test, "-");
@@ -56,53 +56,7 @@ try {
 	}
 */	
 %>
-<% 
-
-%>       
-<!-- <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<link href="../bootstrap/css/bootstrap.min.css" rel="stylesheet">
-	<script src="../js/jquery-3.4.1.js"></script>
-	<script src="../bootstrap/js/bootstrap.min.js"></script>
-    <script src="../js/exhFunction.js"></script>
-    <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
-	<script src="http://dapi.kakao.com/v2/maps/sdk.js?appkey=c5326277ad64b2569191adafedd5fbbc&libraries=services"></script>    
-	<title>㈜ 전시해 - 전시회 수정</title>
-<style>
-	/*
-	table {
-		-webkit-tap-highlight-color: rgba(0,0,0,0);
-		font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
-		font-size: 14px;
-		line-height: 1.42857143;
-		color: #333;
-		box-sizing: border-box;
-		border-spacing: 0;
-		background-color: transparent;
-		border: 1px solid gray;
-		border-collapse: collapse;
-		width: 100%;
-		padding: .8em .5em; /* 여백으로 높이 설정 */ 
-	} */
-	table {
-		
-	}
-	select { 
-		width: 200px; /* 원하는 너비설정 */ 
-		padding: .8em .5em; /* 여백으로 높이 설정 */ 
-		font-family: inherit; /* 폰트 상속 */ 
-		background: url(https://farm1.staticflickr.com/379/19928272501_4ef877c265_t.jpg) no-repeat 95% 50%; /* 네이티브 화살표 대체 */ 
-		border: 1px solid #999; border-radius: 0px; /* iOS 둥근모서리 제거 */ 
-		-webkit-appearance: none; /* 네이티브 외형 감추기 */ 
-		-moz-appearance: none; appearance: none;
-	}
-	input {
-		padding: .8em .5em; /* 여백으로 높이 설정 */ 
-	}
-</style>
-</head> -->
+<jsp:include page="/module/1doctype_head.jsp"></jsp:include>     
 <body>
 <jsp:include page="/module/2body_first.jsp"></jsp:include>
 <%	Date nowTime = new Date();
@@ -370,6 +324,12 @@ try {
             </table>
         </form>
     </div>
-<jsp:include page="/module/3body_last.html" />        
+<jsp:include page="/module/3body_last.html" />   
+<script>   
+$("input:checkbox").click(function() {
+	var bol = $("input:checkbox:checked").length >= 3;     
+	$("input:checkbox").not(":checked").attr("disabled",bol);
+	});
+</script>
 </body>
 </html>

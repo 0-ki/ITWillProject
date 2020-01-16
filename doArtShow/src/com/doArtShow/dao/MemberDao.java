@@ -25,18 +25,18 @@ public class MemberDao {
    // 회원가입 시 이메일 중복확인
    //-------------------------------------------------------------------
    public int checkEmail(String email) throws Exception{
-      Connection conn = null;
-      PreparedStatement pstmt = null;
-      ResultSet rs = null;
-      String sql = "";
-      int res = 0;
+      Connection 		conn 	= null;
+      PreparedStatement pstmt 	= null;
+      ResultSet 		rs 		= null;
+      String 			sql 	= "";
+      int 				res 	= 0;
       
       try {
-         conn = ds.getConnection();
-         sql  = "SELECT * FROM artshowdb.MEMBER WHERE EMAIL=?";
-         pstmt = conn.prepareStatement(sql);
+         conn 	= ds.getConnection();
+         sql  	= "SELECT * FROM artshowdb.MEMBER WHERE EMAIL=?";
+         pstmt 	= conn.prepareStatement(sql);
          pstmt.setString(1, email);
-         rs = pstmt.executeQuery();
+         rs 	= pstmt.executeQuery();
          
          if(rs.next()){
             res = 1;
@@ -51,16 +51,19 @@ public class MemberDao {
       return res;
    }
    
+   //-------------------------------------------------------------------
+   // 회원가입(회원 추가)
+   //-------------------------------------------------------------------
    public void insertMember(MemberDto member) {
-      Connection          conn    = null;
-      PreparedStatement    pstmt    = null;
-      String             sql    = null;
+      Connection		conn	= null;
+      PreparedStatement pstmt   = null;
+      String            sql    	= null;
       
       try {
-         conn = ds.getConnection();
-         sql = "INSERT INTO artshowdb.MEMBER(EMAIL, NAME, BIRTH, GENDER, PW) "
+         conn 	= ds.getConnection();
+         sql 	= "INSERT INTO artshowdb.MEMBER(EMAIL, NAME, BIRTH, GENDER, PW) "
             + "VALUES (?,?,?,?,password(?))";
-         pstmt = conn.prepareStatement(sql);
+         pstmt 	= conn.prepareStatement(sql);
          pstmt.setString(1, member.getEmail());
          pstmt.setString(2, member.getName());
          pstmt.setString(3, member.getBirth());
@@ -76,23 +79,26 @@ public class MemberDao {
          try {if(conn!=null)conn.close();} catch (SQLException e) {}
       }
    }
-
+   
+   //-------------------------------------------------------------------
+   // 로그인 시 입력한 정보에 대한 회원이 있는지 확인
+   //-------------------------------------------------------------------
    public MemberDto checkMember(String email, String pw) {
-      Connection conn = null;
-      PreparedStatement pstmt = null;
-      ResultSet rs = null;
-      String sql = null;
+      Connection 		conn 	= null;
+      PreparedStatement pstmt 	= null;
+      ResultSet 		rs 		= null;
+      String 			sql 	= null;
       
-      MemberDto member = null;
+      MemberDto 		member 	= null;
       
       try {
-         conn = ds.getConnection();
-         sql = "SELECT * FROM artshowdb.MEMBER WHERE EMAIL=? AND PW=password(?) ";
-         pstmt = conn.prepareStatement(sql);
+         conn 	= ds.getConnection();
+         sql 	= "SELECT * FROM artshowdb.MEMBER WHERE EMAIL=? AND PW=password(?) ";
+         pstmt 	= conn.prepareStatement(sql);
          pstmt.setString(1, email);
          pstmt.setString(2, pw);
          
-         rs = pstmt.executeQuery();
+         rs 	= pstmt.executeQuery();
          
          member = new MemberDto();
 
@@ -110,27 +116,29 @@ public class MemberDao {
       } finally {
          try {if(pstmt   != null)pstmt.close();   } catch (SQLException e) {}
          try {if(rs      != null)rs.close();      } catch (SQLException e) {}
-         try {if(conn   != null)conn.close();   } catch (SQLException e) {}
+         try {if(conn    != null)conn.close();   } catch (SQLException e) {}
       }
       
       return member;
    }
 
-
+   //-------------------------------------------------------------------
+   // 로그인 후 해당 회원정보를 모아 session형성
+   //-------------------------------------------------------------------
    public MemberDto selectInfo(String email) {
-      Connection conn = null;
-      PreparedStatement pstmt = null;
-      ResultSet rs = null;
-      String sql = null;
+      Connection 		conn 	= null;
+      PreparedStatement pstmt 	= null;
+      ResultSet 		rs 		= null;
+      String 			sql 	= null;
       
       MemberDto member = null;
       try {
-         conn = ds.getConnection();
-         sql = "SELECT * FROM artshowdb.MEMBER WHERE email=?";
-         pstmt = conn.prepareStatement(sql);
+         conn 	= ds.getConnection();
+         sql 	= "SELECT * FROM artshowdb.MEMBER WHERE email=?";
+         pstmt 	= conn.prepareStatement(sql);
          pstmt.setString(1, email);
          
-         rs = pstmt.executeQuery();
+         rs 	= pstmt.executeQuery();
          
          member = new MemberDto();
          
@@ -153,16 +161,19 @@ public class MemberDao {
       
       return member;
    }
-
+   
+   //-------------------------------------------------------------------
+   // 회원정보 수정(생년월일, 성별, 비밀번호)
+   //-------------------------------------------------------------------
    public void updateMember(String birth, String gender, String pw, String email) {
-      Connection          conn    = null;
-      PreparedStatement    pstmt    = null;
-      String             sql    = null;
+      Connection		conn    = null;
+      PreparedStatement	pstmt	= null;
+      String            sql    	= null;
       
       try {
-         conn = ds.getConnection();
-         sql = "UPDATE artshowdb.MEMBER SET birth=?, gender=?, pw=password(?) WHERE email=?";
-         pstmt = conn.prepareStatement(sql);
+         conn 	= ds.getConnection();
+         sql 	= "UPDATE artshowdb.MEMBER SET birth=?, gender=?, pw=password(?) WHERE email=?";
+         pstmt 	= conn.prepareStatement(sql);
          pstmt.setString(1, birth);
          pstmt.setString(2, gender);
          pstmt.setString(3, pw);
@@ -178,59 +189,63 @@ public class MemberDao {
       }
    }
    
-   public void updateGender(String gender, String email) {
-      Connection          conn    = null;
-      PreparedStatement    pstmt    = null;
-      String             sql    = null;
-      
-      try {
-         conn = ds.getConnection();
-         sql = "UPDATE artshowdb.MEMBER SET gender=? WHERE email=?";
-         pstmt = conn.prepareStatement(sql);
-         pstmt.setString(1, gender);
-         pstmt.setString(2, email);
-         
-         pstmt.executeUpdate();
-         
-      } catch (Exception e) {
-         e.printStackTrace();
-      } finally {
-         try {if(pstmt!=null)pstmt.close();} catch (SQLException e) {}
-         try {if(conn!=null)conn.close();} catch (SQLException e) {}
-      }
-   }
-
-   public void updatePw(String pw, String email) {
-      Connection          conn    = null;
-      PreparedStatement    pstmt    = null;
-      String             sql    = null;
-      
-      try {
-         conn = ds.getConnection();
-         sql = "UPDATE artshowdb.MEMBER SET pw=pwssword(?) WHERE email=?";
-         pstmt = conn.prepareStatement(sql);
-         pstmt.setString(1, pw);
-         pstmt.setString(2, email);
-         
-         pstmt.executeUpdate();
-
-      } catch (Exception e) {
-         e.printStackTrace();
-      } finally {
-         try {if(pstmt!=null)pstmt.close();} catch (SQLException e) {}
-         try {if(conn!=null)conn.close();} catch (SQLException e) {}
-      }      
-   }
+//	삭제해도 되는지 확인 필요
+//   public void updateGender(String gender, String email) {
+//      Connection          conn    = null;
+//      PreparedStatement    pstmt    = null;
+//      String             sql    = null;
+//      
+//      try {
+//         conn = ds.getConnection();
+//         sql = "UPDATE artshowdb.MEMBER SET gender=? WHERE email=?";
+//         pstmt = conn.prepareStatement(sql);
+//         pstmt.setString(1, gender);
+//         pstmt.setString(2, email);
+//         
+//         pstmt.executeUpdate();
+//         
+//      } catch (Exception e) {
+//         e.printStackTrace();
+//      } finally {
+//         try {if(pstmt!=null)pstmt.close();} catch (SQLException e) {}
+//         try {if(conn!=null)conn.close();} catch (SQLException e) {}
+//      }
+//   }
+//
+//   public void updatePw(String pw, String email) {
+//      Connection          conn    = null;
+//      PreparedStatement    pstmt    = null;
+//      String             sql    = null;
+//      
+//      try {
+//         conn = ds.getConnection();
+//         sql = "UPDATE artshowdb.MEMBER SET pw=pwssword(?) WHERE email=?";
+//         pstmt = conn.prepareStatement(sql);
+//         pstmt.setString(1, pw);
+//         pstmt.setString(2, email);
+//         
+//         pstmt.executeUpdate();
+//
+//      } catch (Exception e) {
+//         e.printStackTrace();
+//      } finally {
+//         try {if(pstmt!=null)pstmt.close();} catch (SQLException e) {}
+//         try {if(conn!=null)conn.close();} catch (SQLException e) {}
+//      }      
+//   }
    
+   //-------------------------------------------------------------------
+   // 회원 프로필사진 수정
+   //-------------------------------------------------------------------
    public void updateProfileImg(String profileImg, String email) {
-      Connection          conn    = null;
-      PreparedStatement    pstmt    = null;
-      String             sql    = null;
+      Connection        conn   = null;
+      PreparedStatement	pstmt  = null;
+      String            sql    = null;
       
       try {
-         conn = ds.getConnection();
-         sql = "UPDATE artshowdb.MEMBER SET profileImg=? WHERE email=?";
-         pstmt = conn.prepareStatement(sql);
+         conn 	= ds.getConnection();
+         sql 	= "UPDATE artshowdb.MEMBER SET profileImg=? WHERE email=?";
+         pstmt 	= conn.prepareStatement(sql);
          pstmt.setString(1, profileImg);
          pstmt.setString(2, email);
          
@@ -243,24 +258,26 @@ public class MemberDao {
          try {if(conn!=null)conn.close();} catch (SQLException e) {}
       }      
    }
+   
+   //-------------------------------------------------------------------
+   // 이메일 찾기 
+   //-------------------------------------------------------------------
    public String findEmail(String name, String birth) {
-      System.out.println("findEmail실행");
-      System.out.println(name+" "+birth);
-      Connection conn = null;
-      PreparedStatement pstmt = null;
-      ResultSet rs = null;
-      String sql = null;
+      Connection 		conn	= null;
+      PreparedStatement pstmt 	= null;
+      ResultSet 		rs 		= null;
+      String 			sql 	= null;
       
-      String email = null;
+      String 			email 	= null;
       
       try {
-         conn = ds.getConnection();
-         sql = "SELECT email FROM artshowdb.MEMBER WHERE name=? AND birth=?";
-         pstmt = conn.prepareStatement(sql);
+         conn 	= ds.getConnection();
+         sql 	= "SELECT email FROM artshowdb.MEMBER WHERE name=? AND birth=?";
+         pstmt 	= conn.prepareStatement(sql);
          pstmt.setString(1, name);
          pstmt.setString(2, birth);
          
-         rs = pstmt.executeQuery();
+         rs 	= pstmt.executeQuery();
                   
          if(rs.next()){
             email = rs.getString("email");
@@ -278,13 +295,16 @@ public class MemberDao {
       return email;
    }
 
+   //-------------------------------------------------------------------
+   // 비밀번호 찾기
+   //-------------------------------------------------------------------
    public String findPw(String email, String birth) {
-      Connection conn = null;
-      PreparedStatement pstmt = null;
-      ResultSet rs = null;
-      String sql = null;
+      Connection 		conn 	= null;
+      PreparedStatement pstmt 	= null;
+      ResultSet 		rs 		= null;
+      String 			sql 	= null;
       
-      String pw = null;
+      String 			pw 		= null;
       
       try {
          conn = ds.getConnection();
@@ -309,7 +329,10 @@ public class MemberDao {
       
       return pw;
    }
-
+   
+   //-------------------------------------------------------------------
+   // 임시비밀번호를 생성하고 임시비밀번호로 비밀번호를 수정(회원에 의한 수정이 아님. 자동으로 이루어짐)
+   //-------------------------------------------------------------------
    public void changePw(String newPw, String email, String birth) {
       Connection conn = null;
       PreparedStatement pstmt = null;
@@ -332,14 +355,17 @@ public class MemberDao {
          try {if(conn   != null)conn.close();   } catch (SQLException e) {}
       }
    }
-
+   
+   //-------------------------------------------------------------------
+   // 회원 탈퇴
+   //-------------------------------------------------------------------
    public void deleteMember(String email) {
-      Connection    conn = null;
-      Statement   stmt = null;
-      PreparedStatement pstmt = null;
-      String sql1 = null;
-      String sql2 = null;
-      String sql3 = null;
+      Connection    	conn 	= null;
+      Statement   		stmt 	= null;
+      PreparedStatement pstmt 	= null;
+      String 			sql1 	= null;
+      String 			sql2 	= null;
+      String 			sql3 	= null;
       
       try {
          conn = ds.getConnection();
@@ -357,8 +383,6 @@ public class MemberDao {
          stmt = conn.createStatement();
          stmt.executeUpdate(sql3);
          
-         
-         
       } catch (SQLException e) {
          e.printStackTrace();
       } finally {
@@ -371,21 +395,21 @@ public class MemberDao {
    // 회원페이지(memberPage.jsp)에 쓸 가고 싶은 전시 목록을 구성
    //-------------------------------------------------------------------
    public ArrayList<ExhibitionDto> selectWishList(String email) throws Exception{
-      ArrayList<ExhibitionDto>    wishList = null;
-      ExhibitionDto             exhibitionDto;
-      
-      Connection          conn    = null;
-      PreparedStatement    pstmt    = null;
-      ResultSet          rs       = null;
-      String             sql    = "";
+	   ExhibitionDto             	exhibitionDto;
+	   ArrayList<ExhibitionDto>    	wishList		= null;
+
+       Connection          	conn		= null;
+       PreparedStatement    pstmt    	= null;
+       ResultSet          	rs       	= null;
+       String             	sql    		= "";
       
       try {
          conn    = ds.getConnection();
          sql     =  "SELECT  exhID, exhName, imageFile1 ";
-         sql      += "FROM   artshow ";
-         sql      += "WHERE    exhID   IN ( SELECT exhID ";
-         sql    +=                   "FROM   wishart ";
-         sql      +=                   "WHERE  email=?)";
+         sql     += "FROM   artshow ";
+         sql     += "WHERE    exhID   IN ( SELECT exhID ";
+         sql     +=                   "FROM   wishart ";
+         sql     +=                   "WHERE  email=?)";
          
          pstmt    = conn.prepareStatement(sql);
          pstmt.setString(1, email);
@@ -412,22 +436,23 @@ public class MemberDao {
       }
       return wishList;
    }
+   
    //-------------------------------------------------------------------
    // 회원페이지(memberPage.jsp) 회원이 가고 싶어 하는 전시의 개수를 찾는다.
    //-------------------------------------------------------------------
    public int countWishExh(String email) {
-      Connection          conn    = null;
-      PreparedStatement    pstmt    = null;
-      ResultSet          rs       = null;
-      String             sql    = "";
+      Connection          	conn    	= null;
+      PreparedStatement    	pstmt    	= null;
+      ResultSet          	rs       	= null;
+      String             	sql    		= "";
       
-      int wishCount = 0;
+      int 					wishCount 	= 0;
       
       try {
          conn    = ds.getConnection();
-         sql     =  "SELECT  count(*) ";
-         sql      += "FROM   wishart    ";
-         sql      += "WHERE   email=?    ";
+         sql     = "SELECT  count(*) ";
+         sql    += "FROM   wishart    ";
+         sql    += "WHERE   email=?    ";
          
          pstmt    = conn.prepareStatement(sql);
          pstmt.setString(1, email);
@@ -455,22 +480,22 @@ public class MemberDao {
       ArrayList<ExhibitionDto>    visitList       = null;
       ExhibitionDto             exhibitionDto;
             
-      Connection          conn    = null;
-      PreparedStatement    pstmt    = null;
-      ResultSet          rs       = null;
-      String             sql    = "";
+      Connection          	conn    	= null;
+      PreparedStatement    	pstmt    	= null;
+      ResultSet          	rs       	= null;
+      String             	sql    		= "";
             
       try {
          conn    = ds.getConnection();
          conn    = ds.getConnection();
-         sql     =  "SELECT  exhID, exhName, imageFile1 ";
-         sql      += "FROM   artshow ";
-         sql      += "WHERE    exhID   IN ( SELECT exhID     ";
+         sql     = "SELECT  exhID, exhName, imageFile1 ";
+         sql    += "FROM   artshow ";
+         sql    += "WHERE    exhID   IN ( SELECT exhID     ";
          sql    +=                   "FROM   visitart ";
-         sql      +=                   "WHERE  email=?) ";
-         pstmt    = conn.prepareStatement(sql);
+         sql    +=                   "WHERE  email=?) ";
+         pstmt   = conn.prepareStatement(sql);
          pstmt.setString(1, email);
-         rs       = pstmt.executeQuery();
+         rs      = pstmt.executeQuery();
          
          visitList       = new ArrayList<ExhibitionDto>();
          
@@ -498,18 +523,18 @@ public class MemberDao {
    // 회원페이지(memberPage.jsp) 다녀온 전시 개수를 찾는 메소드
    //-------------------------------------------------------------------
    public int countVisitExh(String email) {
-      Connection          conn    = null;
-      PreparedStatement    pstmt    = null;
-      ResultSet          rs       = null;
-      String             sql    = "";
+      Connection          	conn    	= null;
+      PreparedStatement    	pstmt    	= null;
+      ResultSet          	rs       	= null;
+      String             	sql    		= "";
       
       int visitCount = 0;
       
       try {
          conn    = ds.getConnection();
-         sql     =  "SELECT  count(*) ";
-         sql      += "FROM   visitart ";
-         sql      += "WHERE   email=?    ";
+         sql     = "SELECT  count(*) ";
+         sql    += "FROM   visitart ";
+         sql    += "WHERE   email=?    ";
          
          pstmt    = conn.prepareStatement(sql);
          pstmt.setString(1, email);
@@ -535,25 +560,25 @@ public class MemberDao {
    //-------------------------------------------------------------------
    public ArrayList<MyReviewDto> selectReviewList(String email) throws Exception{
       ArrayList<MyReviewDto>    reviewList       = null;
-      MyReviewDto          myReview;
+      MyReviewDto          		myReview;
       
-      Connection          conn    = null;
-      PreparedStatement    pstmt    = null;
-      ResultSet          rs       = null;
-      String             sql    = "";
+      Connection          	conn    	= null;
+      PreparedStatement    	pstmt    	= null;
+      ResultSet          	rs       	= null;
+      String             	sql    		= "";
       
       try {
          conn    = ds.getConnection();
-         sql     =  "SELECT      artshow.ExhID, review.revDate, review.revContent, artshow.ImageFile1, artshow.ExhName "; 
-         sql     += "FROM      review, artshow ";
-         sql     += "WHERE      review.ExhID = artshow.ExhID ";
-         sql     += "   AND    review.email=? "; 
-         sql     += "ORDER BY   review.revDate;";
-         pstmt    = conn.prepareStatement(sql);
+         sql     = "SELECT      artshow.ExhID, review.revDate, review.revContent, artshow.ImageFile1, artshow.ExhName "; 
+         sql    += "FROM      review, artshow ";
+         sql    += "WHERE      review.ExhID = artshow.ExhID ";
+         sql    += "   AND    review.email=? "; 
+         sql    += "ORDER BY   review.revDate;";
+         pstmt   = conn.prepareStatement(sql);
          pstmt.setString(1, email);
-         rs       = pstmt.executeQuery();
+         rs      = pstmt.executeQuery();
          
-         reviewList       = new ArrayList<MyReviewDto>();
+         reviewList	= new ArrayList<MyReviewDto>();
          
          while(rs.next()) {
             myReview       = new MyReviewDto();
@@ -575,22 +600,23 @@ public class MemberDao {
       }
       return reviewList;
    }
+   
    //-------------------------------------------------------------------
    // 회원페이지(memberPage.jsp) 작성한 리뷰의 개수를 찾는 메소드
    //-------------------------------------------------------------------
    public int countReview(String email) {
-      Connection          conn    = null;
-      PreparedStatement    pstmt    = null;
-      ResultSet          rs       = null;
-      String             sql    = "";
+      Connection          	conn    	= null;
+      PreparedStatement    	pstmt    	= null;
+      ResultSet          	rs       	= null;
+      String             	sql    		= "";
       
       int reviewCount = 0;
       
       try {
          conn    = ds.getConnection();
-         sql     =  "SELECT  count(*) ";
-         sql      += "FROM   review ";
-         sql      += "WHERE   email=?    ";
+         sql     = "SELECT  count(*) ";
+         sql    += "FROM   review ";
+         sql    += "WHERE   email=?    ";
          
          pstmt    = conn.prepareStatement(sql);
          pstmt.setString(1, email);
@@ -610,27 +636,28 @@ public class MemberDao {
       }
       return reviewCount;
    }
+   
    //-------------------------------------------------------------------
    // 회원페이지(memberPage.jsp)에 등록한 전시 목록
    //-------------------------------------------------------------------
    public ArrayList<ExhibitionDto> selectMyExhList(String email) throws Exception{
-      ArrayList<ExhibitionDto>    myExhList       = null;
-      ExhibitionDto             myExhibition;
+      ArrayList<ExhibitionDto>    	myExhList       = null;
+      ExhibitionDto             	myExhibition;
       
-      Connection          conn    = null;
-      PreparedStatement    pstmt    = null;
-      ResultSet          rs       = null;
-      String             sql    = "";
+      Connection          	conn    	= null;
+      PreparedStatement    	pstmt    	= null;
+      ResultSet          	rs       	= null;
+      String             	sql    		= "";
       
       try {
          conn    = ds.getConnection();
          sql     =  "SELECT   exhID, exhName, imageFile1 "; 
-         sql     += "FROM   artshow ";
-         sql     += "WHERE   memberID=? "; 
+         sql    += "FROM   artshow ";
+         sql    += "WHERE   memberID=? "; 
 
-         pstmt    = conn.prepareStatement(sql);
+         pstmt   = conn.prepareStatement(sql);
          pstmt.setString(1, email);
-         rs       = pstmt.executeQuery();
+         rs      = pstmt.executeQuery();
          
          myExhList       = new ArrayList<ExhibitionDto>();
          
@@ -653,26 +680,27 @@ public class MemberDao {
       }
       return myExhList;
    }
+   
    //-------------------------------------------------------------------
    // 회원페이지(memberPage.jsp) 등록한 전시의 개수
    //-------------------------------------------------------------------
    public int countMyExh(String email) {
-      Connection          conn    = null;
-      PreparedStatement    pstmt    = null;
-      ResultSet          rs       = null;
-      String             sql    = "";
+      Connection          	conn    	= null;
+      PreparedStatement    	pstmt    	= null;
+      ResultSet          	rs       	= null;
+      String             	sql    		= "";
       
       int myExhCount = 0;
       
       try {
          conn    = ds.getConnection();
          sql     =  "SELECT  count(*) ";
-         sql      += "FROM   artshow ";
-         sql      += "WHERE   memberID=?    ";
+         sql    += "FROM   artshow ";
+         sql    += "WHERE   memberID=?    ";
          
-         pstmt    = conn.prepareStatement(sql);
+         pstmt   = conn.prepareStatement(sql);
          pstmt.setString(1, email);
-         rs       = pstmt.executeQuery();
+         rs      = pstmt.executeQuery();
          
          if(rs.next()) {
             myExhCount = rs.getInt(1);
@@ -688,13 +716,14 @@ public class MemberDao {
       }
       return myExhCount;
    }
+   
    //-------------------------------------------------------------------
    // 리뷰페이지(reviewList.jsp) 리뷰 수정 
    //-------------------------------------------------------------------
    public void updateReveiw(String email, int exhID, String revContent) {
-      Connection          conn    = null;
-      PreparedStatement    pstmt    = null;
-      String             sql    = null;
+      Connection          	conn    	= null;
+      PreparedStatement    	pstmt    	= null;
+      String             	sql    		= null;
       
       try {
          conn = ds.getConnection();
@@ -717,9 +746,9 @@ public class MemberDao {
    // 리뷰페이지(reviewList.jsp) 리뷰 삭제
    //-------------------------------------------------------------------
    public void deleteReveiw(String email, int exhID) {
-      Connection          conn    = null;
-      PreparedStatement    pstmt    = null;
-      String             sql    = null;
+      Connection          	conn    	= null;
+      PreparedStatement    	pstmt    	= null;
+      String             	sql    		= null;
       
       try {
          conn = ds.getConnection();
@@ -739,13 +768,13 @@ public class MemberDao {
    }
    
    //-------------------------------------------------------------------
-   // 리뷰페이지(reviewList.jsp) 리뷰 삭제
+   // 전시 이름에 따른 전시 아이디 가져오기
    //-------------------------------------------------------------------
    public int getExhID(String exhName) {
-      Connection          conn    = null;
-      PreparedStatement    pstmt    = null;
-      ResultSet          rs       = null;
-      String             sql    = "";
+      Connection          	conn    	= null;
+      PreparedStatement    	pstmt    	= null;
+      ResultSet          	rs       	= null;
+      String             	sql    		= "";
       
       int exhID = 0;
       

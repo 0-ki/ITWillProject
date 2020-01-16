@@ -13,8 +13,8 @@
             </center>
         </div>
         <div align="center">
-            <a class="btn" href="javascript:addFormLogin()">로그인 바로 하기</a>
-            <a class="btn" href="<%=request.getContextPath()%>/index.jsp">메인화면 바로가기</a>
+            <a class="btn" href="javascript:addFormLogin()" style="color:white;">로그인 바로 하기</a>
+            <a class="btn" href="<%=request.getContextPath()%>/index.jsp" style="color:white;">메인화면 바로가기</a>
         </div>
     </div>
     <jsp:include page="../../module/3body_last.html"></jsp:include>

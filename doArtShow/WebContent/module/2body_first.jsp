@@ -93,14 +93,14 @@
                          <form method="post" name="loginForm" action="<%=request.getContextPath()%>/client/auth/memberLogIn.do">
                             <div class="login-input">
                                 <input class="form-control" type="email" placeholder="이메일" name="email" id="login_email">
-                                <div style="margin-top:5px" id="chkLoginEmail"></div>
+                                <div style="margin-top:5px; height:20px; overflow:hidden;" id="chkLoginEmail"></div>
                             </div>
                             
                             <div class="login-input">
                             	<input class="form-control" type="password" placeholder="비밀번호" name="pw" id="login_pw">
-                            	<div style="margin-top:5px" id="chkLoginPw"></div>
+                            	<div style="margin-top:5px; height:20px; overflow:hidden;" id="chkLoginPw"></div>
                             </div>
-                                <input type="submit" class="btn btn-info" value="로그인" onclick="javascript:alert(document.getElementById('login_email').value);" style="margin-bottom: 10px;">
+                                <input type="button" class="btn btn-info" value="로그인" onclick="validateLogin(this.form)" style="margin-bottom: 10px;">
    						 </form>
                          
                             <div class="login-input">

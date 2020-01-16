@@ -11,9 +11,9 @@
             </center>
         </div>
         <div align="center">
-            <a class="btn" href="<%=request.getContextPath()%>/client/auth/findEmail.do">이메일 찾기</a>
-            <a class="btn" href="<%=request.getContextPath()%>/client/auth/findPw.do">비밀번호 찾기</a>
-            <a class="btn" href="<%=request.getContextPath()%>/client/auth/memberAdd.do">회원가입</a>
+            <a class="btn" href="<%=request.getContextPath()%>/client/auth/findEmail.do" style="color: white;">이메일 찾기</a>
+            <a class="btn" href="<%=request.getContextPath()%>/client/auth/findPw.do" style="color: white;">비밀번호 찾기</a>
+            <a class="btn" href="<%=request.getContextPath()%>/client/auth/memberAdd.do" style="color: white;">회원가입</a>
         </div>
     </div>
     <jsp:include page="../../module/3body_last.html"></jsp:include>

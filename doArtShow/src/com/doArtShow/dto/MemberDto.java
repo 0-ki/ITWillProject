@@ -2,12 +2,12 @@ package com.doArtShow.dto;
 
 // 회원 정보
 public class MemberDto {
-	private String 	email;
-	private String 	name;
-	private String 	birth;
-	private String 	gender;
-	private String 	pw;
-	private String 	profileImg;
+	private String 	email;			//이메일
+	private String 	name;			//이름
+	private String 	birth;			//생년월일
+	private String 	gender;			//성별
+	private String 	pw;				//비밀번호
+	private String 	profileImg;		//프로필 사진
 
 	
 	public String getEmail() {
@@ -63,4 +63,12 @@ public class MemberDto {
 		this.profileImg = profileImg;
 		return this;
 	}
+
+	@Override
+	public String toString() {
+		return "MemberDto [email=" + email + ", name=" + name + ", birth=" + birth + ", gender=" + gender + ", pw=" + pw
+				+ ", profileImg=" + profileImg + "]";
+	}
+	
+	
 }

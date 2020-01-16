@@ -2,6 +2,7 @@ package com.doArtShow.dto;
 
 import java.sql.Timestamp;
 
+//마이페이지 리뷰목록을 위한 dto(artshow와 review의 항목이 모두 들어가있음.)
 public class MyReviewDto {
 	private int			exhID;		
 	private String 		revContent;

@@ -8,6 +8,7 @@ import com.doArtShow.controls.Controller;
 import com.doArtShow.dao.MemberDao;
 import com.doArtShow.dto.MemberDto;
 
+//회원가입시 이메일 중복을 확인 컨트롤러
 public class MemberEmailChkController implements Controller{
    
    MemberDao memberDao;
