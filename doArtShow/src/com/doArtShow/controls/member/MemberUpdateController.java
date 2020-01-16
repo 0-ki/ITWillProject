@@ -8,6 +8,7 @@ import com.doArtShow.controls.Controller;
 import com.doArtShow.dao.MemberDao;
 import com.doArtShow.dto.MemberDto;
 
+//회원 정보 수정 컨트롤러
 public class MemberUpdateController implements Controller{
 	MemberDao memberDao;
 	HttpSession session;

@@ -1,3 +1,4 @@
+//회원가입 폼 유효성 검사
 $(document).ready(function(){
 	
 	//이메일 유효검사

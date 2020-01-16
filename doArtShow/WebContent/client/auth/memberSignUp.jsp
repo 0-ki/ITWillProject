@@ -5,7 +5,7 @@
 <body>
     <jsp:include page="../../module/2body_first.jsp"></jsp:include>
     <div class="container" id="mainContainer">
-        <form class="container" method="post" name="signUpForm" id="signUpForm">
+        <form class="container" method="post" name="signUpForm" id="signUpForm" style="padding:10px;">
             <table align="center">
                 <tr>
                     <td id="formTitle" colspan="3">회원가입</td>
@@ -17,7 +17,7 @@
                     <th><label class="tableLabel">이메일</label></th>
                     <td><input class="form-control" type="text" name="email" id="input_email" placeholder="이메일"></td>
                     <td><input class="btn btn-light" type="button" id="emailChkButton" value="중복확인"
-                            style="margin-left:2vw;" onclick="emailChkModal(document.signUpForm.email.value)"></td>
+                            style="margin-left:2vw; color: white;" onclick="emailChkModal(document.signUpForm.email.value)"></td>
                 </tr>
                 <tr class="check_tr">
                     <td></td>
@@ -132,7 +132,8 @@
                 <tr>
                     <td colspan="3">
                         <input class="btn" type="button" value="회원가입" id="submitBtn"
-                            onclick="javascript:validateSignUp(this.form)">
+                            onclick="javascript:validateSignUp(this.form)"
+                            style="width: 100%; color: white; font-size: 1.2em;">
                     </td>
                 </tr>
             </table>

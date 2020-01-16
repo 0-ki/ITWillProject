@@ -25,7 +25,7 @@ public class MemberDeleteController implements Controller{
 			MemberDto member = (MemberDto)session.getAttribute("member");
 			memberDao.deleteMember(member.getEmail());
 			
-			//로그인 정보를 없앤다.
+			//탈퇴함과 동시에 로그인 정보를 없앤다.
 			session.invalidate();
 			
 			return "/index.jsp";

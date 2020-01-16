@@ -8,6 +8,7 @@ import com.doArtShow.controls.Controller;
 import com.doArtShow.dao.MemberDao;
 import com.doArtShow.dto.MemberDto;
 
+//이메일  찾기 컨트롤러
 public class FindEmailController implements Controller{
 	MemberDao memberDao;
 	

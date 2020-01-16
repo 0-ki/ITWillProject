@@ -7,7 +7,7 @@
 
 <body>
     <div class="container" id="mainContainer">
-        <form method="post" name="findPwForm">
+        <form style="height: 63vh; padding:10vh;" method="post" name="findPwForm">
             <table align="center">
                 <tr>
                     <td id="formTitle" colspan="2">비밀번호 찾기</td>
@@ -37,8 +37,9 @@
                     </td>
                 </tr>
                 <tr>
+                	<td></td>
                     <td><input class="btn" type="button" id="findPwBtn" value="인증번호 보내기"
-                            onclick="chkFindPwForm(this.form)"></td>
+                            onclick="chkFindPwForm(this.form)" style="color:white; width: 100%;"></td>
                 </tr>
             </table>
         </form>

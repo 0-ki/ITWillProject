@@ -2,6 +2,12 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <jsp:include page="../../module/1doctype_head.jsp"></jsp:include>
+<style>
+	td{
+		font-size: 1.2em;
+		
+	}
+</style>
 <script>
 //--------------------------------------------------------------------------------
 //	memberDetail.jsp	회원정보 수정 유효성 검사
@@ -166,8 +172,13 @@ $(document).ready(function(){
     </tr>
     <tr>
         <td class="check_tr" colspan="3">
-            <input class="btn" type="button" onclick="checkUpdateForm(this.form)" value="수정">
-            <input class="btn" type="button" onclick="javascript:history.go(-1)" value="취소">
+            <div></div>
+        </td>
+    </tr>
+    <tr>
+        <td class="check_tr" colspan="2">
+            <input class="btn" type="button" onclick="checkUpdateForm(this.form)" value="수정" style="color: white; width: 40%; margin-left: 9%;margin-right: 10%;">
+            <input class="btn" type="button" onclick="javascript:history.go(-1)" value="취소" style="color: white; width: 40%;">
         </td>
     </tr>
     </table>

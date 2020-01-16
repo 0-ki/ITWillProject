@@ -10,6 +10,7 @@ import com.doArtShow.dto.MemberDto;
 import com.doArtShow.util.EmailUtil;
 import com.doArtShow.util.FindUtil;
 
+//비밀번호 찾기 컨트롤러
 public class FindPwController implements Controller{
 	MemberDao memberDao;
 	HttpSession session;
@@ -21,6 +22,7 @@ public class FindPwController implements Controller{
 
 	@Override
 	public String execute(Map<String, Object> model) throws Exception {
+		//임시비밀번호를 가입된 이메일 주소로 발급 받는다.
 		if(model.get("findPwInfo") != null) {
 			MemberDto member = (MemberDto)model.get("findPwInfo");
 			

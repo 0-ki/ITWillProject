@@ -8,6 +8,7 @@
 <body>
     <c:if test="${!empty sessionScope.member}">
         <div class="container" id="mainContainer">
+        <div style="margin-bottom: 8vh; padding: 8vh;">
             <div id="formTitle" style="margin-bottom:2vh;">회원탈퇴신청</div>
             <div>
                 <p>회원 탈퇴 신청에 앞서 아래 내용을 반드시 확인해 주세요.</p>
@@ -34,8 +35,11 @@
                     삭제를 원하는 전시가 있다면 <span style="color:orange">반드시 탈퇴 전 삭제하시기바랍니다.</span><br>
                     탈퇴 후에는 회원정보가 삭제되어 보인 여부를 확인할 방법이 없어, 전시 게시물을 임의로 삭제해드릴 수 없습니다.</p>
             </div>
+            <br><br>
+                    <div><a class="btn" href="<%=request.getContextPath()%>/client/auth/memberDelete.do" style="color: white;">탈퇴하기</a></div>
+            
         </div>
-        <div><a class="btn" href="<%=request.getContextPath()%>/client/auth/memberDelete.do">탈퇴하기</a></div>
+        </div>
     </c:if>
     <c:if test="${empty sessionScope.member}">
         <jsp:include page="askLogIn.jsp"></jsp:include>

@@ -11,6 +11,7 @@ import com.doArtShow.dto.ExhibitionDto;
 import com.doArtShow.dto.MemberDto;
 import com.doArtShow.dto.MyReviewDto;
 
+//회원이 가고 싶은 전시 전체보기 컨트롤러
 public class MemWishListController implements Controller{
 	MemberDao	memberDao;
 	

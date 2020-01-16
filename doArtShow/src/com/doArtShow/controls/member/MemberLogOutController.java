@@ -7,6 +7,7 @@ import javax.servlet.http.HttpSession;
 import com.doArtShow.controls.Controller;
 import com.doArtShow.dao.MemberDao;
 
+//로그아웃 컨트롤러
 public class MemberLogOutController implements Controller{
 	MemberDao memberDao;
 	
