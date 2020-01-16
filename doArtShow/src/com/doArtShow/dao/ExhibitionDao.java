@@ -229,9 +229,7 @@ public class ExhibitionDao {
 					
 				lists.add(art);
 			}
-			
-			
-				
+		
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {

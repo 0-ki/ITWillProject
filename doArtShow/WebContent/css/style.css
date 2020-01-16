@@ -200,42 +200,7 @@ header img {
 }   
 /* ------------------------------------------------------ */
 
-/* ExContentView.jsp */
-#myHist{
-	display: inline-flex;
-	text-align: center;
-	padding-left: 25px;
-}
 
-#imageBtn{
-	display: inline-block;
-}
-
-.heart-switch, #visitBtn, #reviewBtn, #shareBtn{
-	padding-right: 20px;
-}
-
-.dropdown-item{
-	float: left;
-	margin-left: 2.5px;
-}
-
-#modalBody{
-	padding: 30px;
-	padding-top: 50px;
-	padding-bottom: 100px;
-}
-
-#revList{
-	display: -webkit-inline-box;
-}
-
-#revOne{
-	padding: 10px;
-    padding-left: 25px;
-    padding-right: 25px;
-    display: -webkit-inline-box;
-}
 
 /*--------------------
 1. General

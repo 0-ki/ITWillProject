@@ -5,6 +5,8 @@
 	<jsp:include page="../../module/1doctype_head.jsp"></jsp:include>
 	
 <body>
+	
+ 	<jsp:include page="../../module/2body_first.jsp"></jsp:include>
 
 <style>
 	/* 정렬 */
@@ -45,7 +47,8 @@
 	.artSort {
 	  color: #ad3da1;
 	}
-	.artSort:before, .artSort:after {
+	.artSort::before, 
+	.artSort::after {
 	  content: '';
 	  position: absolute;
 	  top: 0;
@@ -53,14 +56,14 @@
 	  bottom: 0;
 	  left: 0;
 	}
-	.artSort:before {
+	.artSort::before {
 	  right: -50px;
 	  border-right: 50px solid transparent;
 	  border-bottom: 80px solid #8e1882; 
 	  -webkit-transform: translateX(-100%);
 	          transform: translateX(-100%);
 	}
-	.artSort:after {
+	.artSort::after {
 	  left: -50px;
 	  border-left: 50px solid transparent;
 	  border-top: 80px solid #8e1882;
@@ -71,16 +74,16 @@
 	  color: #f5e8f4;
 	  cursor: pointer;
 	}
-	.artSort:hover:before {
+	.artSort:hover::before {
 	  -webkit-transform: translateX(-49%);
 	          transform: translateX(-49%);
 	}
-	.artSort:hover:after {
+	.artSort:hover::after {
 	  -webkit-transform: translateX(49%);
 	          transform: translateX(49%);
 	}
 
-	/* 태그 */
+	/* 태그 */	
 	#ctgList li {
 	  display: inline-flex;
 	  list-style-type: none;
@@ -90,8 +93,13 @@
 	  font-size: 15px;
 	}
 	
+	#ctgList{
+	  padding-left: 3em;
+	  padding-right: 2em;
+	}
+	
 	li b {
-	  padding-right: 20px;
+	  padding-right: 80px;
 	}
 	
 	#ctgBox {
@@ -116,16 +124,43 @@
 	  text-transform: uppercase;
 	  position: relative;
 	  overflow: hidden;
-	  transition: .3s;
+	  letter-spacing: 1px;
+	  
+	  transition-property: all;
+	  transition-duration: .6s;
+	  transition-timing-function: ease;	
 	}
-
-	.ctg:hover {
+	
+	.ctg::after{
+	  content: "";
+	  display: block;
+	  position: absolute;
+	}
+	.ctg::before{
+	  content: "";
+	  display: block;
+	  position: absolute;
+	}
+	
+	.ctg:hover,
+	.ctg:active {
+	  letter-spacing: 5px;
 	  cursor: pointer;
 	}
 	
+	.ctg::after {
+	  left: 50%;
+  	  bottom: -0.5rem;
+  	  width: 0%;
+  	  height: 0.2rem;
+  	  background-color: #f7f7f7;
+  	  transform: translateX(-50%);
+  	  transition: all 0.3s;
+	}
+	.ctg:hover::after{
+	  width: 100%;
+	}
 </style>
-
- 	<jsp:include page="../../module/2body_first.jsp"></jsp:include>
 	
 	<div class="container" id="mainContainer">
 		<div id="sortBox" style="display: inline-flex;">
@@ -136,7 +171,7 @@
 		</div>
 		<div id="ctgBox">
 			<ul id="ctgList">
-				<li><i class="fa fa-tags fa-1.5x"></i>&nbsp;<b>태그로 찾을래요</b></li>
+				<li><i class="fa fa-slack"></i>&nbsp;<b>태그로 찾을래요</b></li>
 				<li id="tagCtg" class="ctg" name="데이트">#데이트</li>
 				<li id="tagCtg" class="ctg" name="인생샷">#인생샷</li>
 				<li id="tagCtg" class="ctg" name="친구와함께">#친구와함께</li>
@@ -146,7 +181,7 @@
 				<li id="tagCtg" class="ctg" name="교육전시">#교육전시</li>
 			</ul>
 			<ul id="ctgList">
-				<li><i class="fa fa-map fa-1.5x"></i>&nbsp;<b>위치로 찾을래요</b></li>
+				<li><i class="fa fa-map"></i>&nbsp;<b>위치로 찾을래요</b></li>
 				<li id="locCtg" class="ctg" name="서울">서울</li>
 				<li id="locCtg" class="ctg" name="인천/경기">인천/경기</li>
 				<li id="locCtg" class="ctg" name="대전/충청">대전/충청</li>
@@ -156,7 +191,7 @@
 				<li id="locCtg" class="ctg" name="제주">제주</li>
 			</ul>
 			<ul id="ctgList">
-				<li><i class="fa fa-image fa-1.5x"></i>&nbsp;<b>장르로 찾을래요</b></li>
+				<li><i class="fa fa-image"></i>&nbsp;<b>장르로 찾을래요</b></li>
 				<li id="genCtg" class="ctg" name="서양화">서양화</li>
 				<li id="genCtg" class="ctg" name="동양화">동양화</li>
 				<li id="genCtg" class="ctg" name="유화">유화</li>
@@ -183,7 +218,7 @@
 				</c:when>
 				<c:otherwise>
 					<div id="content_list">  
-				    	<c:forEach var="list" items="${lists}">
+				    	<c:forEach var="list" items="${lists}" begin="0" end="${listCnt}">
 						    <div id="content_list_div">
 						        <a href="<%=request.getContextPath()%>/client/exhibition/ExContentView.do?exhID=${list.exhID}" id="ExContentView" style="width: 290px; height: 470px;"><!-- 아무데나 눌러도 상세페이지로 넘어가게 -->
 						        	<img src="/doArtShow/exhibitionImages/${list.imageFile1}" style="height: 370px; width: 275px;"/><br>
@@ -212,38 +247,21 @@
 			var sortBtn = $(this).attr("id");
 			console.log(sortBtn);
 			
-			/* 다른 버튼을 클릭할때 이전의 버튼의 css를 초기화해줌 */
+			/* 다른 버튼을 클릭할때 이전 버튼의 css를 초기화해줌 */
 			$(".artSort").css({
 			     "border": "",
 			     "background-color":"",
 			     "color":""
-			})
-			  
-			if(sortBtn == "sortBtn1"){
-			  $("#sortBtn1").css({
+			});
+			$(".ctg").css({
+				"letter-spacing": "1px"
+			});
+			/* 해당 버튼의 css를 유지해줌 */
+			$("#"+sortBtn).css({
 			    "border":"solid 1px #8e1882",
 			    "background-color":"#8e1882",
 			    "color":"#f5e8f4"
-			  });
-			}else if(sortBtn == "sortBtn2"){
-			  $("#sortBtn2").css({
-			    "border":"solid 1px #8e1882",
-			    "background-color":"#8e1882",
-			    "color":"#f5e8f4"
-			  });
-			}else if(sortBtn == "sortBtn3"){
-			  $("#sortBtn3").css({
-			    "border":"solid 1px #8e1882",
-			    "background-color":"#8e1882",
-			    "color":"#f5e8f4"
-			  });
-			}else if(sortBtn == "sortBtn4"){
-			  $("#sortBtn4").css({
-			    "border":"solid 1px #8e1882",
-			    "background-color":"#8e1882",
-			    "color":"#f5e8f4"
-			  });
-			}
+			});
 			
 			$.ajax({
 				url : "artListSort.do",
@@ -277,6 +295,20 @@
 			var ctgName = $(this).attr("name");
 			console.log(ctgName);
 			
+			/* 다른 버튼을 클릭할때 이전 버튼의 css를 초기화해줌 */
+			$(".artSort").css({
+			     "border": "",
+			     "background-color":"",
+			     "color":""
+			});
+			$(".ctg").css({
+				"letter-spacing": "1px"
+			});
+			/* 해당 버튼의 css를 유지해줌 */
+			$(this).css({
+				"letter-spacing": "5px"
+			});
+			
 			$.ajax({
 				url : "artTagSort.do",
 				type : "GET",
@@ -301,6 +333,29 @@
 				}
 			});
 		});
+		
+		
+		/* 더보기버튼 */
+		$("#more_btn").click(function(){
+			$.ajax({
+				url : "",
+				type : "GET",
+				dataType : "JSON",
+				data : {
+					
+				},
+				success : function(data){
+					
+				},
+				error : function(request, status, error){
+					var msg = "ERROR : <br>"
+						msg += request.status +"<br>"+ request.responseText +"<br>"+ error;
+					console.log(msg);
+				}
+			});
+		});
+		
+	
 	</script>
 	
 	

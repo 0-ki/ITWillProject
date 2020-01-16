@@ -159,6 +159,78 @@
 		*:before, *:after {
 		  box-sizing: inherit;
 		}
+		
+		
+		#tagctgList div{
+		    border-radius: 15px;
+		    color: white;
+		    margin: 10px;
+		    padding-left: 15px;
+		    padding-right: 10px;
+		    font-size: 15px;
+		    text-align: center;
+		    font-family: 'Noto Sans KR', sans-serif !important;
+		    letter-spacing: 1px;
+		}
+		#tagctgList #gubun1{
+			border: 2px solid #ffb366;
+			background-color: #e68a00;
+		}
+		#tagctgList #gubun2{
+			border: 2px solid #ff6ea3;
+			background-color: #d63c74;
+		}
+		#tagctgList #gubun3{
+			border: 2px solid #58aae8;
+			background-color: #367aad;
+		}
+		
+		
+		#myHist{
+			display: inline-flex;
+			text-align: center;
+			padding-left: 25px;
+		}
+		
+		#imageBtn{
+			display: inline-block;
+		}
+		
+		.heart-switch, #visitBtn, #reviewBtn, #shareBtn{
+			padding-right: 20px;
+		}
+		
+		.dropdown-item{
+			float: left;
+			margin-left: 2.5px;
+		}
+		
+		#modalBody{
+			padding: 30px;
+			padding-top: 50px;
+			padding-bottom: 100px;
+		}
+		
+		input#exhName{
+			width: 100%;
+		}
+		textarea#revContent{
+			width: 100%;
+		    height: 250px;
+		}
+		
+		#revList{
+			display: -webkit-inline-box;
+		}
+		
+		#revOne{
+			padding: 10px;
+		    padding-left: 25px;
+		    padding-right: 25px;
+		    display: -webkit-inline-box;
+		}
+		
+		
  	</style>
  		
  		
@@ -260,15 +332,15 @@
 					<td>
 						<div id="tagctgList" style="display: inline-flex;">
 							<c:forEach var="ctg" items="${listOneTag}">
-								<div>
+								<div id="gubun1">
 									<label>#</label>${ctg.exhTagName}&nbsp;
 								</div>
 							</c:forEach>
-								<div>
-									${listOne.exhGubun2}&nbsp;
+								<div id="gubun2">
+									${listOne.exhGubun4}&nbsp;
 								</div>
-								<div>
-									${listOne.exhGubun4}
+								<div id="gubun3">
+									${listOne.exhGubun2}
 								</div>
 						</div>
 					</td>
@@ -331,11 +403,11 @@
                 		<table class="table nanum">
                 			<tr>
 	                			<td width="20%">전시 내용</td>
-	                			<td width="80%"><input type="text" name="exhName" readonly="readonly" value="${listOne.exhName}"></td>
+	                			<td width="80%"><input type="text" id="exhName" name="exhName" readonly="readonly" value="${listOne.exhName}"></td>
                 			</tr>
                 			<tr>
                 				<td>리뷰 내용</td>
-                				<td><textarea cols="60" rows="15" name="revContent" id="revContent" placeholder="리뷰는 50자 이내로 작성 가능합니다."></textarea></td>
+                				<td><textarea name="revContent" id="revContent" placeholder="리뷰는 50자 이내로 작성 가능합니다."></textarea></td>
                 			</tr>
                 		</table>
                 </div>
