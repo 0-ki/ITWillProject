@@ -2,7 +2,6 @@
 function validateLogin(loginForm){
 	var email 	= loginForm.email.value;
 	var pw 		= loginForm.pw.value;
-	
 	$.ajax({
 		url : 'memberLogIn.do?email='+email+'&pw='+pw,
 		type : 'GET',
@@ -152,7 +151,6 @@ function chkFindEmailForm(findEmailForm){
         findEmailForm.birth.focus();
         return false;
     }
-	
 	
 	findEmailForm.action="findEmail.do"
 	findEmailForm.submit();

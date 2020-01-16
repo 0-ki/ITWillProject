@@ -18,7 +18,7 @@ public class MemberLogOutController implements Controller{
 	public String execute(Map<String, Object> model) throws Exception {
 		HttpSession session = (HttpSession)model.get("session");
 		session.invalidate();
-		return "/doArtShow/start";
+		return "redirect:/doArtShow";
 	}
 	
 }

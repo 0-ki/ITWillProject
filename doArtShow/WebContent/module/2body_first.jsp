@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<c:set var="isLogin" value="${sessionScope.member}"/>
 
     <!-- 메인로고나 top 버튼 클릭시 최상단 좌표 역할 #page-top -->
     <!-- <span id="page-top">&nbsp;</span> -->
@@ -24,8 +23,6 @@
             </div>
 
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-
-
 
                 <ul class="nav navbar-nav navbar-right">
                 	
@@ -59,10 +56,20 @@
                     </li>
 
                     <li>
-                        <a class="page-scroll acss" href="" onclick="return false" id="">
-                        	문의하기
+                        <a class="page-scroll acss" href="<%=request.getContextPath() %>/support.do" onclick="" id="">
+                        	고객지원
                         </a>
                     </li>
+                    <c:choose>
+						<c:when test="${!empty sessionScope.member}">
+							<li>
+								<a class="page-scroll acss" href="<%=request.getContextPath()%>/client/auth/memberPage.do">
+									마이페이지
+								</a>
+							</li>						
+						</c:when>                    
+                    </c:choose>
+                    
                     <li>
                         <c:choose>
          
@@ -105,14 +112,14 @@
                          <form method="post" name="loginForm" action="<%=request.getContextPath()%>/client/auth/memberLogIn.do">
                             <div class="login-input">
                                 <input class="form-control" type="email" placeholder="이메일" name="email" id="login_email">
-                                <div style="margin-top:5px" id="chkLoginEmail"></div>
+                                <div style="margin-top:5px; height:20px; overflow:hidden;" id="chkLoginEmail"></div>
                             </div>
                             
                             <div class="login-input">
                             	<input class="form-control" type="password" placeholder="비밀번호" name="pw" id="login_pw">
-                            	<div style="margin-top:5px" id="chkLoginPw"></div>
+                            	<div style="margin-top:5px; height:20px; overflow:hidden;" id="chkLoginPw"></div>
                             </div>
-                                <input type="submit" class="btn btn-info" value="로그인" onclick="javascript:alert(document.getElementById('login_email').value);" style="margin-bottom: 10px;">
+                                <input type="button" class="btn btn-info" value="로그인" onclick="validateLogin(this.form)" style="margin-bottom: 10px;">
    						 </form>
                          
                             <div class="login-input">
@@ -199,7 +206,7 @@
 
 
 
-
+/* 플로팅 메뉴(우하단 최상단 이동버튼) */
 .float-button-container {
   position: fixed;
   right: 20px;
@@ -283,62 +290,8 @@
   bottom: 300px;
 }
 
-</style>
 
-
-
-<%-- 
-    <div id="back-top">
-    
-    	
-    
-        <c:choose>
-    	<c:when test="${empty isLogin}">
-        
-        <a data-toggle="modal" href="myBtn" id="myBtn" style="line-height:750%;">
-        <span class="item" style="color: #F17F42; align-items: center; font-family: 'Noto Sans KR', sans-serif;">로그인</span>
-        </a>
-    	</c:when>
-    	
-    	
-    	
-    	<c:when test="${!empty isLogin}">
-    	
-    	<a href="<%=request.getContextPath()%>/client/auth/memberLogOut.do" id="myBtn" style="line-height:750%;">
-        <span class="item" style="color: #F17F42; align-items: center; font-family: 'Noto Sans KR', sans-serif;">로그아웃</span>
-        </a>
-    	
-    	</c:when>
-        
-    </c:choose>
-        
-        <a href="
-        <c:choose>
-        <c:when test="${!empty isLogin}">
-        <%=request.getContextPath() %>/client/exhibition/addForm.do 		
-        </c:when>
-        
-        <c:when test="${empty isLogin}">
-        javascript:addFormLogin();
-        </c:when>
-        
-    	</c:choose>
-        ">
-        <span class="item" style="color: #CE6D39; font-family: 'Noto Sans KR', sans-serif; "><br><br>전시<br><br>등록</span>
-        </a>
-        
-        
-        <a href="#" id="backtop"><i class="fa fa-angle-up"></i></a>
-<!--         <a href="#page-top"><i class="fa fa-angle-up"></i></a> -->
-    </div>
-    --%>
-   
-   
-   
-   
-   <style>
-
-
+/* 검색창 */
 .cntr {
   display: table;
   width: 100%;
@@ -397,39 +350,7 @@
 }
 
 
-</style>
-   
-   
-   
-   
-   
-    <style>
-
-
-/*     
-
-
-.sm-link{
-	--uismLinkDisplay: var(--smLinkDisplay, inline-flex);	
-	--uismLinkTextColor: var(--smLinkTextColor);
-	--uismLinkTextColorHover: var(--smLinkTextColorHover);	
-	
-	display: var(--uismLinkDisplay);
-	color: var(--uismLinkTextColor);
-	position: relative;
-	overflow: hidden;
-}
-
-a.sm-link{
-	text-decoration: none;
-}
-
-.sm-link__label{
-  display: block;
-}
-
-/* sm-link_padding-all */ 
-
+/* 상단 메뉴바 Hover 효과*/
 .sm-link_padding-all{
 	--uismLinkLineWeight: var(--smLinkLineWeight, 2px);
 	--uismLinkLineColor: var(--smLinkLineColor, #000);
