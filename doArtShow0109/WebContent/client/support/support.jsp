@@ -8,8 +8,9 @@
 <style>
 /*  선택된 버튼 효과  */
 .btn-checked{
-	background-color: green;
+	background-color: #cccaca;
 	color: red;
+	transition: all 0.3s;
 }
 
 /*  */
@@ -22,10 +23,12 @@
 .faq-choose1 button{
 	border: 0;
     font-size: 20pt;
+    transition: all 0.3s;
 }
 .faq button{
 	border: 0;
     font-size: 20pt;
+    transition: all 0.3s;
 }
 
 .faq{
@@ -88,11 +91,43 @@
                 <div class="col-lg-12 text-center">
                     <div class="section-title">
                         <h2>공 지 사 항</h2>
-                        <p>질문을 등록해주시면 최대한 빠르게 답변드리겠습니다<br></p>
+                        <p>정책 변경 및 기타 전달사항입니다<br></p>
                     </div>
                 </div>
             </div>
             <div class="row">
+            
+            			<div id="" class="noticeDetail">
+	
+<button class="accordion">Section 1</button>
+<div class="panel1">
+  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+</div>
+
+<button class="accordion">Section 2</button>
+<div class="panel1">
+  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+</div>
+
+<button class="accordion">Section 3</button>
+<div class="panel1">
+  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+</div>
+
+<button class="accordion">Section 4</button>
+<div class="panel1">
+  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+</div>
+
+<button class="accordion">Section 5</button>
+<div class="panel1">
+  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+</div>
+
+			</div>
+            
+            
+            
             </div>
         </div>
     </section>
