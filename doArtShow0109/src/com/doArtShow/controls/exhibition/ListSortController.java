@@ -25,7 +25,6 @@ public class ListSortController implements Controller{
 		String result = "";
 		String res = "";
 		JSONArray jsonArray = new JSONArray();
-		JSONObject jsonObj = (JSONObject)model.get("jsonObj");
 
 		if(model.get("sortBtn") != null){
 			System.out.println("##3번 TagSortController(페이지컨트롤러)실행");
@@ -39,6 +38,7 @@ public class ListSortController implements Controller{
 			
 			if(lists.size() > 0) {
 				for(int i=0;i<lists.size();i++) {
+					JSONObject jsonObj = new JSONObject();
 					jsonObj.put("exhID", lists.get(i).getExhID());
 					jsonObj.put("imageFile1", lists.get(i).getImageFile1());
 					jsonObj.put("exhName", lists.get(i).getExhName());

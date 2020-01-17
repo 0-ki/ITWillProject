@@ -186,10 +186,11 @@
 	
 	<div class="container" id="mainContainer">
 		<div id="sortBox" style="display: inline-flex;">
-			<div class="artSort" id="sortBtn1"><b>진행중전시</b></div>
-			<div class="artSort" id="sortBtn2"><b>인기전시</b></div>
-			<div class="artSort" id="sortBtn3"><b>종료임박전시</b></div>
-			<div class="artSort" id="sortBtn4"><b>종료전시</b></div>
+			<div class="artSort" id="sortBtn0"><b>전체 전시 보기</b></div>
+			<div class="artSort" id="sortBtn1"><b>진행중인 전시 보기</b></div>
+			<div class="artSort" id="sortBtn2"><b>인기 전시 보기</b></div>
+			<div class="artSort" id="sortBtn3"><b>곧 종료하는 전시 보기</b></div>
+			<div class="artSort" id="sortBtn4"><b>종료된 전시 보기</b></div>
 		</div>
 		<div id="ctgBox">
 			<ul id="ctgList">

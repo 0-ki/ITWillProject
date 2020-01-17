@@ -205,10 +205,12 @@ public class ExhibitionDao {
 				
 			try {
 				conn = ds.getConnection();
-				if(sortBtn.equals("sortBtn1")){ //진행중전시
+				if(sortBtn.equals("sortBtn0")){
+					sql = "SELECT exhID, imageFile1, exhName, exhPlace, exhStartDate, exhEndDate FROM artshowdb.artshow ORDER BY exhID ASC";
+				}else if(sortBtn.equals("sortBtn1")){ //진행중전시
 					sql = "SELECT exhID, imageFile1, exhName, exhPlace, exhStartDate, exhEndDate FROM artshowdb.artshow WHERE DATE(exhStartDate)<=DATE(now()) AND DATE(exhEndDate)>=DATE(now()) ORDER BY exhStartDate DESC";
 				}else if(sortBtn.equals("sortBtn2")){ //인기전시
-					sql = "SELECT exhID, imageFile1, exhName, exhPlace, exhStartDate, exhEndDate FROM artshowdb.artshow ORDER BY exhReadCount DESC";
+					sql = "SELECT exhID, imageFile1, exhName, exhPlace, exhStartDate, exhEndDate FROM artshowdb.artshow WHERE DATE(exhStartDate)<=DATE(now()) AND DATE(exhEndDate)>=DATE(now()) ORDER BY exhReadCount DESC";
 				}else if(sortBtn.equals("sortBtn3")){ //곧종료전시
 					sql = "SELECT exhID, imageFile1, exhName, exhPlace, exhStartDate, exhEndDate FROM artshowdb.artshow WHERE DATE(exhEndDate)>=DATE(now()) ORDER BY exhEndDate ASC";
 				}else if(sortBtn.equals("sortBtn4")){ //종료전시
@@ -260,11 +262,11 @@ public class ExhibitionDao {
 			try {
 				conn = ds.getConnection();
 				if(ctgBtn.equals("tagCtg")){ //태그로 찾기
-					sql = "SELECT exhID, imageFile1, exhName, exhPlace, exhStartDate, exhEndDate FROM artshowdb.artshow WHERE exhid IN (SELECT exhid FROM artshowdb.artshowtag WHERE tagname=?)";
+					sql = "SELECT exhID, imageFile1, exhName, exhPlace, exhStartDate, exhEndDate FROM artshowdb.artshow WHERE DATE(exhStartDate)<=DATE(now()) AND DATE(exhEndDate)>=DATE(now()) AND exhid IN (SELECT exhid FROM artshowdb.artshowtag WHERE tagname=?) ORDER BY registerDate ASC";
 				}else if(ctgBtn.equals("locCtg")){ //위치로 찾기
-					sql = "SELECT exhID, imageFile1, exhName, exhPlace, exhStartDate, exhEndDate FROM artshowdb.artshow WHERE ExhGubun4=? ORDER BY registerDate DESC";
+					sql = "SELECT exhID, imageFile1, exhName, exhPlace, exhStartDate, exhEndDate FROM artshowdb.artshow WHERE DATE(exhStartDate)<=DATE(now()) AND DATE(exhEndDate)>=DATE(now()) AND ExhGubun4=? ORDER BY registerDate ASC";
 				}else if(ctgBtn.equals("genCtg")){ //장르로 찾기
-					sql = "SELECT exhID, imageFile1, exhName, exhPlace, exhStartDate, exhEndDate FROM artshowdb.artshow WHERE ExhGubun2=? ORDER BY registerDate DESC";
+					sql = "SELECT exhID, imageFile1, exhName, exhPlace, exhStartDate, exhEndDate FROM artshowdb.artshow WHERE DATE(exhStartDate)<=DATE(now()) AND DATE(exhEndDate)>=DATE(now()) AND ExhGubun2=? ORDER BY registerDate ASC";
 				}
 				pstmt = conn.prepareStatement(sql);
 				pstmt.setString(1, ctgName);
