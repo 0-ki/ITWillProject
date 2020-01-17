@@ -54,7 +54,7 @@ try {
 				</colgroup>
 				<tbody>
                 <tr>
-                    <th>전시회 등록</th>
+                    <th>*분류</th>
                     <td>
                         <select name="exhGubun1" id="exhGubun1" required>
                             <option value="">전시회 분류를 선택하세요</option>

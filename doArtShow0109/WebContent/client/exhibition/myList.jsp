@@ -46,9 +46,9 @@ if(request.getAttribute("dRsCnt")!=null) {
 <div class="container" style="min-height:660px;">
 	<table class="table table-bordered table-striped table-hover">
 		<thead>
-			<tr class="info" text-align="center">
+			<tr class="info">
 				<th>번호</th>
-				<th align="center">전시회명</th>
+				<th text-align="center">전시회명</th>
 				<th>전시관</th>
 				<th>전시시작일</th>
 				<th>전시종료일</th>
