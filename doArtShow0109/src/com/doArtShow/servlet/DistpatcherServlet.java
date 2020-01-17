@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
 import com.doArtShow.controls.Controller;
@@ -164,7 +165,7 @@ public class DistpatcherServlet extends HttpServlet {
 			  //--------------------------------------------------------------------------------------
 			  //seran
 			  //--------------------------------------------------------------------------------------
-			  } else if("/client/exhibition/ExContentView.do".equals(servletPath)){ //전시정보 상세페이지 보기
+			  }else if("/client/exhibition/ExContentView.do".equals(servletPath)){ //전시정보 상세페이지 보기
 				  if(request.getParameter("exhID") != null){
 					  if(session.getAttribute("member")!=null){ //로그인 되어있는 경우
 						  MemberDto member = (MemberDto)session.getAttribute("member");
@@ -206,12 +207,12 @@ public class DistpatcherServlet extends HttpServlet {
 			  }else if("/client/exhibition/artListSort.do".equals(servletPath)){ //리스트정렬
 				  JSONObject jsonObj = new JSONObject();
 				  model.put("jsonObj", jsonObj);
-						  
+				  
 				  model.put("sortBtn", request.getParameter("sortBtn"));
 			  }else if("/client/exhibition/artTagSort.do".equals(servletPath)){ //태그정렬
 				  JSONObject jsonObj = new JSONObject();
 				  model.put("jsonObj", jsonObj);
-						  
+				  
 				  model.put("ctgBtn", request.getParameter("ctgBtn"));
 				  model.put("ctgName", request.getParameter("ctgName"));
 		      //--------------------------------------------------------------------------------------

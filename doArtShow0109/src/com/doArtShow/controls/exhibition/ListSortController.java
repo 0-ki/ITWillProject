@@ -1,8 +1,11 @@
 package com.doArtShow.controls.exhibition;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
 import com.doArtShow.controls.Controller;
@@ -20,6 +23,8 @@ public class ListSortController implements Controller{
 	@Override
 	public String execute(Map<String, Object> model) throws Exception {
 		String result = "";
+		String res = "";
+		JSONArray jsonArray = new JSONArray();
 		JSONObject jsonObj = (JSONObject)model.get("jsonObj");
 
 		if(model.get("sortBtn") != null){
@@ -27,24 +32,37 @@ public class ListSortController implements Controller{
 			
 			String sortBtn = (String)model.get("sortBtn");
 			System.out.println("sortBtn : " + sortBtn);
-			
-			String list = "";
+
 			List<ExhListDto> lists = exhibitionDao.selectSortList(sortBtn); //sortBtn값에 따라 dao에서 다른 쿼리문 실행하여 리스트 리턴받아옴
-			if(lists != null) {
-				System.out.println("갯수 있음");
+			
+			ArrayList<Map> list = new ArrayList<Map>();
+			
+			if(lists.size() > 0) {
 				for(int i=0;i<lists.size();i++) {
-					System.out.println(lists.get(i));
-					list += lists.get(i).toString()+" ";
-					jsonObj.put("lists", list);
+					jsonObj.put("exhID", lists.get(i).getExhID());
+					jsonObj.put("imageFile1", lists.get(i).getImageFile1());
+					jsonObj.put("exhName", lists.get(i).getExhName());
+					jsonObj.put("exhPlace", lists.get(i).getExhPlace());
+					jsonObj.put("exhStartDate", lists.get(i).getExhStartDate());
+					jsonObj.put("exhEndDate", lists.get(i).getExhEndDate());
+					
+					list.add(jsonObj);
 				}
 			}
-			int listCnt = exhibitionDao.getSortListCount(sortBtn); //태그로 찾을 경우의 전시갯수
-			jsonObj.put("listCnt", listCnt);
 			
-			result = jsonObj.toJSONString();
+			int listCnt = lists.size(); //정렬로 찾을 경우의 전시갯수
+			System.out.println(listCnt);
+			JSONObject json = new JSONObject();
+			json.put("listCnt", listCnt);
+			list.add(json);
+			
+			jsonArray.add(list);
+			result = jsonArray.toJSONString();
+			int idx = result.indexOf("]");
+			res = result.substring(1,idx+1);
 		}
-		
-		return "json:" + result;
+				
+		return "json:" + res;
 	}
 	
 	

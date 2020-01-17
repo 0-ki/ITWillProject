@@ -245,47 +245,6 @@ public class ExhibitionDao {
 			return lists;
 				
 		}
-		
-		//정렬로 전시갯수 
-		public int getSortListCount(String sortBtn) {
-			System.out.println("##4-2번 ExhibitionDao실행 - getTagListCount()");
-				
-			Connection conn = null;
-			PreparedStatement pstmt = null;
-			ResultSet rs = null;
-				
-			int listCnt = 0;
-			String sql = "SELECT count(*) FROM artshowdb.artshow";
-				
-			try {
-				conn = ds.getConnection();
-				if(sortBtn.equals("sortBtn1")){ //진행중전시
-					sql = "SELECT count(*) FROM artshowdb.artshow WHERE DATE(exhStartDate)<=DATE(now()) AND DATE(exhEndDate)>=DATE(now())";
-				}else if(sortBtn.equals("sortBtn2")){ //인기전시
-					sql = "SELECT count(*) FROM artshowdb.artshow";
-				}else if(sortBtn.equals("sortBtn3")){ //곧종료전시
-					sql = "SELECT count(*) FROM artshowdb.artshow WHERE DATE(exhEndDate)>=DATE(now())";
-				}else if(sortBtn.equals("sortBtn4")){ //종료전시
-					sql = "SELECT count(*) FROM artshowdb.artshow WHERE DATE(exhEndDate)<DATE(now())";
-				}
-				pstmt = conn.prepareStatement(sql);
-				
-				rs = pstmt.executeQuery();
-							
-				if(rs.next()){
-					listCnt = rs.getInt(1);
-				}
-					
-			} catch (Exception e) {
-				e.printStackTrace();
-			} finally {
-				try {if (rs != null) rs.close();} catch(Exception e) {}
-			    try {if (pstmt != null) pstmt.close();} catch(Exception e) {}
-			    try {if (conn != null) conn.close();} catch(Exception e) {}
-			}
-				
-			return listCnt;
-		}
 			
 		//태그로 리스트 출력
 		public List<ExhListDto> selectTagList(String ctgBtn, String ctgName){
@@ -338,46 +297,6 @@ public class ExhibitionDao {
 					
 			return lists;
 					
-		}
-
-		//태그로 전시갯수 
-		public int getTagListCount(String ctgBtn, String ctgName) {
-			System.out.println("##4-2번 ExhibitionDao실행 - getTagListCount()");
-			
-			Connection conn = null;
-			PreparedStatement pstmt = null;
-			ResultSet rs = null;
-			
-			int listCnt = 0;
-			String sql = "SELECT count(*) FROM artshowdb.artshow";
-			
-			try {
-				conn = ds.getConnection();
-				if(ctgBtn.equals("tagCtg")){ //태그로 찾기
-					sql = "SELECT count(*) FROM artshowdb.artshow WHERE exhid IN (SELECT exhid FROM artshowdb.artshowtag WHERE tagname=?)";
-				}else if(ctgBtn.equals("locCtg")){ //위치로 찾기
-					sql = "SELECT count(*) FROM artshowdb.artshow WHERE ExhGubun4=?";
-				}else if(ctgBtn.equals("genCtg")){ //장르로 찾기
-					sql = "SELECT count(*) FROM artshowdb.artshow WHERE ExhGubun2=?";
-				}
-				pstmt = conn.prepareStatement(sql);
-				pstmt.setString(1, ctgName);
-				
-				rs = pstmt.executeQuery();
-						
-				if(rs.next()){
-					listCnt = rs.getInt(1);
-				}
-				
-			} catch (Exception e) {
-				e.printStackTrace();
-			} finally {
-				try {if (rs != null) rs.close();} catch(Exception e) {}
-			    try {if (pstmt != null) pstmt.close();} catch(Exception e) {}
-			    try {if (conn != null) conn.close();} catch(Exception e) {}
-			}
-			
-			return listCnt;
 		}
 		
 		//리스트 목록의 content를 불러오는 메서드

@@ -148,30 +148,6 @@ header img {
     font-weight: 700;
 }
 
-
-/*--------------------
-0. seran
---------------------*/
-
-/* ExListView.jsp */
-
-#content_list{
-	display: -webkit-inline-box;
-	flex-wrap: wrap;
-}
-
-#content_list div{ 
-	padding: 5px;
-	padding-bottom: 10px;
-	width: 290px;
-    height: 470px;
-}
-
-#moreBtn_div{
-	padding: 30px;
-}
-
-
 /*--------------------
 1. General
 --------------------*/

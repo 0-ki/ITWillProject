@@ -160,6 +160,29 @@
 	.ctg:hover::after{
 	  width: 100%;
 	}
+	
+	
+	#content_div {
+    	text-align: center;
+    }
+    
+    
+	#content_list{
+		display: -webkit-inline-box;
+		flex-wrap: wrap;
+	}
+	
+	#content_list div{ 
+		padding: 5px;
+		padding-bottom: 10px;
+		width: 290px;
+	    height: 470px;
+	    text-align: left;
+	}
+	
+	#moreBtn_div{
+		padding: 30px;
+	}
 </style>
 	
 	<div class="container" id="mainContainer">
@@ -207,10 +230,10 @@
 		<div id="content_div">
 		    <c:choose>
 			    <c:when test="listCnt eq 0">
-			    	<div>
+			    	<div id="listCnt_0_div">
 						<div id="pDiv">
 							<center>진행중인 전시가 없습니다!</center><br>
-							<div align="center">
+							<div style="text-align: center;">
 							   <a class="btn" href="<%=request.getContextPath()%>/index.jsp">메인으로 돌아가기</a>
 							</div>
 						</div>
@@ -218,7 +241,7 @@
 				</c:when>
 				<c:otherwise>
 					<div id="content_list">  
-				    	<c:forEach var="list" items="${lists}" begin="0" end="${listCnt}">
+				    	<c:forEach var="list" items="${lists}">
 						    <div id="content_list_div">
 						        <a href="<%=request.getContextPath()%>/client/exhibition/ExContentView.do?exhID=${list.exhID}" id="ExContentView" style="width: 290px; height: 470px;"><!-- 아무데나 눌러도 상세페이지로 넘어가게 -->
 						        	<img src="/doArtShow/exhibitionImages/${list.imageFile1}" style="height: 370px; width: 275px;"/><br>
@@ -271,15 +294,39 @@
 					"sortBtn" : sortBtn
 				},
 				success : function(data){
-					if(data.listCnt == 0){
-						console.log("게시물 없음");
-						/* 게시물 없으면 #pDiv로 가서 그안에 html실행 */
-					}else if(data.listCnt != 0){
-						console.log("게시물 있음");
-						/* 게시물 있으면 #content_list로 가서 리스트 뿌려줌 */
-					}	
+					var html = "";
+					var listCnt = 0;
+					
+					for(i=0;i<data.length;i++){
+						listCnt = data[i].listCnt;
+					}
+					
+					console.log(listCnt);
+					
+					if(listCnt > 0){
+						for(i=0;i<listCnt;i++){
+							html += "<div id='content_list_div'>";
+							html += "<a href='/doArtShow/client/exhibition/ExContentView.do?exhID=" + data[i].exhID + "' id='ExContentView' style='width: 290px; height: 470px;'>";
+							html += "<img src='/doArtShow/exhibitionImages/" + data[i].imageFile1 + "' style='height: 370px; width: 275px;'/><br>";
+							html += "<b>" + data[i].exhName + "</b><br>";
+							html += data[i].exhPlace + "<br>";
+							html += data[i].exhStartDate + "&nbsp;~&nbsp;" + data[i].exhEndDate + "</a>";
+							html += "</div>";
+						}
+					}else{
+						html += "<div id='pDiv'>";
+						html += "<center>진행중인 전시가 없습니다!</center><br>";
+						html += "<div align='center'>";
+						html += "<a class='btn' href='/index.jsp'>메인으로 돌아가기</a>";
+						html += "</div>";
+						html += "</div>"
+						
+						$("#moreBtn_div").remove();
+					}
+					
+					$("#content_list").html(html);
 				},
-				error : function(request, status, error){
+				error : function(data, request, status, error){
 					var msg = "ERROR : <br>"
 						msg += request.status +"<br>"+ request.responseText +"<br>"+ error;
 					console.log(msg);
@@ -318,13 +365,37 @@
 					"ctgName" : ctgName
 				},
 				success : function(data){
-					if(data.listCnt == 0){
-						console.log("게시물 없음");
-						/* 게시물 없으면 #pDiv로 가서 그안에 html실행 */
-					}else if(data.listCnt != 0){
-						console.log("게시물 있음");
-						/* 게시물 있으면 #content_list로 가서 리스트 뿌려줌 */
-					}	
+					var html = "";
+					var listCnt = 0;
+					
+					for(i=0;i<data.length;i++){
+						listCnt = data[i].listCnt;
+					}
+					
+					console.log(listCnt);
+					
+					if(listCnt > 0){
+						for(i=0;i<listCnt;i++){
+							html += "<div id='content_list_div'>";
+							html += "<a href='/doArtShow/client/exhibition/ExContentView.do?exhID=" + data[i].exhID + "' id='ExContentView' style='width: 290px; height: 470px;'>";
+							html += "<img src='/doArtShow/exhibitionImages/" + data[i].imageFile1 + "' style='height: 370px; width: 275px;'/><br>";
+							html += "<b>" + data[i].exhName + "</b><br>";
+							html += data[i].exhPlace + "<br>";
+							html += data[i].exhStartDate + "&nbsp;~&nbsp;" + data[i].exhEndDate + "</a>";
+							html += "</div>";
+						}
+					}else{
+						html += "<div id='pDiv'>";
+						html += "<center>진행중인 전시가 없습니다!</center><br>";
+						html += "<div align='center'>";
+						html += "<a class='btn' href='/index.jsp'>메인으로 돌아가기</a>";
+						html += "</div>";
+						html += "</div>"
+						
+						$("#moreBtn_div").remove();
+					}
+					
+					$("#content_list").html(html);
 				},
 				error : function(request, status, error){
 					var msg = "ERROR : <br>"
