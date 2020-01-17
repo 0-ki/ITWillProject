@@ -5,6 +5,7 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>   
 <%@ page import ="com.doArtShow.dto.ExhibitionDto"%> 
 <%@ page import = "java.util.List"%>
+<jsp:include page="/module/1doctype_head.jsp"></jsp:include>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <!-- 
 <html>
@@ -14,6 +15,7 @@
 </head>
  -->
 <body>
+<jsp:include page="/module/2body_first.jsp"></jsp:include>
 <%
 //List<ExhibitionDto> exhibitionList = (List<ExhibitionDto>)request.getAttribute("exhibitionList"); 
 //for (int i = 0; i <exhibitionList.size(); i++)
@@ -41,12 +43,12 @@ if(request.getAttribute("dRsCnt")!=null) {
 		<script>alert('전시회 삭제에 실패했습니다. 잠시 후 다시 시도하거나 관리자에게 문의하세요.')</script>
 <%	}
 }%>	
-<div class="container">
+<div class="container" style="min-height:660px;">
 	<table class="table table-bordered table-striped table-hover">
 		<thead>
-			<tr class="info" text-align="center">
+			<tr class="info">
 				<th>번호</th>
-				<th align="center">전시회명</th>
+				<th text-align="center">전시회명</th>
 				<th>전시관</th>
 				<th>전시시작일</th>
 				<th>전시종료일</th>
@@ -90,6 +92,7 @@ if(request.getAttribute("dRsCnt")!=null) {
 		</tbody>
 	</table>
 </div>
+<jsp:include page="/module/3body_last.html" />
 </body>
 
 <script>

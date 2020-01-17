@@ -54,7 +54,7 @@ try {
 				</colgroup>
 				<tbody>
                 <tr>
-                    <th>전시회 등록</th>
+                    <th>*분류</th>
                     <td>
                         <select name="exhGubun1" id="exhGubun1" required>
                             <option value="">전시회 분류를 선택하세요</option>
@@ -89,7 +89,8 @@ try {
                     </td>
                 </tr>
                 <tr>
-                    <th><lable for="">*태그</lable> (최대 3개 선택)</th>
+                    <th><lable for="">*태그</lable>
+                    <p style="font-size:14px; line-height:22px; letter-spacing:-0.6px; font-weight:300;">(최대 3개 선택)</p></th>
                     <td>
                     	#데이트				<input class="updateForm" name="exhGubun3" type="checkbox" value="데이트" >
                     	#인생샷				<input class="updateForm" name="exhGubun3" type="checkbox" value="인생샷" >
@@ -242,10 +243,11 @@ try {
 							<option value="017">017</option>
 							<option value="018">018</option>
 							<option value="019">019</option>
+							<option value="070">070</option>
 						</select>
 						-
 						<input type="text" name="tel2"  id="tel2" class="updateForm"
-							maxlength="4" style="width:20%;">
+							maxlength="4" placeholder="Tel" style="width:20%;">
 						<input type="text" name="tel3" id="tel3"  class="updateForm"
 							maxlength="4" placeholder="Tel" style="width:20%;">
 					</td>		
@@ -257,7 +259,7 @@ try {
                     </td>
                 </tr>                
                 <tr>
-					<th class="td_left"><label for="">포스터</label></th>
+					<th class="td_left"><label for="">*포스터</label></th>
 					<td class="td_right"><pre class="brush:html">
 						<input type="file" class="updateForm" name="file1" id="profile_pt1" accept="image/*" onchange="previewImage(this,'View_area1')">
 						<div id='View_area1' style='position:relative; width: 100px; height: 100px; color: black; border: 0px solid black; dispaly: inline; '></div>
@@ -265,7 +267,7 @@ try {
 					</td>
 				</tr>
 				<tr> 
-					<th class="td_left"><label for="">작품사진1</label></th>
+					<th class="td_left"><label for="">*작품사진1</label></th>
 					<td class="td_right"><pre class="brush:html">
 						<input type="file" class="updateForm" name="file2" id="profile_pt2" 
 							 accept="image/*"  onchange="previewImage2(this,'View_area2')"> 

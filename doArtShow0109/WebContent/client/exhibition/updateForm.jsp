@@ -79,7 +79,7 @@ try {
 				</colgroup>
 				<tbody>
                 <tr>
-                    <th>신청과정</th>
+                    <th>*분류</th>
                     <td>
                     	<select id="exhGubun1" name="exhGubun1" id="exhGubun1" style="width:100%; padding: .8em .5em;" required>
                              <option value="">전시회 분류를 선택하세요</option> 
@@ -116,7 +116,8 @@ try {
                     </td>
                 </tr>
                 <tr>
-                    <th><lable for="">*태그</lable></th>
+                    <th><lable for="">*태그</lable>
+                    <p style="font-size:14px; line-height:22px; letter-spacing:-0.6px; font-weight:300;">(최대 3개 선택)</p></th>
                     <td style="padding: .8em .5em;">
                         #데이트				<input name="exhGubun3" type="checkbox" value="데이트" class="updateForm"				<%for(int i=0; i<tagList.size(); i++) if ("데이트".equals(tagList.get(i).getExhTagName())) 			{%>checked<%} %>>
                     	#인생샷				<input name="exhGubun3" type="checkbox" value="인생샷" class="updateForm"				<%for(int i=0; i<tagList.size(); i++) if ("인생샷".equals(tagList.get(i).getExhTagName())) 			{%>checked<%} %>>
@@ -261,6 +262,7 @@ try {
 							<option value="017" <%if(telArr[0].equals("017"))	{ %>selected<%} %>>017</option>
 							<option value="018" <%if(telArr[0].equals("018"))	{ %>selected<%} %>>018</option>
 							<option value="019" <%if(telArr[0].equals("019"))	{ %>selected<%} %>>019</option>
+							<option value="070" <%if(telArr[0].equals("070"))	{ %>selected<%} %>>070</option>
 						</select>
 						-
 						<input type="text" name="tel2" id="tel2" class="updateForm"
@@ -277,7 +279,7 @@ try {
                         무료<input type="radio" class="updateForm" name="admFee" id="admFee" value="무료" 	<%if(exhibition.getAdmFee().equals("무료"))	{ %>checked<%} %>> 
                     </td>
                 </tr>                
-					<th class="td_left"><label for="">포스터</label></th>
+					<th class="td_left"><label for="">*포스터</label></th>
 					<td class="td_right"><pre class="brush:html">
 						<input type="file" class="updateForm" name="file1" id="profile_pt1" accept="image/*" onchange="previewImage(this,'View_area1')">
 						<div id='View_area1' style='position:relative; width: 100px; height: 100px; color: black; border: 0px solid black; dispaly: inline; '></div>
@@ -285,7 +287,7 @@ try {
 					</td>
 				</tr>
 				<tr> 
-					<th class="td_left"><label for="">작품사진1</label></th>
+					<th class="td_left"><label for="">*작품사진1</label></th>
 					<td class="td_right"><pre class="brush:html">
 						<input type="file" class="updateForm" name="file2" id="profile_pt2" 
 							 accept="image/*"  onchange="previewImage2(this,'View_area2')"> 
