@@ -2,15 +2,14 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
-	<jsp:include page="../../module/1doctype_head.jsp"></jsp:include>
+	<jsp:include page="/module/1doctype_head.jsp"></jsp:include>
 	
 <body>
 	
- 	<jsp:include page="../../module/2body_first.jsp"></jsp:include>
+ 	<jsp:include page="/module/2body_first.jsp"></jsp:include>
 
 <style>
 	/* 정렬 */
-	@import url(https://fonts.googleapis.com/css?family=Open+Sans:400|Raleway:300);
 	*:before,
 	*:after {
 	  box-sizing: border-box;
@@ -262,7 +261,7 @@
 
 
 
-	<jsp:include page="../../module/3body_last.html"></jsp:include>
+	<jsp:include page="/module/3body_last.html"></jsp:include>
 	
 	<script>
 		/* list정렬을 위한 함수 */
