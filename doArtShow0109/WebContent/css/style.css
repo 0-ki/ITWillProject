@@ -187,7 +187,7 @@ p {
 }
 
 .dark-bg p {
-    color: #B1B1B1;
+    color: #888888;
 }
 
 a:hover,
@@ -493,7 +493,7 @@ header .intro-text .intro-heading {
 }
 
 .dark-bg .section-title h2 {
-    color: #fff;
+    color: #000;
 }
 
 .section-title p {
@@ -561,7 +561,7 @@ header .intro-text .intro-heading {
 }
 
 .dark-bg .section-text h4 {
-    color: #dfdfdf;
+    color: #000;
 }
 
 /*--------------------
@@ -692,8 +692,8 @@ figure.effect-bubba:hover p {
 }
 
 .dark-bg {
-    background-color: #333231;
-    color: #fff;
+    background-color: #f2f2f2;
+    color: #000;
 }
 
 .short-section {

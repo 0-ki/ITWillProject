@@ -1,6 +1,7 @@
 package com.doArtShow.servlet;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.Date;
 import java.sql.Timestamp;
 import java.util.Enumeration;
@@ -47,6 +48,9 @@ public class DistpatcherServlet extends HttpServlet {
 		      HashMap<String,Object> model = new HashMap<String,Object>();
 		      HttpSession session = request.getSession();
 		      model.put("session", request.getSession());
+		      
+	  		  PrintWriter out = response.getWriter();			//newly added by Hojeong 20/01/10(yy/mm/dd)
+	  		  model.put("out", out);							//newly added by Hojeong 20/01/10(yy/mm/dd)
 		      
 		      //로그인 후 이전 페이지로 가기 위해 Header를 사용
               model.put("Referer",request.getHeader("Referer"));
@@ -321,13 +325,23 @@ public class DistpatcherServlet extends HttpServlet {
 	
 	  					model.put("exhibition", exhibitionDto);
 					}
-  			// 마이(회원)페이지에서 내가 등록한 전시회 목록 보기 	
-  			} else if ("/client/exhibition/myList.do".equals(servletPath)) {
-	  				model.put("id", "id01");
-		    }
-	      //--------------------------------------------------------------------------------------
-		  // end - modified by Hojeong 20/01/03(yy/mm/dd)	
-	      //--------------------------------------------------------------------------------------
+		  	} else if ("/client/exhibition/delete.do".equals(servletPath)) {
+	  			if (request.getParameter("exhID") != null) {
+	  				System.out.println("^^^" + request.getParameter("exhID"));
+	  				model.put("exhID", request.getParameter("exhID"));
+	  			}		
+	  			// 마이(회원)페이지에서 내가 등록한 전시회 목록 보기 
+	  			} else if ("/client/exhibition/myList.do".equals(servletPath)) {
+		  			if (request.getParameter("uRsCnt") != null) {
+		  				model.put("uRsCnt", request.getParameter("uRsCnt"));
+		  			}
+		  			if (request.getParameter("dRsCnt") != null) {
+		  				model.put("dRsCnt", request.getParameter("dRsCnt"));
+		  			}
+	  			} 
+		      //--------------------------------------------------------------------------------------
+			  // end - modified by Hojeong 20/01/03(yy/mm/dd)	
+		      //--------------------------------------------------------------------------------------
 		      
 		      
 		      // 페이지 컨트롤러를 실행한다.
@@ -363,6 +377,6 @@ public class DistpatcherServlet extends HttpServlet {
 		         rd.forward(request, response);
 		    }
 	
-}
+		}
 }
 

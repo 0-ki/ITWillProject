@@ -82,8 +82,10 @@ public class UploadUtil {
 					filename[k] = multi.getFilesystemName(name);
 					// filename = multi.getFilesystemName(name);
 					System.out.println("filename*" + k + ":" + filename[k]);
-					k++;
-				}
+				} else {							// modified by Hojeong 20/01/08(yy/mm/dd)
+					filename[k] = "Nothing.png";	// modified by Hojeong 20/01/08(yy/mm/dd)
+				}									// modified by Hojeong 20/01/08(yy/mm/dd)
+				k++;								// modified by Hojeong 20/01/08(yy/mm/dd)
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

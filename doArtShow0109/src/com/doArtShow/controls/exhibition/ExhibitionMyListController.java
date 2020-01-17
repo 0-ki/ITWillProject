@@ -30,12 +30,7 @@ public class ExhibitionMyListController implements Controller {
 		System.out.println("controller id:" + email);
 		List<ExhibitionDto> exhibitionList = exhibitionDao.selectExhibitionMyList(email);
 		model.put("exhibitionList", exhibitionList);
-		
-		//등록한 전시 개수
-		int myExhCount = exhibitionDao.countMyExh(email);
-		if(myExhCount != 0) {
-			model.put("myExhCount", myExhCount);
-		}
+
 		return "/client/exhibition/myList.jsp";
 	}
 }

@@ -10,6 +10,7 @@ import javax.sql.DataSource;
 import com.doArtShow.controls.exhibition.ExhibitionAddController;
 import com.doArtShow.controls.exhibition.ExhibitionAddFormController;
 import com.doArtShow.controls.exhibition.ExhibitionContentController;
+import com.doArtShow.controls.exhibition.ExhibitionDeleteController;
 import com.doArtShow.controls.exhibition.ExhibitionListController;
 import com.doArtShow.controls.exhibition.ExhibitionMyListController;
 import com.doArtShow.controls.exhibition.ExhibitionReviewFormController;
@@ -185,6 +186,9 @@ public class ContextLoaderListener implements ServletContextListener{
 			
 			//마이 전시회 리스트 
 			sc.setAttribute("/client/exhibition/myList.do", new ExhibitionMyListController().setExhibitionDao(exhibitionDao));
+			
+			//myList에서 전시회 삭제 
+			sc.setAttribute("/client/exhibition/delete.do", new ExhibitionDeleteController().setExhibitionDao(exhibitionDao)); 		//newly added 20/01/10(yy/mm/dd) by Hojeong
 			//-------------------------------------------------------------------------------------------------------------
 			//			programmed by Hojeong - end
 			//-------------------------------------------------------------------------------------------------------------			
