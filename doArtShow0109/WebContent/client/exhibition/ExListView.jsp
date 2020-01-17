@@ -13,8 +13,16 @@
 	*:before,
 	*:after {
 	  box-sizing: border-box;
-	  transition: 0.5s ease-in-out;
+	  transition: 0.3s ease-in-out;
 	  z-index: -1;
+	}
+	
+	#sortBox {
+	  width: 100%;
+	  margin-left: 5em;
+      margin-right: 5em;
+      width: 89%;
+      justify-content: center;
 	}
 	
 	.artSort {
@@ -23,14 +31,9 @@
 	  color: black;
 	  text-align: center;
 	  font-size: 18px;
-	}
-	
-	@media (min-width: 600px) {
-	  #sortBox {
-	    width: 100%;
-	  }
-	}
-	.artSort {
+	  margin-bottom: 20px;
+      margin-left: auto;
+      margin-right: auto;
 	  position: relative;
 	  display: block;
 	  overflow: hidden;
@@ -41,11 +44,9 @@
 	  text-transform: uppercase;
 	  text-align: center;
 	  border: 1px solid currentColor;
-	}
-	
-	.artSort {
 	  color: #ad3da1;
 	}
+	
 	.artSort::before, 
 	.artSort::after {
 	  content: '';
@@ -93,8 +94,8 @@
 	}
 	
 	#ctgList{
-	  padding-left: 3em;
-	  padding-right: 2em;
+	  padding-left: 5em;
+      padding-right: 2em;
 	}
 	
 	li b {
@@ -111,6 +112,8 @@
 	  padding-right: 50px;
 	  padding-left: 50px;
 	  border-radius: 10px;
+	  margin-left: 70px;
+      margin-right: 70px;
 	}
 	
 	.ctg {
@@ -160,23 +163,47 @@
 	  width: 100%;
 	}
 	
-	
 	#content_div {
     	text-align: center;
+    	padding-left: 5%;
+    	padding-right: 5%;
+    	padding-top: 5em;
     }
     
     
 	#content_list{
 		display: -webkit-inline-box;
-		flex-wrap: wrap;
+    	flex-wrap: wrap;
+    	-webkit-box-pack: center;
 	}
 	
-	#content_list div{ 
-		padding: 5px;
-		padding-bottom: 10px;
-		width: 290px;
-	    height: 470px;
+	#content_list_div{ 
+		margin-left: auto;
+	    margin-right: auto;
+	    margin-bottom: 20px;
+	    width: 275px;
+	    height: 450px;
 	    text-align: left;
+	    border-radius: 20px;
+	}
+	
+	#content_list_div img{ 
+		border-radius: 20px;
+	}
+	
+	#content_list_div a{ 
+		color: #474747;
+		text-decoration: none;
+	}
+	
+	#content_list_div:hover{ 
+		box-shadow: 3px 3px 3px 3px;
+		transition: all .3s;
+	}
+	
+	#content_list_div a:hover{ 
+		color: #8a8a8a;
+		text-decoration: none;
 	}
 	
 	#moreBtn_div{
@@ -190,7 +217,7 @@
 			<div class="artSort" id="sortBtn1"><b>진행중인 전시 보기</b></div>
 			<div class="artSort" id="sortBtn2"><b>인기 전시 보기</b></div>
 			<div class="artSort" id="sortBtn3"><b>곧 종료하는 전시 보기</b></div>
-			<div class="artSort" id="sortBtn4"><b>종료된 전시 보기</b></div>
+			<div class="artSort" id="sortBtn4"><b>종료 된 전시 보기</b></div>
 		</div>
 		<div id="ctgBox">
 			<ul id="ctgList">

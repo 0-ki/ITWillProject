@@ -3,6 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 	<jsp:include page="/module/1doctype_head.jsp"></jsp:include>
+	<link rel="stylesheet" type="text/css" href="/doArtShow/libs/swiper/css/swiper.css" />
 	
 <body>
 	
@@ -364,8 +365,8 @@
 			</table>
 		</div>
 		<br>
-		<!-- 리뷰 보여지는 부분 (Bootstrap 4 Carousel 기능으로!) -->
-		<div>
+		<!-- 리뷰 보여지는 부분 -->
+		<div id="revSlider">
 			<p>리뷰 보기</p>
 			<c:choose>
 				<c:when test="${revCnt == 0}">
@@ -374,28 +375,67 @@
 					</div>
 				</c:when>
 				<c:otherwise>
-					<div id="revList">
-						<c:forEach var="revlist" items="${revLists}">
-							<div id="revOne">
-								<table border="1">
-									<tr>
-										<td rowspan="2" width="30%"><img src="/doArtShow/memberProfileImages/${revlist.profileImg}" id="memberProfile" style="height: 150px; width: 150px;"/></td>
-										<td width="70%" height="20%"><input type="text" readonly="readonly" name="memberName" value="${revlist.name}"></td>
-									</tr>
-									<tr>
-										<td height="80%"><input type="text" readonly="readonly" name="reviewContent" value="${revlist.revContent}"></td>
-									</tr>
-									<tr>
-										<td colspan="2">${revlist.revDate}에 작성되었습니다.</td>
-									</tr>
-								</table>
-							</div>
-						</c:forEach>
+					<div id="revList" class="swiper-container"> 
+						<div class="swiper-wrapper">
+							 <c:forEach  var="revlist" items="${revLists}">
+								<div id="revOne" class="swiper-slide">
+									<table>
+										<tr>
+											<td rowspan="2" width="30%"><img src="/doArtShow/memberProfileImages/${revlist.profileImg}" id="memberProfile" style="height: 150px; width: 150px;"/></td>
+											<td width="70%" height="20%"><input type="text" id="revExhName" readonly="readonly" name="memberName" value="${revlist.name}"></td>
+										</tr>
+										<tr>
+											<td height="80%"><input type="text" id="revContent" readonly="readonly" name="reviewContent" value="${revlist.revContent}"></td>
+										</tr>
+										<tr>
+											<td colspan="2">${revlist.revDate}에 작성되었습니다.</td>
+										</tr>
+									</table>
+								</div>
+							</c:forEach>
+				 				    
+						</div>
+						<!-- 스크롤 바  -->
+						<div class="swiper-scrollbar" style="width:283px;left:37%;"></div>
+						<!-- 좌우 화살표 추가 -->
+						<div class="swiper-button-next"></div>
+						<div class="swiper-button-prev"></div>
 					</div>
 				</c:otherwise>
 			</c:choose>
 		</div>
 	</div>
+	
+	<style>
+		/* swiper begin */
+		#revSlider .swiper-container{
+		    width: 1100px;
+		    height: 400px;
+		    margin-bottom: 80px !important;
+		    background-color: rgba(0, 0, 0, 0.5);
+		}
+		
+		#revOne{
+			box-sizing: border-box;
+			width: 330px;
+			height: 360px;
+		}
+	
+		.swiper-scrollbar{
+			width: 30%;
+		}
+		
+		
+		
+		#revExhName{
+			width: 100%;
+			height: 30px;
+		}
+		#revContent{
+			width: 100%;
+			height: 120px;
+		}
+	</style>
 		   
 	
 	<!-- 리뷰창 모달 -->
@@ -431,6 +471,7 @@
     </div>
 	    
 	<jsp:include page="../../module/3body_last.html"></jsp:include>
+	<script src="../package/js/swiper.min.js"></script>
 	
 	<script>	
 		function login_need(){
@@ -515,8 +556,9 @@
 			});
 		}
 		
-		/* 리뷰 작성 폼 유효성 검사 */
+		/* 리뷰작성폼에서 전송버튼 누르면 적용하는 함수 */
 		function chkreviewForm(revForm){			
+			/* 리뷰 작성 폼 유효성 검사 */
 			if(!revForm.revContent.value){
 				alert("내용을 작성해주세요");
 				revForm.revConter.focus();
@@ -563,6 +605,17 @@
 				});
 			});
 		});	
+		
+		/* 리뷰리스트 슬라이더 */
+		var swiper = new Swiper('.swiper-container', {
+	      slidesPerView: 2,
+	      slidesPerColumn: 2,
+	      spaceBetween: 30,
+	      pagination: {
+	        el: '.swiper-pagination',
+	        clickable: true,
+	      },
+	    });
 	</script>
 	
 </body>

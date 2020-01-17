@@ -195,14 +195,14 @@ public class ExhibitionDao {
 		//정렬로 리스트 출력
 		public List<ExhListDto> selectSortList(String sortBtn){
 			System.out.println("##4-1번 ExhibitionDao실행 - selectSortList()");
-				
+						
 			Connection conn = null;
 			PreparedStatement pstmt = null;
 			ResultSet rs = null;
-				
+						
 			String sql = "";
 			ArrayList<ExhListDto> lists = null;
-				
+						
 			try {
 				conn = ds.getConnection();
 				if(sortBtn.equals("sortBtn0")){
@@ -217,25 +217,25 @@ public class ExhibitionDao {
 					sql = "SELECT exhID, imageFile1, exhName, exhPlace, exhStartDate, exhEndDate FROM artshowdb.artshow WHERE DATE(exhEndDate)<DATE(now()) ORDER BY exhEndDate DESC";
 				}
 				pstmt = conn.prepareStatement(sql);
-					
+							
 				rs = pstmt.executeQuery();
-					
+							
 				lists = new ArrayList<ExhListDto>();
 				ExhListDto art = null;
-					
+							
 				while(rs.next()) {
 					art = new ExhListDto();
-						
+								
 					art.setExhID(rs.getInt("exhID"));
 					art.setImageFile1(rs.getString("imageFile1"));
 					art.setExhName(rs.getString("exhName"));
 					art.setExhPlace(rs.getString("exhPlace"));
 					art.setExhStartDate(rs.getString("exhStartDate"));
 					art.setExhEndDate(rs.getString("exhEndDate"));
-						
+								
 					lists.add(art);
 				}
-			
+					
 			} catch (Exception e) {
 				e.printStackTrace();
 			} finally {
@@ -243,22 +243,22 @@ public class ExhibitionDao {
 				try {if (pstmt != null) pstmt.close();} catch(Exception e) {}
 				try {if (conn != null) conn.close();} catch(Exception e) {}
 			}
-			
+					
 			return lists;
-				
+						
 		}
-			
+					
 		//태그로 리스트 출력
 		public List<ExhListDto> selectTagList(String ctgBtn, String ctgName){
 			System.out.println("##4-1번 ExhibitionDao실행 - selectTagList()");
-					
+							
 			Connection conn = null;
 			PreparedStatement pstmt = null;
 			ResultSet rs = null;
-					
+							
 			String sql = "";
 			ArrayList<ExhListDto> lists = null;
-					
+							
 			try {
 				conn = ds.getConnection();
 				if(ctgBtn.equals("tagCtg")){ //태그로 찾기
@@ -270,35 +270,35 @@ public class ExhibitionDao {
 				}
 				pstmt = conn.prepareStatement(sql);
 				pstmt.setString(1, ctgName);
-					
+							
 				rs = pstmt.executeQuery();
-						
+								
 				lists = new ArrayList<ExhListDto>();
 				ExhListDto art = null;
-						
+								
 				while(rs.next()) {
 					art = new ExhListDto();
-							
+									
 					art.setExhID(rs.getInt("exhID"));
 					art.setImageFile1(rs.getString("imageFile1"));
 					art.setExhName(rs.getString("exhName"));
 					art.setExhPlace(rs.getString("exhPlace"));
 					art.setExhStartDate(rs.getString("exhStartDate"));
 					art.setExhEndDate(rs.getString("exhEndDate"));
-							
+									
 					lists.add(art);
 				}
-						
+								
 			} catch (Exception e) {
 				e.printStackTrace();
 			} finally {
 				try {if (rs != null) rs.close();} catch(Exception e) {}
-			    try {if (pstmt != null) pstmt.close();} catch(Exception e) {}
+				try {if (pstmt != null) pstmt.close();} catch(Exception e) {}
 				try {if (conn != null) conn.close();} catch(Exception e) {}
 			}
-					
+							
 			return lists;
-					
+							
 		}
 		
 		//리스트 목록의 content를 불러오는 메서드
@@ -496,200 +496,232 @@ public class ExhibitionDao {
 			return wishchk;
 		}//end - public int wishCheck(String email, int exhID)
 	
-//-------------------------------------------------------------------------------------------------------------
-//	programmed by Hojeong - begin
-//-------------------------------------------------------------------------------------------------------------
-//-------------------------------------------------------------------------------------------------------------
-//	public void insertExhibition(ExhibitionDto exhibition) - begin
-// 	exhibition insert - 전시회 등록	
-//-------------------------------------------------------------------------------------------------------------	
-	public void insertExhibition(ExhibitionDto exhibition) {
-		System.out.println("insertExhibition - Dao");
-		Connection 			conn 		= null;
-		PreparedStatement 	pstmt 	= null;
-		ResultSet 				rs 			= null;
-		int							num 		= 0;
-		String 					sql 		= null;
-		
-		try {
-			conn = ds.getConnection();
-			pstmt = conn.prepareStatement("select max(exhID) from artshow");
-			rs = pstmt.executeQuery();
+		//-------------------------------------------------------------------------------------------------------------
+//		programmed by Hojeong - begin
+	//-------------------------------------------------------------------------------------------------------------
+		//-------------------------------------------------------------------------------------------------------------
+//		public void insertExhibition(ExhibitionDto exhibition) - begin
+	//  modified 20/01/10(yy/mm/dd)	
+//	 	exhibition insert - 전시회 등록	
+	//-------------------------------------------------------------------------------------------------------------	
+		public int insertExhibition(ExhibitionDto exhibition) {
+			System.out.println("insertExhibition - Dao");
+			Connection 			conn 		= null;
+			PreparedStatement 	pstmt 	= null;
+			ResultSet 				rs 			= null;
+			int							num 		= 0;
+			String 					sql 		= null;
+			int cnt = 0;
+			int rsCnt = 0;
 			
-			if(rs.next()){
-				num = rs.getInt(1)+1;
-			}else{
-				num = 1;
-			}
-			
-			sql = "INSERT INTO artshow(	exhID, "
-					+ "							memberID, "
-					+ "							exhGubun1, "
-					+ "							exhGubun2, "
-					+ "							exhGubun4, "
-					+ "							exhName, "
-					+ "							artistName, "
-					+ "							artistInfo, "
-					+ "							exhContent, "
-					+ "							exhPlace, "
-					+ "						  	exhPlaceZip, "
-					+ "							exhPlaceAddr1, "
-					+ "							exhPlaceAddr2, "
-					+ "							exhUrl, "
-					+ "							exhStartDate, "
-					+ "							exhEndDate, "
-					+ "							opTime, "
-					+ "							tel, "
-					+ "							admFee, "
-					+ "							imageFile1, "
-					+ "							imageFile2, "
-					+ "							imageFile3, "
-					+ "							imageFile4, "
-					+ "							exhReadCount, "
-					+ "							registerDate, "
-					+ "							activeFlag) "
-				+ "VALUES (?,?,?,?,?,?,?,?,?,?, "
-				+ "			?,?,?,?,?,?,?,?,?,?, "
-				+ "			?,?,?,?,?,? ) ";
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, num);
-			pstmt.setString(2, exhibition.getMemberID());
-			pstmt.setString(3, exhibition.getExhGubun1());
-			pstmt.setString(4, exhibition.getExhGubun2());
-			pstmt.setString(5, exhibition.getExhGubun4());
-			pstmt.setString(6, exhibition.getExhName());
-			pstmt.setString(7, exhibition.getArtistName());
-			pstmt.setString(8, exhibition.getArtistInfo());
-			pstmt.setString(9, exhibition.getExhContent());
-			pstmt.setString(10, exhibition.getExhPlace());
-			//pstmt.setString(11, exhibition.getExhPlaceZip());
-			pstmt.setString(12, exhibition.getExhPlaceAddr1());
-			//pstmt.setString(13, exhibition.getExhPlaceAddr2());
-			pstmt.setString(11, "001-001");
-			//pstmt.setString(12, "addr1");
-			pstmt.setString(13, "addr2");
-			pstmt.setString(14, exhibition.getExhUrl());
-			pstmt.setString(15, exhibition.getExhStartDate());
-			pstmt.setString(16, exhibition.getExhEndDate());
-			pstmt.setString(17, exhibition.getOpTime());
-			pstmt.setString(18,  exhibition.getTel());
-			pstmt.setString(19, exhibition.getAdmFee());
-			pstmt.setString(20, exhibition.getImageFile1());
-			pstmt.setString(21, exhibition.getImageFile2());
-			pstmt.setString(22, exhibition.getImageFile3());
-			pstmt.setString(23, exhibition.getImageFile4());
-			pstmt.setInt(24, 0);
-			pstmt.setTimestamp(25, exhibition.getRegisterDate());
-			pstmt.setString(26,  "N");
-	
-			pstmt.executeUpdate();
-			
-			sql = "INSERT INTO artshowtag ( exhid, tagname ) values ( ?,? ) ";
-			for (int i=0; i<exhibition.getExhGubun3().length; i++) {
-				System.out.println("dao%%% "+exhibition.getExhGubun3()[i]);
+			try {
+				conn = ds.getConnection();
+				conn.setAutoCommit(false);
+				pstmt = conn.prepareStatement("select max(exhID) from artshow");
+				rs = pstmt.executeQuery();
+				
+				if(rs.next()){
+					num = rs.getInt(1)+1;
+				}else{
+					num = 1;
+				}
+				
+				sql = "INSERT INTO artshow(	exhID, "
+						+ "							memberID, "
+						+ "							exhGubun1, "
+						+ "							exhGubun2, "
+						+ "							exhGubun4, "
+						+ "							exhName, "
+						+ "							artistName, "
+						+ "							artistInfo, "
+						+ "							exhContent, "
+						+ "							exhPlace, "
+						+ "						  	exhPlaceZip, "
+						+ "							exhPlaceAddr1, "
+						+ "							exhPlaceAddr2, "
+						+ "							exhUrl, "
+						+ "							exhStartDate, "
+						+ "							exhEndDate, "
+						+ "							opTime, "
+						+ "							tel, "
+						+ "							admFee, "
+						+ "							imageFile1, "
+						+ "							imageFile2, "
+						+ "							imageFile3, "
+						+ "							imageFile4, "
+						+ "							exhReadCount, "
+						+ "							registerDate, "
+						+ "							activeFlag) "
+					+ "VALUES (?,?,?,?,?,?,?,?,?,?, "
+					+ "			?,?,?,?,?,?,?,?,?,?, "
+					+ "			?,?,?,?,?,? ) ";
 				pstmt = conn.prepareStatement(sql);
 				pstmt.setInt(1, num);
-				pstmt.setString(2, exhibition.getExhGubun3()[i]);
-				pstmt.executeUpdate();
-			}
-
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			try {if(rs!=null)rs.close();} catch (Exception e) {}
-			try {if(pstmt!=null)pstmt.close();} catch (Exception e) {}
-			try {if(conn!=null)conn.close();} catch (Exception e) {}
-		}
-	}
-//-------------------------------------------------------------------------------------------------------------
-//	public void insertExhibition(ExhibitionDto exhibition) - end
-//-------------------------------------------------------------------------------------------------------------		
-//-------------------------------------------------------------------------------------------------------------
-//	public void updateExhibition(ExhibitionDto exhibition) - begin
-//	exhibition update - 내가 등록한 전시회 수정	
-//-------------------------------------------------------------------------------------------------------------			
-	public void updateExhibition(ExhibitionDto exhibition) {
-		System.out.println("updateExhibition - Dao");
-		Connection 			conn 		= null;
-		PreparedStatement 	pstmt 	= null;
-		ResultSet 				rs 			= null;
-		int							num 		= 0;
-		String 					sql 		= null;
+				pstmt.setString(2, exhibition.getMemberID());
+				pstmt.setString(3, exhibition.getExhGubun1());
+				pstmt.setString(4, exhibition.getExhGubun2());
+				pstmt.setString(5, exhibition.getExhGubun4());
+				pstmt.setString(6, exhibition.getExhName());
+				pstmt.setString(7, exhibition.getArtistName());
+				pstmt.setString(8, exhibition.getArtistInfo());
+				pstmt.setString(9, exhibition.getExhContent());
+				pstmt.setString(10, exhibition.getExhPlace());
+				//pstmt.setString(11, exhibition.getExhPlaceZip());
+				pstmt.setString(12, exhibition.getExhPlaceAddr1());
+				//pstmt.setString(13, exhibition.getExhPlaceAddr2());
+				pstmt.setString(11, "001-001");
+				//pstmt.setString(12, "addr1");
+				pstmt.setString(13, "addr2");
+				pstmt.setString(14, exhibition.getExhUrl());
+				pstmt.setString(15, exhibition.getExhStartDate());
+				pstmt.setString(16, exhibition.getExhEndDate());
+				pstmt.setString(17, exhibition.getOpTime());
+				pstmt.setString(18,  exhibition.getTel());
+				pstmt.setString(19, exhibition.getAdmFee());
+				pstmt.setString(20, exhibition.getImageFile1());
+				pstmt.setString(21, exhibition.getImageFile2());
+				pstmt.setString(22, exhibition.getImageFile3());
+				pstmt.setString(23, exhibition.getImageFile4());
+				pstmt.setInt(24, 0);
+				pstmt.setTimestamp(25, exhibition.getRegisterDate());
+				pstmt.setString(26,  "N");
 		
-		try {
-			conn = ds.getConnection();
-			sql = "UPDATE artshow set	 	exhGubun1 	=?, "
-					+ "							exhGubun2 	=?, "
-					+ "							exhGubun4 	=?, "
-					+ "							exhName 		=?, "
-					+ "							artistName 		=?, "
-					+ "							artistInfo 		=?, "
-					+ "							exhContent 	=?, "
-					+ "							exhPlace 		=?, "
-					+ "						  	exhPlaceZip 	=?, "
-					+ " 							exhPlaceAddr1 =?, "
-					+ "							exhPlaceAddr2 =?, "
-					+ "							exhUrl 			=?, "
-					+ "							exhStartDate 	=?, "
-					+ "							exhEndDate 	=?, "
-					+ "							opTime 			=?, "
-					+ "							tel 				=?, "
-					+ "							admFee 			=?, "
-					+ "							imageFile1 		=?, "
-					+ "							imageFile2 		=?, "		// modified by Hojeong (20/01/03) ; 맨끝에 쉼표 추가함
-					+ "							imageFile3 		=?, "
-					+ "							imageFile4 		=? "
-					+ "							WHERE exhID 	=? ";
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, exhibition.getExhGubun1());
-			pstmt.setString(2, exhibition.getExhGubun2());
-			pstmt.setString(3, exhibition.getExhGubun4());
-			pstmt.setString(4, exhibition.getExhName());
-			pstmt.setString(5, exhibition.getArtistName());
-			pstmt.setString(6, exhibition.getArtistInfo());
-			pstmt.setString(7, exhibition.getExhContent());
-			pstmt.setString(8, exhibition.getExhPlace());
-			pstmt.setString(9, "001-001");
-			//pstmt.setString(9, exhibition.getExhPlaceZip());
-			pstmt.setString(10, exhibition.getExhPlaceAddr1());
-			//pstmt.setString(10, "addr1");
-			//pstmt.setString(11, exhibition.getExhPlaceAddr2());
-			pstmt.setString(11, "addr2");
-			pstmt.setString(12, exhibition.getExhUrl());
-			pstmt.setString(13, exhibition.getExhStartDate());
-			pstmt.setString(14, exhibition.getExhEndDate());
-			pstmt.setString(15, exhibition.getOpTime());
-			pstmt.setString(16,  exhibition.getTel());
-			pstmt.setString(17, exhibition.getAdmFee());
-			pstmt.setString(18, exhibition.getImageFile1());
-			pstmt.setString(19, exhibition.getImageFile2());
-			pstmt.setString(20, exhibition.getImageFile3());
-			pstmt.setString(21, exhibition.getImageFile4());
-			pstmt.setInt(22, exhibition.getExhID());
-			pstmt.executeUpdate();
-			
-			pstmt = conn.prepareStatement( " DELETE FROM artshowtag WHERE exhID = ? ");
-			pstmt.setInt(1, exhibition.getExhID());
-			pstmt.executeUpdate();
-			
-			sql = "INSERT INTO artshowtag ( exhid, tagname ) values ( ?,? ) ";
-			for (int i=0; i<exhibition.getExhGubun3().length; i++) {
-				System.out.println("dao%%% "+exhibition.getExhGubun3()[i]);
-				pstmt = conn.prepareStatement(sql);
-				pstmt.setInt(1, exhibition.getExhID());
-				pstmt.setString(2, exhibition.getExhGubun3()[i]);
-				pstmt.executeUpdate();
-			}
-		} catch (Exception e) {
+				cnt += pstmt.executeUpdate();
+				
+				sql = "INSERT INTO artshowtag ( exhid, tagname ) values ( ?,? ) ";
+				for (int i=0; i<exhibition.getExhGubun3().length; i++) {
+					System.out.println("dao%%% "+exhibition.getExhGubun3()[i]);
+					pstmt = conn.prepareStatement(sql);
+					pstmt.setInt(1, num);
+					pstmt.setString(2, exhibition.getExhGubun3()[i]);
+					cnt += pstmt.executeUpdate();
+				}
+				
+				if (cnt == 1+exhibition.getExhGubun3().length) {
+					conn.commit(); 
+					System.out.println("커밋됨");
+					rsCnt = 1;
+				}else{
+					conn.rollback(); System.out.println("롤백됨");
+					rsCnt = 0;
+				}
+
+			} catch (Exception e) { 
 				e.printStackTrace();
-		} finally {
+			} finally {
+				try {if(rs!=null)rs.close();} catch (Exception e) {}
 				try {if(pstmt!=null)pstmt.close();} catch (Exception e) {}
 				try {if(conn!=null)conn.close();} catch (Exception e) {}
+			}
+			return rsCnt;
 		}
-	}
-//-------------------------------------------------------------------------------------------------------------
-//	public void updateExhibition(ExhibitionDto exhibition) - end
-//-------------------------------------------------------------------------------------------------------------	
+	//-------------------------------------------------------------------------------------------------------------
+//		public void insertExhibition(ExhibitionDto exhibition) - end
+	//-------------------------------------------------------------------------------------------------------------		
+	//-------------------------------------------------------------------------------------------------------------
+//		public void updateExhibition(ExhibitionDto exhibition) - begin
+	//  modified 20/01/10(yy/mm/dd)	
+//		exhibition update - 내가 등록한 전시회 수정	
+	//-------------------------------------------------------------------------------------------------------------			
+		public int updateExhibition(ExhibitionDto exhibition) {
+			System.out.println("updateExhibition - Dao");
+			Connection 			conn 		= null;
+			PreparedStatement 	pstmt 	= null;
+			ResultSet 				rs 			= null;
+			int							num 		= 0;
+			String 					sql 		= null;
+			int cnt = 0;
+			int rsCnt = 0;
+			
+			try {
+				conn = ds.getConnection();
+				conn.setAutoCommit(false);
+				sql = "UPDATE artshow set	 	exhGubun1 	=?, "
+						+ "							exhGubun2 	=?, "
+						+ "							exhGubun4 	=?, "
+						+ "							exhName 		=?, "
+						+ "							artistName 		=?, "
+						+ "							artistInfo 		=?, "
+						+ "							exhContent 	=?, "
+						+ "							exhPlace 		=?, "
+						+ "						  	exhPlaceZip 	=?, "
+						+ " 							exhPlaceAddr1 =?, "
+						+ "							exhPlaceAddr2 =?, "
+						+ "							exhUrl 			=?, "
+						+ "							exhStartDate 	=?, "
+						+ "							exhEndDate 	=?, "
+						+ "							opTime 			=?, "
+						+ "							tel 				=?, "
+						+ "							admFee 			=?, "
+						+ "							imageFile1 		=?, "
+						+ "							imageFile2 		=?, "		// modified by Hojeong (20/01/03) ; 맨끝에 쉼표 추가함
+						+ "							imageFile3 		=?, "
+						+ "							imageFile4 		=? "
+						+ "							WHERE exhID 	=? ";
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setString(1, exhibition.getExhGubun1());
+				pstmt.setString(2, exhibition.getExhGubun2());
+				pstmt.setString(3, exhibition.getExhGubun4());
+				pstmt.setString(4, exhibition.getExhName());
+				pstmt.setString(5, exhibition.getArtistName());
+				pstmt.setString(6, exhibition.getArtistInfo());
+				pstmt.setString(7, exhibition.getExhContent());
+				pstmt.setString(8, exhibition.getExhPlace());
+				pstmt.setString(9, "001-001");
+				//pstmt.setString(9, exhibition.getExhPlaceZip());
+				pstmt.setString(10, exhibition.getExhPlaceAddr1());
+				//pstmt.setString(10, "addr1");
+				//pstmt.setString(11, exhibition.getExhPlaceAddr2());
+				pstmt.setString(11, "addr2");
+				pstmt.setString(12, exhibition.getExhUrl());
+				pstmt.setString(13, exhibition.getExhStartDate());
+				pstmt.setString(14, exhibition.getExhEndDate());
+				pstmt.setString(15, exhibition.getOpTime());
+				pstmt.setString(16,  exhibition.getTel());
+				pstmt.setString(17, exhibition.getAdmFee());
+				pstmt.setString(18, exhibition.getImageFile1());
+				pstmt.setString(19, exhibition.getImageFile2());
+				pstmt.setString(20, exhibition.getImageFile3());
+				pstmt.setString(21, exhibition.getImageFile4());
+				pstmt.setInt(22, exhibition.getExhID());
+				cnt += pstmt.executeUpdate();
+				System.out.println("#cnt1"+cnt);
+				
+				pstmt = conn.prepareStatement( " DELETE FROM artshowtag WHERE exhID = ? ");
+				pstmt.setInt(1, exhibition.getExhID());
+				cnt += pstmt.executeUpdate();
+				System.out.println("#cnt2"+cnt);
+				
+				sql = "INSERT INTO artshowtag ( exhid, tagname ) values ( ?,? ) ";
+				for (int i=0; i<exhibition.getExhGubun3().length; i++) {
+					System.out.println("dao%%% "+exhibition.getExhGubun3()[i]);
+					pstmt = conn.prepareStatement(sql);
+					pstmt.setInt(1, exhibition.getExhID());
+					pstmt.setString(2, exhibition.getExhGubun3()[i]);
+					cnt += pstmt.executeUpdate();
+				}
+				System.out.println("#cnt3"+cnt);
+				
+				if (cnt == 1+(exhibition.getExhGubun3().length*2)) {
+					conn.commit(); 
+					System.out.println("커밋됨");
+					rsCnt = 1;
+				}else{
+					conn.rollback(); System.out.println("롤백됨");
+					rsCnt = 0;
+				}
+				
+			} catch (Exception e) {
+					e.printStackTrace();
+			} finally {
+					try {if(pstmt!=null)pstmt.close();} catch (Exception e) {}
+					try {if(conn!=null)conn.close();} catch (Exception e) {}
+			}
+			return rsCnt;
+		}
+	//-------------------------------------------------------------------------------------------------------------
+//		public void updateExhibition(ExhibitionDto exhibition) - end
+	//-------------------------------------------------------------------------------------------------------------	
 //-------------------------------------------------------------------------------------------------------------
 //	public ExhibitionDto selectExhibition(Integer exhID) - begin
 //  내가 등록한 전시회 상세 정보 	
@@ -844,7 +876,7 @@ public class ExhibitionDao {
 					exhibition.setImageFile4(rs.getString("imageFile4"));	//added by Hojeong 20/01/03
 					exhibition.setRegisterDate(rs.getTimestamp("registerDate"));
 					exhibition.setActiveFlag(rs.getString("activeFlag"));
-					System.out.println("dao:"+exhibition.toString());
+					//System.out.println("dao:"+exhibition.toString());		//modified by Hojeong 20/01/03
 					exhibitionList.add(exhibition);
 				} while (rs.next());
 			}
@@ -863,9 +895,57 @@ public class ExhibitionDao {
 //마이 페이지에서 내가 등록한 전시회 리스트 보기 
 //-------------------------------------------------------------------------------------------------------------
 //-------------------------------------------------------------------------------------------------------------
+//public int deleteExhibition(int exhID) - begin
+//programmed by Hojeong 20/01/10(yy/mm/dd)
+//myList에서 내가 등록한 전시회 삭제하기 
+//-------------------------------------------------------------------------------------------------------------
+public int deleteExhibition(int exhID) {
+	System.out.println("deleteExhibition - Dao");
+	Connection 			conn 	= null;
+	PreparedStatement 	pstmt 	= null;
+	String 				sql 	= null;
+	int 				cnt 	= 0;
+	int 				rsCnt 	= 0;
+	
+	try {
+		conn = ds.getConnection();
+		conn.setAutoCommit(false);
+		sql = "delete from artshow where exhID = ? ";
+		pstmt = conn.prepareStatement(sql);
+		pstmt.setInt(1, exhID);
+		cnt = pstmt.executeUpdate();
+		
+		sql = "delete from artshowtag where exhid = ? ";
+		pstmt = conn.prepareStatement(sql);
+		pstmt.setInt(1, exhID);
+		cnt += pstmt.executeUpdate();
+	
+		if (cnt == 2) {
+			conn.commit(); 
+			System.out.println("커밋됨");
+			rsCnt = 1;
+		}else{
+			conn.rollback(); System.out.println("롤백됨");
+			rsCnt = 0;
+		}
+		
+	} catch (Exception e) {
+			e.printStackTrace();
+	} finally {
+			try {if(pstmt!=null)pstmt.close();} catch (Exception e) {}
+			try {if(conn!=null)conn.close();} catch (Exception e) {}
+	}
+	return rsCnt;
+	}
+//-------------------------------------------------------------------------------------------------------------
+//public int deleteExhibition(int exhID) - end
+//programmed by Hojeong 20/01/10(yy/mm/dd)
+//myList에서 내가 등록한 전시회 삭제하기  
+//-------------------------------------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------------------------------------
 //programmed by Hojeong - end
 //-------------------------------------------------------------------------------------------------------------
-	
+
 	
 // 메인페이지에서 슬라이드에 전시 리스트 보냄.
 	public ArrayList<ExhibitionDto> indexExhibition() {
