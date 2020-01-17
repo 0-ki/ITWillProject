@@ -38,6 +38,7 @@ import com.doArtShow.controls.member.MemberLogOutController;
 import com.doArtShow.controls.member.MemberPageController;
 import com.doArtShow.controls.member.MemberUpdateController;
 import com.doArtShow.controls.member.NaverLoginController;
+import com.doArtShow.controls.member.SupportController;
 import com.doArtShow.dao.ExhibitionDao;
 import com.doArtShow.dao.ManagerDao;
 import com.doArtShow.dao.MemberDao;
@@ -130,26 +131,12 @@ public class ContextLoaderListener implements ServletContextListener{
 
 			// 지도 페이지
 			sc.setAttribute("/searchMap.do", new searchMapController().setExhibitionDao(exhibitionDao));
-			
+			// 메인 페이지 접속시 DB에서 최신/인기전시 로드
 			sc.setAttribute("/start", new IndexController().setExhibitionDao(exhibitionDao));
-						 
+			// 네이버 아이디 로그인 OAuth 콜백 처리 
 			sc.setAttribute("/NaverCallback", new NaverLoginController());
-			
-			
-			//-------------------------------------------------------------------------------------------------------------
-			//			programmed by jungmi- end
-			//-------------------------------------------------------------------------------------------------------------						
-			
-			
-			// 검색기능
-			sc.setAttribute("/search.do", new searchListController().setExhibitionDao(exhibitionDao));
-
-			// 지도 페이지
-			sc.setAttribute("/searchMap.do", new searchMapController().setExhibitionDao(exhibitionDao));
-			
-			sc.setAttribute("/start", new IndexController().setExhibitionDao(exhibitionDao));
-						 
-			sc.setAttribute("/NaverCallback", new NaverLoginController());
+			// 문의하기 페이지 이동
+			sc.setAttribute("/support.do", new SupportController());
 			
 			
 			//-------------------------------------------------------------------------------------------------------------

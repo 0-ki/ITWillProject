@@ -25,8 +25,6 @@
 
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 
-
-
                 <ul class="nav navbar-nav navbar-right">
                 	
                 	<li style="margin-top: 10px;">
@@ -57,6 +55,11 @@
                         	전시등록
                         </a>
                     </li>
+                    <li>
+                        <a class="page-scroll acss" href="<%=request.getContextPath() %>/support.do" onclick="" id="">
+                        	고객지원
+                        </a>
+                    </li>
                     <c:choose>
 						<c:when test="${!empty sessionScope.member}">
 							<li>
@@ -66,9 +69,9 @@
 							</li>						
 						</c:when>                    
                     </c:choose>
+                    
                     <li>
                         <c:choose>
-         
                         <c:when test="${empty sessionScope.member}">
                         
                         <a class="page-scroll acss" href="" onclick="return false" id="myBtn">
@@ -81,11 +84,6 @@
                         </a>
                         </c:when>
                         </c:choose>
-                    </li>
-                    <li>
-                        <a class="page-scroll acss" href="" onclick="return false" id="myBtn">
-                        	문의하기
-                        </a>
                     </li>
                 </ul>
             </div>
@@ -207,7 +205,7 @@
 
 
 
-
+/* 플로팅 메뉴(우하단 최상단 이동버튼) */
 .float-button-container {
   position: fixed;
   right: 20px;
@@ -291,62 +289,8 @@
   bottom: 300px;
 }
 
-</style>
 
-
-
-<%-- 
-    <div id="back-top">
-    
-    	
-    
-        <c:choose>
-    	<c:when test="${empty isLogin}">
-        
-        <a data-toggle="modal" href="myBtn" id="myBtn" style="line-height:750%;">
-        <span class="item" style="color: #F17F42; align-items: center; font-family: 'Noto Sans KR', sans-serif;">로그인</span>
-        </a>
-    	</c:when>
-    	
-    	
-    	
-    	<c:when test="${!empty isLogin}">
-    	
-    	<a href="<%=request.getContextPath()%>/client/auth/memberLogOut.do" id="myBtn" style="line-height:750%;">
-        <span class="item" style="color: #F17F42; align-items: center; font-family: 'Noto Sans KR', sans-serif;">로그아웃</span>
-        </a>
-    	
-    	</c:when>
-        
-    </c:choose>
-        
-        <a href="
-        <c:choose>
-        <c:when test="${!empty isLogin}">
-        <%=request.getContextPath() %>/client/exhibition/addForm.do 		
-        </c:when>
-        
-        <c:when test="${empty isLogin}">
-        javascript:addFormLogin();
-        </c:when>
-        
-    	</c:choose>
-        ">
-        <span class="item" style="color: #CE6D39; font-family: 'Noto Sans KR', sans-serif; "><br><br>전시<br><br>등록</span>
-        </a>
-        
-        
-        <a href="#" id="backtop"><i class="fa fa-angle-up"></i></a>
-<!--         <a href="#page-top"><i class="fa fa-angle-up"></i></a> -->
-    </div>
-    --%>
-   
-   
-   
-   
-   <style>
-
-
+/* 검색창 */
 .cntr {
   display: table;
   width: 100%;
@@ -405,13 +349,6 @@
 }
 
 
-</style>
-   
-   
-   
-   
-   
-    <style>
 
 
 /*     
