@@ -243,7 +243,7 @@
 				    	<c:forEach var="list" items="${lists}">
 						    <div id="content_list_div">
 						        <a href="<%=request.getContextPath()%>/client/exhibition/ExContentView.do?exhID=${list.exhID}" id="ExContentView" style="width: 290px; height: 470px;"><!-- 아무데나 눌러도 상세페이지로 넘어가게 -->
-						        	<img src="/doArtShow/exhibitionImages/${list.imageFile1}" style="height: 370px; width: 275px;"/><br>
+						        	<img src="/doArtShow/exhibitionImages/${list.imageFile1}" style="height: 370px; width: 275px; border-radius: 20px;"/><br>
 						            <b>${list.exhName}</b><br>
 						            ${list.exhPlace}<br>
 						            ${list.exhStartDate}&nbsp;~&nbsp;${list.exhEndDate}

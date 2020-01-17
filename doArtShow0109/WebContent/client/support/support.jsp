@@ -8,9 +8,9 @@
 <style>
 /*  선택된 버튼 효과  */
 .btn-checked{
-	background-color: #cccaca;
-	color: red;
-	transition: all 0.3s;
+	border-bottom: 2px solid #23AD21 !important;
+	transition: all 0.6s;
+	background-color: white;
 }
 
 /*  */
@@ -20,40 +20,78 @@
 	margin: 15px 10px;
 }
 
-.faq-choose1 button{
-	border: 0;
-    font-size: 20pt;
-    transition: all 0.3s;
+.faq > button:focus{
+	outline-color : #fff;
+	outline-style: solid;
+	outline-width : 0px;
 }
-.faq button{
+.faq-choose1 > button:focus{
+	outline-color : #fff;
+	outline-style: solid;
+	outline-width : 0px;
+}
+.faq-choose1 > button{
 	border: 0;
     font-size: 20pt;
     transition: all 0.3s;
+    background-color: white;
+}
+.faq > button{
+	border: 0;
+    font-size: 20pt;
+    transition: all 0.3s;
+    background-color: white;
 }
 
 .faq{
 	min-width: 900px;
 	min-height: 400px;
 	margin: 0 auto;
-	background-color: aqua;
 }
+
 
 /* 아코디언 */
 .accordion {
-  background-color: #eee;
-  color: #444;
-  cursor: pointer;
-  /* padding: 18px; */
-  width: 100%;
-  border: none;
-  text-align: left;
-  outline: none;
-  font-size: 15px;
-  transition: 0.4s;
+    color: #444;
+    cursor: pointer;
+    border-top: 3px solid black;
+    border-left: 0;
+    border-bottom: 0;
+    border-right: 0;
+    margin: 10px;
+    padding: 15px 15px 2px 18px;
+    width: 100%;
+    /* border: none; */
+    text-align: left;
+    outline: none;
+    font-size: 19px;
+    transition: 0.4s;
+    font-weight: bold;
+}
+.cateDetail button {
+    color: #444;
+    background-color: white;
+    cursor: pointer;
+    border-top: 3px solid black;
+    border-left: 0;
+    border-bottom: 0;
+    border-right: 0;
+    margin: 10px;
+    padding: 15px 15px 2px 18px;
+    width: 100%;
+    /* border: none; */
+    text-align: left;
+    outline: none;
+    font-size: 19px;
+    transition: 0.4s;
+    font-weight: bold;
 }
 
 .active, .accordion:hover {
   background-color: #ccc;
+}
+.active{
+  border-bottom: 0;
 }
 
 .accordion:after {
@@ -70,11 +108,23 @@
 
 .panel1 {
   padding: 0 18px;
-  background-color: white;
   max-height: 0;
   overflow: hidden;
   transition: max-height 0.2s ease-out;
 }
+.panel1 p{
+  font-size: 1.3em;
+  padding-left: 20px;
+  font-family: "Noto Sans KR", sans-serif;
+  color: #444;
+}
+
+/*  */
+
+.support-section{
+	margin-bottom: 
+}
+
 
 </style>
 
@@ -99,17 +149,23 @@
             
             			<div id="" class="noticeDetail">
 	
-<button class="accordion">Section 1</button>
+<button class="accordion">전시:해의 정식 서비스가 시작됩니다.</button>
 <div class="panel1">
-  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+  <p>전시:해 사이트 서비스를 정식으로 실시합니다. 전체 서비스 이용을 위해서는 <a target="_blank" href="<%=request.getContextPath()%>/client/auth/memberAdd.do">이메일로 회원가입</a>하거나,<br>
+    <a href="#" onclick="addFormLogin()" id="myBtn">SNS로 회원가입</a>을 해주시기 바랍니다. <br>감사합니다.
+  </p>
 </div>
 
-<button class="accordion">Section 2</button>
+<button class="accordion">서버 점검으로 인한 서비스 이용 불가 기간 안내</button>
 <div class="panel1">
-  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+  <p>보다 나은 서비스를 제공하기 위해 아래와 같이 시스템 점검을 시행합니다.<br>
+점검 시간동안 서비스 사용이 일시 중단되오니 서비스 이용에 참고 부탁드립니다.<br>
+감사합니다.
+<br><br>
+점검 일시 : 2020년 1월 26일 00:00 ~ 05:00</p>
 </div>
 
-<button class="accordion">Section 3</button>
+<!-- <button class="accordion">Section 3</button>
 <div class="panel1">
   <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
 </div>
@@ -122,7 +178,7 @@
 <button class="accordion">Section 5</button>
 <div class="panel1">
   <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-</div>
+</div> -->
 
 			</div>
             
@@ -136,12 +192,12 @@
 
 
 <!-- FAQ -->
-   <section id="contact" class="">
+   <section id="contact" class="support-section">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">
                     <div class="section-title">
-                        <h2>F  A  Q</h2>
+                        <h2>F  A  Q <span style="font-size: 0.5em;">s</span></h2>
                         <p style="margin: 0;">자주 여쭤보시는 질문에 대한 답변입니다</p>
                     </div>
                     
@@ -163,17 +219,20 @@
 		
 			<div id="category1" class="cateDetail">
 	
-<button class="accordion">Section 1</button>
+<button class="accordion">Q. 회원가입은 어떻게 하나요?</button>
 <div class="panel1">
-  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+  <p> <a target="_blank" href="<%=request.getContextPath()%>/client/auth/memberAdd.do">이메일로 회원가입</a>하거나,
+   <a href="#" onclick="addFormLogin()" id="myBtn">SNS로 회원가입</a>하시면 모든 서비스를 이용할 수 있습니다. <br>
+   </p>
 </div>
 
-<button class="accordion">Section 2</button>
+<button class="accordion">Q. 로렘 입숨으로 채워져 있습니다.</button>
 <div class="panel1">
-  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-</div>
+  <p>언덕 멀리 나는 사랑과 어머님, 위에도 하늘에는 다 마리아 까닭입니다. 어머니 동경과 없이 무덤 못 계집애들의 차 별 있습니다. <br>별빛이 가난한 딴은 있습니다. 당신은 밤이 남은 노루, 밤을 별을 봅니다.<br>
 
-<button class="accordion">Section 3</button>
+계집애들의 위에도 그리고 위에 까닭입니다. 하나의 노새, 하나에 이웃 까닭입니다.	</p></div>
+
+<button class="accordion">Q. 얍얍얍</button>
 <div class="panel1">
   <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
 </div>
@@ -264,7 +323,7 @@
 	
 	<script>
 	// 검색-카테고리 선택
-	function changeFaq(evt, cityName) {
+	function changeFaq(evt, selected) {
 		  var i, x, btnchk;
 		  x = document.getElementsByClassName("faq");
 		  for (i = 0; i < x.length; i++) {
@@ -274,11 +333,11 @@
 		  for (i = 0; i < x.length; i++) {
 			  btnchk[i].className = btnchk[i].className.replace(" btn-checked", "");
 			}
-		  document.getElementById(cityName).style.display = "block";
+		  document.getElementById(selected).style.display = "block";
 		  evt.currentTarget.className += " btn-checked";
 		}
 	// 카테고리 - 상세 선택
-	function changeCate(evt, cityName) {
+	function changeCate(evt, selected) {
 		  var i, x, btnchk;
 		  x = document.getElementsByClassName("cateDetail");
 		  for (i = 0; i < x.length; i++) {
@@ -288,7 +347,7 @@
 		  for (i = 0; i < x.length; i++) {
 			  btnchk[i].className = btnchk[i].className.replace(" btn-checked", "");
 			}
-		  document.getElementById(cityName).style.display = "block";
+		  document.getElementById(selected).style.display = "block";
 		  evt.currentTarget.className += " btn-checked";
 		}
 	// 카테고리 - 상세 선택
