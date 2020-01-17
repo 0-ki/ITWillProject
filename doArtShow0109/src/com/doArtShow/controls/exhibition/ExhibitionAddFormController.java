@@ -6,6 +6,7 @@ import javax.servlet.http.HttpSession;
 
 import com.doArtShow.controls.Controller;
 import com.doArtShow.dao.ExhibitionDao;
+import com.doArtShow.dto.MemberDto;
 
 public class ExhibitionAddFormController implements Controller {
 	ExhibitionDao exhibitionDao;
@@ -23,10 +24,13 @@ public class ExhibitionAddFormController implements Controller {
 		// 달라집니다.
 
 		// 전시회 등록폼을 요청할때
-		//HttpSession session = (HttpSession) model.get("session");
-		//if (session.getAttribute("id") != null) {
-			return "/client/exhibition/registerForm.jsp";
-		//}
-		//return "redirect:memberLogIn.do";
+		HttpSession session = (HttpSession)model.get("session");
+		MemberDto member = (MemberDto) session.getAttribute("member");
+		if(member != null) {
+			String email = member.getEmail();
+			System.out.println("controller id:" + email);
+			model.put("memberID", email);
+		} 
+		return "/client/exhibition/registerForm.jsp";
 	}
 }

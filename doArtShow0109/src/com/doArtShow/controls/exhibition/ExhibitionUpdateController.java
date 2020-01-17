@@ -1,7 +1,9 @@
 package com.doArtShow.controls.exhibition;
 
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Map;
+import java.util.StringTokenizer;
 
 import com.doArtShow.controls.Controller;
 import com.doArtShow.dao.ExhibitionDao;
@@ -21,6 +23,7 @@ public class ExhibitionUpdateController implements Controller {
 
 	@Override
 	public String execute(Map<String, Object> model) throws Exception {
+		PrintWriter out = (PrintWriter) model.get("out");
 		// get과 post방식을 모두 처리하기 때문에 request를 담은 model에 정보가 들어있는지에 따라서 처리 방식이
 		// 달라집니다.
 
@@ -46,14 +49,29 @@ public class ExhibitionUpdateController implements Controller {
 						System.out.println("데이트");
 					}
 				model.put("exhibition", detailInfo);
-				model.put("tagList", tagList);
+				model.put("tagList", tagList);	
 				return "/client/exhibition/updateForm.jsp";
 			//전시회 수정을 요청할 때	
 			} else {
 				//ExhibitionDto exhibition = (ExhibitionDto)model.get("exhibition");
-				exhibitionDao.updateExhibition(exhibition);
+				int rsCnt = exhibitionDao.updateExhibition(exhibition);
+				System.out.println("DispatcherServlet_update.do_rsCnt: " + rsCnt);
 				// return "redirect:list.do";
-				return "../../index.jsp";
+				/*
+				if (rsCnt == 1) {
+					 out.println("<html><body>");
+					 out.println("<script>alert('전시회 수정이 완료되었습니다.');</script>");
+					 out.println("</body></html>");
+					 System.out.println("DispatcherServlet_update.do_sql update succeded!");
+				} else {
+					 out.println("<html><body>");
+					 out.println("<script>alert('전시회 수정에 실패했습니다. 잠시 후 다시 시도하거나 관리자에게 문의하세요.');</script>");
+					 out.println("</body></html>");
+					 System.out.println("DispatcherServlet_update.do_sql update failed!");
+				}*/	
+				//return "../../index.jsp";
+				return "redirect:myList.do?uRsCnt="+rsCnt;
+				//return "/client/exhibition/myList.jsp?check="+rsCnt;
 			}
 		//}
 	}

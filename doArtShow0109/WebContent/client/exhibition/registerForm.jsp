@@ -2,22 +2,25 @@
 <%@page import="java.util.Date" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<jsp:include page="/module/1doctype_head.jsp"></jsp:include>    
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri = "http://java.sun.com/jsp/jstl/functions" prefix="fn"%>    
+<jsp:include page="/module/1doctype_head.jsp"></jsp:include>
 <%
 request.setCharacterEncoding("utf-8");
-response.setCharacterEncoding("utf-8");
-String id="";
+response.setCharacterEncoding("utf-8"); 
 /*
+String memberID="";
 try {
-	managerId=(String)session.getAttribute("id");
+	member=(String)session.getAttribute("member");
 	//세션값이 없으면 정상적으로 로그인을 하지 않은 경우이므로 쫓아낸다. 
 	if(managerId==null || managerId.equals("")) {
 		response.sendRedirect("../logon/memberLoginForm.jsp");
 	}else{
 		//정상적으로 로그인하고 들어온경우는 페이지를 보여준다. 
 	}
-*/	
-%> 
+*/
+%>
+ 
 <!-- <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -32,13 +35,14 @@ try {
 </head>	-->
 <body>
 <jsp:include page="/module/2body_first.jsp"></jsp:include>
+<c:if test="${!empty sessionScope.member}">
 <%	Date nowTime = new Date();
 	//SimpleDateFormat sf = new SimpleDateFormat("yyyy년 MM월 dd일 a hh:mm:ss");
 	SimpleDateFormat sf = new SimpleDateFormat("yyMMdd");
 	SimpleDateFormat year = new SimpleDateFormat("yyyy");
 	SimpleDateFormat month = new SimpleDateFormat("MM");
 	SimpleDateFormat day = new SimpleDateFormat("dd");
-   %></%> 
+%> 
     <div class="container">
         <!--  <h3 style ="width:100%; text-align:center">(주) 전시해</h3> -->
         <h3 style ="width:100%; border-bottom:2px; solid #000; padding-bottom:14px;">전시회 등록하기</h3>
@@ -63,7 +67,7 @@ try {
                     <th>
                         <lable for="">*신청자</lable>
                     </th>
-                    <td><input type="text" class="updateForm" name="memberID" id="memberID" placeholder="필수입력사항"></td>
+                    <td><input type="text" class="updateForm" name="memberID" id="memberID" value="${memberID }" readonly></td>
                 </tr>
                 <tr>
                     <th>
@@ -299,7 +303,11 @@ try {
   				</tbody>
             </table> 
         </form>
-    </div> 
+    </div>
+</c:if>
+<c:if test="${empty sessionScope.member}">
+<jsp:include page="../auth/askLogIn.jsp"></jsp:include>
+</c:if>         
 <!-- <script>  -->
 <!--$(function() {
 	$("#btnLogin").click(function() {
