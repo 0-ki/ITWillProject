@@ -320,7 +320,7 @@
   position: absolute;
   width: 3px;
   height: 20px;
-  right: -5px;
+  right: -5.5px;
   top: 14px;/* 21px; */
   background: #fff;
   border-radius: 3px;
