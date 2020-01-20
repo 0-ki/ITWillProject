@@ -282,7 +282,7 @@
 	                		</c:when>
 	                		<c:otherwise>
 	                			<div id="imageFile1" class="content" style="outline: none;">
-									<img src="/doArtShowAdmin/exhibitionImages/${exhDto.imageFile1}" width="100%" height="100%">
+									<img src="/doArtShow/exhibitionImages/${exhDto.imageFile1}" width="100%" height="100%">
 								</div>
 	                		</c:otherwise>
 	                	</c:choose>
@@ -297,7 +297,7 @@
 	                		</c:when>
 	                		<c:otherwise>
 	                			<div id="imageFile2" class="content" style="outline: none;">
-									<img id="imageFile2" src="/doArtShowAdmin/exhibitionImages/${exhDto.imageFile2}" width="100%" height="100%">
+									<img src="/doArtShow/exhibitionImages/${exhDto.imageFile2}" width="100%" height="100%">
 								</div>
 	                		</c:otherwise>
 	                	</c:choose>
@@ -312,7 +312,7 @@
 	                		</c:when>
 	                		<c:otherwise>
 	                			<div id="imageFile3" class="content" style="outline: none;">
-									<img src="/doArtShowAdmin/exhibitionImages/${exhDto.imageFile3}" width="100%" height="100%">
+									<img src="/doArtShow/exhibitionImages/${exhDto.imageFile3}" width="100%" height="100%">
 								</div>
 	                		</c:otherwise>
 	                	</c:choose>
@@ -327,7 +327,7 @@
 	                		</c:when>
 	                		<c:otherwise>
 	                			<div id="imageFile4" class="content" style="outline: none;">
-									<img src="/doArtShowAdmin/exhibitionImages/${exhDto.imageFile4}" width="100%" height="100%">
+									<img src="/doArtShow/exhibitionImages/${exhDto.imageFile4}" width="100%" height="100%">
 								</div>
 	                		</c:otherwise>
 	                	</c:choose>

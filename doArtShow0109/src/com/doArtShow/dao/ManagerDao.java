@@ -84,7 +84,7 @@ public class ManagerDao {
 				list = new ArrayList<MemberDto>();
 				
 				do {
-					list.add(new MemberDto(rs.getString(1), rs.getString(2),rs.getString(3),rs.getString(4), rs.getString(5), rs.getString(6)));	
+					list.add(new MemberDto(rs.getString("email"), rs.getString("name"),rs.getString("birth"),rs.getString("gender"), rs.getString("pw"), rs.getString("profileImg")));	
 				} while (rs.next());
 				
 			}
@@ -192,7 +192,7 @@ public class ManagerDao {
 				list = new ArrayList<ExhibitionDto>();
 				
 				do {
-					list.add(new ExhibitionDto(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8), rs.getString(9), rs.getString(10), rs.getString(11), rs.getString(12), rs.getString(13), rs.getString(14), rs.getString(15), rs.getString(16), rs.getString(17), rs.getString(18), rs.getString(19), rs.getString(20), rs.getString(21), rs.getString(22), rs.getString(23), rs.getInt(24), rs.getTimestamp(25), rs.getString(26)));
+					list.add(new ExhibitionDto(rs.getInt("exhID"), rs.getString("memberID"), rs.getString("exhGubun1"), rs.getString("exhGubun2"), rs.getString("exhGubun4"), rs.getString("exhName"), rs.getString("artistName"), rs.getString("artistInfo"), rs.getString("exhContent"), rs.getString("exhPlace"), rs.getString("exhPlaceZip"), rs.getString("exhPlaceAddr1"), rs.getString("exhPlaceAddr2"), rs.getString("exhUrl"), rs.getString("exhStartDate"), rs.getString("exhEndDate"), rs.getString("opTime"), rs.getString("tel"), rs.getString("admFee"), rs.getString("imageFile1"), rs.getString("imageFile2"), rs.getString("imageFile3"), rs.getString("imageFile4"), rs.getInt("exhReadCount"), rs.getTimestamp("registerDate"), rs.getString("activeFlag")));
 				} while (rs.next());
 			}
 		} catch (SQLException e) {
@@ -230,7 +230,7 @@ public class ManagerDao {
 				list = new ArrayList<ExhibitionDto>();
 				
 				do {
-					list.add(new ExhibitionDto(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8), rs.getString(9), rs.getString(10), rs.getString(11), rs.getString(12), rs.getString(13), rs.getString(14), rs.getString(15), rs.getString(16), rs.getString(17), rs.getString(18), rs.getString(19), rs.getString(20), rs.getString(21), rs.getString(22), rs.getString(23), rs.getInt(24), rs.getTimestamp(25), rs.getString(26)));
+					list.add(new ExhibitionDto(rs.getInt("exhID"), rs.getString("memberID"), rs.getString("exhGubun1"), rs.getString("exhGubun2"), rs.getString("exhGubun4"), rs.getString("exhName"), rs.getString("artistName"), rs.getString("artistInfo"), rs.getString("exhContent"), rs.getString("exhPlace"), rs.getString("exhPlaceZip"), rs.getString("exhPlaceAddr1"), rs.getString("exhPlaceAddr2"), rs.getString("exhUrl"), rs.getString("exhStartDate"), rs.getString("exhEndDate"), rs.getString("opTime"), rs.getString("tel"), rs.getString("admFee"), rs.getString("imageFile1"), rs.getString("imageFile2"), rs.getString("imageFile3"), rs.getString("imageFile4"), rs.getInt("exhReadCount"), rs.getTimestamp("registerDate"), rs.getString("activeFlag")));
 				} while (rs.next());
 			}
 		} catch (SQLException e) {
@@ -367,7 +367,7 @@ public class ManagerDao {
 				list = new ArrayList<ExhibitionDto>();
 				
 				do {
-					list.add(new ExhibitionDto(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8), rs.getString(9), rs.getString(10), rs.getString(11), rs.getString(12), rs.getString(13), rs.getString(14), rs.getString(15), rs.getString(16), rs.getString(17), rs.getString(18), rs.getString(19), rs.getString(20), rs.getString(21), rs.getString(22), rs.getString(23), rs.getInt(24), rs.getTimestamp(25), rs.getString(26)));
+					list.add(new ExhibitionDto(rs.getInt("exhID"), rs.getString("memberID"), rs.getString("exhGubun1"), rs.getString("exhGubun2"), rs.getString("exhGubun4"), rs.getString("exhName"), rs.getString("artistName"), rs.getString("artistInfo"), rs.getString("exhContent"), rs.getString("exhPlace"), rs.getString("exhPlaceZip"), rs.getString("exhPlaceAddr1"), rs.getString("exhPlaceAddr2"), rs.getString("exhUrl"), rs.getString("exhStartDate"), rs.getString("exhEndDate"), rs.getString("opTime"), rs.getString("tel"), rs.getString("admFee"), rs.getString("imageFile1"), rs.getString("imageFile2"), rs.getString("imageFile3"), rs.getString("imageFile4"), rs.getInt("exhReadCount"), rs.getTimestamp("registerDate"), rs.getString("activeFlag")));
 				} while (rs.next());
 			}
 		} catch (SQLException e) {
@@ -435,7 +435,7 @@ public class ManagerDao {
 			rs = pstmt.executeQuery();
 			
 			if (rs.next()) {
-				exhDto = new ExhibitionDto(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8), rs.getString(9), rs.getString(10), rs.getString(11), rs.getString(12), rs.getString(13), rs.getString(14), rs.getString(15), rs.getString(16), rs.getString(17), rs.getString(18), rs.getString(19), rs.getString(20), rs.getString(21), rs.getString(22), rs.getString(23), rs.getInt(24), rs.getTimestamp(25), rs.getString(26));
+				exhDto = new ExhibitionDto(rs.getInt("exhID"), rs.getString("memberID"), rs.getString("exhGubun1"), rs.getString("exhGubun2"), rs.getString("exhGubun4"), rs.getString("exhName"), rs.getString("artistName"), rs.getString("artistInfo"), rs.getString("exhContent"), rs.getString("exhPlace"), rs.getString("exhPlaceZip"), rs.getString("exhPlaceAddr1"), rs.getString("exhPlaceAddr2"), rs.getString("exhUrl"), rs.getString("exhStartDate"), rs.getString("exhEndDate"), rs.getString("opTime"), rs.getString("tel"), rs.getString("admFee"), rs.getString("imageFile1"), rs.getString("imageFile2"), rs.getString("imageFile3"), rs.getString("imageFile4"), rs.getInt("exhReadCount"), rs.getTimestamp("registerDate"), rs.getString("activeFlag"));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();

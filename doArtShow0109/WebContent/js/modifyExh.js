@@ -233,13 +233,28 @@ function sendModifyExhData() {
 	formData.append("imageFile2", imageFile2);
 	formData.append("imageFile3", imageFile3);
 	formData.append("imageFile4", imageFile4);
+
+	//console.log(formData);
+	//console.log(formData.get("exhID"));
+	//console.log(formData.get("exhGubun3"));
+	//console.log(formData.get("imageFile1"));	// undefined = image 수정 x
 	
+	var img = ["O", "O", "O", "O"];
 	
-	
-	console.log(formData);
-	console.log(formData.get("exhID"));
-	console.log(formData.get("exhGubun3"));
-	console.log(formData.get("imageFile1"));	// undefined = image 수정 x
+	if (formData.get("imageFile1") == "undefined") {
+		img[0] = "X";
+	}
+	if (formData.get("imageFile2") == "undefined") {
+		img[1] = "X";
+	}
+	if (formData.get("imageFile3") == "undefined") {
+		img[2] = "X";
+	}
+	if (formData.get("imageFile4") == "undefined") {
+		img[3] = "X";
+	}
+	//console.log(img);
+	formData.append("img", img);
 	
 	$.ajax({
 		url: "/doArtShow/modifyExh.do",
