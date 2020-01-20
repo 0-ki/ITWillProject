@@ -34,6 +34,74 @@ public class ExhibitionDto {
 	private String			activeFlag; //관리자컨펌여부
 	private String 			exhGubun3[]; //태그
 	
+	
+	
+	
+	public ExhibitionDto() {}// ManagerDao 전용 생성자
+	
+	public ExhibitionDto(int exhID, String memberID, String exhGubun1, String exhGubun2, String exhGubun4, String exhName, String artistName, String artistInfo, String exhContent, String exhPlace, String exhPlaceZip, String exhPlaceAddr1, String exhPlaceAddr2, String exhUrl, String exhStartDate, String exhEndDate, String opTime, String tel, String admFee, String imageFile1, String imageFile2, String imageFile3, String imageFile4, int exhReadCount, Timestamp registerDate, String activeFlag) {
+		this.exhID = exhID;
+		this.memberID = memberID;
+		this.exhGubun1 = exhGubun1;
+		this.exhGubun2 = exhGubun2;
+		this.exhGubun4 = exhGubun4;
+		this.exhName = exhName;
+		this.artistName = artistName;
+		this.artistInfo = artistInfo;
+		this.exhContent = exhContent;
+		this.exhPlace = exhPlace;
+		this.exhPlaceZip = exhPlaceZip;
+		this.exhPlaceAddr1 = exhPlaceAddr1;
+		this.exhPlaceAddr2 = exhPlaceAddr2;
+		this.exhUrl = exhUrl;
+		this.exhStartDate = exhStartDate;
+		this.exhEndDate = exhEndDate;
+		this.opTime = opTime;
+		this.tel = tel;
+		this.admFee = admFee;
+		this.imageFile1 = imageFile1;
+		this.imageFile2 = imageFile2;
+		this.imageFile3 = imageFile3;
+		this.imageFile4 = imageFile4;
+		this.exhReadCount = exhReadCount;
+		this.registerDate = registerDate;
+		this.activeFlag = activeFlag;
+	}// ManagerDao 전용 생성자2
+	
+	public ExhibitionDto(int exhID, String memberID, String exhGubun1, String exhGubun2, String exhGubun4, String exhName, String artistName, String artistInfo, String exhContent, String exhPlace, String exhPlaceZip, String exhPlaceAddr1, String exhPlaceAddr2, String exhUrl, String exhStartDate, String exhEndDate, String opTime, String tel, String admFee, String imageFile1, String imageFile2, String imageFile3, String imageFile4, int exhReadCount, Timestamp registerDate, String activeFlag, String[] exhGubun3) {
+		this.exhID = exhID;
+		this.memberID = memberID;
+		this.exhGubun1 = exhGubun1;
+		this.exhGubun2 = exhGubun2;
+		this.exhGubun4 = exhGubun4;
+		this.exhName = exhName;
+		this.artistName = artistName;
+		this.artistInfo = artistInfo;
+		this.exhContent = exhContent;
+		this.exhPlace = exhPlace;
+		this.exhPlaceZip = exhPlaceZip;
+		this.exhPlaceAddr1 = exhPlaceAddr1;
+		this.exhPlaceAddr2 = exhPlaceAddr2;
+		this.exhUrl = exhUrl;
+		this.exhStartDate = exhStartDate;
+		this.exhEndDate = exhEndDate;
+		this.opTime = opTime;
+		this.tel = tel;
+		this.admFee = admFee;
+		this.imageFile1 = imageFile1;
+		this.imageFile2 = imageFile2;
+		this.imageFile3 = imageFile3;
+		this.imageFile4 = imageFile4;
+		this.exhReadCount = exhReadCount;
+		this.registerDate = registerDate;
+		this.activeFlag = activeFlag;
+		this.exhGubun3 = exhGubun3;
+	}// ManagerDao 전용 생성자3
+	
+	
+	
+	
+	
 	public int getExhID() {
 		return exhID;
 	}

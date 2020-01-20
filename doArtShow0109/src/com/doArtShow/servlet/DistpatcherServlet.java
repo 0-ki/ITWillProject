@@ -23,6 +23,7 @@ import com.doArtShow.controls.Controller;
 import com.doArtShow.controls.exhibition.ExhibitionListController;
 import com.doArtShow.dao.MemberDao;
 import com.doArtShow.dto.ExhibitionDto;
+import com.doArtShow.dto.ManagerDto;
 import com.doArtShow.dto.MemberDto;
 import com.doArtShow.dto.ReviewDto;
 import com.doArtShow.dto.VisitListDto;
@@ -31,7 +32,7 @@ import com.doArtShow.util.UploadUtil;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
-@WebServlet({"*.do", "/start","/NaverCallback"})
+@WebServlet({"*.do", "/start","/NaverCallback", "/manager"})
 public class DistpatcherServlet extends HttpServlet {
 
 	@Override
@@ -331,17 +332,104 @@ public class DistpatcherServlet extends HttpServlet {
 	  				model.put("exhID", request.getParameter("exhID"));
 	  			}		
 	  			// 마이(회원)페이지에서 내가 등록한 전시회 목록 보기 
-	  			} else if ("/client/exhibition/myList.do".equals(servletPath)) {
-		  			if (request.getParameter("uRsCnt") != null) {
-		  				model.put("uRsCnt", request.getParameter("uRsCnt"));
-		  			}
-		  			if (request.getParameter("dRsCnt") != null) {
-		  				model.put("dRsCnt", request.getParameter("dRsCnt"));
-		  			}
-	  			} 
+	  		} else if ("/client/exhibition/myList.do".equals(servletPath)) {
+	  			if (request.getParameter("uRsCnt") != null) {
+	  				model.put("uRsCnt", request.getParameter("uRsCnt"));
+	  			}
+	  			if (request.getParameter("dRsCnt") != null) {
+	  				model.put("dRsCnt", request.getParameter("dRsCnt"));
+	  			}
+	  		} 
 		      //--------------------------------------------------------------------------------------
 			  // end - modified by Hojeong 20/01/03(yy/mm/dd)	
 		      //--------------------------------------------------------------------------------------
+		      
+		      
+		      
+		      
+		      
+		      
+		      
+		      
+		    //--------------------------------------------------------------------------------------
+		  	// begin - admin page by Dongsik 20/01/20(yy/mm/dd)	
+	    	//--------------------------------------------------------------------------------------
+		      
+		    // manager Login  
+	  		else if ("/managerLogin.do".equals(servletPath)) {
+				ManagerDto managerDto = new ManagerDto();
+				
+				if (request.getParameter("managerId") != null) {
+					managerDto.setManagerId(request.getParameter("managerId"));
+					managerDto.setManagerPwd(request.getParameter("managerPwd"));
+				
+					model.put("managerLoginInfo", managerDto);
+				}
+			// 전시회 목록	
+			} else if ("/allExhList.do".equals(servletPath)) {
+				model.put("listType", "ALL");
+			// 등록 요청된 전시회 목록(ActiveFlag = N)
+			} else if ("/newExhList.do".equals(servletPath)) {
+				model.put("listType", "NEW");
+			// 종료된 전시회 목록
+			} else if ("/endExhList.do".equals(servletPath)) {
+				model.put("listType", "END");
+			// ActiveFlag 변경(N -> Y)
+			} else if ("/updateActiveFlag.do".equals(servletPath)) {
+				model.put("exhID", request.getParameter("exhID"));
+				model.put("checked", request.getParameter("checked"));				
+			// 게시물 수정 페이지
+			} else if ("/modifyExhPage.do".equals(servletPath)) {
+				model.put("exhID", request.getParameter("exhID"));
+				model.put("exhGubun3", request.getParameter("exhGubun3"));
+			// 게시물 수정(작업중)
+			} else if ("/modifyExh.do".equals(servletPath)) {
+				DefaultFileRenamePolicy policy = new DefaultFileRenamePolicy();
+				MultipartRequest multi = new MultipartRequest(request, request.getServletContext().getRealPath("/exhibitionImages"), 7 * 1024 * 1024, "UTF-8", policy);
+				ExhibitionDto modifyExhibitionDto = new ExhibitionDto();
+				modifyExhibitionDto.setExhID(Integer.parseInt(multi.getParameter("exhID")));
+				modifyExhibitionDto.setMemberID(multi.getParameter("memberID"));
+				modifyExhibitionDto.setExhGubun1(multi.getParameter("exhGubun1"));
+				modifyExhibitionDto.setExhGubun2(multi.getParameter("exhGubun2"));
+				modifyExhibitionDto.setExhGubun4(multi.getParameter("exhGubun4"));
+				modifyExhibitionDto.setExhName(multi.getParameter("exhName"));
+				modifyExhibitionDto.setArtistName(multi.getParameter("artistName"));
+				modifyExhibitionDto.setArtistInfo(multi.getParameter("artistInfo"));
+				modifyExhibitionDto.setExhContent(multi.getParameter("exhContent"));
+				modifyExhibitionDto.setExhPlace(multi.getParameter("exhPlace"));
+				modifyExhibitionDto.setExhPlaceZip(multi.getParameter("exhPlaceZip"));
+				modifyExhibitionDto.setExhPlaceAddr1(multi.getParameter("exhPlaceAddr1"));
+				modifyExhibitionDto.setExhPlaceAddr2(multi.getParameter("exhPlaceAddr2"));
+				modifyExhibitionDto.setExhUrl(multi.getParameter("exhUrl"));
+				modifyExhibitionDto.setExhStartDate(multi.getParameter("exhStartDate"));
+				modifyExhibitionDto.setExhEndDate(multi.getParameter("exhEndDate"));
+				modifyExhibitionDto.setOpTime(multi.getParameter("opTime"));
+				modifyExhibitionDto.setTel(multi.getParameter("tel"));
+				modifyExhibitionDto.setAdmFee(multi.getParameter("admFee"));
+				
+				if (multi.getParameter("imageFile1") == null) {
+					// imageFile1, 2, 3, 4 각각 경우의 수 계산해야함
+				}
+				
+			// 게시물번호에 해당하는 tag 목록 불러오기	
+			} else if ("/getArtShowTag.do".equals(servletPath)) {
+				model.put("exhID", request.getParameter("exhID"));
+				
+				String tags = pageController.execute(model);
+				response.getWriter().write(tags);
+				
+				System.out.println();
+				
+				return ;
+			} 
+
+		      
+		    //--------------------------------------------------------------------------------------
+			// end - admin page by Dongsik 20/01/20(yy/mm/dd)	
+		    //--------------------------------------------------------------------------------------  
+		      
+
+		      
 		      
 		      
 		      // 페이지 컨트롤러를 실행한다.

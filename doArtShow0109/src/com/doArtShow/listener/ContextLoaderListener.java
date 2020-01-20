@@ -21,6 +21,15 @@ import com.doArtShow.controls.exhibition.VisitChkController;
 import com.doArtShow.controls.exhibition.WishChkController;
 import com.doArtShow.controls.exhibition.searchListController;
 import com.doArtShow.controls.exhibition.searchMapController;
+import com.doArtShow.controls.manager.ExhListController;
+import com.doArtShow.controls.manager.GetArtShowTagController;
+import com.doArtShow.controls.manager.ManagerLoginController;
+import com.doArtShow.controls.manager.ManagerLogoutController;
+import com.doArtShow.controls.manager.ManagerMainController;
+import com.doArtShow.controls.manager.MemberListController;
+import com.doArtShow.controls.manager.ModifyExhController;
+import com.doArtShow.controls.manager.UpdateActiveFlagController;
+import com.doArtShow.controls.manager.UpdateArtShowTagController;
 import com.doArtShow.controls.member.FindEmailController;
 import com.doArtShow.controls.member.FindPwController;
 import com.doArtShow.controls.member.IndexController;
@@ -191,7 +200,45 @@ public class ContextLoaderListener implements ServletContextListener{
 			sc.setAttribute("/client/exhibition/delete.do", new ExhibitionDeleteController().setExhibitionDao(exhibitionDao)); 		//newly added 20/01/10(yy/mm/dd) by Hojeong
 			//-------------------------------------------------------------------------------------------------------------
 			//			programmed by Hojeong - end
-			//-------------------------------------------------------------------------------------------------------------			
+			//-------------------------------------------------------------------------------------------------------------
+			
+			
+			
+			
+			
+			
+			//-------------------------------------------------------------------------------------------------------------
+			//			programmed by Dongsik - begin
+			//-------------------------------------------------------------------------------------------------------------
+			
+			// managerMain으로 가기 위한 controller
+			sc.setAttribute("/manager", new ManagerMainController().setManagerDao(managerDao));
+			sc.setAttribute("/manager.do", new ManagerMainController().setManagerDao(managerDao));
+			
+			// login 기능
+			sc.setAttribute("/managerLogin.do", new ManagerLoginController().setManagerDao(managerDao));
+			sc.setAttribute("/managerLogout.do", new ManagerLogoutController());
+			
+			// 게시물 목록 조회, 수정, 삭제
+			sc.setAttribute("/allExhList.do", new ExhListController().setManagerDao(managerDao));
+			sc.setAttribute("/newExhList.do", new ExhListController().setManagerDao(managerDao));
+			sc.setAttribute("/endExhList.do", new ExhListController().setManagerDao(managerDao));
+			sc.setAttribute("/updateActiveFlag.do", new UpdateActiveFlagController().setManagerDao(managerDao));
+			sc.setAttribute("/modifyExh.do", new ModifyExhController().setManagerDao(managerDao));
+			sc.setAttribute("/modifyExhPage.do", new ModifyExhController().setManagerDao(managerDao));
+			sc.setAttribute("/getArtShowTag.do", new GetArtShowTagController().setManagerDao(managerDao));
+			sc.setAttribute("/updateArtShowTag.do", new UpdateArtShowTagController().setManagerDao(managerDao));
+
+			// 회원 목록 조회
+			sc.setAttribute("/memberList.do", new MemberListController().setManagerDao(managerDao));			
+			
+			//-------------------------------------------------------------------------------------------------------------
+			//			programmed by Dongsik - end
+			//-------------------------------------------------------------------------------------------------------------
+			
+			
+			
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
