@@ -45,7 +45,7 @@ public class ExhibitionDeleteController implements Controller {
 		}*/	
 		//return "../../index.jsp";
 		
-		return "redirect:myList.do?dRsCnt"+rsCnt;
+		return "redirect:myList.do?dRsCnt="+rsCnt;   //modified by Hojeong @200120
 	}
 
 }

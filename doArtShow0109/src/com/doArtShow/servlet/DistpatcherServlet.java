@@ -265,6 +265,14 @@ public class DistpatcherServlet extends HttpServlet {
 	  				exhibitionDto.setImageFile2(filename[2]);
 	  				exhibitionDto.setImageFile3(filename[1]);
 	  				exhibitionDto.setImageFile4(filename[0]);
+	  				
+	  				exhibitionDto.setImageName2(UploadUtil.multi.getParameter("imageName2"));	//newly added by Hojeong @200120
+	  				exhibitionDto.setImageName3(UploadUtil.multi.getParameter("imageName3"));	//newly added by Hojeong @200120
+	  				exhibitionDto.setImageName4(UploadUtil.multi.getParameter("imageName4"));	//newly added by Hojeong @200120
+	  				exhibitionDto.setImageType2(UploadUtil.multi.getParameter("imageType2"));	//newly added by Hojeong @200120
+	  				exhibitionDto.setImageType3(UploadUtil.multi.getParameter("imageType3"));	//newly added by Hojeong @200120
+	  				exhibitionDto.setImageType4(UploadUtil.multi.getParameter("imageType4"));	//newly added by Hojeong @200120
+	  				
 	
 	  				System.out.println("###" + exhibitionDto.toString());
 	
@@ -321,6 +329,13 @@ public class DistpatcherServlet extends HttpServlet {
 	  					exhibitionDto.setImageFile2(filename[2]);
 	  					exhibitionDto.setImageFile3(filename[1]);
 	  					exhibitionDto.setImageFile4(filename[0]);
+	  					
+		  				exhibitionDto.setImageName2(UploadUtil.multi.getParameter("imageName2"));	//newly added by Hojeong @200120
+		  				exhibitionDto.setImageName3(UploadUtil.multi.getParameter("imageName3"));	//newly added by Hojeong @200120
+		  				exhibitionDto.setImageName4(UploadUtil.multi.getParameter("imageName4"));	//newly added by Hojeong @200120
+		  				exhibitionDto.setImageType2(UploadUtil.multi.getParameter("imageType2"));	//newly added by Hojeong @200120
+		  				exhibitionDto.setImageType3(UploadUtil.multi.getParameter("imageType3"));	//newly added by Hojeong @200120
+		  				exhibitionDto.setImageType4(UploadUtil.multi.getParameter("imageType4"));	//newly added by Hojeong @200120
 	
 	  					System.out.println("###" + exhibitionDto.toString());
 	

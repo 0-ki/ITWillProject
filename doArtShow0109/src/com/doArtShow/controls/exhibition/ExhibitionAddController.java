@@ -35,6 +35,7 @@ public class ExhibitionAddController implements Controller{
 		ExhibitionDto exhibition = (ExhibitionDto)model.get("exhibition");
 		int rsCnt = exhibitionDao.insertExhibition(exhibition);
 		System.out.println("DispatcherServlet_add.do_rsCnt: " + rsCnt);
+		/*
 		if (rsCnt == 1) {
 			 out.println("<html><body>");
 			 out.println("<script>alert('전시회 등록이 완료되었습니다.');</script>");
@@ -45,8 +46,10 @@ public class ExhibitionAddController implements Controller{
 			 out.println("<script>alert('전시회 등록에 실패했습니다. 잠시후 다시 시도하거나 관리자에게 문의하세요.');</script>");
 			 out.println("</body></html>");
 			 System.out.println("DispatcherServlet_add.do_sql insert failed!");
-		}	
-		return "redirect:/doArtShow";	 
+		}*/	
+		return "redirect:/doArtShow?rsCnt="+rsCnt;	
+		//return "redirect:myList.do?uRsCnt="+rsCnt;
+
 		//}
 	}
 }

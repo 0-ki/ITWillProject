@@ -292,25 +292,46 @@ try {
 						<input type="file" class="updateForm" name="file2" id="profile_pt2" 
 							 accept="image/*"  onchange="previewImage2(this,'View_area2')"> 
 						<div id='View_area2' style='position:relative; width: 100px; height: 100px; color: black; border: 0px solid black; dispaly: inline; '></div>
-					</pre>							
 					</td>
 				</tr>
+				<tr>
+					<th class="td_left"><label for="">작품사진1-이름</label></th>
+					<td><input type="text" class="updateForm" name="imageName2" id="imageName2" value="${exhibition.imageName2 }"></td>
+				</tr>
+				<tr>
+					<th class="td_left"><label for="">작품사진1-설명</label></th>
+					<td><input type="text" class="updateForm" name="imageType2" id="imageType2" value="${exhibition.imageType2 }"></td>
+				</tr>				
 				<tr> 
 					<th class="td_left"><label for="">작품사진2</label></th>
 					<td class="td_right"><pre class="brush:html">
 						<input type="file" class="updateForm" name="file3" id="profile_pt3" accept="image/*" onchange="previewImage3(this,'View_area3')">
 						<div id='View_area3' style='position:relative; width: 100px; height: 100px; color: black; border: 0px solid black; dispaly: inline; '></div>
-					</pre>							
 					</td>
 				</tr>
+				<tr>
+					<th class="td_left"><label for="">작품사진2-이름</label></th>
+					<td><input type="text" class="updateForm" name="imageName3" id="imageName3" value="${exhibition.imageName3 }"></td>
+				</tr>
+				<tr>
+					<th class="td_left"><label for="">작품사진2-설명</label></th>
+					<td><input type="text" class="updateForm" name="imageType3" id="imageType3" value="${exhibition.imageType3 }"></td>
+				</tr>	
 				<tr> 
 					<th class="td_left"><label for="">작품사진3</label></th>
 					<td class="td_right"><pre class="brush:html">
 						<input type="file" class="updateForm" name="file4" id="profile_pt4" accept="image/*" onchange="previewImage4(this,'View_area4')">
 						<div id='View_area4' style='position:relative; width: 100px; height: 100px; color: black; border: 0px solid black; dispaly: inline; '></div>
-					</pre>							
 					</td>
-				</tr>			   	
+				</tr>	
+				<tr>
+					<th class="td_left"><label for="">작품사진3-이름</label></th>
+					<td><input type="text" class="updateForm" name="imageName4" id="imageName4" value="${exhibition.imageName4 }"></td>
+				</tr>	
+				<tr>
+					<th class="td_left"><label for="">작품사진3-설명</label></th>
+					<td><input type="text" class="updateForm" name="imageType4" id="imageType4" value="${exhibition.imageType4 }"></td>
+				</tr>											   	
 				<!-- <tr>
 					<th class="td_left"><label for="">작품사진</label></th>
 					<td class="td_right"><input type="file" name="file2" id="#"></td>

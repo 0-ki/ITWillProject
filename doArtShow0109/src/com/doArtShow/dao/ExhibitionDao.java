@@ -547,14 +547,21 @@ public class ExhibitionDao {
 						+ "							admFee, "
 						+ "							imageFile1, "
 						+ "							imageFile2, "
+						+ "                         imageName2, "
+						+ "                         imageType2, "
 						+ "							imageFile3, "
+						+ "                         imageName3, "
+						+ "                         imageType3, "
 						+ "							imageFile4, "
+						+ "                         imageName4, "
+						+ "                         imageType4, "
 						+ "							exhReadCount, "
 						+ "							registerDate, "
 						+ "							activeFlag) "
 					+ "VALUES (?,?,?,?,?,?,?,?,?,?, "
-					+ "			?,?,?,?,?,?,?,?,?,?, "
-					+ "			?,?,?,?,?,? ) ";
+					+ "		   ?,?,?,?,?,?,?,?,?,?, "
+					+ "	       ?,?,?,?,?,?,?,?,?,?,"
+					+ "		   ?,? ) ";
 				pstmt = conn.prepareStatement(sql);
 				pstmt.setInt(1, num);
 				pstmt.setString(2, exhibition.getMemberID());
@@ -579,12 +586,18 @@ public class ExhibitionDao {
 				pstmt.setString(18,  exhibition.getTel());
 				pstmt.setString(19, exhibition.getAdmFee());
 				pstmt.setString(20, exhibition.getImageFile1());
-				pstmt.setString(21, exhibition.getImageFile2());
-				pstmt.setString(22, exhibition.getImageFile3());
-				pstmt.setString(23, exhibition.getImageFile4());
-				pstmt.setInt(24, 0);
-				pstmt.setTimestamp(25, exhibition.getRegisterDate());
-				pstmt.setString(26,  "N");
+				pstmt.setString(21, exhibition.getImageFile2());	
+				pstmt.setString(22, exhibition.getImageName2());	//newly added by Hojeong @200120
+				pstmt.setString(23, exhibition.getImageType2());	//newly added by Hojeong @200120
+				pstmt.setString(24, exhibition.getImageFile3());
+				pstmt.setString(25, exhibition.getImageName3());	//newly added by Hojeong @200120
+				pstmt.setString(26, exhibition.getImageType3());	//newly added by Hojeong @200120
+				pstmt.setString(27, exhibition.getImageFile4());
+				pstmt.setString(28, exhibition.getImageName4());	//newly added by Hojeong @200120
+				pstmt.setString(29, exhibition.getImageType4());	//newly added by Hojeong @200120
+				pstmt.setInt(30, 0);
+				pstmt.setTimestamp(31, exhibition.getRegisterDate());
+				pstmt.setString(32,  "N");
 		
 				cnt += pstmt.executeUpdate();
 				
@@ -656,7 +669,13 @@ public class ExhibitionDao {
 						+ "							imageFile1 		=?, "
 						+ "							imageFile2 		=?, "		// modified by Hojeong (20/01/03) ; 맨끝에 쉼표 추가함
 						+ "							imageFile3 		=?, "
-						+ "							imageFile4 		=? "
+						+ "							imageFile4 		=?, "
+						+ "							imageName2 		=?, "
+						+ "							imageName3 		=?, "
+						+ "							imageName4 		=?, "
+						+ "							imageType2 		=?, "
+						+ "							imageType3 		=?, "
+						+ "							imageType4 		=? "
 						+ "							WHERE exhID 	=? ";
 				pstmt = conn.prepareStatement(sql);
 				pstmt.setString(1, exhibition.getExhGubun1());
@@ -683,6 +702,12 @@ public class ExhibitionDao {
 				pstmt.setString(19, exhibition.getImageFile2());
 				pstmt.setString(20, exhibition.getImageFile3());
 				pstmt.setString(21, exhibition.getImageFile4());
+				pstmt.setString(22, exhibition.getImageName2());
+				pstmt.setString(23, exhibition.getImageName3());
+				pstmt.setString(24, exhibition.getImageName4());
+				pstmt.setString(25, exhibition.getImageType2());
+				pstmt.setString(26, exhibition.getImageType3());
+				pstmt.setString(27, exhibition.getImageType4());
 				pstmt.setInt(22, exhibition.getExhID());
 				cnt += pstmt.executeUpdate();
 				System.out.println("#cnt1"+cnt);
