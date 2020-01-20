@@ -223,6 +223,9 @@ public class DistpatcherServlet extends HttpServlet {
 	    	  // 전시회 등록 	  
 		  	  } else if ("/client/exhibition/add.do".equals(servletPath)) {
 		  		  
+	                JSONObject jsonObj = new JSONObject();
+	                model.put("jsonObj", jsonObj);
+		  		  
 					String saveFolder = "/exhibitionImages";											 
 					int fileSize = 7 * 1024 * 1024;	
 					
@@ -265,6 +268,14 @@ public class DistpatcherServlet extends HttpServlet {
 	  				exhibitionDto.setImageFile2(filename[2]);
 	  				exhibitionDto.setImageFile3(filename[1]);
 	  				exhibitionDto.setImageFile4(filename[0]);
+	  				
+	  				exhibitionDto.setImageName2(UploadUtil.multi.getParameter("imageName2"));	//newly added by Hojeong @200120
+	  				exhibitionDto.setImageName3(UploadUtil.multi.getParameter("imageName3"));	//newly added by Hojeong @200120
+	  				exhibitionDto.setImageName4(UploadUtil.multi.getParameter("imageName4"));	//newly added by Hojeong @200120
+	  				exhibitionDto.setImageType2(UploadUtil.multi.getParameter("imageType2"));	//newly added by Hojeong @200120
+	  				exhibitionDto.setImageType3(UploadUtil.multi.getParameter("imageType3"));	//newly added by Hojeong @200120
+	  				exhibitionDto.setImageType4(UploadUtil.multi.getParameter("imageType4"));	//newly added by Hojeong @200120
+	  				
 	
 	  				System.out.println("###" + exhibitionDto.toString());
 	
@@ -321,6 +332,13 @@ public class DistpatcherServlet extends HttpServlet {
 	  					exhibitionDto.setImageFile2(filename[2]);
 	  					exhibitionDto.setImageFile3(filename[1]);
 	  					exhibitionDto.setImageFile4(filename[0]);
+	  					
+		  				exhibitionDto.setImageName2(UploadUtil.multi.getParameter("imageName2"));	//newly added by Hojeong @200120
+		  				exhibitionDto.setImageName3(UploadUtil.multi.getParameter("imageName3"));	//newly added by Hojeong @200120
+		  				exhibitionDto.setImageName4(UploadUtil.multi.getParameter("imageName4"));	//newly added by Hojeong @200120
+		  				exhibitionDto.setImageType2(UploadUtil.multi.getParameter("imageType2"));	//newly added by Hojeong @200120
+		  				exhibitionDto.setImageType3(UploadUtil.multi.getParameter("imageType3"));	//newly added by Hojeong @200120
+		  				exhibitionDto.setImageType4(UploadUtil.multi.getParameter("imageType4"));	//newly added by Hojeong @200120
 	
 	  					System.out.println("###" + exhibitionDto.toString());
 	
@@ -435,7 +453,7 @@ public class DistpatcherServlet extends HttpServlet {
 		      // 페이지 컨트롤러를 실행한다.
 		      System.out.println("##2번 페이지컨트롤러 호출");
 		      String viewUrl = pageController.execute(model); //페이지 컨트롤러의 execute()메서드로 이동하며 데이터를 주고받을 바구니 역할을 하는 Map객체(model)를 넘긴다
-		      System.out.println("viweURL(listner:276)==>"+viewUrl);
+		      System.out.println("viweURL(DispatcherServlet)==>"+viewUrl);
 		      //viewUrl은 execute()의 반환값으로 화면에 출력을 수행할 JSP의 URL이다
 		      
 		      // Map 객체에 저장된 값을 ServletRequest에 복사한다.

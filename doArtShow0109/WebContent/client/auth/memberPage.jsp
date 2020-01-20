@@ -185,7 +185,7 @@
                 </c:choose>
 
                 <!-- === 내가 등록한 전시 =================================================================== -->
-                <label style="font-size: 15pt;">등록한 전시&nbsp;
+                <label style="font-size: 15pt;" id="mypageBottom">등록한 전시&nbsp;
                     <span style="color: skyblue;">
                         <c:if test="${empty requestScope.myExhCount}">0</c:if>
                         <c:if test="${!empty requestScope.myExhCount}">${myExhCount}</c:if>
