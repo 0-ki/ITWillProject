@@ -19,8 +19,8 @@
 		  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 		  <meta name="description" content="">
 		  <meta name="author" content="">
-		
-		  <title>SB Admin - Dashboard</title>
+		<link rel="shortcut icon" href="/doArtShow/resourcesImages/artshowtitle_Zn8_icon.ico" type="image/x-icon" />
+		  <title>전시:해 - 관리자 페이지</title>
 		
 		  <jsp:include page="/module/manager_ExhList_Header.html"></jsp:include>
 		

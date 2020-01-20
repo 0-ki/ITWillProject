@@ -40,9 +40,9 @@
 	}
 	
 	#content_list_div:hover{ 
-		-moz-box-shadow: 4px 5px 11px #1a1a1a;
-		-webkit-box-shadow: 4px 5px 11px #1a1a1a;
-		box-shadow: 4px 5px 11px #1a1a1a;
+		-moz-box-shadow: 0px 12px 20px rgba(54, 24, 79, 0.5);
+		-webkit-box-shadow: 0px 12px 20px rgba(54, 24, 79, 0.5);
+		box-shadow: 0px 12px 20px rgba(54, 24, 79, 0.5);
 		transition: all .3s;
 	}
 	
