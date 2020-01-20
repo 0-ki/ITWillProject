@@ -43,18 +43,5 @@ public class ExhibitionAddController implements Controller{
 		
 		return "json:"+result;
 		
-		/*if (rsCnt == 1) {
-			 out.println("<html><body>");
-			 out.println("<script>alert('전시회 등록이 완료되었습니다.');</script>");
-			 out.println("</body></html>");
-			 System.out.println("DispatcherServlet_add.do_sql insert succeded!");
-		} else {
-			 out.println("<html><body>");
-			 out.println("<script>alert('전시회 등록에 실패했습니다. 잠시후 다시 시도하거나 관리자에게 문의하세요.');</script>");
-			 out.println("</body></html>");
-			 System.out.println("DispatcherServlet_add.do_sql insert failed!");
-		}	
-		return "redirect:/doArtShow";*/	 
-		//}
 	}
 }
