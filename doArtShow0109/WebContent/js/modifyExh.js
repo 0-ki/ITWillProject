@@ -1,4 +1,3 @@
-
 $(document).ready(function(){
 	var exhGubun1 = $('#exhGubun1').val();
 	var exhGubun2 = $('#exhGubun2').val();
@@ -281,12 +280,3 @@ function cancelModify() {
 		history.go(-1);
 	}
 }
-
-/*$('#btnSubmit').click(function(e){
-	e.preventDefault();
-	console.log($('#asd')[0]);
-	console.log($('#asd')[0].files[0]);
-});*/
-
-
-
