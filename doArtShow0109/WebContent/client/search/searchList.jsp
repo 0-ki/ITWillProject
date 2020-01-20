@@ -1,4 +1,61 @@
 <jsp:include page="/module/1doctype_head.jsp"></jsp:include>
+<style>
+	*:before,
+	*:after {
+	  box-sizing: border-box;
+	  transition: 0.3s ease-in-out;
+	  z-index: -1;
+	}
+	
+	#content_div {
+    	text-align: center;
+    	padding-left: 5%;
+    	padding-right: 5%;
+    	padding-top: 5em;
+    }
+    
+	#content_list{
+		display: -webkit-inline-box;
+    	flex-wrap: wrap;
+    	-webkit-box-pack: center;
+	}
+	
+	#content_list_div{ 
+		margin-left: auto;
+	    margin-right: auto;
+	    margin-bottom: 20px;
+	    width: 275px;
+	    height: 450px;
+	    text-align: center;
+	    border-radius: 20px;
+	}
+	
+	#content_list_div img{ 
+		border-radius: 20px;
+	}
+	
+	#content_list_div a{ 
+		color: #474747;
+		text-decoration: none;
+	}
+	
+	#content_list_div:hover{ 
+		-moz-box-shadow: 4px 5px 11px #1a1a1a;
+		-webkit-box-shadow: 4px 5px 11px #1a1a1a;
+		box-shadow: 4px 5px 11px #1a1a1a;
+		transition: all .3s;
+	}
+	
+	#content_list_div a:hover{ 
+		color: #8a8a8a;
+		text-decoration: none;
+	}
+	
+	#moreBtn_div{
+		padding: 30px;
+	}	
+</style>
+
 <body>
 	<%@ page language="java" contentType="text/html; charset=UTF-8"
 		pageEncoding="UTF-8"%>
@@ -31,11 +88,11 @@
 					<div id="content_list">
 						<c:forEach var="list" items="${searchResult}">
 							<div id="content_list_div">
-								<a href="ExContentView.do?exhID=${list.exhID}">
+								<a href="<%=request.getContextPath()%>/client/exhibition/ExContentView.do?exhID=${list.exhID}" id="ExContentView" style="width: 290px; height: 470px;">
 									<!-- 아무데나 눌러도 상세페이지로 넘어가게 --> <img
 									src="/doArtShow/exhibitionImages/${list.imageFile1}"
-									style="height: 370px; width: 275px;" /><br>
-									${list.exhName}<br> ${list.exhPlace}<br>
+									style="height: 370px; width: 275px;"/><br>
+									<b>${list.exhName}</b><br> ${list.exhPlace}<br>
 									${list.exhStartDate}&nbsp;~&nbsp;${list.exhEndDate}
 								</a>
 							</div>

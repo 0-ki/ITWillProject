@@ -33,7 +33,7 @@ public class ExhibitionDao {
 		try {
 			conn = ds.getConnection();
 			System.out.println("일단 들어왔음");
-			sql  = 	" SELECT ExhID, ExhPlaceAddr1, ExhName , ArtistName , ExhPlace,  ExhStartDate , ExhEndDate , ImageFile1 FROM artshowdb.artshow WHERE ( ExhName like ? OR ArtistName like ? OR ExhPlace like ? ) AND ActiveFlag='N' GROUP BY ExhID ORDER BY ExhEndDate DESC ";
+			sql  = 	" SELECT ExhID, ExhPlaceAddr1, ExhName , ArtistName , ExhPlace,  ExhStartDate , ExhEndDate , ImageFile1 FROM artshowdb.artshow WHERE ( ExhName like ? OR ArtistName like ? OR ExhPlace like ? ) AND ActiveFlag='Y' GROUP BY ExhID ORDER BY ExhEndDate DESC ";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, "%"+search+"%");
 			pstmt.setString(2, "%"+search+"%");
@@ -80,7 +80,7 @@ public class ExhibitionDao {
 		
 		try {
 			conn = ds.getConnection();
-			sql  = 	" SELECT ExhID, ExhPlaceAddr1, ExhName , ArtistName , ExhPlace,  ExhStartDate , ExhEndDate , ImageFile1 FROM artshowdb.artshow WHERE ActiveFlag='N' GROUP BY ExhID ORDER BY ExhEndDate DESC ";
+			sql  = 	" SELECT ExhID, ExhPlaceAddr1, ExhName , ArtistName , ExhPlace,  ExhStartDate , ExhEndDate , ImageFile1 FROM artshowdb.artshow WHERE ActiveFlag='Y' GROUP BY ExhID ORDER BY ExhEndDate DESC ";
 			pstmt = conn.prepareStatement(sql);
 			rs = pstmt.executeQuery();
 			lists = new ArrayList<ExhibitionDto>();
@@ -1001,7 +1001,7 @@ public int getTagCount(Integer exhID) {
 		try {
 			conn = ds.getConnection();
 			//최신등록순 9개
-			sql  = 	" SELECT ExhID, ExhPlaceAddr1, ExhName , ArtistName , ExhPlace,  ExhStartDate , ExhEndDate , ImageFile1 FROM artshow ORDER BY RegisterDate DESC LIMIT 9 ";
+			sql  = 	" SELECT ExhID, ExhPlaceAddr1, ExhName , ArtistName , ExhPlace,  ExhStartDate , ExhEndDate , ImageFile1 FROM artshow  where activeflag='Y' ORDER BY RegisterDate DESC LIMIT 9 ";
 			pstmt = conn.prepareStatement(sql);
 			//pstmt.setString(1, "%"+search+"%");
 			//pstmt.setString(2, "%"+search+"%");
@@ -1028,7 +1028,7 @@ public int getTagCount(Integer exhID) {
 			sql="";
 			dto=null;
 			// 인기 조회순 9개
-			sql = " SELECT ExhID, ExhPlaceAddr1, ExhName , ArtistName , ExhPlace,  ExhStartDate , ExhEndDate , ImageFile1 FROM artshowdb.artshow ORDER BY ExhReadCount DESC LIMIT 9 ";
+			sql = " SELECT ExhID, ExhPlaceAddr1, ExhName , ArtistName , ExhPlace,  ExhStartDate , ExhEndDate , ImageFile1 FROM artshowdb.artshow  where activeflag='Y' ORDER BY ExhReadCount DESC LIMIT 9 ";
 			pstmt=conn.prepareStatement(sql);
 			rs = pstmt.executeQuery();
 			while(rs.next()){

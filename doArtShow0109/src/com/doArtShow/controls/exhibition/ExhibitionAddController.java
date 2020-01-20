@@ -46,7 +46,7 @@ public class ExhibitionAddController implements Controller{
 			 out.println("</body></html>");
 			 System.out.println("DispatcherServlet_add.do_sql insert failed!");
 		}	
-		return "../../index.jsp";	 
+		return "redirect:/doArtShow";	 
 		//}
 	}
 }

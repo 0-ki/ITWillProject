@@ -24,6 +24,6 @@ public class searchListController implements Controller {
 			model.put("searchResult", searchResult);
 			return "/client/search/searchList.jsp";
 		}
-		return "/index.jsp";
+		return "redirect:/doArtShow";
 	}
 }
