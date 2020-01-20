@@ -1,7 +1,8 @@
 package com.doArtShow.controls.exhibition;
 
 import java.io.PrintWriter;
-import java.util.Map; 
+import java.util.Map;
+import org.json.simple.JSONObject;
 
 import com.doArtShow.controls.Controller;
 import com.doArtShow.dao.ExhibitionDao;
@@ -21,7 +22,7 @@ public class ExhibitionAddController implements Controller{
 	
 	@Override
 	public String execute(Map<String, Object> model) throws Exception {
-  		PrintWriter out = (PrintWriter) model.get("out");
+  		/*PrintWriter out = (PrintWriter) model.get("out");*/
 		// get과 post방식을 모두 처리하기 때문에 request를 담은 model에 정보가 들어있는지에 따라서 처리 방식이 달라집니다.
 		
 		// 전시회 등록을 요청할때
@@ -31,22 +32,16 @@ public class ExhibitionAddController implements Controller{
 		
 		// 
 		//} else { 
-
+  		String result= null;
+		
+		JSONObject jsonObj = (JSONObject)model.get("jsonObj");
 		ExhibitionDto exhibition = (ExhibitionDto)model.get("exhibition");
 		int rsCnt = exhibitionDao.insertExhibition(exhibition);
 		System.out.println("DispatcherServlet_add.do_rsCnt: " + rsCnt);
-		if (rsCnt == 1) {
-			 out.println("<html><body>");
-			 out.println("<script>alert('전시회 등록이 완료되었습니다.');</script>");
-			 out.println("</body></html>");
-			 System.out.println("DispatcherServlet_add.do_sql insert succeded!");
-		} else {
-			 out.println("<html><body>");
-			 out.println("<script>alert('전시회 등록에 실패했습니다. 잠시후 다시 시도하거나 관리자에게 문의하세요.');</script>");
-			 out.println("</body></html>");
-			 System.out.println("DispatcherServlet_add.do_sql insert failed!");
-		}	
-		return "redirect:/doArtShow";	 
-		//}
+        jsonObj.put("res",rsCnt);
+        result = jsonObj.toJSONString();
+		
+		return "json:"+result;
+		
 	}
 }

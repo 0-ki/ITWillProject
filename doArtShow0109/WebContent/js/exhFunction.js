@@ -753,9 +753,34 @@ function exhRegisterCheckForm(exhRegisterForm) {
 		$("#profile_pt1").focus();	//입력 포커스 이동
 		return false;
 	}
+	
+	//영기
+	var form = exhRegisterForm;
+	var data = new FormData(form);
+	console.log(form+'///form입니다');
+	console.log(data+'///data입니다');
+	
+	$.ajax({
+		type: "POST",
+		enctype: 'multipart/form-data',
+		url: "add.do",
+		data: data,
+		processData: false,
+		contentType: false,
+		cache: false,
+		timeout: 600000,
+		success: function(data){
+			if(data.res==1){alert("전시 등록 신청이 완료됐습니다.");
+				location.replace('/doArtShow/client/auth/memberPage.do');}
+		},
+		error: function(e){
+			alert('전시 등록에 실패했습니다.');
+		}
+	});
+	
 
-	exhRegisterForm.action = "add.do";
-	exhRegisterForm.submit();
+	/*exhRegisterForm.action = "add.do";
+	exhRegisterForm.submit();*/
 }
 //----------------------------------------------------------
 //전시회등록유효성체크 -끝

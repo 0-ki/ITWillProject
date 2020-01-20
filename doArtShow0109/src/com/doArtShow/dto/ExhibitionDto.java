@@ -26,9 +26,17 @@ public class ExhibitionDto {
 	private String 			tel; //전시관전화번호
 	private String 			admFee; //입장료
 	private String			imageFile1; //전시회 포스터
+	private String 			imageName1; //이미지명, 작품명 			//newly added by Hojeong @200120
+	private String			imageType1; //작품유형, 이미지유형		//newly added by Hojeong @200120
 	private String 			imageFile2; //작품, 전시전경1
+	private String 			imageName2; //이미지명, 작품명 			//newly added by Hojeong @200120
+	private String			imageType2; //작품유형, 이미지유형		//newly added by Hojeong @200120
 	private String 			imageFile3; //작품, 전시전경2 *NULL가능
+	private String 			imageName3; //이미지명, 작품명 			//newly added by Hojeong @200120
+	private String			imageType3; //작품유형, 이미지유형 		//newly added by Hojeong @200120
 	private String 			imageFile4; //작품, 전시전경3 *NULL가능
+	private String 			imageName4; //이미지명, 작품명 			//newly added by Hojeong @200120
+	private String			imageType4; //작품유형, 이미지유형		//newly added by Hojeong @200120
 	private int				exhReadCount; //전시조회수
 	private Timestamp		registerDate; //전시등록일
 	private String			activeFlag; //관리자컨펌여부
@@ -39,7 +47,14 @@ public class ExhibitionDto {
 	
 	public ExhibitionDto() {}// ManagerDao 전용 생성자
 	
-	public ExhibitionDto(int exhID, String memberID, String exhGubun1, String exhGubun2, String exhGubun4, String exhName, String artistName, String artistInfo, String exhContent, String exhPlace, String exhPlaceZip, String exhPlaceAddr1, String exhPlaceAddr2, String exhUrl, String exhStartDate, String exhEndDate, String opTime, String tel, String admFee, String imageFile1, String imageFile2, String imageFile3, String imageFile4, int exhReadCount, Timestamp registerDate, String activeFlag) {
+	public ExhibitionDto(int exhID, String memberID, String exhGubun1, String exhGubun2, String exhGubun4, 
+			String exhName, String artistName, String artistInfo, String exhContent, String exhPlace, 
+			String exhPlaceZip, String exhPlaceAddr1, String exhPlaceAddr2, String exhUrl, 
+			String exhStartDate, String exhEndDate, String opTime, String tel, String admFee, 
+			String imageFile1, String imageFile2, String imageFile3, String imageFile4,
+			//String imageName1, String imageName2, String imageName3, String imageName4,
+			//String imageType1, String imageType2, String imageType3, String imageType4,
+			int exhReadCount, Timestamp registerDate, String activeFlag) {
 		this.exhID = exhID;
 		this.memberID = memberID;
 		this.exhGubun1 = exhGubun1;
@@ -63,12 +78,29 @@ public class ExhibitionDto {
 		this.imageFile2 = imageFile2;
 		this.imageFile3 = imageFile3;
 		this.imageFile4 = imageFile4;
+		/*
+		this.imageName1 = imageName1;	//newly added by Hojeong @20/01/20
+		this.imageName2 = imageName2;	//newly added by Hojeong @20/01/20
+		this.imageName3 = imageName3;	//newly added by Hojeong @20/01/20
+		this.imageName4 = imageName4;	//newly added by Hojeong @20/01/20
+		this.imageType1 = imageType1;	//newly added by Hojeong @20/01/20
+		this.imageType2 = imageType2;	//newly added by Hojeong @20/01/20
+		this.imageType3 = imageType3;	//newly added by Hojeong @20/01/20
+		this.imageType4 = imageType4;	//newly added by Hojeong @20/01/20
+		*/
 		this.exhReadCount = exhReadCount;
 		this.registerDate = registerDate;
 		this.activeFlag = activeFlag;
 	}// ManagerDao 전용 생성자2
 	
-	public ExhibitionDto(int exhID, String memberID, String exhGubun1, String exhGubun2, String exhGubun4, String exhName, String artistName, String artistInfo, String exhContent, String exhPlace, String exhPlaceZip, String exhPlaceAddr1, String exhPlaceAddr2, String exhUrl, String exhStartDate, String exhEndDate, String opTime, String tel, String admFee, String imageFile1, String imageFile2, String imageFile3, String imageFile4, int exhReadCount, Timestamp registerDate, String activeFlag, String[] exhGubun3) {
+	public ExhibitionDto(int exhID, String memberID, String exhGubun1, String exhGubun2, String exhGubun4,
+			String exhName, String artistName, String artistInfo, String exhContent, String exhPlace, 
+			String exhPlaceZip, String exhPlaceAddr1, String exhPlaceAddr2, String exhUrl, 
+			String exhStartDate, String exhEndDate, String opTime, String tel, String admFee, 
+			String imageFile1, String imageFile2, String imageFile3, String imageFile4, 
+			//String imageName1, String imageName2, String imageName3, String imageName4,
+			//String imageType1, String imageType2, String imageType3, String imageType4,
+			int exhReadCount, Timestamp registerDate, String activeFlag, String[] exhGubun3) {
 		this.exhID = exhID;
 		this.memberID = memberID;
 		this.exhGubun1 = exhGubun1;
@@ -92,6 +124,16 @@ public class ExhibitionDto {
 		this.imageFile2 = imageFile2;
 		this.imageFile3 = imageFile3;
 		this.imageFile4 = imageFile4;
+		/*
+		this.imageName1 = imageName1;	//newly added by Hojeong @20/01/20
+		this.imageName2 = imageName2;	//newly added by Hojeong @20/01/20
+		this.imageName3 = imageName3;	//newly added by Hojeong @20/01/20
+		this.imageName4 = imageName4;	//newly added by Hojeong @20/01/20
+		this.imageType1 = imageType1;	//newly added by Hojeong @20/01/20
+		this.imageType2 = imageType2;	//newly added by Hojeong @20/01/20
+		this.imageType3 = imageType3;	//newly added by Hojeong @20/01/20
+		this.imageType4 = imageType4;	//newly added by Hojeong @20/01/20
+		*/
 		this.exhReadCount = exhReadCount;
 		this.registerDate = registerDate;
 		this.activeFlag = activeFlag;
@@ -222,24 +264,89 @@ public class ExhibitionDto {
 	public void setImageFile1(String imageFile1) {
 		this.imageFile1 = imageFile1;
 	}
+	
+	public String getImageName1() {
+		return imageName1;
+	}
+
+	public void setImageName1(String imageName1) {
+		this.imageName1 = imageName1;
+	}
+
+	public String getImageType1() {
+		return imageType1;
+	}
+
+	public void setImageType1(String imageType1) {
+		this.imageType1 = imageType1;
+	}
+
 	public String getImageFile2() {
 		return imageFile2;
 	}
 	public void setImageFile2(String imageFile2) {
 		this.imageFile2 = imageFile2;
 	}
+	public String getImageName2() {
+		return imageName2;
+	}
+
+	public void setImageName2(String imageName2) {
+		this.imageName2 = imageName2;
+	}
+
+	public String getImageType2() {
+		return imageType2;
+	}
+
+	public void setImageType2(String imageType2) {
+		this.imageType2 = imageType2;
+	}
+
 	public String getImageFile3() {
 		return imageFile3;
 	}
 	public void setImageFile3(String imageFile3) {
 		this.imageFile3 = imageFile3;
 	}
+	public String getImageName3() {
+		return imageName3;
+	}
+
+	public void setImageName3(String imageName3) {
+		this.imageName3 = imageName3;
+	}
+
+	public String getImageType3() {
+		return imageType3;
+	}
+
+	public void setImageType3(String imageType3) {
+		this.imageType3 = imageType3;
+	}
+
 	public String getImageFile4() {
 		return imageFile4;
 	}
 	public void setImageFile4(String imageFile4) {
 		this.imageFile4 = imageFile4;
 	}
+	public String getImageName4() {
+		return imageName4;
+	}
+
+	public void setImageName4(String imageName4) {
+		this.imageName4 = imageName4;
+	}
+
+	public String getImageType4() {
+		return imageType4;
+	}
+
+	public void setImageType4(String imageType4) {
+		this.imageType4 = imageType4;
+	}
+
 	public int getExhReadCount() {
 		return exhReadCount;
 	}
@@ -265,6 +372,7 @@ public class ExhibitionDto {
 	public void setExhGubun3(String exhGubun3[]) {
 		this.exhGubun3 = exhGubun3;
 	}
+
 	@Override
 	public String toString() {
 		return "ExhibitionDto [exhID=" + exhID + ", memberID=" + memberID + ", exhGubun1=" + exhGubun1 + ", exhGubun2="
@@ -273,9 +381,14 @@ public class ExhibitionDto {
 				+ ", exhPlaceZip=" + exhPlaceZip + ", exhPlaceAddr1=" + exhPlaceAddr1 + ", exhPlaceAddr2="
 				+ exhPlaceAddr2 + ", exhUrl=" + exhUrl + ", exhStartDate=" + exhStartDate + ", exhEndDate=" + exhEndDate
 				+ ", opTime=" + opTime + ", tel=" + tel + ", admFee=" + admFee + ", imageFile1=" + imageFile1
-				+ ", imageFile2=" + imageFile2 + ", imageFile3=" + imageFile3 + ", imageFile4=" + imageFile4
-				+ ", exhReadCount=" + exhReadCount + ", registerDate=" + registerDate + ", activeFlag=" + activeFlag
-				+ ", exhGubun3=" + Arrays.toString(exhGubun3) + "]";
+				+ ", imageName1=" + imageName1 + ", imageType1=" + imageType1 + ", imageFile2=" + imageFile2
+				+ ", imageName2=" + imageName2 + ", imageType2=" + imageType2 + ", imageFile3=" + imageFile3
+				+ ", imageName3=" + imageName3 + ", imageType3=" + imageType3 + ", imageFile4=" + imageFile4
+				+ ", imageName4=" + imageName4 + ", imageType4=" + imageType4 + ", exhReadCount=" + exhReadCount
+				+ ", registerDate=" + registerDate + ", activeFlag=" + activeFlag + ", exhGubun3="
+				+ Arrays.toString(exhGubun3) + "]";
 	}
+
+	
 }
 
