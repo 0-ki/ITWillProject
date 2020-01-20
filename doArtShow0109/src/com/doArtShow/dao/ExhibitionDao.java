@@ -702,7 +702,7 @@ public class ExhibitionDao {
 				}
 				System.out.println("#cnt3"+cnt);
 				
-				if (cnt == 1+(exhibition.getExhGubun3().length*2)) {
+				if (cnt == 1+(exhibition.getExhGubun3().length+getTagCount(exhibition.getExhID()))) { 	//modified @20/01/20(yy/MM/dd)
 					conn.commit(); 
 					System.out.println("커밋됨");
 					rsCnt = 1;
@@ -920,7 +920,7 @@ public int deleteExhibition(int exhID) {
 		pstmt.setInt(1, exhID);
 		cnt += pstmt.executeUpdate();
 	
-		if (cnt == 2) {
+		if (cnt == 1+getTagCount(exhID)) {			//modified @20/01/20(yy/MM/dd)
 			conn.commit(); 
 			System.out.println("커밋됨");
 			rsCnt = 1;
@@ -942,6 +942,49 @@ public int deleteExhibition(int exhID) {
 //programmed by Hojeong 20/01/10(yy/mm/dd)
 //myList에서 내가 등록한 전시회 삭제하기  
 //-------------------------------------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------------------------------------
+//public int getTagCount(Integer exhID) - begin
+//ExhID에 해당하는 Tag갯수 가져오기 	
+//programmed @20/01/20(yy/MM/dd)
+//-------------------------------------------------------------------------------------------------------------		
+public int getTagCount(Integer exhID) {
+	System.out.println("getTagCount - Dao");
+	Connection 			conn 		= null;
+	PreparedStatement 	pstmt 	= null;
+	ResultSet 				rs 			= null;
+	int							count		= 0;
+	String 					sql 		= null;
+	int tagCount = 0;
+	
+	try {
+		conn = ds.getConnection();
+		pstmt = conn.prepareStatement(" select count(*) from artshowTag "
+				+ " where artshowTag.exhID=? ");
+		pstmt.setInt(1, exhID);
+		rs = pstmt.executeQuery();
+		
+		pstmt.setInt(1, exhID);
+		rs = pstmt.executeQuery();
+		
+		if(rs.next()) {
+			tagCount = rs.getInt(1);
+		}
+
+	} catch (Exception e) {
+		e.printStackTrace();
+	} finally {
+		try {if(rs!=null)rs.close();} catch (Exception e) {}
+		try {if(pstmt!=null)pstmt.close();} catch (Exception e) {}
+		try {if(conn!=null)conn.close();} catch (Exception e) {}
+	}
+	
+	return tagCount;
+}
+//-------------------------------------------------------------------------------------------------------------
+//public int getTagCount(Integer exhID) - end
+//ExhID에 해당하는 Tag갯수 가져오기 	
+//programmed @20/01/20(yy/MM/dd)
+//-------------------------------------------------------------------------------------------------------------	
 //-------------------------------------------------------------------------------------------------------------
 //programmed by Hojeong - end
 //-------------------------------------------------------------------------------------------------------------
