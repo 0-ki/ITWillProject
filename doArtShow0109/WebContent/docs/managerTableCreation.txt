@@ -1,6 +1,6 @@
 create table manager (
-managerId varchar(50) not null primary key, -- ¸Å´ÏÀú¾ÆÀÌµð
-managerPasswd varchar(16) not null -- ¸Å´ÏÀú ºñ¹Ð¹øÈ£
+managerId varchar(50) not null primary key, -- ï¿½Å´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ìµï¿½
+managerPasswd varchar(16) not null -- ï¿½Å´ï¿½ï¿½ï¿½ ï¿½ï¿½Ð¹ï¿½È£
 ) default character set utf8 collate utf8_general_ci;
 
 insert into manager(managerId, managerPasswd) values ('admin', '1111');
