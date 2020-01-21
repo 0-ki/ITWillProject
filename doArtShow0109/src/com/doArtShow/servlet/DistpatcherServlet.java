@@ -525,6 +525,18 @@ public class DistpatcherServlet extends HttpServlet {
 			// end - admin page by Dongsik 20/01/20(yy/mm/dd)	
 		    //--------------------------------------------------------------------------------------  
 		      
+		      //카카오 로그인/회원가입 시
+			else if ("/kakaoLogin.do".equals(servletPath)){
+				System.out.println("DS의 카카오로그인==>"+request.getParameter("gender"));
+				if(true){
+				model.put("member", new MemberDto()
+								.setKakaoId(request.getParameter("kid"))
+								.setEmail(request.getParameter("email"))
+								.setName(request.getParameter("name"))
+								.setBirth(request.getParameter("birth"))
+								.setGender(request.getParameter("gender")));
+				}
+			}
 
 		      
 		      

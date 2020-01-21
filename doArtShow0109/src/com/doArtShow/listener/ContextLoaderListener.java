@@ -33,6 +33,7 @@ import com.doArtShow.controls.manager.UpdateActiveFlagController;
 import com.doArtShow.controls.member.FindEmailController;
 import com.doArtShow.controls.member.FindPwController;
 import com.doArtShow.controls.member.IndexController;
+import com.doArtShow.controls.member.KakaoMemberController;
 import com.doArtShow.controls.member.MemProfileUpdateController;
 import com.doArtShow.controls.member.MemRevDeleteController;
 import com.doArtShow.controls.member.MemRevUpdateController;
@@ -236,6 +237,8 @@ public class ContextLoaderListener implements ServletContextListener{
 			//			programmed by Dongsik - end
 			//-------------------------------------------------------------------------------------------------------------
 			
+			//카카오 로그인/회원가입 처리
+			sc.setAttribute("/kakaoLogin.do", new KakaoMemberController().setMemberDao(memberDao));
 			
 			
 			
