@@ -25,6 +25,7 @@ public class MemRevDeleteController implements Controller{
 			
 			String email = (String)model.get("logInInfo");
 			memberDao.deleteReveiw(email, exhID);
+			
 		}
 		return "redirect:"+referer;
 	}
