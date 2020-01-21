@@ -774,6 +774,44 @@ public class ManagerDao {
 		
 		return res;
 	}
+
+
+
+
+	public String[] getImageFile(int exhID) {
+		Connection conn	= null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		int	count = 0;
+		String[] imageFile = new String[4];
+		
+		try {
+			conn = ds.getConnection();
+			
+			String sql = "select imageFile1, imageFile2, imageFile3, imageFile4 from artshow where exhID=?";
+			
+			pstmt =	conn.prepareStatement(sql);
+			pstmt.setInt(1, exhID);
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()){
+				imageFile[0] = rs.getString(1);
+				imageFile[1] = rs.getString(2);
+				imageFile[2] = rs.getString(3);
+				imageFile[3] = rs.getString(4);
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {if(rs!=null)rs.close();} catch (Exception e) {}
+			try {if(pstmt!=null)pstmt.close();} catch (Exception e) {}
+			try {if(conn!=null)conn.close();} catch (Exception e) {}
+		}
+		
+		return imageFile;
+	}
 	
 	
 }
