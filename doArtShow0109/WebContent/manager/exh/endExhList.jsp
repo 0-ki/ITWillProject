@@ -55,7 +55,7 @@
                     <th>분류</th>
                     <th>장르</th>
                     <th>위치</th>
-                    <th>전시명</th>
+                    <th>전시명(상세보기)</th>
                     <th>작가명</th><!-- 6 -->
                     <th>작가정보</th><!-- 7 -->
                     <th>전시내용</th><!-- 8 -->
@@ -86,7 +86,7 @@
                   		<td>${list.exhGubun1}</td>
                   		<td>${list.exhGubun2}</td>
                   		<td>${list.exhGubun4}</td>
-                  		<td class="exhName">${list.exhName}</td>     		
+                  		<td>${list.exhName}</td>     		
                   		<td>${list.artistName}</td>
                   		<td>${list.artistInfo}</td>
                   		<td>${list.exhContent}</td>
@@ -100,23 +100,23 @@
                   		<td>${list.opTime}</td>
                   		<td>${list.tel}</td>
                   		<td>${list.admFee}</td>
-                  		<td><img src="/doArtShowAdmin/exhibitionImages/${list.imageFile1}" width="200px" height="330px" /></td>
-                  		<td><img src="/doArtShowAdmin/exhibitionImages/${list.imageFile2}" width="250px" height="330px" /></td>
-                  		<td><img src="/doArtShowAdmin/exhibitionImages/${list.imageFile3}" width="250px" height="330px" /></td>
-                  		<td><img src="/doArtShowAdmin/exhibitionImages/${list.imageFile4}" width="250px" height="330px" /></td>
+                  		<td><img src="/doArtShow/exhibitionImages/${list.imageFile1}" width="200px" height="330px" /></td>
+                  		<td><img src="/doArtShow/exhibitionImages/${list.imageFile2}" width="250px" height="330px" /></td>
+                  		<td><img src="/doArtShow/exhibitionImages/${list.imageFile3}" width="250px" height="330px" /></td>
+                  		<td><img src="/doArtShow/exhibitionImages/${list.imageFile4}" width="250px" height="330px" /></td>
                   		<td>${list.exhReadCount}</td>
                   		<td>${list.registerDate}</td>
                   		<td>
                   			<c:choose>
-                  				<c:when test="${list.activeFlag eq 'N'}">
+                  				<c:when test="${list.activeFlag ne 'E'}">
                   					<label class="switch">
-									  <input type="checkbox">
+									  <input type="checkbox" checked="checked">
 									  <span class="slider round"></span>
 									</label>
                   				</c:when>
                   				<c:otherwise>
                   					<label class="switch">
-									  <input type="checkbox" checked="checked">
+									  <input type="checkbox" disabled="disabled">
 									  <span class="slider round"></span>
 									</label>
                   				</c:otherwise>
@@ -154,63 +154,63 @@
                 <div class="input-group-prepend">
                     <span class="input-group-text">전시회ID</span>
                 </div>
-                <div class="form-control readOnly" id="exhID"></div>
+                <div class="form-control" id="exhID"></div>
               </div>
               
               <div class="input-group mb-3">
                   <div class="input-group-prepend">
                       <span class="input-group-text">회원ID</span>
                   </div>
-                  <div class="form-control readOnly" id="memberID"></div>
+                  <div class="form-control" id="memberID"></div>
               </div>
               
               <div class="input-group mb-3">
                   <div class="input-group-prepend">
                       <span class="input-group-text">분류</span>
                   </div>
-                  <div class="form-control readOnly" id="exhGubun1"></div>
+                  <div class="form-control" id="exhGubun1"></div>
               </div>
               
               <div class="input-group mb-3">
                   <div class="input-group-prepend">
                       <span class="input-group-text">장르</span>
                   </div>
-                  <div class="form-control readOnly" id="exhGubun2"></div>
+                  <div class="form-control" id="exhGubun2"></div>
               </div>
               
               <div class="input-group mb-3">
                   <div class="input-group-prepend">
-                      <span class="input-group-text">위치</span>
+                      <span class="input-group-text">태그</span>
                   </div>
-                  <div class="form-control readOnly" id="exhGubun4"></div>
+                  <div class="form-control" id="exhGubun3"></div>
               </div>
               
               <div class="input-group mb-3">
                   <div class="input-group-prepend">
                       <span class="input-group-text">전시명</span>
                   </div>
-                  <div class="form-control readOnly" id="exhName"></div>
+                  <div class="form-control" id="exhName"></div>
               </div>
               
               <div class="input-group mb-3">
                   <div class="input-group-prepend">
                       <span class="input-group-text">작가명</span>
                   </div>
-                  <div class="form-control readOnly" id="artistName"></div>
+                  <div class="form-control" id="artistName"></div>
               </div>
               
               <div class="input-group mb-3">
                   <div class="input-group-prepend">
                       <span class="input-group-text">작가정보</span>
                   </div>
-                  <div class="form-control readOnly" id="artistInfo" style="height: auto;"></div>
+                  <div class="form-control" id="artistInfo" style="height: auto;"></div>
               </div>
 
               <div class="input-group mb-3">
 				<div class="input-group-prepend">
                 	<span class="input-group-text">전시내용</span>
                 </div>
-                <div class="form-control readOnly" id="exhContent" style="height: auto;"></div>
+                <div class="form-control" id="exhContent" style="height: auto;"></div>
               </div>
 
               
@@ -218,84 +218,91 @@
                   <div class="input-group-prepend">
                       <span class="input-group-text">전시장</span>
                   </div>
-                  <div class="form-control readOnly" id="exhPlace"></div>
+                  <div class="form-control" id="exhPlace"></div>
               </div>
               
               <div class="input-group mb-3">
                   <div class="input-group-prepend">
                       <span class="input-group-text">짚코드</span>
                   </div>
-                  <div class="form-control readOnly" id="exhPlaceZip"></div>
+                  <div class="form-control" id="exhPlaceZip"></div>
+              </div>
+              
+              <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                      <span class="input-group-text">위치</span>
+                  </div>
+                  <div class="form-control" id="exhGubun4"></div>
               </div>
               
               <div class="input-group mb-3">
                   <div class="input-group-prepend">
                       <span class="input-group-text">주소 1</span>
                   </div>
-                  <div class="form-control readOnly" id="exhPlaceAddr1"></div>
+                  <div class="form-control" id="exhPlaceAddr1"></div>
               </div>
               
               <div class="input-group mb-3">
                   <div class="input-group-prepend">
                       <span class="input-group-text">주소 2</span>
                   </div>
-                  <div class="form-control readOnly" id="exhPlaceAddr2"></div>
+                  <div class="form-control" id="exhPlaceAddr2"></div>
               </div>
 
               <div class="input-group mb-3">
                 <div class="input-group-prepend">
                     <span class="input-group-text">홈페이지</span>
                 </div>
-                <div class="form-control readOnly" id="exhUrl"></div>
+                <div class="form-control" id="exhUrl"></div>
               </div>
 
               <div class="input-group mb-3">
                 <div class="input-group-prepend">
                     <span class="input-group-text">시작일</span>
                 </div>
-                <div class="form-control readOnly" id="exhStartDate"></div>
+                <div class="form-control" id="exhStartDate"></div>
               </div>
 
               <div class="input-group mb-3">
                 <div class="input-group-prepend">
                     <span class="input-group-text">종료일</span>
                 </div>
-                <div class="form-control readOnly" id="exhEndDate"></div>
+                <div class="form-control" id="exhEndDate"></div>
               </div>
 
               <div class="input-group mb-3">
                 <div class="input-group-prepend">
                     <span class="input-group-text">운영시간</span>
                 </div>
-                <div class="form-control readOnly" id="opTime"></div>
+                <div class="form-control" id="opTime"></div>
               </div>
 
               <div class="input-group mb-3">
                 <div class="input-group-prepend">
                     <span class="input-group-text">전화번호</span>
                 </div>
-                <div class="form-control readOnly" id="tel"></div>
+                <div class="form-control" id="tel"></div>
               </div>
 
               <div class="input-group mb-3">
                 <div class="input-group-prepend">
                     <span class="input-group-text">입장료</span>
                 </div>
-                <div class="form-control readOnly" id="admFee"></div>
+                <div class="form-control" id="admFee"></div>
               </div>
               
               <div class="input-group mb-3">
                 <div class="input-group-prepend">
                     <span class="input-group-text">포스터<br>/<br>작품<br>/<br>전시전경</span>
                 </div>
-                <div class="form-control readOnly" id="imageFile" style="height: 350px"></div>
+                <div class="form-control" id="imageFile" style="height: auto;"></div>
               </div>
 
               <div class="input-group mb-3">
                 <div class="input-group-prepend">
                     <span class="input-group-text">조회수</span>
                 </div>
-                <div class="form-control readOnly" id="exhReadCount"></div>
+                <div class="form-control" id="exhReadCount"></div>
                 
               </div>
 
@@ -303,21 +310,20 @@
                 <div class="input-group-prepend">
                     <span class="input-group-text">등록일</span>
                 </div>
-                <div class="form-control readOnly" id="registerDate"></div>
+                <div class="form-control" id="registerDate"></div>
               </div>
 
             </div><!-- Modal Body End -->
 
             <!-- Modal footer -->
             <div class="modal-footer">
-              <button type="button" class="btn btn-success">Modify</button>
-              <button type="button" class="btn btn-danger">Delete</button>
+              <button type="button" class="btn btn-danger" id="deleteBtn">Delete</button>
               <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
             </div>
 
           </div>
         </div>
-      </div>
+      </div><!-- Modal End -->
 
 
 

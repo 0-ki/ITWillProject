@@ -1,9 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-
-<c:set var="key" value="${key}"></c:set>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -131,7 +128,6 @@
               </table>
             </div>
           </div>
-
           <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
         </div>
 
@@ -322,7 +318,7 @@
             <!-- Modal footer -->
             <div class="modal-footer">
               <button type="button" class="btn btn-success" id="modifyBtn">Modify</button>
-              <button type="button" class="btn btn-danger">Delete</button>
+              <button type="button" class="btn btn-danger" id="deleteBtn">Delete</button>
               <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
             </div>
 

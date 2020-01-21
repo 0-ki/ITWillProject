@@ -152,17 +152,9 @@ function uploadFiles(e) {
     }
     
     if (files[0].type.match(/image.*/)) {
-    	//console.log(files[0].name);
-    	//console.log(window.URL.createObjectURL(files[0]));
-    	//console.log(e.target);
-    	//console.log($(this)[0].id);
-    	//console.log(files[0]);
-    	//console.log(imageFile1);
-    	//imageFile1 = files[0];
-    	//console.log(imageFile1);
     	$(e.target).attr('src', window.URL.createObjectURL(files[0]));
+    	
         $(e.target).css({
-        	/*"background-image": "url(" + window.URL.createObjectURL(files[0]) + ")",*/
             "outline": "none",
             "background-size": "100% 100%"
         });
@@ -187,25 +179,10 @@ function sendModifyExhData() {
 	var tags = "";
 	$("input[name=exhGubun3Check]:checked").each(function() {
 		var tag = $(this).val();
-		//console.log($('#exhID').text());
-		//console.log(test);
 		tags += ",";
 		tags += tag;
-		//console.log(str);
 	});
-	
-	
-	/*$.ajax({
-		url: "/doArtShowAdmin/updateArtShowTag.do",
-		type: "GET",
-		data: "exhID=" + $('#exhID').text() + "&tags=" + tags,
-		async : false,
-		success: function(data){
-			console.log(data);
-		}
-	});*/
-	
-	
+
 	var formData = new FormData();
 	formData.append("exhID", $('#exhID').text());
 	formData.append("memberID", $('#memberID').text());
@@ -227,16 +204,11 @@ function sendModifyExhData() {
 	formData.append("opTime", $('#opTime').val());
 	var tel = $('#tel1').val() + "-" + $('#tel2').val() + "-" + $('#tel3').val();
 	formData.append("tel", tel);
-	formData.append("admFeeRadio", $('input[name="admFeeRadio"]:checked').val());
+	formData.append("admFee", $('input[name="admFeeRadio"]:checked').val());
 	formData.append("imageFile1", imageFile1);
 	formData.append("imageFile2", imageFile2);
 	formData.append("imageFile3", imageFile3);
 	formData.append("imageFile4", imageFile4);
-
-	//console.log(formData);
-	//console.log(formData.get("exhID"));
-	//console.log(formData.get("exhGubun3"));
-	//console.log(formData.get("imageFile1"));	// undefined = image 수정 x
 	
 	var img = ["O", "O", "O", "O"];
 	
@@ -252,8 +224,9 @@ function sendModifyExhData() {
 	if (formData.get("imageFile4") == "undefined") {
 		img[3] = "X";
 	}
-	//console.log(img);
+	console.log(img);
 	formData.append("img", img);
+	console.log("asdhfjashdlkjfhasdkjfhkljsadf");
 	
 	$.ajax({
 		url: "/doArtShow/modifyExh.do",
@@ -264,8 +237,21 @@ function sendModifyExhData() {
 		contentType: false,
 		cache: false,
 		success: function(data){
-			console.log(data);	
-		}
+			if (data == "success") {
+				alert("수정하였습니다.");
+				
+				location.href = "allExhList.do";
+			} else {
+				alert("실패하였습니다.");
+				
+				location.reload();
+			}
+		},
+		error:function(request,status,error){			
+	        alert("수정할 수 없습니다.");
+			alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+	    }
+
 	});
 	
 	

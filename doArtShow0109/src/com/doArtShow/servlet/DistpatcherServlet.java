@@ -52,6 +52,7 @@ public class DistpatcherServlet extends HttpServlet {
 		      
 	  		  PrintWriter out = response.getWriter();			//newly added by Hojeong 20/01/10(yy/mm/dd)
 	  		  model.put("out", out);							//newly added by Hojeong 20/01/10(yy/mm/dd)
+	  		  model.put("request", request);					//newly added by Hojeong 20/01/21(yy/mm/dd)
 		      
 		      //로그인 후 이전 페이지로 가기 위해 Header를 사용
               model.put("Referer",request.getHeader("Referer"));
@@ -404,7 +405,7 @@ public class DistpatcherServlet extends HttpServlet {
 			} else if ("/modifyExh.do".equals(servletPath)) {
 				String saveFolder = "/exhibitionImages";											 
 				int fileSize = 7 * 1024 * 1024;
-				String[] filename = new String[4];
+				String[] fileName = {"Nothing.png", "Nothing.png", "Nothing.png", "Nothing.png"};
 
 				DefaultFileRenamePolicy policy = new DefaultFileRenamePolicy();
 				MultipartRequest multi = new MultipartRequest(request, request.getServletContext().getRealPath(saveFolder), fileSize, "UTF-8", new DefaultFileRenamePolicy());
@@ -436,39 +437,71 @@ public class DistpatcherServlet extends HttpServlet {
 				while (files.hasMoreElements()) {
 					// input 태그의 속성이 files인 태그의 name 속성값: 파라메터 이름
 					String name = (String) files.nextElement();
-					System.out.println("filename###" + k + ":" + multi.getFilesystemName(name));
+					
 					if(multi.getFilesystemName(name)!=null){
 						// 서버에 저장된 파일 이름
-						filename[k] = multi.getFilesystemName(name);
-						System.out.println("filename***" + k + ":" + filename[k]);
-					} else {							
-						filename[k] = "Nothing.png";	
+						fileName[k] = multi.getFilesystemName(name);
 					}									
 					k++;
 				}
-	
-				for (String s : filename) {
-					System.out.println("fileName >>> " + s);
+
+				int chk = 0;
+				String[] img = multi.getParameter("img").split(",");
+				int[] imgIdx = new int[4];
+				
+				for (int i = 0; i < img.length; i++) {
+					if (img[i].equals("O")) {
+						imgIdx[i] = i + 1;
+						chk++;
+					}
+				}
+
+				String[] modifyFileName = new String[chk];
+				int j = 0;
+				
+				for (int i = chk - 1; i >= 0; i--) {
+					modifyFileName[j] = fileName[i];
+					j++;
 				}
 				
+				int m = 0;
 				
-				
-				
-				/*String[] img = multi.getParameter("img").split(",");
-				
-				for (int i = 0; i < img.length - 1; i++) {
-					if (img[i].equals("O")) {
-						
+				for (int i = 0; i < imgIdx.length; i++) {
+					if (imgIdx[i] != 0) {
+						switch (i + 1) {
+						case 1:
+							modifyExhibitionDto.setImageFile1(modifyFileName[m]);
+							break;
+						case 2:
+							modifyExhibitionDto.setImageFile2(modifyFileName[m]);
+							break;
+						case 3:
+							modifyExhibitionDto.setImageFile3(modifyFileName[m]);
+							break;
+						default:
+							modifyExhibitionDto.setImageFile4(modifyFileName[m]);
+							break;
+						}
+						m++;
 					}
-				}*/
+				}
+
+				String tags = multi.getParameter("exhGubun3");
+				String[] tagList = tags.split(",");
+				String[] exhGubun3 = new String[tagList.length - 1];
 				
+				for (int i = 1; i < tagList.length; i++) {
+					exhGubun3[i - 1] = tagList[i];
+				}
+
+				modifyExhibitionDto.setExhGubun3(exhGubun3);
 				
+				model.put("modifyExhibitionDto", modifyExhibitionDto);
 				
-				/*if (multi.getParameter("imageFile1") == null) {
-					// imageFile1, 2, 3, 4 각각 경우의 수 계산해야함
-				}*/
+				String modifyResult = pageController.execute(model);
+				response.getWriter().write(modifyResult);
 				
-				
+				return ;
 				
 			// 게시물번호에 해당하는 tag 목록 불러오기	
 			} else if ("/getArtShowTag.do".equals(servletPath)) {
@@ -476,11 +509,16 @@ public class DistpatcherServlet extends HttpServlet {
 				
 				String tags = pageController.execute(model);
 				response.getWriter().write(tags);
+
+				return ;
+			} else if ("/deleteExh.do".equals(servletPath)) {
+				model.put("exhID", request.getParameter("exhID"));
 				
-				System.out.println();
+				String deleteResult = pageController.execute(model);
+				response.getWriter().write(deleteResult);
 				
 				return ;
-			} 
+			}
 
 		      
 		    //--------------------------------------------------------------------------------------

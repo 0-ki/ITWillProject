@@ -21,15 +21,15 @@ import com.doArtShow.controls.exhibition.VisitChkController;
 import com.doArtShow.controls.exhibition.WishChkController;
 import com.doArtShow.controls.exhibition.searchListController;
 import com.doArtShow.controls.exhibition.searchMapController;
+import com.doArtShow.controls.manager.DeleteExhController;
 import com.doArtShow.controls.manager.ExhListController;
 import com.doArtShow.controls.manager.GetArtShowTagController;
 import com.doArtShow.controls.manager.ManagerLoginController;
 import com.doArtShow.controls.manager.ManagerLogoutController;
 import com.doArtShow.controls.manager.ManagerMainController;
 import com.doArtShow.controls.manager.MemberListController;
-import com.doArtShow.controls.manager.ModifyExhController;
+import com.doArtShow.controls.manager.UpdateExhController;
 import com.doArtShow.controls.manager.UpdateActiveFlagController;
-import com.doArtShow.controls.manager.UpdateArtShowTagController;
 import com.doArtShow.controls.member.FindEmailController;
 import com.doArtShow.controls.member.FindPwController;
 import com.doArtShow.controls.member.IndexController;
@@ -224,11 +224,11 @@ public class ContextLoaderListener implements ServletContextListener{
 			sc.setAttribute("/newExhList.do", new ExhListController().setManagerDao(managerDao));
 			sc.setAttribute("/endExhList.do", new ExhListController().setManagerDao(managerDao));
 			sc.setAttribute("/updateActiveFlag.do", new UpdateActiveFlagController().setManagerDao(managerDao));
-			sc.setAttribute("/modifyExh.do", new ModifyExhController().setManagerDao(managerDao));
-			sc.setAttribute("/modifyExhPage.do", new ModifyExhController().setManagerDao(managerDao));
+			sc.setAttribute("/modifyExh.do", new UpdateExhController().setManagerDao(managerDao));
+			sc.setAttribute("/modifyExhPage.do", new UpdateExhController().setManagerDao(managerDao));
 			sc.setAttribute("/getArtShowTag.do", new GetArtShowTagController().setManagerDao(managerDao));
-			sc.setAttribute("/updateArtShowTag.do", new UpdateArtShowTagController().setManagerDao(managerDao));
-
+			sc.setAttribute("/deleteExh.do", new DeleteExhController().setManagerDao(managerDao));
+			
 			// 회원 목록 조회
 			sc.setAttribute("/memberList.do", new MemberListController().setManagerDao(managerDao));			
 			
