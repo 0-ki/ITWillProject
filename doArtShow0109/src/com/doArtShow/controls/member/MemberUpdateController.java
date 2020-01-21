@@ -19,7 +19,6 @@ public class MemberUpdateController implements Controller{
 	}
 	@Override
 	public String execute(Map<String, Object> model) throws Exception {
-		if(model.get("member")!=null) {
 			MemberDto member = (MemberDto)model.get("member");
 			
 			memberDao.updateMember(
@@ -35,8 +34,6 @@ public class MemberUpdateController implements Controller{
 			session.setAttribute("member",member);
 			
 			return "redirect:memberDetail.do";
-		}
-		return "redirect:memberLogIn.do";
 	}
 	
 }

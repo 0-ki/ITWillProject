@@ -31,7 +31,6 @@ public class MemProfileUpdateController implements Controller{
 		
 		session.setAttribute("member",member);
 		
-		System.out.println(member);
 		return "/client/auth/profileImgUpdateRes.jsp";
 
 	}

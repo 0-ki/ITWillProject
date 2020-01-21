@@ -35,7 +35,10 @@ MemberDao memberDao;
 		        
 		        //회원가입을 하고 난 후에는 이전페이지가 아닌 메인화면을 출력해준다.
 		        if(referer.startsWith("http://localhost:8888/doArtShow/client/auth/memberAdd.do?")) {
-		        	return "redirect:";
+		        	return "redirect:/doArtShow/";
+		        }
+		        if(referer.startsWith("http://localhost:8888/doArtShow/client/auth/memberLogIn.do")) {
+		        	return "redirect:/doArtShow/";
 		        }
 		        
 		        return "redirect:"+referer;

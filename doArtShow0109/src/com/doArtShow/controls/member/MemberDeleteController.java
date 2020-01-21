@@ -28,7 +28,7 @@ public class MemberDeleteController implements Controller{
 			//탈퇴함과 동시에 로그인 정보를 없앤다.
 			session.invalidate();
 			
-			return "/index.jsp";
+			return "redirect:/doArtShow/";
 		} else {
 			return "redirect:/client/auth/memberLogIn.do";
 		}
