@@ -6,6 +6,7 @@ import com.doArtShow.controls.Controller;
 import com.doArtShow.dao.MemberDao;
 import com.doArtShow.dto.ReviewDto;
 
+//회원 리뷰 수정 컨트롤러
 public class MemRevUpdateController implements Controller{
 	MemberDao	memberDao;
 	

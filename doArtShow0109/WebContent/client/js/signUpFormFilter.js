@@ -14,12 +14,7 @@ $(document).ready(function(){
 			$("#emailChkButton").attr("disabled", true);
 			$("#submitBtn").attr("disabled", true);
 		}
-//		if($("#input_email").is('[readonly]')){
-//			$("#submitBtn").attr("disabled", false);
-//		} else {
-//			alert("이메일 중복확인을 해주세요");
-//			$("#submitBtn").attr("disabled", true);
-//		}
+
 	});
 	
 	//이름 유효검사(특수문자가 있을 경우 다시입력)
@@ -34,7 +29,16 @@ $(document).ready(function(){
 		} else {
 			$("#name_check").text("");
 			$("#submitBtn").attr("disabled", true);
-		}					
+		}
+		var filter2 = /\s/g;
+		if(name.match(filter2)) {
+			$("#name_check").text("특수문자를 제외하고 1자리이상 써주세요.");
+			$("#name_check").css('color','red');
+			$("#submitBtn").attr("disabled", false);
+		} else {
+			$("#name_check").text("");
+			$("#submitBtn").attr("disabled", true); 
+		}
 	});
 	
 	//생년월일 유효검사(숫자가 아닐 경우  다시입력)

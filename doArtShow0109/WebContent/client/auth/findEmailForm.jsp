@@ -5,7 +5,7 @@
 <body>
     <jsp:include page="../../module/2body_first.jsp"></jsp:include>
     <div class="container" id="mainContainer">
-        <form style="height: 63vh; padding:20vh;" name="findEmailForm" method="post">
+        <form style="height: 63vh; padding:10vh;" name="findEmailForm" method="post">
             <table align="center">
                 <tr>
                     <td id="formTitle" colspan="2">이메일 찾기</td>

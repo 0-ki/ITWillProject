@@ -10,6 +10,7 @@ import com.doArtShow.dao.MemberDao;
 import com.doArtShow.dto.MemberDto;
 import com.doArtShow.dto.MyReviewDto;
 
+//회원 리뷰 전체보기 컨트롤러
 public class MemReviewListController implements Controller{
 	MemberDao	memberDao;
 	

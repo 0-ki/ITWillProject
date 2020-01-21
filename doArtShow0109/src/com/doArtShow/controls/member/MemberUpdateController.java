@@ -8,6 +8,7 @@ import com.doArtShow.controls.Controller;
 import com.doArtShow.dao.MemberDao;
 import com.doArtShow.dto.MemberDto;
 
+//회원 정보 수정 컨트롤러
 public class MemberUpdateController implements Controller{
 	MemberDao memberDao;
 	HttpSession session;
@@ -18,7 +19,6 @@ public class MemberUpdateController implements Controller{
 	}
 	@Override
 	public String execute(Map<String, Object> model) throws Exception {
-		if(model.get("member")!=null) {
 			MemberDto member = (MemberDto)model.get("member");
 			
 			memberDao.updateMember(
@@ -34,8 +34,6 @@ public class MemberUpdateController implements Controller{
 			session.setAttribute("member",member);
 			
 			return "redirect:memberDetail.do";
-		}
-		return "redirect:memberLogIn.do";
 	}
 	
 }

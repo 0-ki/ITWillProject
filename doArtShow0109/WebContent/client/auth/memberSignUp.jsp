@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri = "http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <jsp:include page="../../module/1doctype_head.jsp"></jsp:include>
 
 <body>
@@ -40,13 +42,39 @@
                 <tr>
                     <th><label class="tableLabel">생년월일</label></th>
                     <td>
-                        <input class="form-control" type="text" name="birth" id="input_birth" placeholder="생년월일(8자리)">
+                    <select id="year" style="width: 100px;">
+                    	<c:set var="today" value="<%=new java.util.Date()%>" />
+                    	<fmt:formatDate value="${today}" pattern="yyyy" var="start"/>
+          					<c:forEach begin="0" end="80" var="idx" step="1">
+	          					<option value="<c:out value="${start - idx}" />">
+	          					<c:out value="${start - idx}" />
+	          					</option>
+         					</c:forEach>
+
+					</select>
+                    <select id="month" style="width: 100px;">
+          					<c:forEach begin="1" end="12" var="idx" step="1">
+	          					<option value="<c:out value="${idx}" />">
+	          					<c:out value="${idx}" />
+	          					</option>
+         					</c:forEach>
+
+					</select>
+                    <select id="day" style="width: 100px;">
+          					<c:forEach begin="1" end="31" var="idx" step="1">
+	          					<option value="<c:out value="${idx}" />">
+	          					<c:out value="${idx}" />
+	          					</option>
+         					</c:forEach>
+
+					</select>
+                        <input type="hidden" name="birth">
                     </td>
                 </tr>
                 <tr class="check_tr">
                     <td></td>
                     <td colspan="2">
-                        <div id="birth_check"></div>
+                        <div></div>
                     </td>
                 </tr>
                 <tr>
@@ -90,12 +118,6 @@
                     <td colspan="2"><label style="width:40vw;">개인정보 수집 / 이용 동의(필수)</label></td>
                 </tr>
                 <tr>
-                    <td colspan="2">
-                        <label>모두 동의합니다</label>
-                        <input class="checkbox" type="checkbox" id="agreeAll">
-                    </td>
-                </tr>
-                <tr>
                     <td colspan="3">
                         <iframe width="" src="../etc/constraint1.html"></iframe>
                     </td>
@@ -112,18 +134,7 @@
                 </tr>
                 <tr>
                     <td colspan="2"><b>이용 약관 동의(필수)</b></td>
-                </tr>
-                <tr>
-                    <td colspan="3">
-                        <iframe src="../etc/constraint2.html"></iframe>
-                    </td>
-                </tr>
-                <tr>
-                    <td colspan="2">
-                        <input style="width:20px" class="checkbox" type="checkbox" name="agree">
-                        <label>위의 이용 약관에 동의합니다.</label>
-                    </td>
-                </tr>
+                </tr>      
                 <tr class="check_tr">
                     <td colspan="3">
                         <div id="checkbox_check"></div>
@@ -140,20 +151,6 @@
         </form>
     </div>
     <jsp:include page="../../module/3body_last.html"></jsp:include>
-    <script type="text/javascript">
-
-    </script>
-    <script>
-        $(document).ready(function () {
-            $("#agreeAll").click(function () {
-                if ($("#agreeAll").prop("checked")) {
-                    $("input[name=agree]").prop("checked", true);
-                } else {
-                    $("input[name=agree]").prop("checked", false);
-                }
-            });
-        });
-    </script>
 </body>
 
 </html>

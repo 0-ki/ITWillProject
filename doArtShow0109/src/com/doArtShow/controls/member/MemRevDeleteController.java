@@ -6,6 +6,7 @@ import com.doArtShow.controls.Controller;
 import com.doArtShow.dao.MemberDao;
 import com.doArtShow.dto.ExhibitionDto;
 
+//회원이 작성한 리뷰 삭제하는 컨트롤러
 public class MemRevDeleteController implements Controller{
 	MemberDao	memberDao;
 	
@@ -24,6 +25,7 @@ public class MemRevDeleteController implements Controller{
 			
 			String email = (String)model.get("logInInfo");
 			memberDao.deleteReveiw(email, exhID);
+			
 		}
 		return "redirect:"+referer;
 	}

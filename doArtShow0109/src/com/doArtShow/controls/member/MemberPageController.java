@@ -16,6 +16,7 @@ import com.doArtShow.dto.MemberDto;
 import com.doArtShow.dto.MyReviewDto;
 import com.doArtShow.dto.ReviewDto;
 
+//마이페이지 컨트롤러
 public class MemberPageController implements Controller{
 	MemberDao					memberDao;
 	ExhibitionDto 				exhInfoForRev;

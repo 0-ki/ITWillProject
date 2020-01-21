@@ -49,12 +49,11 @@ function validateSignUp(signUpForm){
 	}
 	
 	//생년월일 입력여부 검사
-	if(!signUpForm.birth.value){
-		$("#birth_check").text("생년월일을 입력하세요");
-		$("#birth_check").css('color','red');
-		signUpForm.birth.focus();
-		return false;
-	}
+	var year 	= $("#year").val();
+	var month 	= $("#month").val();
+	var day 	= $("#day").val();
+	var birth 	= year+"-"+month+"-"+day;
+	signUpForm.birth.value=birth;
 	
 	//비밀번호 입력여부 검사
 	if(!signUpForm.pw.value){
