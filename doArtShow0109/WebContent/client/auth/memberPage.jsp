@@ -64,9 +64,9 @@
                                 </div>
                                 <div class="modal fade" id="revUpdateModal<c:out value='${vs.index}'/>" role="dialog">
                                     <div class="modal-dialog">
-                                        <form method="post" name="reviewUpdateForm">
+                                        <form method="post" name="reviewUpdateForm" id="revForm">
                                             <!-- Modal 전체 -->
-                                            <div class="modal-content">
+                                            <div class="modal-content" id="revWriteModal-content">
                                                 <!-- Modal header -->
                                                 <div class="modal-header">
                                                     <button type="button" class="close"
@@ -74,12 +74,11 @@
                                                 </div>
 
                                                 <!-- Modal body -->
-                                                <div class="modal-body"
-                                                    style="padding: 30px; padding-bottom: 40px; padding-top: 40px;">
+                                                <div class="modal-body">
                                                     <h4 class="modal-title"><b>리뷰 수정하기</b></h4><br><br>
                                                     <table class="table nanum">
                                                         <tr>
-                                                            <td width="20%">리뷰 내용</td>
+                                                            <td width="20%">전시명</td>
                                                             <td width="80%">
                                                                 ${review.exhName}
                                                                 <input type="hidden" name="exhID" readonly="readonly"
@@ -93,7 +92,7 @@
                                                         <tr>
                                                             <td>리뷰 내용</td>
                                                             <td>
-                                                                <textarea cols="60" rows="15" name="revContent"
+                                                                <textarea cols="60" rows="15" name="revContent" id="revContent"
                                                                     placeholder="리뷰는 50자 이내로 작성 가능합니다.">${review.revContent}</textarea>
                                                             </td>
                                                         </tr>

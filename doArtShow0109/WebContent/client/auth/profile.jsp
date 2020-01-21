@@ -277,6 +277,32 @@ padding : 5px;
 	 width: 80px;
 	 font-size: 14pt;
 }
+
+/* 세란 */
+#revWriteModal-content .modal-body{
+         padding: 30px;
+            padding-top: 40px;
+          padding-bottom: 10px;
+      }
+      #revWriteModal-content .modal-header .close {
+          font-size: 35px;
+      }
+      #revWriteModal-content .modal-header .close {
+          margin-top: -5px;
+          margin-right: 10px;
+      }
+      #revWriteModal-content .modal-header {
+          padding: 10px;
+      }
+      
+      input#exhName{
+         width: 100%;
+      }
+      textarea#revContent{
+         width: 100%;
+          height: 250px;
+      }
+
 </style>
 <!-- ======================= profileDiv ================================= -->
 

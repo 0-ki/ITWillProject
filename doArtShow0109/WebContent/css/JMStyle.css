@@ -67,24 +67,6 @@
     .box a:visited,.box2 a:visited, .iconDiv a:visited { color: gray; text-decoration: none; }
     .box a:hover ,.box2 a:hover , .iconDiv a:hover { color: gray; text-decoration: underline; }
 
-/* mainContainer */
-    @media (max-width: 1340px){
-		#mainContainer {
-		    min-height: 63vh;
-		    margin-top: 17vh;
-		    margin-bottom: 5vh;
-		    width: 90vw;
-		}
-    }
-    @media (min-width: 1340px){
-		#mainContainer {
-		    min-height: 63vh;
-		    margin-top: 17vh;
-		    margin-bottom: 5vh;
-		    width: 90vw;
-		}
-    }
-
 /* memberPage.jsp에 대한 css */
     @media (max-width: 1200px) {
 	    .box{

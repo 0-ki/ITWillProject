@@ -9,7 +9,7 @@ public class EmailUtil {
 		String charset 		= "utf-8";
 		String hostSMTP 	= "smtp.naver.com";
 		String hostSMTPid 	= "jungmi0008";
-		String hostSMTPpw	= "qp2ql79";
+		String hostSMTPpw	= "qp2ql134";
 		
 		//발신인 정보
 		String senderEmail	= "jungmi0008@naver.com";
