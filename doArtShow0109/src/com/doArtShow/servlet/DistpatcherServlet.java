@@ -52,6 +52,7 @@ public class DistpatcherServlet extends HttpServlet {
 		      
 	  		  PrintWriter out = response.getWriter();			//newly added by Hojeong 20/01/10(yy/mm/dd)
 	  		  model.put("out", out);							//newly added by Hojeong 20/01/10(yy/mm/dd)
+	  		  model.put("request", request);					//newly added by Hojeong 20/01/21(yy/mm/dd)
 		      
 		      //로그인 후 이전 페이지로 가기 위해 Header를 사용
               model.put("Referer",request.getHeader("Referer"));

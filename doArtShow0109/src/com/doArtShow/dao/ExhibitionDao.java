@@ -1011,6 +1011,51 @@ public int getTagCount(Integer exhID) {
 //programmed @20/01/20(yy/MM/dd)
 //-------------------------------------------------------------------------------------------------------------	
 //-------------------------------------------------------------------------------------------------------------
+//public String[] getImageFile(int exhID) - begin
+//ExhID에 해당하는 imageFile들의 파일명 가져오기(전시회 삭제시, imageFile도 삭제하기 위해서)
+//programmed @20/01/21(yy/MM/dd)
+//-------------------------------------------------------------------------------------------------------------
+	public String[] getImageFile(int exhID) {
+
+		System.out.println("getImageFile - Dao");
+		Connection 			conn 		= null;
+		PreparedStatement 	pstmt 		= null;
+		ResultSet 			rs 			= null;
+		int					count		= 0;
+		String 				sql 		= null;
+		String[] 			imageFile 	= new String[4];
+		
+		try {
+			conn = ds.getConnection();
+			pstmt =	conn.prepareStatement(" select imageFile1, imageFile2, imageFile3, imageFile4 "
+					+ " from artshow "
+					+ " where exhID=? ");
+			pstmt.setInt(1, exhID);
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()){
+				imageFile[0] = rs.getString(1);
+				imageFile[1] = rs.getString(2);
+				imageFile[2] = rs.getString(3);
+				imageFile[3] = rs.getString(4);
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {if(rs!=null)rs.close();} catch (Exception e) {}
+			try {if(pstmt!=null)pstmt.close();} catch (Exception e) {}
+			try {if(conn!=null)conn.close();} catch (Exception e) {}
+		}
+		
+		return imageFile;
+	}
+//-------------------------------------------------------------------------------------------------------------
+//public String[] getImageFile(int exhID) - end
+//ExhID에 해당하는 imageFile들의 파일명 가져오기(전시회 삭제시, imageFile도 삭제하기 위해서)
+//programmed @20/01/21(yy/MM/dd)
+//-------------------------------------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------------------------------------
 //programmed by Hojeong - end
 //-------------------------------------------------------------------------------------------------------------
 
