@@ -34,7 +34,3 @@ flush privileges;
 mysql -h 192.168.11.9 -u artmaster -p
 
 server.xml변경하기 
-
-
-
-

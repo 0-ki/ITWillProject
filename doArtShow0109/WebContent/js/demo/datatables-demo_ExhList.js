@@ -101,8 +101,6 @@ $(document).ready(function() {
   var tableData;
   
   $('#dataTable tbody').on( 'click', 'tr', function (event) {
-	  //console.log($(this).children('.exhName')[0]);
-	  //console.log(this);
       tableData = table.row( this ).data()[0];
       
 	  $('#exhID').html(table.row( this ).data()[0]);
@@ -136,14 +134,15 @@ $(document).ready(function() {
 		  type: "GET",
 		  data: "exhID=" + tableData,
 		  success: function(data){
-			  //console.log(data);
 			  var str = data.split(',');
 			  var tags = "";
+			  
 			  for(var i = 1; i < str.length; i++) {
 				  tags += "#";
 				  tags += str[i];
 				  tags += " "; 
 			  }
+			  
 			  $('#exhGubun3').text(tags);
 		  }
 	  });
@@ -153,61 +152,68 @@ $(document).ready(function() {
   
   
   $('#dataTable tbody').on( 'click', 'tr td', function () {
-	  //console.log(this);
-	  //console.log(this.className);
-	  //console.log($(this).parent()[0]);
-	  
 	  if (this.className == " exhName") {
 		  $("#myModal").modal();
 	  }
-	  
-	  
   });
   
 
   $('input[type="checkbox"]').change(function(){
-	  //console.log("check????");
 	  if($(this).is(":checked")){
 		  $.ajax({
 			  url: "/doArtShow/updateActiveFlag.do",
 			  type: "GET",
 			  data: "exhID=" + tableData + "&checked=true",
-			  success: function(data){
-				  //console.log("updateActiveFlagTrue success");
-				  //console.log("data >>>");
-				  //console.log(data);
-			  }
+			  success: function(data){}
 		  });
 	  } else {
 		  $.ajax({
 			  url: "/doArtShow/updateActiveFlag.do",
 			  type: "GET",
 			  data: "exhID=" + tableData + "&checked=false",
-			  success: function(data){
-				  //console.log("updateActiveFlagFalse success");
-			  }
+			  success: function(data){}
 		  });
 	  } 
   });
   
-  /*$('.exhName').click(function() { 
-	  $("#myModal").modal();
-  });*/
-  
   $('#modifyBtn').click(function(){
 	  var exhID = $('#exhID').html();
 	  var exhGubun3 = $('#exhGubun3').text();
-	  //console.log($('#exhGubun3Hidden').html());
-	  console.log(exhGubun3);
 	  var tags = exhGubun3.split('#');
-	  //console.log(tags);
-	  //console.log(tags.length);
 	  var tagList = "";
+	  
 	  for (var i = 1; i < tags.length; i++) {
 		tagList += tags[i];
 	  }
-	  //console.log(tagList);
 	  location.href = "modifyExhPage.do?exhID=" + exhID + "&exhGubun3=" + tagList; 
+  });
+  
+  $('#deleteBtn').click(function(){
+	  var exhID = $('#exhID').html();
+	  
+	  var conf = confirm("삭제하시겠습니까?");
+	  
+	  if (conf == true) {
+		  $.ajax({
+			  url: "/doArtShow/deleteExh.do",
+			  type: "GET",
+			  data: "exhID=" + exhID,
+			  success: function(data){
+				  if (data == "success") {
+					  alert("삭제하였습니다.");
+					  
+					  location.reload();
+				  } else {
+					  alert("실패하였습니다.");
+				  }
+			  },
+			  error:function(request,status,error){			
+			        alert("삭제할 수 없습니다.");
+					alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+			    }
+		  });
+	  } 
+	  
   });
 
 }); 

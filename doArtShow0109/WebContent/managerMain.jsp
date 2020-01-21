@@ -87,7 +87,7 @@
 		                <div class="card-body-icon">
 		                  <i class="fas fa-fw fa-shopping-cart"></i>
 		                </div>
-		                <div class="mr-5">"숫자" 여기에는 뭐 넣지..?</div>
+		                <div class="mr-5">"숫자" 1:1 문의 요청</div>
 		              </div>
 		              <a class="card-footer text-white clearfix small z-1" href="#">
 		                <span class="float-left">자세히 보기</span>
