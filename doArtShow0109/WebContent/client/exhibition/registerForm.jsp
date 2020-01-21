@@ -92,13 +92,13 @@ try {
                     <th><lable for="">*태그</lable>
                     <p style="font-size:14px; line-height:22px; letter-spacing:-0.6px; font-weight:300;">(최대 3개 선택)</p></th>
                     <td>
-                    	#데이트				<input class="updateForm" name="exhGubun3" type="checkbox" value="데이트" >
-                    	#인생샷				<input class="updateForm" name="exhGubun3" type="checkbox" value="인생샷" >
-                    	#친구와함께		<input class="updateForm" name="exhGubun3" type="checkbox" value="친구와함께" >
-                    	#나혼자문화생활	<input class="updateForm" name="exhGubun3" type="checkbox" value="나혼자문화생활" >
-                    	#부모님과함께		<input class="updateForm" name="exhGubun3" type="checkbox" value="부모님과함께" >
-                    	#아이와함께		<input class="updateForm" name="exhGubun3" type="checkbox" value="아이와함께" >
-                    	#교육전시			<input class="updateForm" name="exhGubun3" type="checkbox" value="교육전시" >
+                    	<lable for="exhGubun31">#데이트				</lable><input class="updateForm" name="exhGubun3" id="exhGubun31" type="checkbox" value="데이트" >
+                    	<lable for="exhGubun32">#인생샷				</lable><input class="updateForm" name="exhGubun3" id="exhGubun32" type="checkbox" value="인생샷" >
+                    	<lable for="exhGubun33">#친구와함께		</lable><input class="updateForm" name="exhGubun3" id="exhGubun33" type="checkbox" value="친구와함께" >
+                    	<lable for="exhGubun34">#나혼자문화생활	</lable><input class="updateForm" name="exhGubun3" id="exhGubun34" type="checkbox" value="나혼자문화생활" >
+                    	<lable for="exhGubun35">#부모님과함께		</lable><input class="updateForm" name="exhGubun3" id="exhGubun35" type="checkbox" value="부모님과함께" >
+                    	<lable for="exhGubun36">#아이와함께		</lable><input class="updateForm" name="exhGubun3" id="exhGubun36" type="checkbox" value="아이와함께" >
+                    	<lable for="exhGubun37">#교육전시			</lable><input class="updateForm" name="exhGubun3" id="exhGubun37" type="checkbox" value="교육전시" >
                     </td>	
                     
 
@@ -136,7 +136,7 @@ try {
                 <tr>
                         <th>*전시관 주소</th>
                         <td>
-               			<input type="text" class="updateForm" id="exhPlaceAddr1" name="exhPlaceAddr1" id="exhPlaceAddr1" placeholder="주소" style="width:90%;" readOnly> 
+               			<input type="text" class="updateForm" id="exhPlaceAddr1" name="exhPlaceAddr1" id="exhPlaceAddr1" placeholder="주소" style="width:90%;" readOnly onclick="sample6_execDaumPostcode_1()"> 
                 		<input type="button" class="updateForm" onclick="sample6_execDaumPostcode_1()" value="주소 검색" style="width:9%;"><br> 
 						<!--  <div id="map" style="width:300px;height:300px;margin-top:10px;display:none"></div>-->
 						<!-- <input type="button" onclick="execDaumPostcode()" value="주소 검색" style="width:9%;"><br> 
