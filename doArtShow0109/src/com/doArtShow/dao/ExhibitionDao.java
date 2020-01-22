@@ -438,10 +438,44 @@ public class ExhibitionDao {
 			Connection conn = null;
 			PreparedStatement pstmt = null;
 			ResultSet rs = null;
-						
+			
+			String tagName = "";
+			switch(inputTag){
+				case 1 : tagName = "데이트"; break;
+				case 2 : tagName = "인생샷"; break;
+				case 3 : tagName = "친구와함께"; break;
+				case 4 : tagName = "나혼자문화생활"; break;
+				case 5 : tagName = "부모님과함께"; break;
+				case 6 : tagName = "아이와함께"; break;
+				case 7 : tagName = "교육전시"; break;
+			}
+			String locName = "";
+			switch(inputLoc){
+				case 1 : locName = "서울"; break;
+				case 2 : locName = "인천/경기"; break;
+				case 3 : locName = "대전/충청"; break;
+				case 4 : locName = "광주/전라"; break;
+				case 5 : locName = "부산/경상"; break;
+				case 6 : locName = "강원"; break;
+				case 7 : locName = "제주"; break;
+			}
+			String genName = "";
+			switch(inputGen){
+				case 1 : genName = "서양화"; break;
+				case 2 : genName = "동양화"; break;
+				case 3 : genName = "유화"; break;
+				case 4 : genName = "조각"; break;
+				case 5 : genName = "설치미술"; break;
+				case 6 : genName = "미디어아트"; break;
+				case 7 : genName = "사진"; break;
+				case 8 : genName = "디자인"; break;
+				case 9 : genName = "공예"; break;
+			}
+			
 			String sql = "";
 			
-			String sql_select = "SELECT exhID, imageFile1, exhName, exhPlace, exhStartDate, exhEndDate FROM (SELECT artshow.exhID, imageFile1, exhName, exhPlace, exhStartDate, exhEndDate, registerDate, exhReadCount FROM artshow ";
+			/*
+			 String sql_select = "SELECT exhID, imageFile1, exhName, exhPlace, exhStartDate, exhEndDate FROM (SELECT artshow.exhID, imageFile1, exhName, exhPlace, exhStartDate, exhEndDate, registerDate, exhReadCount FROM artshow ";
 			
 			//조합해서 쓰는 애들
 			String sql_inlineView2 = ", artshowtag "; //태그
@@ -461,12 +495,13 @@ public class ExhibitionDao {
 			String sql_where5 = "WHERE DATE(exhEndDate)<DATE(now()) ORDER BY exhEndDate DESC";
 			
 			String sql_limit = "LIMIT" + (inputPage*15) + ",15";
+			*/
 			
 			ArrayList<ExhListDto> lists = null;
 			
-			
+			/*
 			//전체전시, 태그, 위치, 장르
-			/*sql = sql_select + sql_inlineView2 + sql_inlineView3 + sql_inlineView4 + sql_inlineView5 + sql_inlineView6 + sql_inlineView7 + sql_inlineView8 + sql_inlineView9 + sql_where1 + sql_limit;
+			sql = sql_select + sql_inlineView2 + sql_inlineView3 + sql_inlineView4 + sql_inlineView5 + sql_inlineView6 + sql_inlineView7 + sql_inlineView8 + sql_inlineView9 + sql_where1 + sql_limit;
 			//전체전시, 태그, 위치
 			sql_inlineView7, sql_inlineView8을  ""로 변경
 			//전체전시, 태그, 장르
@@ -480,17 +515,191 @@ public class ExhibitionDao {
 			//전체전시, 장르
 			sql_inlineView2, sql_inlineView4, sql_inlineView5, sql_inlineView6, sql_inlineView7을 ""로 변경
 			//전체전시
-			sql_inlineView2, sql_inlineView3, sql_inlineView4, sql_inlineView5, sql_inlineView6, sql_inlineView7, sql_inlineView8, sql_inlineView9를 ""로 변경*/
+			sql_inlineView2, sql_inlineView3, sql_inlineView4, sql_inlineView5, sql_inlineView6, sql_inlineView7, sql_inlineView8, sql_inlineView9를 ""로 변경
+			*/
 			
+			/*
+			 	default
+				inputSort 0 전체전시
+				inputTag 0 선택안함
+				inputLoc 0 선택안함
+				inputGen 0 선택안함
+				inputPage 1 1페이지
+			*/
 			
 			
 			try {
 				conn = ds.getConnection();
-				
+				if(inputSort == 0){ //전체전시
+					if(inputTag > 0){
+						if(inputLoc > 0){
+							if(inputGen > 0){
+								
+							}else if(inputGen == 0){
+								
+							}
+						}else if(inputLoc == 0){
+							if(inputGen > 0){
+								
+							}else if(inputGen == 0){
+								
+							}
+						}
+					}else if(inputTag == 0){
+						if(inputLoc > 0){
+							if(inputGen > 0){
+								
+							}else if(inputGen == 0){
+								
+							}
+						}else if(inputLoc == 0){
+							if(inputGen > 0){
+								
+							}else if(inputGen == 0){
+								
+							}
+						}
+					}
+				}else if(inputSort == 1){ //진행중 전시
+					if(inputTag > 0){
+						if(inputLoc > 0){
+							if(inputGen > 0){
+								
+							}else if(inputGen == 0){
+								
+							}
+						}else if(inputLoc == 0){
+							if(inputGen > 0){
+								
+							}else if(inputGen == 0){
+								
+							}
+						}
+					}else if(inputTag == 0){
+						if(inputLoc > 0){
+							if(inputGen > 0){
+								
+							}else if(inputGen == 0){
+								
+							}
+						}else if(inputLoc == 0){
+							if(inputGen > 0){
+								
+							}else if(inputGen == 0){
+								
+							}
+						}
+					}
+				}else if(inputSort == 2){ //인기전시
+					if(inputTag > 0){
+						if(inputLoc > 0){
+							if(inputGen > 0){
+								
+							}else if(inputGen == 0){
+								
+							}
+						}else if(inputLoc == 0){
+							if(inputGen > 0){
+								
+							}else if(inputGen == 0){
+								
+							}
+						}
+					}else if(inputTag == 0){
+						if(inputLoc > 0){
+							if(inputGen > 0){
+								
+							}else if(inputGen == 0){
+								
+							}
+						}else if(inputLoc == 0){
+							if(inputGen > 0){
+								
+							}else if(inputGen == 0){
+								
+							}
+						}
+					}
+				}else if(inputSort == 3){ //곧종료전시
+					if(inputTag > 0){
+						if(inputLoc > 0){
+							if(inputGen > 0){
+								
+							}else if(inputGen == 0){
+								
+							}
+						}else if(inputLoc == 0){
+							if(inputGen > 0){
+								
+							}else if(inputGen == 0){
+								
+							}
+						}
+					}else if(inputTag == 0){
+						if(inputLoc > 0){
+							if(inputGen > 0){
+								
+							}else if(inputGen == 0){
+								
+							}
+						}else if(inputLoc == 0){
+							if(inputGen > 0){
+								
+							}else if(inputGen == 0){
+								
+							}
+						}
+					}
+				}else if(inputSort == 4){ //종료전시
+					if(inputTag > 0){
+						if(inputLoc > 0){
+							if(inputGen > 0){
+								
+							}else if(inputGen == 0){
+								
+							}
+						}else if(inputLoc == 0){
+							if(inputGen > 0){
+								
+							}else if(inputGen == 0){
+								
+							}
+						}
+					}else if(inputTag == 0){
+						if(inputLoc > 0){
+							if(inputGen > 0){
+								
+							}else if(inputGen == 0){
+								
+							}
+						}else if(inputLoc == 0){
+							if(inputGen > 0){
+								
+							}else if(inputGen == 0){
+								
+							}
+						}
+					}
+				}
 				
 				pstmt = conn.prepareStatement(sql);
-				pstmt.setString(1, );
-				
+				if(){
+					pstmt.setString(1, tagName);
+					pstmt.setString(2, locName);
+					pstmt.setString(3, genName);
+				}else if(){
+					pstmt.setString(1, tagName);
+					pstmt.setString(2, locName);
+				}else if(){
+					pstmt.setString(1, tagName);
+					pstmt.setString(2, genName);
+				}else if(){
+					pstmt.setString(1, tagName);
+				}else if(){
+					pstmt.setString(1, locName);
+				}else if(){
+					pstmt.setString(1, genName);
+				}
 				rs = pstmt.executeQuery();
 							
 				lists = new ArrayList<ExhListDto>();
