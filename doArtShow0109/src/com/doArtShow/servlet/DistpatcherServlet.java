@@ -212,7 +212,6 @@ public class DistpatcherServlet extends HttpServlet {
 				  }
 			  }else if("/client/exhibition/artListSort.do".equals(servletPath)){ //리스트정렬
 				  model.put("sortBtn", request.getParameter("sortBtn"));
-			  }else if("/client/exhibition/artTagSort.do".equals(servletPath)){ //태그정렬
 				  model.put("ctgBtn", request.getParameter("ctgBtn"));
 				  model.put("ctgName", request.getParameter("ctgName"));
 		      //--------------------------------------------------------------------------------------

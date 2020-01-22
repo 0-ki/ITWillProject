@@ -55,7 +55,7 @@
 		                <div class="card-body-icon">
 		                  <i class="fas fa-fw fa-file-alt"></i>
 		                </div>
-		                <div class="mr-5">${newExhListCnt} 새로운 게시물 요청</div>
+		                <div class="mr-5"><span class="count">${newExhListCnt}</span> 새로운 게시물 요청</div>
 		              </div>
 		              <a class="card-footer text-white clearfix small z-1" href="newExhList.do">
 		                <span class="float-left">자세히 보기</span>
@@ -71,9 +71,9 @@
 		                <div class="card-body-icon">
 		                  <i class="fas fa-fw fa-bell"></i>
 		                </div>
-		                <div class="mr-5">${visitCnt} 오늘 방문자 수</div>
+		                <div class="mr-5"><span class="count">${todayVisitCnt}</span> 오늘 방문자 수</div>
 		              </div>
-		              <a class="card-footer text-white clearfix small z-1" href="#">
+		              <a class="card-footer text-white clearfix small z-1" href="charts.jsp">
 		                <span class="float-left">자세히 보기</span>
 		                <span class="float-right">
 		                  <i class="fas fa-angle-right"></i>
@@ -87,7 +87,7 @@
 		                <div class="card-body-icon">
 		                  <i class="fas fa-fw fa-shopping-cart"></i>
 		                </div>
-		                <div class="mr-5">"숫자" 1:1 문의 요청</div>
+		                <div class="mr-5"><span class="count"></span> 1:1 문의 요청</div>
 		              </div>
 		              <a class="card-footer text-white clearfix small z-1" href="#">
 		                <span class="float-left">자세히 보기</span>
@@ -103,7 +103,7 @@
 		                <div class="card-body-icon">
 		                  <i class="fas fa-fw fa-users"></i>
 		                </div>
-		                <div class="mr-5">${memberCnt} 전체 회원 수</div>
+		                <div class="mr-5"><span class="count">${memberCnt}</span> 전체 회원 수</div>
 		              </div>
 		              <a class="card-footer text-white clearfix small z-1" href="memberList.do">
 		                <span class="float-left">자세히 보기</span>
@@ -183,7 +183,7 @@
 		  <script src="vendor/datatables/dataTables.bootstrap4.js"></script>
 		
 		  <!-- Custom scripts for all pages-->
-		  <script src="js/sb-admin.min.js"></script>
+		  <script src="js/sb-admin.js"></script>
 		
 		  <!-- Demo scripts for this page-->
 		  <script src="js/demo/chart-area-demo.js"></script>

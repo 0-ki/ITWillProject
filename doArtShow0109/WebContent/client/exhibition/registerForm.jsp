@@ -33,6 +33,11 @@ try {
 	<script src="http://dapi.kakao.com/v2/maps/sdk.js?appkey=c5326277ad64b2569191adafedd5fbbc&libraries=services"></script>
 	<title>㈜ 전시해 - 전시회 등록</title> 
 </head>	-->
+<style>
+.updateForm1{
+display: inline-block;
+}
+</style>
 <body>
 <jsp:include page="/module/2body_first.jsp"></jsp:include>
 <c:if test="${!empty sessionScope.member}">
@@ -65,13 +70,13 @@ try {
                 </tr>
                 <tr>
                     <th>
-                        <lable for="">*신청자</lable>
+                        <label for="">*신청자</label>
                     </th>
                     <td><input type="text" class="updateForm" name="memberID" id="memberID" value="${memberID }" readonly></td>
                 </tr>
                 <tr>
                     <th>
-                        <lable for="">*장르</lable>
+                        <label for="">*장르</label>
                     </th>
                     <td>          
                         <select name="exhGubun2" required>
@@ -89,21 +94,45 @@ try {
                     </td>
                 </tr>
                 <tr>
-                    <th><lable for="">*태그</lable>
+                    <th><label for="">*태그</label>
                     <p style="font-size:14px; line-height:22px; letter-spacing:-0.6px; font-weight:300;">(최대 3개 선택)</p></th>
                     <td>
-                    	<lable for="exhGubun31">#데이트				</lable><input class="updateForm" name="exhGubun3" id="exhGubun31" type="checkbox" value="데이트" >
-                    	<lable for="exhGubun32">#인생샷				</lable><input class="updateForm" name="exhGubun3" id="exhGubun32" type="checkbox" value="인생샷" >
-                    	<lable for="exhGubun33">#친구와함께		</lable><input class="updateForm" name="exhGubun3" id="exhGubun33" type="checkbox" value="친구와함께" >
-                    	<lable for="exhGubun34">#나혼자문화생활	</lable><input class="updateForm" name="exhGubun3" id="exhGubun34" type="checkbox" value="나혼자문화생활" >
-                    	<lable for="exhGubun35">#부모님과함께		</lable><input class="updateForm" name="exhGubun3" id="exhGubun35" type="checkbox" value="부모님과함께" >
-                    	<lable for="exhGubun36">#아이와함께		</lable><input class="updateForm" name="exhGubun3" id="exhGubun36" type="checkbox" value="아이와함께" >
-                    	<lable for="exhGubun37">#교육전시			</lable><input class="updateForm" name="exhGubun3" id="exhGubun37" type="checkbox" value="교육전시" >
-                    </td>	
-                    
-
-                    
-                    
+                       <label for="exhGubun31" style="font-weight:300;">
+                       <input class="updateForm1" name="exhGubun3" id="exhGubun31" type="checkbox" value="데이트" >
+                       &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                       #데이트
+                       </label><br>
+                       <label for="exhGubun32" style="font-weight:300;">
+                       <input class="updateForm1" name="exhGubun3" id="exhGubun32" type="checkbox" value="인생샷" >
+                       &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                       #인생샷
+                       </label><br> 
+                       <label for="exhGubun33" style="font-weight:300;">
+                       <input class="updateForm1" name="exhGubun3" id="exhGubun33" type="checkbox" value="친구와함께" >
+                       &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                       #친구와함께             
+                       </label><br> 
+                       <label for="exhGubun34" style="font-weight:300;">
+                       <input class="updateForm1" name="exhGubun3" id="exhGubun34" type="checkbox" value="나혼자문화생활" >
+                       &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                       #나혼자문화생활  
+                       </label><br> 
+                       <label for="exhGubun35" style="font-weight:300;">     
+                       <input class="updateForm1" name="exhGubun3" id="exhGubun35" type="checkbox" value="부모님과함께" >
+                       &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                       #부모님과함께 
+                       </label><br> 
+                       <label for="exhGubun36" style="font-weight:300;">     
+                       <input class="updateForm1" name="exhGubun3" id="exhGubun36" type="checkbox" value="아이와함께" >
+                       &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                       #아이와함께 
+                       </label><br> 
+                       <label for="exhGubun37" style="font-weight:300;">      
+                       <input class="updateForm1" name="exhGubun3" id="exhGubun37" type="checkbox" value="교육전시" >
+                       &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                       #교육전시   
+                       </label><br> 
+                    </td>   
                 </tr>
                 <tr>
                     <th><label for="">*전시회명</label></th>
@@ -186,7 +215,7 @@ try {
                 
                 <tr>
                     <th> 
-                        <lable for="">*전시관지역</lable>
+                        <label for="">*전시관지역</label>
                     </th>
                     <td>          
                         <select name="exhGubun4">
