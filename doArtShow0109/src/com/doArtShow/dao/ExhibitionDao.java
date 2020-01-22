@@ -116,7 +116,7 @@ public class ExhibitionDao {
 	
 	
 	//----------------------------------seran----------------------------------
-		//전시목록을 출력하는 메서드(전체보기, 내림차순)
+		//전시목록을 출력하는 메서드(전체보기, 등록날짜 기준으로 내림차순)
 		public List<ExhListDto> selectList(){
 			System.out.println("##4번 ExhibitionDao실행 - selectList()");
 			
@@ -124,7 +124,7 @@ public class ExhibitionDao {
 			PreparedStatement pstmt = null;
 			ResultSet rs = null;
 			
-			String sql = "SELECT exhID, imageFile1, exhName, exhPlace, exhStartDate, exhEndDate FROM artshowdb.artshow ORDER BY exhID ASC";
+			String sql = "SELECT exhID, imageFile1, exhName, exhPlace, exhStartDate, exhEndDate FROM artshowdb.artshow ORDER BY registerDate DESC";
 			ArrayList<ExhListDto> lists = null;
 			
 			try {
@@ -193,7 +193,7 @@ public class ExhibitionDao {
 		}//end - public int getListCount(){
 		
 		//정렬로 리스트 출력
-		public List<ExhListDto> selectSortList(String sortBtn){
+		public List<ExhListDto> selectSortList3(String sortBtn){
 			System.out.println("##4-1번 ExhibitionDao실행 - selectSortList()");
 						
 			Connection conn = null;
@@ -210,11 +210,11 @@ public class ExhibitionDao {
 				}else if(sortBtn.equals("sortBtn1")){ //진행중전시
 					sql = "SELECT exhID, imageFile1, exhName, exhPlace, exhStartDate, exhEndDate FROM artshowdb.artshow WHERE DATE(exhStartDate)<=DATE(now()) AND DATE(exhEndDate)>=DATE(now()) ORDER BY exhStartDate DESC";
 				}else if(sortBtn.equals("sortBtn2")){ //인기전시
-					sql = "SELECT exhID, imageFile1, exhName, exhPlace, exhStartDate, exhEndDate FROM artshowdb.artshow WHERE DATE(exhStartDate)<=DATE(now()) AND DATE(exhEndDate)>=DATE(now()) ORDER BY exhReadCount DESC";
+					sql = "SELECT exhID, imageFile1, exhName, exhPlace, exhStartDate, exhEndDate FROM artshowdb.artshow WHERE DATE(exhStartDate)<=DATE(now()) AND DATE(exhEndDate)>=DATE(now()) ORDER BY exhReadCount DESC LIMIT";
 				}else if(sortBtn.equals("sortBtn3")){ //곧종료전시
-					sql = "SELECT exhID, imageFile1, exhName, exhPlace, exhStartDate, exhEndDate FROM artshowdb.artshow WHERE DATE(exhEndDate)>=DATE(now()) ORDER BY exhEndDate ASC";
+					sql = "SELECT exhID, imageFile1, exhName, exhPlace, exhStartDate, exhEndDate FROM artshowdb.artshow WHERE DATE(exhEndDate)>=DATE(now()) ORDER BY exhEndDate ASC LIMIT";
 				}else if(sortBtn.equals("sortBtn4")){ //종료전시
-					sql = "SELECT exhID, imageFile1, exhName, exhPlace, exhStartDate, exhEndDate FROM artshowdb.artshow WHERE DATE(exhEndDate)<DATE(now()) ORDER BY exhEndDate DESC";
+					sql = "SELECT exhID, imageFile1, exhName, exhPlace, exhStartDate, exhEndDate FROM artshowdb.artshow WHERE DATE(exhEndDate)<DATE(now()) ORDER BY exhEndDate DESC LIMIT";
 				}
 				pstmt = conn.prepareStatement(sql);
 							
@@ -249,7 +249,7 @@ public class ExhibitionDao {
 		}
 					
 		//태그로 리스트 출력
-		public List<ExhListDto> selectTagList(String ctgBtn, String ctgName){
+		public List<ExhListDto> selectSortList2(String ctgBtn, String ctgName){
 			System.out.println("##4-1번 ExhibitionDao실행 - selectTagList()");
 							
 			Connection conn = null;
@@ -261,13 +261,143 @@ public class ExhibitionDao {
 							
 			try {
 				conn = ds.getConnection();
+				//등록날짜 기준으로 내림차순
 				if(ctgBtn.equals("tagCtg")){ //태그로 찾기
-					sql = "SELECT exhID, imageFile1, exhName, exhPlace, exhStartDate, exhEndDate FROM artshowdb.artshow WHERE DATE(exhStartDate)<=DATE(now()) AND DATE(exhEndDate)>=DATE(now()) AND exhid IN (SELECT exhid FROM artshowdb.artshowtag WHERE tagname=?) ORDER BY registerDate ASC";
+					sql = "SELECT exhID, imageFile1, exhName, exhPlace, exhStartDate, exhEndDate FROM artshowdb.artshow WHERE DATE(exhStartDate)<=DATE(now()) AND DATE(exhEndDate)>=DATE(now()) AND exhid IN (SELECT exhid FROM artshowdb.artshowtag WHERE tagname=?) ORDER BY registerDate DESC";
 				}else if(ctgBtn.equals("locCtg")){ //위치로 찾기
-					sql = "SELECT exhID, imageFile1, exhName, exhPlace, exhStartDate, exhEndDate FROM artshowdb.artshow WHERE DATE(exhStartDate)<=DATE(now()) AND DATE(exhEndDate)>=DATE(now()) AND ExhGubun4=? ORDER BY registerDate ASC";
+					sql = "SELECT exhID, imageFile1, exhName, exhPlace, exhStartDate, exhEndDate FROM artshowdb.artshow WHERE DATE(exhStartDate)<=DATE(now()) AND DATE(exhEndDate)>=DATE(now()) AND ExhGubun4=? ORDER BY registerDate DESC";
 				}else if(ctgBtn.equals("genCtg")){ //장르로 찾기
-					sql = "SELECT exhID, imageFile1, exhName, exhPlace, exhStartDate, exhEndDate FROM artshowdb.artshow WHERE DATE(exhStartDate)<=DATE(now()) AND DATE(exhEndDate)>=DATE(now()) AND ExhGubun2=? ORDER BY registerDate ASC";
+					sql = "SELECT exhID, imageFile1, exhName, exhPlace, exhStartDate, exhEndDate FROM artshowdb.artshow WHERE DATE(exhStartDate)<=DATE(now()) AND DATE(exhEndDate)>=DATE(now()) AND ExhGubun2=? ORDER BY registerDate DESC";
 				}
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setString(1, ctgName);
+							
+				rs = pstmt.executeQuery();
+								
+				lists = new ArrayList<ExhListDto>();
+				ExhListDto art = null;
+								
+				while(rs.next()) {
+					art = new ExhListDto();
+									
+					art.setExhID(rs.getInt("exhID"));
+					art.setImageFile1(rs.getString("imageFile1"));
+					art.setExhName(rs.getString("exhName"));
+					art.setExhPlace(rs.getString("exhPlace"));
+					art.setExhStartDate(rs.getString("exhStartDate"));
+					art.setExhEndDate(rs.getString("exhEndDate"));
+									
+					lists.add(art);
+				}
+								
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				try {if (rs != null) rs.close();} catch(Exception e) {}
+				try {if (pstmt != null) pstmt.close();} catch(Exception e) {}
+				try {if (conn != null) conn.close();} catch(Exception e) {}
+			}
+							
+			return lists;
+							
+		}
+		
+		public List<ExhListDto> selectSortList1(String sortBtn, String ctgBtn, String ctgName){
+			System.out.println("##4-1번 ExhibitionDao실행 - selectTagList()");
+							
+			Connection conn = null;
+			PreparedStatement pstmt = null;
+			ResultSet rs = null;
+							
+			String sql = "";
+			ArrayList<ExhListDto> lists = null;
+							
+			try {
+				conn = ds.getConnection();
+				if(sortBtn.equals("sortBtn0")){ //전체전시일때,
+					if(ctgBtn.equals("tagCtg")){ //태그별로 정렬
+						sql = "SELECT exhID, imageFile1, exhName, exhPlace, exhStartDate, exhEndDate "
+								+ "FROM (SELECT artshow.exhID, imageFile1, exhName, exhPlace, exhStartDate, exhEndDate FROM artshow, artshowtag WHERE artshow.exhID = artshowtag.exhID AND artshowtag.tagName=?) AS sort "
+								+ "ORDER BY exhID ASC";
+					}else if(ctgBtn.equals("locCtg")){ //위치별로 정렬
+						sql = "SELECT exhID, imageFile1, exhName, exhPlace, exhStartDate, exhEndDate "
+								+ "FROM (SELECT exhID, imageFile1, exhName, exhPlace, exhStartDate, exhEndDate FROM artshow WHERE ExhGubun4=?) AS sort "
+								+ "ORDER BY exhID ASC";
+					}else if(ctgBtn.equals("genCtg")){ //장르별로 정렬
+						sql = "SELECT exhID, imageFile1, exhName, exhPlace, exhStartDate, exhEndDate "
+								+ "FROM (SELECT exhID, imageFile1, exhName, exhPlace, exhStartDate, exhEndDate FROM artshow WHERE ExhGubun2=?) AS sort "
+								+ "ORDER BY exhID ASC";
+					}
+				}else if(sortBtn.equals("sortBtn1")){ //진행중인전시일때,
+					if(ctgBtn.equals("tagCtg")){ //태그별로 정렬
+						sql = "SELECT exhID, imageFile1, exhName, exhPlace, exhStartDate, exhEndDate "
+								+ "FROM (SELECT artshow.exhID, imageFile1, exhName, exhPlace, exhStartDate, exhEndDate FROM artshow, artshowtag WHERE artshow.exhID = artshowtag.exhID AND tagName=?) AS sort "
+								+ "WHERE DATE(exhStartDate)<=DATE(now()) AND DATE(exhEndDate)>=DATE(now()) "
+								+ "ORDER BY exhStartDate DESC";
+					}else if(ctgBtn.equals("locCtg")){ //위치별로 정렬
+						sql = "SELECT exhID, imageFile1, exhName, exhPlace, exhStartDate, exhEndDate "
+								+ "FROM (SELECT exhID, imageFile1, exhName, exhPlace, exhStartDate, exhEndDate FROM artshow WHERE ExhGubun4=?) AS sort "
+								+ "WHERE DATE(exhStartDate)<=DATE(now()) AND DATE(exhEndDate)>=DATE(now()) "
+								+ "ORDER BY exhStartDate DESC";
+					}else if(ctgBtn.equals("genCtg")){ //장르별로 정렬
+						sql = "SELECT exhID, imageFile1, exhName, exhPlace, exhStartDate, exhEndDate "
+								+ "FROM (SELECT exhID, imageFile1, exhName, exhPlace, exhStartDate, exhEndDate FROM artshow WHERE ExhGubun2=?) AS sort "
+								+ "WHERE DATE(exhStartDate)<=DATE(now()) AND DATE(exhEndDate)>=DATE(now()) "
+								+ "ORDER BY exhStartDate DESC";
+					}
+				}else if(sortBtn.equals("sortBtn2")){ //인기전시일때
+					if(ctgBtn.equals("tagCtg")){ //태그별로 정렬
+						sql = "SELECT exhID, imageFile1, exhName, exhPlace, exhStartDate, exhEndDate "
+								+ "FROM (SELECT artshow.exhID, imageFile1, exhName, exhPlace, exhStartDate, exhEndDate, exhReadCount FROM artshow, artshowtag WHERE artshow.exhID = artshowtag.exhID AND tagName=?) AS sort "
+								+ "WHERE DATE(exhStartDate)<=DATE(now()) AND DATE(exhEndDate)>=DATE(now()) "
+								+ "ORDER BY exhReadCount DESC";
+					}else if(ctgBtn.equals("locCtg")){ //위치별로 정렬
+						sql = "SELECT exhID, imageFile1, exhName, exhPlace, exhStartDate, exhEndDate "
+								+ "FROM (SELECT exhID, imageFile1, exhName, exhPlace, exhStartDate, exhEndDate FROM artshow WHERE ExhGubun4=?) AS sort "
+								+ "WHERE DATE(exhStartDate)<=DATE(now()) AND DATE(exhEndDate)>=DATE(now()) "
+								+ "ORDER BY exhReadCount DESC";
+					}else if(ctgBtn.equals("genCtg")){ //장르별로 정렬
+						sql = "SELECT exhID, imageFile1, exhName, exhPlace, exhStartDate, exhEndDate "
+								+ "FROM (SELECT exhID, imageFile1, exhName, exhPlace, exhStartDate, exhEndDate FROM artshow WHERE ExhGubun2=?) AS sort "
+								+ "WHERE DATE(exhStartDate)<=DATE(now()) AND DATE(exhEndDate)>=DATE(now()) "
+								+ "ORDER BY exhReadCount DESC";
+					}
+				}else if(sortBtn.equals("sortBtn3")){ //곧종료전시일때
+					if(ctgBtn.equals("tagCtg")){ //태그별로 정렬
+						sql = "SELECT exhID, imageFile1, exhName, exhPlace, exhStartDate, exhEndDate "
+								+ "FROM (SELECT artshow.exhID, imageFile1, exhName, exhPlace, exhStartDate, exhEndDate FROM artshow, artshowtag WHERE artshow.exhID = artshowtag.exhID AND tagName=?) AS sort "
+								+ "WHERE DATE(exhEndDate)>=DATE(now()) "
+								+ "ORDER BY exhEndDate ASC";
+					}else if(ctgBtn.equals("locCtg")){ //위치별로 정렬
+						sql = "SELECT exhID, imageFile1, exhName, exhPlace, exhStartDate, exhEndDate "
+								+ "FROM (SELECT exhID, imageFile1, exhName, exhPlace, exhStartDate, exhEndDate FROM artshow WHERE ExhGubun4=?) AS sort "
+								+ "WHERE DATE(exhEndDate)>=DATE(now()) "
+								+ "ORDER BY exhEndDate ASC";
+					}else if(ctgBtn.equals("genCtg")){ //장르별로 정렬
+						sql = "SELECT exhID, imageFile1, exhName, exhPlace, exhStartDate, exhEndDate "
+								+ "FROM (SELECT exhID, imageFile1, exhName, exhPlace, exhStartDate, exhEndDate FROM artshow WHERE ExhGubun2=?) AS sort "
+								+ "WHERE DATE(exhEndDate)>=DATE(now()) "
+								+ "ORDER BY exhEndDate ASC";
+					}
+				}else if(sortBtn.equals("sortBtn4")){ //종료전시일때
+					if(ctgBtn.equals("tagCtg")){ //태그별로 정렬
+						sql = "SELECT exhID, imageFile1, exhName, exhPlace, exhStartDate, exhEndDate "
+								+ "FROM (SELECT artshow.exhID, imageFile1, exhName, exhPlace, exhStartDate, exhEndDate FROM artshow, artshowtag WHERE artshow.exhID = artshowtag.exhID AND tagName=?) AS sort "
+								+ "WHERE DATE(exhEndDate)<DATE(now()) "
+								+ "ORDER BY exhEndDate DESC";
+					}else if(ctgBtn.equals("locCtg")){ //위치별로 정렬
+						sql = "SELECT exhID, imageFile1, exhName, exhPlace, exhStartDate, exhEndDate "
+								+ "FROM (SELECT exhID, imageFile1, exhName, exhPlace, exhStartDate, exhEndDate FROM artshow WHERE ExhGubun4=?) AS sort "
+								+ "WHERE DATE(exhEndDate)<DATE(now()) "
+								+ "ORDER BY exhEndDate DESC";
+					}else if(ctgBtn.equals("genCtg")){ //장르별로 정렬
+						sql = "SELECT exhID, imageFile1, exhName, exhPlace, exhStartDate, exhEndDate "
+								+ "FROM (SELECT exhID, imageFile1, exhName, exhPlace, exhStartDate, exhEndDate FROM artshow WHERE ExhGubun2=?) AS sort "
+								+ "WHERE DATE(exhEndDate)<DATE(now()) "
+								+ "ORDER BY exhEndDate DESC";
+					}
+				}
+				
 				pstmt = conn.prepareStatement(sql);
 				pstmt.setString(1, ctgName);
 							
@@ -310,7 +440,7 @@ public class ExhibitionDao {
 			ResultSet rs = null;
 			
 			ExhibitionDto content = null;
-			String sql = "SELECT * FROM artshowdb.artshow WHERE exhID=? and activeFlag='Y' ";
+			String sql = "SELECT * FROM artshowdb.artshow WHERE exhID=?";
 			
 			try {
 				conn = ds.getConnection();
@@ -495,6 +625,51 @@ public class ExhibitionDao {
 			
 			return wishchk;
 		}//end - public int wishCheck(String email, int exhID)
+		
+		//더보기 버튼 메소드
+//		public List<ExhListDto> moreAddList(int page) {
+//			System.out.println("##4번 ExhibitionDao실행 - moreAddList()");
+//			
+//			Connection conn = null;
+//			PreparedStatement pstmt = null;
+//			ResultSet rs = null;
+//							
+//			String sql = "";
+//			ArrayList<ExhListDto> lists = null;
+//							
+//			try {
+//				conn = ds.getConnection();
+//				sql += "LIMIT " + (page*15) + ", 15";
+//				pstmt = conn.prepareStatement(sql);
+//							
+//				rs = pstmt.executeQuery();
+//								
+//				lists = new ArrayList<ExhListDto>();
+//				ExhListDto art = null;
+//								
+//				while(rs.next()) {
+//					art = new ExhListDto();
+//									
+//					art.setExhID(rs.getInt("exhID"));
+//					art.setImageFile1(rs.getString("imageFile1"));
+//					art.setExhName(rs.getString("exhName"));
+//					art.setExhPlace(rs.getString("exhPlace"));
+//					art.setExhStartDate(rs.getString("exhStartDate"));
+//					art.setExhEndDate(rs.getString("exhEndDate"));
+//									
+//					lists.add(art);
+//				}
+//								
+//			} catch (Exception e) {
+//				e.printStackTrace();
+//			} finally {
+//				try {if (rs != null) rs.close();} catch(Exception e) {}
+//				try {if (pstmt != null) pstmt.close();} catch(Exception e) {}
+//				try {if (conn != null) conn.close();} catch(Exception e) {}
+//			}
+//							
+//			return lists;
+//		}
 	
 		//-------------------------------------------------------------------------------------------------------------
 //		programmed by Hojeong - begin
@@ -1011,6 +1186,51 @@ public int getTagCount(Integer exhID) {
 //programmed @20/01/20(yy/MM/dd)
 //-------------------------------------------------------------------------------------------------------------	
 //-------------------------------------------------------------------------------------------------------------
+//public String[] getImageFile(int exhID) - begin
+//ExhID에 해당하는 imageFile들의 파일명 가져오기(전시회 삭제시, imageFile도 삭제하기 위해서)
+//programmed @20/01/21(yy/MM/dd)
+//-------------------------------------------------------------------------------------------------------------
+	public String[] getImageFile(int exhID) {
+
+		System.out.println("getImageFile - Dao");
+		Connection 			conn 		= null;
+		PreparedStatement 	pstmt 		= null;
+		ResultSet 			rs 			= null;
+		int					count		= 0;
+		String 				sql 		= null;
+		String[] 			imageFile 	= new String[4];
+		
+		try {
+			conn = ds.getConnection();
+			pstmt =	conn.prepareStatement(" select imageFile1, imageFile2, imageFile3, imageFile4 "
+					+ " from artshow "
+					+ " where exhID=? ");
+			pstmt.setInt(1, exhID);
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()){
+				imageFile[0] = rs.getString(1);
+				imageFile[1] = rs.getString(2);
+				imageFile[2] = rs.getString(3);
+				imageFile[3] = rs.getString(4);
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {if(rs!=null)rs.close();} catch (Exception e) {}
+			try {if(pstmt!=null)pstmt.close();} catch (Exception e) {}
+			try {if(conn!=null)conn.close();} catch (Exception e) {}
+		}
+		
+		return imageFile;
+	}
+//-------------------------------------------------------------------------------------------------------------
+//public String[] getImageFile(int exhID) - end
+//ExhID에 해당하는 imageFile들의 파일명 가져오기(전시회 삭제시, imageFile도 삭제하기 위해서)
+//programmed @20/01/21(yy/MM/dd)
+//-------------------------------------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------------------------------------
 //programmed by Hojeong - end
 //-------------------------------------------------------------------------------------------------------------
 
@@ -1118,6 +1338,7 @@ public int getTagCount(Integer exhID) {
 				}
 				return myExhCount;
 			}
+			
 	
 	
 	
