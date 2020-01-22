@@ -210,10 +210,12 @@ public class DistpatcherServlet extends HttpServlet {
 							  .setEmail(request.getParameter("email"))
 				           	  .setExhID(Integer.parseInt(request.getParameter("exhID"))));
 				  }
-			  }else if("/client/exhibition/artListSort.do".equals(servletPath)){ //리스트정렬
-				  model.put("sortBtn", request.getParameter("sortBtn"));
-				  model.put("ctgBtn", request.getParameter("ctgBtn"));
-				  model.put("ctgName", request.getParameter("ctgName"));
+			  }else if("/client/exhibition/artListSort.do".equals(servletPath)){ //리스트정렬, 페이징처리
+				  model.put("inputSort", request.getParameter("inputSort"));
+				  model.put("inputTag", request.getParameter("inputTag"));
+				  model.put("inputLoc", request.getParameter("inputLoc"));
+				  model.put("inputGen", request.getParameter("inputGen"));
+				  model.put("inputPage", request.getParameter("inputPage"));
 		      //--------------------------------------------------------------------------------------
 		  	  // begin - modified by Hojeong 20/01/03(yy/mm/dd)	
 	    	  //--------------------------------------------------------------------------------------

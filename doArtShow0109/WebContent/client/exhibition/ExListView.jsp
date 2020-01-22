@@ -17,15 +17,15 @@
 	  z-index: -1;
 	}
 	
-	#sortBox {
-	  width: 100%;
-	  margin-left: 5em;
-      margin-right: 5em;
-      width: 89%;
+ 	#sortBox {
+	  display: inline-flex;
       justify-content: center;
+	} 
+	.selected{
+	  background-color: aqua;
 	}
 	
-	.artSort {
+/* 	.artSort {
 	  text-decoration: none;
 	  line-height: 80px;
 	  color: black;
@@ -82,7 +82,7 @@
 	  -webkit-transform: translateX(49%);
 	          transform: translateX(49%);
 	}
-
+ */
 	/* 태그 */	
 	#ctgList li {
 	  display: inline-flex;
@@ -102,7 +102,7 @@
 	  padding-right: 80px;
 	}
 	
-	#ctgBox {
+	#gradient {
 	  background: linear-gradient(135deg, #c71eae 0%, #db8344 31%, #c73653 71%, #6e38a8 100%);
 	  font-family: 'Noto Sans KR', sans-serif !important;
 	  justify-content: center;
@@ -115,7 +115,7 @@
 	  margin-left: 70px;
       margin-right: 70px;
 	}
-	
+/* 	
 	.ctg {
 	  flex: 1 1 auto;
 	  padding-top: 15px;
@@ -161,8 +161,9 @@
 	}
 	.ctg:hover::after{
 	  width: 100%;
-	}
+	} */
 	
+	/* 출력되는 div 게시물 */
 	#content_div {
     	text-align: center;
     	padding-left: 5%;
@@ -175,14 +176,12 @@
 		display: -webkit-inline-box;
     	flex-wrap: wrap;
     	-webkit-box-pack: center;
-    	width: 100%;
 	}
 	
 	#content_list_div{ 
-		margin-left: 1%;
-	    margin-right: 1%;
-	    margin-bottom: 30px;
-    	margin-top: 20px;
+		margin-left: auto;
+	    margin-right: auto;
+	    margin-bottom: 20px;
 	    width: 275px;
 	    height: 450px;
 	    text-align: left;
@@ -214,52 +213,55 @@
 		padding: 30px;
 	}
 </style>
-	<div style="display: hidden;">
-		<input type="text" hidden id="sort_num" value="0"/>
-		<input type="text" hidden id="tag_num" value="0"/>
-		<input type="text" hidden id="loc_num" value="0"/>
-		<input type="text" hidden id="gen_num" value="0"/>
-	</div>
-	<div class="container" id="mainContainer">$('.artSort').find(class checked).attr id
-		<div id="sortBox" style="display: inline-flex;">
-			<div class="artSort" id="sortBtn0"><b>전체 전시 보기</b></div>
-			<div class="artSort" id="sortBtn1"><b>진행중인 전시 보기</b></div>
-			<div class="artSort" id="sortBtn2"><b>인기 전시 보기</b></div>
-			<div class="artSort" id="sortBtn3"><b>곧 종료하는 전시 보기</b></div>
-			<div class="artSort" id="sortBtn4"><b>종료 된 전시 보기</b></div>
+	
+	<div id="hidden_value">
+      <input type="text" hidden id="sort_num" value="0"/>
+      <input type="text" hidden id="tag_num" value="0"/>
+      <input type="text" hidden id="loc_num" value="0"/>
+      <input type="text" hidden id="gen_num" value="0"/>
+      <input type="text" hidden id="page_num" value="1"/> <!-- ajax success함수에서 버튼 밸류값을 바꿔줄때 얘를 변경! -->
+      </div>
+      
+	<div class="container" id="mainContainer">
+		<div id="sortBox" style="display: inline-flex;"><!-- 전체전시보기는 0이며 처음부터 선택 돼 있음. -->
+			<div class="ctg artSort" id="0"><b>전체 전시 보기</b></div>
+			<div class="ctg artSort" id="1"><b>진행중인 전시 보기</b></div>
+			<div class="ctg artSort" id="2"><b>인기 전시 보기</b></div>
+			<div class="ctg artSort" id="3"><b>곧 종료하는 전시 보기</b></div>
+			<div class="ctg artSort" id="4"><b>종료 된 전시 보기</b></div>
 		</div>
-		<div id="ctgBox">
-			<ul id="ctgList">
+		<div id="gradient">
+			<ul id="ctgList"><!-- 미선택시 0, 선택시 1번부터~ -->
 				<li><i class="fa fa-slack"></i>&nbsp;<b>태그로 찾을래요</b></li>
-				<li id="tagCtg1" class="ctg" name="데이트">#데이트</li>
-				<li id="tagCtg2" class="ctg" name="인생샷">#인생샷</li>
-				<li id="tagCtg3" class="ctg" name="친구와함께">#친구와함께</li>
-				<li id="tagCtg4" class="ctg" name="나혼자문화생활">#나혼자문화생활</li>
-				<li id="tagCtg5" class="ctg" name="부모님과함께">#부모님과함께</li>
-				<li id="tagCtg6" class="ctg" name="아이와함께">#아이와함께</li>
-				<li id="tagCtg7" class="ctg" name="교육전시">#교육전시</li>
+				<li id="1" class="ctg tag" name="데이트">#데이트</li>
+				<li id="2" class="ctg tag" name="인생샷">#인생샷</li>
+				<li id="3" class="ctg tag" name="친구와함께">#친구와함께</li>
+				<li id="4" class="ctg tag" name="나혼자문화생활">#나혼자문화생활</li>
+				<li id="5" class="ctg tag" name="부모님과함께">#부모님과함께</li>
+				<li id="6" class="ctg tag" name="아이와함께">#아이와함께</li>
+				<li id="7" class="ctg tag" name="교육전시">#교육전시</li>
 			</ul>
 			<ul id="ctgList">
 				<li><i class="fa fa-map"></i>&nbsp;<b>위치로 찾을래요</b></li>
-				<li id="locCtg1" class="ctg" name="서울">서울</li>
-				<li id="locCtg2" class="ctg" name="인천/경기">인천/경기</li>
-				<li id="locCtg3" class="ctg" name="대전/충청">대전/충청</li>
-				<li id="locCtg4" class="ctg" name="광주/전라">광주/전라</li>
-				<li id="locCtg5" class="ctg" name="부산/경상">부산/경상</li>
-				<li id="locCtg6" class="ctg" name="강원">강원</li>
-				<li id="locCtg7" class="ctg" name="제주">제주</li>
+				<li id="1" class="ctg loc" name="서울">서울</li>
+				<li id="2" class="ctg loc" name="인천/경기">인천/경기</li>
+				<li id="3" class="ctg loc" name="대전/충청">대전/충청</li>
+				<li id="4" class="ctg loc" name="광주/전라">광주/전라</li>
+				<li id="5" class="ctg loc" name="부산/경상">부산/경상</li>
+				<li id="6" class="ctg loc" name="강원">강원</li>
+				<li id="7" class="ctg loc" name="제주">제주</li>
 			</ul>
 			<ul id="ctgList">
 				<li><i class="fa fa-image"></i>&nbsp;<b>장르로 찾을래요</b></li>
-				<li id="genCtg1" class="ctg" name="서양화">서양화</li>
-				<li id="genCtg2" class="ctg" name="동양화">동양화</li>
-				<li id="genCtg3" class="ctg" name="유화">유화</li>
-				<li id="genCtg4" class="ctg" name="조각">조각</li>
-				<li id="genCtg5" class="ctg" name="설치미술">설치미술</li>
-				<li id="genCtg6" class="ctg" name="미디어아트">미디어아트</li>
-				<li id="genCtg7" class="ctg" name="사진">사진</li>
-				<li id="genCtg8" class="ctg" name="디자인">디자인</li>
-				<li id="genCtg9" class="ctg" name="공예">공예</li>
+				<li id="1" class="ctg gen" name="서양화">서양화</li>
+				<li id="2" class="ctg gen" name="동양화">동양화</li>
+				<li id="3" class="ctg gen" name="유화">유화</li>
+				<li id="4" class="ctg gen" name="조각">조각</li>
+				<li id="5" class="ctg gen" name="설치미술">설치미술</li>
+				<li id="6" class="ctg gen" name="미디어아트">미디어아트</li>
+				<li id="7" class="ctg gen" name="사진">사진</li>
+				<li id="8" class="ctg gen" name="디자인">디자인</li>
+				<li id="9" class="ctg gen" name="공예">공예</li>
 			</ul>
 		</div>
 		<br>
@@ -277,7 +279,7 @@
 				</c:when>
 				<c:otherwise>
 					<div id="content_list">  
-				    	<c:forEach var="list" items="${lists}" begin="0" end="14">
+				    	<c:forEach var="list" items="${lists}">
 						    <div id="content_list_div">
 						        <a href="<%=request.getContextPath()%>/client/exhibition/ExContentView.do?exhID=${list.exhID}" id="ExContentView" style="width: 290px; height: 470px;"><!-- 아무데나 눌러도 상세페이지로 넘어가게 -->
 						        	<img src="/doArtShow/exhibitionImages/${list.imageFile1}" style="height: 370px; width: 275px;"/><br>
@@ -289,7 +291,7 @@
 					    </c:forEach>
 					</div>
 					<div id="moreBtn_div" align="center">
-						<button type="button" id="more_btn" value="1">더보기</button>
+						<button type="button" id="more_btn">더보기</button>
 					</div>
 				</c:otherwise>
 			</c:choose>
@@ -301,34 +303,40 @@
 	<jsp:include page="/module/3body_last.html"></jsp:include>
 	
 	<script>
-		/* list정렬, 더보기 버튼을 위한 함수 */
-		$(".ctg").click(function(){
+	
+	//영기 begin
+	$('#more_btn').click(function(){
+		console.log('클릭전=>'+$('#page_num').val());
+		$('#page_num').val(parseInt($('#page_num').val())+1);
+		console.log('클릭후=>'+$('#page_num').val());
+	});
+	
+	
+	//영기 end
+	
+	
+/* 		
+		$('.artSort').click(function(){
 			var sortBtn = $(this).attr("id");
 			console.log(sortBtn);
-			var ctgBtn = $(this).attr("id");
-			console.log(ctgBtn);
-			var ctgName = $(this).attr("name");
-			console.log(ctgName);
-
 			
-			/* 다른 버튼을 클릭할때 이전 버튼의 css를 초기화해줌 */
-			/* $("#"+sortBtn).css({
+			
+			
+다른 버튼을 클릭할때 이전 버튼의 css를 초기화해줌 
+			$(".artSort").css({
 			     "border": "",
 			     "background-color":"",
 			     "color":""
 			});
-			$("#"+ctgBtn).css({
+			$(".ctg").css({
 				"letter-spacing": "1px"
 			});
-			// 해당 버튼의 css를 유지해줌
+			 해당 버튼의 css를 유지해줌 
 			$("#"+sortBtn).css({
 			    "border":"solid 1px #8e1882",
 			    "background-color":"#8e1882",
 			    "color":"#f5e8f4"
-			});
-			$("#"+ctgBtn).css({
-				"letter-spacing": "5px"
-			}); */
+			}); 
 			
 			
 			$.ajax({
@@ -336,9 +344,106 @@
 				type : "GET",
 				dataType : "JSON",
 				data : {
-					/* "sortBtn" : sortBtn, */
-					"ctgBtn" : ctgBtn,
-					"ctgName" : ctgName,
+					"sortBtn" : sortBtn
+				},
+				success : function(data){
+					var html = "";
+					var listCnt = 0;
+					
+					for(i=0;i<data.length;i++){
+						listCnt = data[i].listCnt;
+					}
+					
+					console.log(listCnt);
+					
+					if(listCnt > 0){
+						for(i=0;i<listCnt;i++){
+							html += "<div id='content_list_div'>";
+							html += "<a href='/doArtShow/client/exhibition/ExContentView.do?exhID=" + data[i].exhID + "' id='ExContentView' style='width: 290px; height: 470px;'>";
+							html += "<img src='/doArtShow/exhibitionImages/" + data[i].imageFile1 + "' style='height: 370px; width: 275px;'/><br>";
+							html += "<b>" + data[i].exhName + "</b><br>";
+							html += data[i].exhPlace + "<br>";
+							html += data[i].exhStartDate + "&nbsp;~&nbsp;" + data[i].exhEndDate + "</a>";
+							html += "</div>";
+						}
+					}else{
+						html += "<div id='pDiv'>";
+						html += "<center>진행중인 전시가 없습니다!</center><br>";
+						html += "<div align='center'>";
+						html += "<a class='btn' href='/index.jsp'>메인으로 돌아가기</a>";
+						html += "</div>";
+						html += "</div>"
+						
+						$("#moreBtn_div").remove();
+					}
+					
+					$("#content_list").html(html);
+				},
+				error : function(data, request, status, error){
+					var msg = "ERROR : <br>"
+						msg += request.status +"<br>"+ request.responseText +"<br>"+ error;
+					console.log(msg);
+				}
+			});
+		}); 
+	*/
+			
+		
+		/* 태그별로 정렬하기 위한 함수 */
+		$('.ctg').click(function(){
+			
+			var className = $(this).attr('class');			
+			var thisId = $(this).attr('id');
+			var inputSort = $('#sort_num');
+			var inputTag = $('#tag_num');
+			var inputLoc = $('#loc_num');
+			var inputGen = $('#gen_num');
+			var inputPage = $('#page_num');
+			inputPage.val('1'); //이렇게 초기화하면 더보기때 잘 되나..?
+			// 클릭된 항목으로 input에 값을 셋팅하고, .selected 클래스를 적용시켜줌.
+			switch (className) {
+			case 'ctg artSort':inputSort.val(parseInt(thisId));
+				$('.ctg.artSort').removeClass("selected");
+				$(this).addClass("selected");
+				break;
+
+			case 'ctg tag':inputTag.val(parseInt(thisId));
+				$('.ctg.tag').removeClass("selected");
+				$(this).addClass("selected");
+				break;
+
+			case 'ctg loc':inputLoc.val(parseInt(thisId));
+				$('.ctg.loc').removeClass("selected");
+				$(this).addClass("selected");
+				break;
+
+			case 'ctg gen':inputGen.val(parseInt(thisId));
+				$('.ctg.gen').removeClass("selected");
+				$(this).addClass("selected");
+				break;
+			default:
+				break;
+			}
+			
+			console.log(
+				'sortVal==>'+inputSort.val()+
+				'\ntagVal==>'+inputTag.val()+
+				'\nlocVal==>'+inputLoc.val()+
+				'\ngenVal==>'+inputGen.val()+
+				'\npageVal==>'+inputPage.val()
+			);
+			
+			/* AJAX 시작 */
+			$.ajax({
+				url : "artListSort.do",
+				type : "GET",
+				dataType : "JSON",
+				data : {
+					"inputSort" : inputSort,
+					"inputTag" : inputTag,
+					"inputLoc" : inputLoc,
+					"inputGen" : inputGen,
+					"inputPage" : inputPage,
 				},
 				success : function(data){
 					var html = "";
@@ -361,15 +466,15 @@
 							html += "</div>";
 						}
 						
-						/* var pagingNum = page + 1;
+						var pagingNum = inputPage + 1;
 						var btnHtml = "";
 						
 						if(listCnt < 15){
 							$("#moreBtn_div").remove(); //더보기 버튼이 필요없으면 버튼을 삭제해줌 
 						}else {
-							btnHtml += "<button type='button' id='more_btn' value='"+ pagingNum +"'>더보기</button>"; //더보기버튼의 value값을 변경 
-							$("#moreBtn_div").html(btnHtml);
-						} */
+							btnHtml += "<input type='text' hidden id='page_num' value='" + pagingNum + "'/>"; //더보기버튼의 value값을 변경 
+							$("#hidden_value").html(btnHtml);
+						}
 					}else{
 						html += "<div id='pDiv'>";
 						html += "<center>진행중인 전시가 없습니다!</center><br>";
@@ -383,19 +488,104 @@
 					
 					$("#content_list").html(html);
 				},
-				error : function(data, request, status, error){
-					console.log(data);
+				error : function(request, status, error){
 					var msg = "ERROR : <br>"
 						msg += request.status +"<br>"+ request.responseText +"<br>"+ error;
 					console.log(msg);
 				}
 			});
-		});
-		
-		/* 더보기버튼 */
-		$("#more_btn").click(function(){
+			
 			
 		});
+		
+		
+		/* 더보기버튼 */
+		/* $("#more_btn").click(function(){
+			$.ajax({
+				url : "",
+				type : "GET",
+				dataType : "JSON",
+				data : {
+					
+				},
+				success : function(data){
+					
+				},
+				error : function(request, status, error){
+					var msg = "ERROR : <br>"
+						msg += request.status +"<br>"+ request.responseText +"<br>"+ error;
+					console.log(msg);
+				}
+			});
+		}); */
+		
+		
+		/* Box의 그라디언트 색상 */
+		var colors = new Array(
+		  [62,35,255],
+		  [60,255,60],
+		  [255,35,98],
+		  [45,175,230],
+		  [255,0,255],
+		  [255,128,0]);
+
+		var step = 0;
+		//color table indices for: 
+		// current color left
+		// next color left
+		// current color right
+		// next color right
+		var colorIndices = [0,1,2,3];
+
+		//transition speed
+		var gradientSpeed = 0.002;
+
+		function updateGradient()
+		{
+		  
+		  if ( $===undefined ) return;
+		  
+		var c0_0 = colors[colorIndices[0]];
+		var c0_1 = colors[colorIndices[1]];
+		var c1_0 = colors[colorIndices[2]];
+		var c1_1 = colors[colorIndices[3]];
+
+		var istep = 1 - step;
+		var r1 = Math.round(istep * c0_0[0] + step * c0_1[0]);
+		var g1 = Math.round(istep * c0_0[1] + step * c0_1[1]);
+		var b1 = Math.round(istep * c0_0[2] + step * c0_1[2]);
+		var color1 = "rgb("+r1+","+g1+","+b1+")";
+
+		var r2 = Math.round(istep * c1_0[0] + step * c1_1[0]);
+		var g2 = Math.round(istep * c1_0[1] + step * c1_1[1]);
+		var b2 = Math.round(istep * c1_0[2] + step * c1_1[2]);
+		var color2 = "rgb("+r2+","+g2+","+b2+")";
+
+		 $('#gradient').css({
+		   background: "-webkit-gradient(linear, left top, right top, from("+color1+"), to("+color2+"))"}).css({
+		    background: "-moz-linear-gradient(left, "+color1+" 0%, "+color2+" 100%)"});
+		  
+		  step += gradientSpeed;
+		  if ( step >= 1 )
+		  {
+		    step %= 1;
+		    colorIndices[0] = colorIndices[1];
+		    colorIndices[2] = colorIndices[3];
+		    
+		    //pick two new target color indices
+		    //do not pick the same as the current one
+		    colorIndices[1] = ( colorIndices[1] + Math.floor( 1 + Math.random() * (colors.length - 1))) % colors.length;
+		    colorIndices[3] = ( colorIndices[3] + Math.floor( 1 + Math.random() * (colors.length - 1))) % colors.length;
+		    
+		  }
+		}
+
+		setInterval(updateGradient,10);
+		
+		/* 눌른 버튼에 대해 css 적용 및 hidden input에 기록 */
+		
+
+		
 	</script>
 	
 	
