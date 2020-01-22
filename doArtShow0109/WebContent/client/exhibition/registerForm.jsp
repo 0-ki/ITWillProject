@@ -65,7 +65,7 @@ try {
                 </tr>
                 <tr>
                     <th>
-                        <lable for="">*신청자</lable>
+                        <label for="">*신청자</label>
                     </th>
                     <td><input type="text" class="updateForm" name="memberID" id="memberID" value="${memberID }" readonly></td>
                 </tr>
@@ -92,7 +92,7 @@ try {
                     <th><lable for="">*태그</lable>
                     <p style="font-size:14px; line-height:22px; letter-spacing:-0.6px; font-weight:300;">(최대 3개 선택)</p></th>
                     <td>
-                    	<lable for="exhGubun31">#데이트				</lable><input class="updateForm" name="exhGubun3" id="exhGubun31" type="checkbox" value="데이트" >
+                    	<label for="exhGubun31">#데이트				</label><input class="updateForm" name="exhGubun3" id="exhGubun31" type="checkbox" value="데이트" >
                     	<lable for="exhGubun32">#인생샷				</lable><input class="updateForm" name="exhGubun3" id="exhGubun32" type="checkbox" value="인생샷" >
                     	<lable for="exhGubun33">#친구와함께		</lable><input class="updateForm" name="exhGubun3" id="exhGubun33" type="checkbox" value="친구와함께" >
                     	<lable for="exhGubun34">#나혼자문화생활	</lable><input class="updateForm" name="exhGubun3" id="exhGubun34" type="checkbox" value="나혼자문화생활" >
