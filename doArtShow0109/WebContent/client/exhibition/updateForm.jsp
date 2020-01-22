@@ -56,7 +56,12 @@ try {
 	}
 */	
 %>
-<jsp:include page="/module/1doctype_head.jsp"></jsp:include>     
+<jsp:include page="/module/1doctype_head.jsp"></jsp:include>
+<style>
+.updateForm1{
+display: inline-block;
+}
+</style>     
 <body>
 <jsp:include page="/module/2body_first.jsp"></jsp:include>
 <%	Date nowTime = new Date();
@@ -92,13 +97,13 @@ try {
                 </tr>
                 <tr>
                     <th>
-                        <lable for="">*신청자</lable> <!-- member 테이블에서 가져온다. readonly-->
+                        <label for="">*신청자</label> <!-- member 테이블에서 가져온다. readonly-->
                     </th>
                     <td><input type="text" name="memberID" id="memberID" value="${exhibition.memberID }" readOnly style="width:100%; padding: .8em .5em;" class="updateForm"></td>
                 </tr>
                 <tr>
                     <th>
-                        <lable for="">*장르</lable>
+                        <label for="">*장르</label>
                     </th>
                     <td>          
                         <select name="exhGubun2" id="exhGubun2" style="width:100%; padding: .8em .5em;" required>
@@ -116,16 +121,49 @@ try {
                     </td>
                 </tr>
                 <tr>
-                    <th><lable for="">*태그</lable>
+                    <th><label for="">*태그</label>
                     <p style="font-size:14px; line-height:22px; letter-spacing:-0.6px; font-weight:300;">(최대 3개 선택)</p></th>
                     <td style="padding: .8em .5em;">
-                        #데이트				<input name="exhGubun3" type="checkbox" value="데이트" class="updateForm"				<%for(int i=0; i<tagList.size(); i++) if ("데이트".equals(tagList.get(i).getExhTagName())) 			{%>checked<%} %>>
-                    	#인생샷				<input name="exhGubun3" type="checkbox" value="인생샷" class="updateForm"				<%for(int i=0; i<tagList.size(); i++) if ("인생샷".equals(tagList.get(i).getExhTagName())) 			{%>checked<%} %>>
-                    	#친구와함께		<input name="exhGubun3" type="checkbox" value="친구와함께" class="updateForm"		 	<%for(int i=0; i<tagList.size(); i++) if ("친구와함께".equals(tagList.get(i).getExhTagName()))		{%>checked<%} %>>
-                    	#나혼자문화생활	<input name="exhGubun3" type="checkbox" value="나혼자문화생활"	class="updateForm"	<%for(int i=0; i<tagList.size(); i++) if ("나혼자문화생활".equals(tagList.get(i).getExhTagName())) {%>checked<%} %>>
-                    	#부모님과함께		<input name="exhGubun3" type="checkbox" value="부모님과함께" class="updateForm"		<%for(int i=0; i<tagList.size(); i++) if ("부모님과함께".equals(tagList.get(i).getExhTagName()))	{%>checked<%} %>>
-                    	#아이와함께		<input name="exhGubun3" type="checkbox" value="아이와함께" 	class="updateForm"		<%for(int i=0; i<tagList.size(); i++) if ("아이와함께".equals(tagList.get(i).getExhTagName())) 		{%>checked<%} %>>
-                    	#교육전시			<input name="exhGubun3" type="checkbox" value="교육전시" class="updateForm"			<%for(int i=0; i<tagList.size(); i++) if ("교육전시".equals(tagList.get(i).getExhTagName())) 			{%>checked<%} %>>
+           				<label for="exhGubun31" style="font-weight:300;">
+           				<input name="exhGubun3" type="checkbox" value="데이트" class="updateForm1" id="exhGubun31" <%for(int i=0; i<tagList.size(); i++) if ("데이트".equals(tagList.get(i).getExhTagName())) 			{%>checked<%} %>>
+                        &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                        #데이트
+                        </label>
+                        <br>
+           				<label for="exhGubun32" style="font-weight:300;">
+                    	<input name="exhGubun3" type="checkbox" value="인생샷" class="updateForm1" id="exhGubun32" <%for(int i=0; i<tagList.size(); i++) if ("인생샷".equals(tagList.get(i).getExhTagName())) 			{%>checked<%} %>>
+                        &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                    	#인생샷
+                        </label>
+                        <br>
+           				<label for="exhGubun33" style="font-weight:300;">
+                    	<input name="exhGubun3" type="checkbox" value="친구와함께" class="updateForm1"	id="exhGubun33"	<%for(int i=0; i<tagList.size(); i++) if ("친구와함께".equals(tagList.get(i).getExhTagName()))		{%>checked<%} %>>
+                        &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                    	#친구와함께
+                        </label>
+                        <br>
+           				<label for="exhGubun34" style="font-weight:300;">
+                    	<input name="exhGubun3" type="checkbox" value="나혼자문화생활"	class="updateForm1"	id="exhGubun34" <%for(int i=0; i<tagList.size(); i++) if ("나혼자문화생활".equals(tagList.get(i).getExhTagName())) {%>checked<%} %>>
+                        &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                    	#나혼자문화생활
+                        </label>
+                        <br>
+           				<label for="exhGubun35" style="font-weight:300;">
+                    	<input name="exhGubun3" type="checkbox" value="부모님과함께" class="updateForm1" id="exhGubun35" <%for(int i=0; i<tagList.size(); i++) if ("부모님과함께".equals(tagList.get(i).getExhTagName()))	{%>checked<%} %>>
+                        &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                    	#부모님과함께
+                        </label>
+                        <br>
+           				<label for="exhGubun36" style="font-weight:300;">
+                    	<input name="exhGubun3" type="checkbox" value="아이와함께" 	class="updateForm1"	id="exhGubun36"	<%for(int i=0; i<tagList.size(); i++) if ("아이와함께".equals(tagList.get(i).getExhTagName())) 		{%>checked<%} %>>
+                        &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                    	#아이와함께
+                        </label>
+                        <br>
+           				<label for="exhGubun37" style="font-weight:300;">
+                    	<input name="exhGubun3" type="checkbox" value="교육전시" class="updateForm1" id="exhGubun37" <%for(int i=0; i<tagList.size(); i++) if ("교육전시".equals(tagList.get(i).getExhTagName())) 			{%>checked<%} %>>
+                        &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                    	#교육전시			
                     </td>	
                 </tr>
                 <tr>
@@ -204,7 +242,7 @@ try {
                 
                 <tr>
                     <th>
-                        <lable for="">*전시관지역</lable>
+                        <label for="">*전시관지역</label>
                     </th>
                     <td>          
                         <select name="exhGubun4" id="exhGubun4" style="width:100%;">
