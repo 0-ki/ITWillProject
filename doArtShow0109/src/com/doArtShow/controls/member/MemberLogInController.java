@@ -37,7 +37,7 @@ MemberDao memberDao;
 		        session.setAttribute("member", member);		        
 		        //회원가입을 하고 난 후에는 이전페이지가 아닌 메인화면을 출력해준다.
 		        if(referer.startsWith("http://localhost:8888/doArtShow/client/auth/memberAdd.do?")) {
-		        	return "/index.jsp";
+		        	return "redirect:/doArtShow";
 		        }
 		        
 		        return "redirect:"+referer;

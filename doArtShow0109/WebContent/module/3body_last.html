@@ -14,7 +14,7 @@
     
     
     <script src="/doArtShow/js/bootstrap.min.js"></script>
-    <script src="/doArtShow/js/cbpAnimatedHeader.js"></script>
+    <script src="/doArtShow/js/GNBAnimatedHeader.js"></script>
     <script src="/doArtShow/js/jquery.appear.js"></script>
     
 	<!--================ 커스텀 script 파일 ================  -->    
@@ -23,6 +23,7 @@
     <script>Kakao.init('3f954d79af6a536ec76db999e7f2ba5b');</script>
 
     <script src="/doArtShow/js/kakaoscript.js"></script>
+    <script src="/doArtShow/js/naverLoginscript.js"></script>
     <script src="/doArtShow/js/ifReadyscript.js"></script>
     <script src="/doArtShow/js/exhFunction.js"></script>
 	
@@ -31,28 +32,8 @@
 	<script src="/doArtShow/client/js/signUpFormFilter.js"></script>
 	
 	<!-- ================ script  ================  -->
-	<!-- 네이버 아이디 로그인 -->
 <script type="text/javascript">
-$(function(){
-	var naverLogin = new naver.LoginWithNaverId({
-		clientId : "QvLk55msCCyAfv2p50Yg",
-		callbackUrl : "http://localhost:8888/doArtShow/NaverCallback",
-		isPopup : false, /* 팝업을 통한 연동처리 여부 */
-		callbackHandle: true,
-		loginButton : {
-			color : "green",
-			type : 3,
-			height : 48
-		}
-	/* 로그인 버튼의 타입을 지정 */
-	});
 
-	/* 설정정보를 초기화하고 연동을 준비 */
-	naverLogin.init();
-
-	});
-	
-	
 	$("#inpt_search").on('focus', function () {
 		$(this).parent('label').addClass('active');
 	});
@@ -108,15 +89,7 @@ $(function(){
 	}
 	
 	
-	//--------------------------------------------------------------------------------
-	//	로그인 모달을 띄우는 function
-	//--------------------------------------------------------------------------------
-	function addFormLogin() {
-		$("#myModal").modal({
-			backdrop : true
-		});
-		
-	}
+
 	//--------------------------------------------------------------------------------
 	//	myReviewList.jsp
 	//--------------------------------------------------------------------------------

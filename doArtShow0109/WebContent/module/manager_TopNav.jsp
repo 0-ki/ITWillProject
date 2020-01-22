@@ -23,7 +23,7 @@
 					<a class="dropdown-item" href="newExhList.do">${newExhListCnt} 개의 새로운 게시물 등록 요청!</a>
 					<div class="dropdown-divider"></div>
 				</c:if>
-				<a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">Logout</a>
+				<a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">로그아웃</a>
 			</div>
 		</li>
 	</ul>

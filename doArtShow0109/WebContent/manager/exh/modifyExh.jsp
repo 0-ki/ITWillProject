@@ -336,23 +336,6 @@
                 	
                 </div>
               </div>
-              
-              
-              
-              <!-- <div class="input-group mb-3">
-                <div class="input-group-prepend">
-                    <span class="input-group-text">이미지 업로드 테스트</span>
-                </div>
-                <form id="fileUploadForm" action="test.do" method="post" enctype="multipart/form-data">
-                	<input type="file" id="asd" name="asd2" class="form-control" onchange="fileUpload(this)">
-                	<input type="submit" id="btnSubmit" value="submit">
-                </form>
-              </div> -->
-              
-              
-              
-              
-
             </div><!-- Modal Body End -->
 
             <!-- Modal footer -->
