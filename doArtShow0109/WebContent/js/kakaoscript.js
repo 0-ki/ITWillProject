@@ -27,13 +27,8 @@ Kakao.Auth.createLoginButton({
 	             if(gender=='male'){
 	            	 gender='남성'}else{
 	            		 gender='여성'};
+	             console.log(kid+'\n'+email+'\n'+name+'\n'+birth+'\n'+gender);
 	             
-	             /*var data = new FormData();
-	             data.append('kid',kid);
-	             data.append('email',email);
-	             data.append('name',name);
-	             data.append('birth',birth);
-	             data.append('gender',gender);*/
 	         	$.ajax({
 	        		type: "POST",
 	        		url: "kakaoLogin.do",
