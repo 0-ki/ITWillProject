@@ -235,14 +235,16 @@
     		margin-right: 10%;
 		}
 		
-		#revOne{
+		.revOne{
 			margin: 25px;
 			margin-left: 50px;
 			margin-right: 50px;
 		    display: -webkit-inline-box;
 		    box-sizing: border-box;
 		    width: 550px;
-		    height: 160px;
+		    height: 170px;
+		   	border-radius: 20px;
+    		box-shadow: 0px 0px 20px 0px grey;
 		}
 		
 		.contentContainer{
@@ -262,12 +264,20 @@
 		    line-height: 23px;
 		}
 		.memberName{
+			padding-top: 10px;
 			width: 400px;
-			height: 25px;
+			height: 30px;
 		}
 		.revContent{
 			width: 400px;
 			height: 100px;
+		}
+		.memberProfile{
+			height: 120px; 
+			width: 120px; 
+			border-radius: 100px;
+			padding-top: 10px; 
+			padding-left: 10px;
 		}
  	</style>
  		
@@ -406,17 +416,17 @@
 				<c:otherwise>
 					<div id="revList"> 
 							 <c:forEach  var="revlist" items="${revLists}">
-								<div id="revOne">
+								<div class="revOne">
 									<table>
 										<tr>
-											<td rowspan="2" width="25%"><img src="/doArtShow/memberProfileImages/${revlist.profileImg}" class="memberProfile" style="height: 120px; width: 120px; border-radius: 20px;"/></td>
+											<td rowspan="2" width="25%"><img src="/doArtShow/memberProfileImages/${revlist.profileImg}" class="memberProfile"/></td>
 											<td width="75%"><div class="memberName"><b>${revlist.name}</b></div></td>
 										</tr>
 										<tr>
 											<td><div class="revContent">${revlist.revContent}</div></td>
 										</tr>
 										<tr>
-											<td colspan="2" style="color:#808080;">${revlist.revDate}에 작성되었습니다.</td>
+										<td colspan="2" style="color:#808080; text-align: right;">${revlist.revDate}에 작성되었습니다.</td>
 										</tr>
 									</table>
 								</div>

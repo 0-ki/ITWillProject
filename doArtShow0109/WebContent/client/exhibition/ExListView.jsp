@@ -176,11 +176,13 @@
 		display: -webkit-inline-box;
     	flex-wrap: wrap;
     	-webkit-box-pack: center;
+    	width: 100%;
 	}
 	
 	#content_list_div{ 
-		margin-left: auto;
-	    margin-right: auto;
+		margin-left: 15px;
+	    margin-right: 15px;
+	    margis-top: 20px;
 	    margin-bottom: 20px;
 	    width: 275px;
 	    height: 450px;
@@ -214,13 +216,11 @@
 	}
 </style>
 	
-	<div id="hidden_value">
       <input type="text" hidden id="sort_num" value="0"/>
       <input type="text" hidden id="tag_num" value="0"/>
       <input type="text" hidden id="loc_num" value="0"/>
       <input type="text" hidden id="gen_num" value="0"/>
-      <input type="text" hidden id="page_num" value="1"/> <!-- ajax success함수에서 버튼 밸류값을 바꿔줄때 얘를 변경! -->
-      </div>
+      <input type="text" hidden id="page_num" value="0"/>
       
 	<div class="container" id="mainContainer">
 		<div id="sortBox" style="display: inline-flex;"><!-- 전체전시보기는 0이며 처음부터 선택 돼 있음. -->
@@ -279,7 +279,7 @@
 				</c:when>
 				<c:otherwise>
 					<div id="content_list">  
-				    	<c:forEach var="list" items="${lists}">
+				    	<c:forEach var="list" items="${lists}" begin="0" end="14">
 						    <div id="content_list_div">
 						        <a href="<%=request.getContextPath()%>/client/exhibition/ExContentView.do?exhID=${list.exhID}" id="ExContentView" style="width: 290px; height: 470px;"><!-- 아무데나 눌러도 상세페이지로 넘어가게 -->
 						        	<img src="/doArtShow/exhibitionImages/${list.imageFile1}" style="height: 370px; width: 275px;"/><br>
@@ -302,96 +302,9 @@
 
 	<jsp:include page="/module/3body_last.html"></jsp:include>
 	
-	<script>
-	
-	//영기 begin
-	$('#more_btn').click(function(){
-		console.log('클릭전=>'+$('#page_num').val());
-		$('#page_num').val(parseInt($('#page_num').val())+1);
-		console.log('클릭후=>'+$('#page_num').val());
-	});
-	
-	
-	//영기 end
-	
-	
-/* 		
-		$('.artSort').click(function(){
-			var sortBtn = $(this).attr("id");
-			console.log(sortBtn);
-			
-			
-			
-다른 버튼을 클릭할때 이전 버튼의 css를 초기화해줌 
-			$(".artSort").css({
-			     "border": "",
-			     "background-color":"",
-			     "color":""
-			});
-			$(".ctg").css({
-				"letter-spacing": "1px"
-			});
-			 해당 버튼의 css를 유지해줌 
-			$("#"+sortBtn).css({
-			    "border":"solid 1px #8e1882",
-			    "background-color":"#8e1882",
-			    "color":"#f5e8f4"
-			}); 
-			
-			
-			$.ajax({
-				url : "artListSort.do",
-				type : "GET",
-				dataType : "JSON",
-				data : {
-					"sortBtn" : sortBtn
-				},
-				success : function(data){
-					var html = "";
-					var listCnt = 0;
-					
-					for(i=0;i<data.length;i++){
-						listCnt = data[i].listCnt;
-					}
-					
-					console.log(listCnt);
-					
-					if(listCnt > 0){
-						for(i=0;i<listCnt;i++){
-							html += "<div id='content_list_div'>";
-							html += "<a href='/doArtShow/client/exhibition/ExContentView.do?exhID=" + data[i].exhID + "' id='ExContentView' style='width: 290px; height: 470px;'>";
-							html += "<img src='/doArtShow/exhibitionImages/" + data[i].imageFile1 + "' style='height: 370px; width: 275px;'/><br>";
-							html += "<b>" + data[i].exhName + "</b><br>";
-							html += data[i].exhPlace + "<br>";
-							html += data[i].exhStartDate + "&nbsp;~&nbsp;" + data[i].exhEndDate + "</a>";
-							html += "</div>";
-						}
-					}else{
-						html += "<div id='pDiv'>";
-						html += "<center>진행중인 전시가 없습니다!</center><br>";
-						html += "<div align='center'>";
-						html += "<a class='btn' href='/index.jsp'>메인으로 돌아가기</a>";
-						html += "</div>";
-						html += "</div>"
-						
-						$("#moreBtn_div").remove();
-					}
-					
-					$("#content_list").html(html);
-				},
-				error : function(data, request, status, error){
-					var msg = "ERROR : <br>"
-						msg += request.status +"<br>"+ request.responseText +"<br>"+ error;
-					console.log(msg);
-				}
-			});
-		}); 
-	*/
-			
-		
-		/* 태그별로 정렬하기 위한 함수 */
+	<script>	
+		/* 정렬하기 위한 함수 */
 		$('.ctg').click(function(){
-			
 			var className = $(this).attr('class');			
 			var thisId = $(this).attr('id');
 			var inputSort = $('#sort_num');
@@ -399,7 +312,11 @@
 			var inputLoc = $('#loc_num');
 			var inputGen = $('#gen_num');
 			var inputPage = $('#page_num');
-			inputPage.val('1'); //이렇게 초기화하면 더보기때 잘 되나..?
+			
+			inputPage.val('0'); 
+			
+			$("#moreBtn_div").show();
+			
 			// 클릭된 항목으로 input에 값을 셋팅하고, .selected 클래스를 적용시켜줌.
 			switch (className) {
 			case 'ctg artSort':inputSort.val(parseInt(thisId));
@@ -439,11 +356,11 @@
 				type : "GET",
 				dataType : "JSON",
 				data : {
-					"inputSort" : inputSort,
-					"inputTag" : inputTag,
-					"inputLoc" : inputLoc,
-					"inputGen" : inputGen,
-					"inputPage" : inputPage,
+					"inputSort" : inputSort.val(),
+					"inputTag" : inputTag.val(),
+					"inputLoc" : inputLoc.val(),
+					"inputGen" : inputGen.val(),
+					"inputPage" : inputPage.val(),
 				},
 				success : function(data){
 					var html = "";
@@ -466,14 +383,16 @@
 							html += "</div>";
 						}
 						
-						var pagingNum = inputPage + 1;
-						var btnHtml = "";
+						var pagingNum = parseInt(inputPage.val() + 1);
 						
 						if(listCnt < 15){
-							$("#moreBtn_div").remove(); //더보기 버튼이 필요없으면 버튼을 삭제해줌 
+							console.log("listCnt < 15");
+							$("#moreBtn_div").hide();
 						}else {
-							btnHtml += "<input type='text' hidden id='page_num' value='" + pagingNum + "'/>"; //더보기버튼의 value값을 변경 
-							$("#hidden_value").html(btnHtml);
+							console.log("listCnt > 15");
+							console.log("pagingNum : " + pagingNum);
+							$("#page_num").val(pagingNum);
+							console.log("inputpage : " + inputPage.val());
 						}
 					}else{
 						html += "<div id='pDiv'>";
@@ -483,7 +402,7 @@
 						html += "</div>";
 						html += "</div>"
 						
-						$("#moreBtn_div").remove(); //버튼을 여기서 삭제하고, 다음에 다른 카테고리를 눌러서 전시가 나오면 버튼이 다시 나오지 않음
+						$("#moreBtn_div").hide(); 
 					}
 					
 					$("#content_list").html(html);
@@ -494,22 +413,94 @@
 					console.log(msg);
 				}
 			});
-			
-			
 		});
 		
 		
 		/* 더보기버튼 */
-		/* $("#more_btn").click(function(){
+		$("#more_btn").click(function(){
+			var className = $(this).attr('class');			
+			var thisId = $(this).attr('id');
+			var inputSort = $('#sort_num');
+			var inputTag = $('#tag_num');
+			var inputLoc = $('#loc_num');
+			var inputGen = $('#gen_num');
+			var inputPage = $('#page_num');
+			
+			switch (className) {
+			case 'ctg artSort':inputSort.val(parseInt(thisId));
+				$('.ctg.artSort').removeClass("selected");
+				$(this).addClass("selected");
+				break;
+
+			case 'ctg tag':inputTag.val(parseInt(thisId));
+				$('.ctg.tag').removeClass("selected");
+				$(this).addClass("selected");
+				break;
+
+			case 'ctg loc':inputLoc.val(parseInt(thisId));
+				$('.ctg.loc').removeClass("selected");
+				$(this).addClass("selected");
+				break;
+
+			case 'ctg gen':inputGen.val(parseInt(thisId));
+				$('.ctg.gen').removeClass("selected");
+				$(this).addClass("selected");
+				break;
+			default:
+				break;
+			}
+			
+			console.log(
+				'sortVal==>'+inputSort.val()+
+				'\ntagVal==>'+inputTag.val()+
+				'\nlocVal==>'+inputLoc.val()+
+				'\ngenVal==>'+inputGen.val()+
+				'\npageVal==>'+inputPage.val()
+			);
+			
+			/* AJAX 시작 */
 			$.ajax({
-				url : "",
+				url : "artListSort.do",
 				type : "GET",
 				dataType : "JSON",
 				data : {
-					
+					"inputSort" : inputSort.val(),
+					"inputTag" : inputTag.val(),
+					"inputLoc" : inputLoc.val(),
+					"inputGen" : inputGen.val(),
+					"inputPage" : inputPage.val(),
 				},
 				success : function(data){
+					var html = "";
+					var listCnt = 0;
 					
+					for(i=0;i<data.length;i++){
+						listCnt = data[i].listCnt;
+					}
+					
+					for(i=0;i<listCnt;i++){
+						html += "<div id='content_list_div'>";
+						html += "<a href='/doArtShow/client/exhibition/ExContentView.do?exhID=" + data[i].exhID + "' id='ExContentView' style='width: 290px; height: 470px;'>";
+						html += "<img src='/doArtShow/exhibitionImages/" + data[i].imageFile1 + "' style='height: 370px; width: 275px;'/><br>";
+						html += "<b>" + data[i].exhName + "</b><br>";
+						html += data[i].exhPlace + "<br>";
+						html += data[i].exhStartDate + "&nbsp;~&nbsp;" + data[i].exhEndDate + "</a>";
+						html += "</div>";
+					}
+						
+					var pagingNum = parseInt(inputPage.val() + 1);
+					
+					if(listCnt < 15){
+						console.log("listCnt < 15");
+						$("#moreBtn_div").hide(); 
+					}else {
+						console.log("listCnt > 15");
+						console.log("pagingNum : " + pagingNum);
+						$("#page_num").val(pagingNum);
+						console.log("inputpage : " + inputPage.val());
+					}
+					
+					$(html).appendTo("#content_list").children().last();
 				},
 				error : function(request, status, error){
 					var msg = "ERROR : <br>"
@@ -517,7 +508,7 @@
 					console.log(msg);
 				}
 			});
-		}); */
+		});
 		
 		
 		/* Box의 그라디언트 색상 */
