@@ -18,7 +18,7 @@ public class UpdateExhController implements Controller {
 	
 	@Override
 	public String execute(Map<String, Object> model) throws Exception {
-		System.out.println("### ModifyExhController ###");
+		System.out.println("### UpdateExhController ###");
 		
 		if (model.get("modifyExhibitionDto") == null) {
 			int exhID = Integer.parseInt((String) model.get("exhID"));

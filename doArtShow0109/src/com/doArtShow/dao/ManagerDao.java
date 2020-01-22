@@ -316,39 +316,6 @@ public class ManagerDao {
 		
 	}
 
-	public int getVisitCnt() {
-		Connection conn = null;
-		Statement stmt = null;
-		ResultSet rs = null;
-		
-		int visitCnt = 0;
-		
-		try {
-			conn = ds.getConnection();
-			
-			String sql = "select count(*) from visitPage where visitDate <= sysdate()";
-			stmt = conn.createStatement();
-			rs = stmt.executeQuery(sql);
-			
-			if (rs.next()) {
-				visitCnt = rs.getInt(1);
-			}
-			
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			try {
-				if(rs != null) rs.close();
-				if(stmt != null) stmt.close();
-				if(conn != null) conn.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-		}
-		
-		return visitCnt;
-	}
-
 	public List<ExhibitionDto> getEndExhLists() {
 		Connection conn = null;
 		Statement stmt = null;
@@ -699,7 +666,8 @@ public class ManagerDao {
 				
 				res = res4;
 			} else {
-				System.out.println("이미지 변동사항 없음..!!");				
+				System.out.println("이미지 변동사항 없음..!!");	
+				res = 1;
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -811,6 +779,65 @@ public class ManagerDao {
 		}
 		
 		return imageFile;
+	}
+
+	public void setVisitDate() {
+		Connection conn	= null;
+		Statement stmt = null;
+		
+		int res = 0;
+		
+		try {
+			conn = ds.getConnection();
+			
+			String sql = "insert into visitPage values(sysdate())";
+			
+			stmt = conn.createStatement();
+			
+			res = stmt.executeUpdate(sql);
+			
+			if (res > 0) {
+				System.out.println("Insert visitDate Success!");
+			} else {
+				System.out.println("Insert visitDate Fail...");
+			}
+			
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if(stmt != null) stmt.close();
+				if(conn != null) conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+
+	public int getTodayVisitCnt() {
+		Connection conn	= null;
+		Statement stmt = null;
+		ResultSet rs = null;
+		
+		int res = 0;
+		
+		try {
+			conn = ds.getConnection();
+			
+			String sql = "select count(*) from visitPage where visitDate = date(sysdate())";
+			
+			stmt = conn.createStatement();
+			rs = stmt.executeQuery(sql);
+			
+			if (rs.next()) {
+				res = rs.getInt(1);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return res;
 	}
 	
 	
