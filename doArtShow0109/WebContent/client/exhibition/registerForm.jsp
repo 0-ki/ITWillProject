@@ -284,7 +284,7 @@ display: inline-block;
                 <tr>
                     <th><label for="">*입장료</label></th>
                     <td> 	유료<input type="radio" class="updateForm" name="admFee" value="유료" style="width:5%;" required>
-                    	   	무료<input type="radio" class="updateForm" name="admFee" value="무료" style="width:5%;" required>
+                     	   	무료<input type="radio" class="updateForm" name="admFee" value="무료" style="width:5%;" required>
                     </td>
                 </tr>                
                 <tr>
