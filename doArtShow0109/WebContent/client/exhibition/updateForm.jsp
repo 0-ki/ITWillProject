@@ -61,7 +61,7 @@ try {
 .updateForm1{
 display: inline-block;
 }
-</style>     
+</style>
 <body>
 <jsp:include page="/module/2body_first.jsp"></jsp:include>
 <%	Date nowTime = new Date();
@@ -390,7 +390,7 @@ display: inline-block;
 $("input:checkbox").click(function() {
 	var bol = $("input:checkbox:checked").length >= 3;     
 	$("input:checkbox").not(":checked").attr("disabled",bol);
-	});
+	}); 
 	
 function sample6_execDaumPostcode_1() {
     new daum.Postcode({
