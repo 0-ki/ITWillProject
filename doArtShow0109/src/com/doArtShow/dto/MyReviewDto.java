@@ -1,11 +1,11 @@
 package com.doArtShow.dto;
 
-import java.sql.Timestamp;
+import java.util.Date;
 
 public class MyReviewDto {
 	private int			exhID;		
 	private String 		revContent;
-	private Timestamp 	revDate;
+	private Date	 	revDate;
 	private String 		exhName;
 	private String		imageFile1;
 	
@@ -21,10 +21,10 @@ public class MyReviewDto {
 	public void setRevContent(String revContent) {
 		this.revContent = revContent;
 	}
-	public Timestamp getRevDate() {
+	public Date getRevDate() {
 		return revDate;
 	}
-	public void setRevDate(Timestamp revDate) {
+	public void setRevDate(Date revDate) {
 		this.revDate = revDate;
 	}
 	public String getExhName() {

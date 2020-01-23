@@ -538,7 +538,7 @@ public class MemberDao {
          while(rs.next()) {
             myReview       = new MyReviewDto();
             myReview.setExhID(rs.getInt("ExhID"));
-            myReview.setRevDate(rs.getTimestamp("revDate"));
+            myReview.setRevDate(rs.getDate("revDate"));
             myReview.setRevContent(rs.getString("revContent"));
             myReview.setImageFile1(rs.getString("ImageFile1"));
             myReview.setExhName(rs.getString("ExhName"));
