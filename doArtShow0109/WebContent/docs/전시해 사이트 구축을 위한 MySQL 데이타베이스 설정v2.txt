@@ -1,0 +1,36 @@
+﻿전시해 사이트 구축을 위한 MySQL 데이타베이스 설정
+0. DOS창에서 mysql을 접속하거나 workbench에서 root로 접속한다.
+도스창에서는 mysql -u root -p <enter> : 학원 PC의 root password는 class1임 
+1. artshowdb DB 생성하기 
+1) DB 목록을 디스플레이한다. 
+show databases; <enter> 
+2) DB를 생성한다. 
+create database artshowdb default character set UTF8 collate utf8_general_ci; <enter> 	
+3) DB가 생성되었는지 확인한다. 
+show databases; <enter> 
+4) DB용 유저를 생성한다.(주의점- 패스워드에 ''를 꼭 붙여야한다.) Java JDBC 설정을 위해 DB명 및 유저명과 패스워드는 통일한다. 
+create user artmaster@localhost identified by '1111';
+5) DB 권한을 부여한다.
+grant all privileges on artshowdb.* to artmaster@localhost identified by '1111'; <enter> 
+6) DOS창에서 artmaster로 connect하거나 workbench에서 artmaster로 접속한다.   
+도스창에서는 connect artmaster <enter>
+7) 데이타베이스 목록을 확인한다. 
+show databases; <enter> 
+8) artshowdb를 open한다. 
+use artshowdb; <enter>
+
+
+DB를 단일서버(외부서버)-192.168.11.9로 통합하기 
+GRANT ALL PRIVILEGES ON *.* TO root@'ip주소' IDENTIFIED BY '비밀번호'' WITH GRANT OPTION;
+
+grant all privileges on *.* to artmaster@192.168.11.8 identified by '1111' with grant option;
+grant all privileges on *.* to artmaster@192.168.11.1 identified by '1111' with grant option;
+grant all privileges on *.* to artmaster@192.168.11.2 identified by '1111' with grant option;
+grant all privileges on *.* to artmaster@192.168.11.7 identified by '1111' with grant option;
+grant all privileges on *.* to artmaster@ITW identified by '1111' with grant option;
+
+flush privileges;
+
+mysql -h 192.168.11.9 -u artmaster -p
+
+server.xml변경하기 

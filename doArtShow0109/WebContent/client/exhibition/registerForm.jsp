@@ -33,6 +33,11 @@ try {
 	<script src="http://dapi.kakao.com/v2/maps/sdk.js?appkey=c5326277ad64b2569191adafedd5fbbc&libraries=services"></script>
 	<title>㈜ 전시해 - 전시회 등록</title> 
 </head>	-->
+<style>
+.updateForm1{
+display: inline-block;
+}
+</style>
 <body>
 <jsp:include page="/module/2body_first.jsp"></jsp:include>
 <c:if test="${!empty sessionScope.member}">
@@ -65,13 +70,13 @@ try {
                 </tr>
                 <tr>
                     <th>
-                        <lable for="">*신청자</lable>
+                        <label for="">*신청자</label>
                     </th>
                     <td><input type="text" class="updateForm" name="memberID" id="memberID" value="${memberID }" readonly></td>
                 </tr>
                 <tr>
                     <th>
-                        <lable for="">*장르</lable>
+                        <label for="">*장르</label>
                     </th>
                     <td>          
                         <select name="exhGubun2" required>
@@ -89,21 +94,45 @@ try {
                     </td>
                 </tr>
                 <tr>
-                    <th><lable for="">*태그</lable>
+                    <th><label for="">*태그</label>
                     <p style="font-size:14px; line-height:22px; letter-spacing:-0.6px; font-weight:300;">(최대 3개 선택)</p></th>
                     <td>
-                    	#데이트				<input class="updateForm" name="exhGubun3" type="checkbox" value="데이트" >
-                    	#인생샷				<input class="updateForm" name="exhGubun3" type="checkbox" value="인생샷" >
-                    	#친구와함께		<input class="updateForm" name="exhGubun3" type="checkbox" value="친구와함께" >
-                    	#나혼자문화생활	<input class="updateForm" name="exhGubun3" type="checkbox" value="나혼자문화생활" >
-                    	#부모님과함께		<input class="updateForm" name="exhGubun3" type="checkbox" value="부모님과함께" >
-                    	#아이와함께		<input class="updateForm" name="exhGubun3" type="checkbox" value="아이와함께" >
-                    	#교육전시			<input class="updateForm" name="exhGubun3" type="checkbox" value="교육전시" >
-                    </td>	
-                    
-
-                    
-                    
+                       <label for="exhGubun31" style="font-weight:300;">
+                       <input class="updateForm1" name="exhGubun3" id="exhGubun31" type="checkbox" value="데이트" >
+                       &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                       #데이트
+                       </label><br>
+                       <label for="exhGubun32" style="font-weight:300;">
+                       <input class="updateForm1" name="exhGubun3" id="exhGubun32" type="checkbox" value="인생샷" >
+                       &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                       #인생샷
+                       </label><br> 
+                       <label for="exhGubun33" style="font-weight:300;">
+                       <input class="updateForm1" name="exhGubun3" id="exhGubun33" type="checkbox" value="친구와함께" >
+                       &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                       #친구와함께             
+                       </label><br> 
+                       <label for="exhGubun34" style="font-weight:300;">
+                       <input class="updateForm1" name="exhGubun3" id="exhGubun34" type="checkbox" value="나혼자문화생활" >
+                       &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                       #나혼자문화생활  
+                       </label><br> 
+                       <label for="exhGubun35" style="font-weight:300;">     
+                       <input class="updateForm1" name="exhGubun3" id="exhGubun35" type="checkbox" value="부모님과함께" >
+                       &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                       #부모님과함께 
+                       </label><br> 
+                       <label for="exhGubun36" style="font-weight:300;">     
+                       <input class="updateForm1" name="exhGubun3" id="exhGubun36" type="checkbox" value="아이와함께" >
+                       &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                       #아이와함께 
+                       </label><br> 
+                       <label for="exhGubun37" style="font-weight:300;">      
+                       <input class="updateForm1" name="exhGubun3" id="exhGubun37" type="checkbox" value="교육전시" >
+                       &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                       #교육전시   
+                       </label><br> 
+                    </td>   
                 </tr>
                 <tr>
                     <th><label for="">*전시회명</label></th>
@@ -136,7 +165,7 @@ try {
                 <tr>
                         <th>*전시관 주소</th>
                         <td>
-               			<input type="text" class="updateForm" id="exhPlaceAddr1" name="exhPlaceAddr1" id="exhPlaceAddr1" placeholder="주소" style="width:90%;" readOnly> 
+               			<input type="text" class="updateForm" id="exhPlaceAddr1" name="exhPlaceAddr1" id="exhPlaceAddr1" placeholder="주소" style="width:90%;" readOnly onclick="sample6_execDaumPostcode_1()"> 
                 		<input type="button" class="updateForm" onclick="sample6_execDaumPostcode_1()" value="주소 검색" style="width:9%;"><br> 
 						<!--  <div id="map" style="width:300px;height:300px;margin-top:10px;display:none"></div>-->
 						<!-- <input type="button" onclick="execDaumPostcode()" value="주소 검색" style="width:9%;"><br> 
@@ -186,7 +215,7 @@ try {
                 
                 <tr>
                     <th> 
-                        <lable for="">*전시관지역</lable>
+                        <label for="">*전시관지역</label>
                     </th>
                     <td>          
                         <select name="exhGubun4">
@@ -255,7 +284,7 @@ try {
                 <tr>
                     <th><label for="">*입장료</label></th>
                     <td> 	유료<input type="radio" class="updateForm" name="admFee" value="유료" style="width:5%;" required>
-                    	   	무료<input type="radio" class="updateForm" name="admFee" value="무료" style="width:5%;" required>
+                     	   	무료<input type="radio" class="updateForm" name="admFee" value="무료" style="width:5%;" required>
                     </td>
                 </tr>                
                 <tr>

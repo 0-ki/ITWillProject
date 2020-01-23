@@ -33,9 +33,9 @@ public class ManagerMainController implements Controller {
 			
 			model.put("newExhListCnt", newExhListCnt);
 			
-			/*int visitCnt = managerDao.getVisitCnt();
+			int todayVisitCnt = managerDao.getTodayVisitCnt();
 			
-			model.put("visitCnt", visitCnt);*/ // 작업중...
+			model.put("todayVisitCnt", todayVisitCnt);
 			
 			return "managerMain.jsp";
 		}

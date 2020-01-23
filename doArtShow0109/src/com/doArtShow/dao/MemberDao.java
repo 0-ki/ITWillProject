@@ -758,4 +758,76 @@ public class MemberDao {
       return exhID;
    }
    
+   //////////////////////////////////////////////////////////////////////
+   //KaKao 멤버 체크
+   public int kakaoCheckMember(String email, String kakaoId) {
+	      Connection conn = null;
+	      PreparedStatement pstmt = null;
+	      ResultSet rs = null;
+	      String sql = null;
+	      
+	      MemberDto member = null;
+	      
+	      try {
+	         conn = ds.getConnection();
+	         sql = "SELECT count(*) FROM MEMBER WHERE EMAIL=? AND PW=password(?) ";
+	         pstmt = conn.prepareStatement(sql);
+	         pstmt.setString(1, email);
+	         pstmt.setString(2, kakaoId);
+	         
+	         rs = pstmt.executeQuery();
+	         
+	         member = new MemberDto();
+
+	         while(rs.next()){
+	            member.setBirth(rs.getString("birth"));
+	            member.setGender(rs.getString("gender"));
+	            member.setPw(rs.getString("pw"));
+	            member.setEmail(rs.getString("email"));
+	            member.setName(rs.getString("name"));
+	            member.setProfileImg(rs.getString("profileImg"));
+	         }
+	         
+	      } catch (SQLException e) {
+	         e.printStackTrace();
+	      } finally {
+	         try {if(pstmt   != null)pstmt.close();   } catch (SQLException e) {}
+	         try {if(rs      != null)rs.close();      } catch (SQLException e) {}
+	         try {if(conn   != null)conn.close();   } catch (SQLException e) {}
+	      }
+	      
+	      return 1;
+	   }
+
+   
+   
+   
+   //Kakao 회원가입
+   public void kakaoInsertMember(MemberDto member) {
+	      Connection          conn    = null;
+	      PreparedStatement    pstmt    = null;
+	      String             sql    = null;
+	      
+	      try {
+	         conn = ds.getConnection();
+	         sql = "INSERT INTO artshowdb.MEMBER(EMAIL, NAME, BIRTH, GENDER, PW) "
+	            + "VALUES (?,?,?,?,password(?))";
+	         pstmt = conn.prepareStatement(sql);
+	         pstmt.setString(1, member.getEmail());
+	         pstmt.setString(2, member.getName());
+	         pstmt.setString(3, member.getBirth());
+	         pstmt.setString(4, member.getGender());
+	         pstmt.setString(5, member.getPw());
+	         
+	         pstmt.executeUpdate();
+
+	      } catch (Exception e) {
+	         e.printStackTrace();
+	      } finally {
+	         try {if(pstmt!=null)pstmt.close();} catch (SQLException e) {}
+	         try {if(conn!=null)conn.close();} catch (SQLException e) {}
+	      }
+	   }
+
+   
 }

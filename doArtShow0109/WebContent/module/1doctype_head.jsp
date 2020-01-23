@@ -20,6 +20,7 @@
 
     <!-- 직접 작성한 css 및 폰트 CDN 방식 -begin -->
     <link href="/doArtShow/css/style.css" rel="stylesheet" type="text/css">
+    <link href="/doArtShow/css/2body_first.css" rel="stylesheet" type="text/css">
 
     <!-- 직접 작성한 css 및 폰트 CDN 방식 by Hojeong -begin -->
    <link rel="stylesheet" href="/doArtShow/css/HJStyle.css" type="text/css">

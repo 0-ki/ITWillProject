@@ -3,7 +3,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 	<jsp:include page="/module/1doctype_head.jsp"></jsp:include>
-	<link rel="stylesheet" type="text/css" href="/doArtShow/libs/swiper/css/swiper.css" />
 	
 <body>
 	
@@ -161,7 +160,7 @@
 		  box-sizing: inherit;
 		}
 		
-		
+		/* 태그보여주기 */
 		#tagctgList div{
 		    border-radius: 15px;
 		    color: white;
@@ -186,7 +185,7 @@
 			background-color: #367aad;
 		}
 		
-		
+		/* 공유하기 */
 		#myHist{
 			display: inline-flex;
 			text-align: center;
@@ -206,6 +205,7 @@
 			margin-left: 2.5px;
 		}
 		
+		/* 리뷰모달창 */
 		#revWriteModal-content .modal-body{
 			padding: 30px;
    			padding-top: 40px;
@@ -213,8 +213,6 @@
 		}
 		#revWriteModal-content .modal-header .close {
     		font-size: 35px;
-		}
-		#revWriteModal-content .modal-header .close {
     		margin-top: -5px;
     		margin-right: 10px;
 		}
@@ -230,22 +228,61 @@
 		    height: 250px;
 		}
 		
+		/* 리뷰보여주는 리스트 */
 		#revList{
 			display: -webkit-inline-box;
+			margin-left: 10%;
+    		margin-right: 10%;
 		}
 		
-		#revOne{
-			padding: 10px;
-		    padding-left: 25px;
-		    padding-right: 25px;
+		.revOne{
+			margin: 25px;
+			margin-left: 50px;
+			margin-right: 50px;
 		    display: -webkit-inline-box;
+		    box-sizing: border-box;
+		    width: 550px;
+		    height: 170px;
+		   	border-radius: 20px;
+    		box-shadow: 0px 0px 20px 0px grey;
 		}
 		
+		.contentContainer{
+			padding-right: 40px;
+		    padding-left: 40px;
+		    margin-right: auto;
+		    margin-left: auto;
+		}
 		
+		#exhContent{
+			white-space: pre-line;
+		    color: #333;
+		    width: 100%;
+		    margin: 0px auto;
+		    padding: 2%;
+		    background-color: white;
+		    line-height: 23px;
+		}
+		.memberName{
+			padding-top: 10px;
+			width: 400px;
+			height: 30px;
+		}
+		.revContent{
+			width: 400px;
+			height: 100px;
+		}
+		.memberProfile{
+			height: 120px; 
+			width: 120px; 
+			border-radius: 100px;
+			padding-top: 10px; 
+			padding-left: 10px;
+		}
  	</style>
  		
  		
-	<div class="container" id="mainContainer">
+	<div class="contentContainer" id="mainContainer">
 		<div>
 			<h2><b>${listOne.exhName}</b></h2>
 			<h4>${listOne.artistName}</h4>
@@ -357,16 +394,18 @@
 					</td>
 				</tr>
 				<tr>
-					<td colspan="2" style="height: 1500px;">${listOne.exhContent}</td>
+					<td colspan="2" style="padding-bottom:5%; padding-top:2%;">
+                  		<pre id="exhContent">${listOne.exhContent}</pre>
+               		</td>
 				</tr>
 				<tr>
-					<td><!-- image2,3,4 보여지게 --></td>
+					<td colspan="2"><!-- image2,3,4 보여지게 --></td>
 				</tr>
 			</table>
-		</div>
+		</div> 
 		<br>
 		<!-- 리뷰 보여지는 부분 -->
-		<div id="revSlider">
+		<div>
 			<p>리뷰 보기</p>
 			<c:choose>
 				<c:when test="${revCnt == 0}">
@@ -375,67 +414,28 @@
 					</div>
 				</c:when>
 				<c:otherwise>
-					<div id="revList" class="swiper-container"> 
-						<div class="swiper-wrapper">
+					<div id="revList"> 
 							 <c:forEach  var="revlist" items="${revLists}">
-								<div id="revOne" class="swiper-slide">
+								<div class="revOne">
 									<table>
 										<tr>
-											<td rowspan="2" width="30%"><img src="/doArtShow/memberProfileImages/${revlist.profileImg}" id="memberProfile" style="height: 150px; width: 150px;"/></td>
-											<td width="70%" height="20%"><input type="text" id="revExhName" readonly="readonly" name="memberName" value="${revlist.name}"></td>
+											<td rowspan="2" width="25%"><img src="/doArtShow/memberProfileImages/${revlist.profileImg}" class="memberProfile"/></td>
+											<td width="75%"><div class="memberName"><b>${revlist.name}</b></div></td>
 										</tr>
 										<tr>
-											<td height="80%"><input type="text" id="revContent" readonly="readonly" name="reviewContent" value="${revlist.revContent}"></td>
+											<td><div class="revContent">${revlist.revContent}</div></td>
 										</tr>
 										<tr>
-											<td colspan="2">${revlist.revDate}에 작성되었습니다.</td>
+										<td colspan="2" style="color:#808080; text-align: right;">${revlist.revDate}에 작성되었습니다.</td>
 										</tr>
 									</table>
 								</div>
 							</c:forEach>
-				 				    
-						</div>
-						<!-- 스크롤 바  -->
-						<div class="swiper-scrollbar" style="width:283px;left:37%;"></div>
-						<!-- 좌우 화살표 추가 -->
-						<div class="swiper-button-next"></div>
-						<div class="swiper-button-prev"></div>
 					</div>
 				</c:otherwise>
 			</c:choose>
 		</div>
 	</div>
-	
-	<style>
-		/* swiper begin */
-		#revSlider .swiper-container{
-		    width: 1100px;
-		    height: 400px;
-		    margin-bottom: 80px !important;
-		    background-color: rgba(0, 0, 0, 0.5);
-		}
-		
-		#revOne{
-			box-sizing: border-box;
-			width: 330px;
-			height: 360px;
-		}
-	
-		.swiper-scrollbar{
-			width: 30%;
-		}
-		
-		
-		
-		#revExhName{
-			width: 100%;
-			height: 30px;
-		}
-		#revContent{
-			width: 100%;
-			height: 120px;
-		}
-	</style>
 		   
 	
 	<!-- 리뷰창 모달 -->
@@ -471,7 +471,6 @@
     </div>
 	    
 	<jsp:include page="../../module/3body_last.html"></jsp:include>
-	<script src="../package/js/swiper.min.js"></script>
 	
 	<script>	
 		function login_need(){
@@ -606,16 +605,6 @@
 			});
 		});	
 		
-		/* 리뷰리스트 슬라이더 */
-		var swiper = new Swiper('.swiper-container', {
-	      slidesPerView: 2,
-	      slidesPerColumn: 2,
-	      spaceBetween: 30,
-	      pagination: {
-	        el: '.swiper-pagination',
-	        clickable: true,
-	      },
-	    });
 	</script>
 	
 </body>

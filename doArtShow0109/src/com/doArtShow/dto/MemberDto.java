@@ -8,7 +8,9 @@ public class MemberDto {
 	private String 	gender;
 	private String 	pw;
 	private String 	profileImg;
-
+	private String  kakaoId;
+	private String  naverId;
+	
 	
 	
 	public MemberDto() {}// ManagerDao 전용 생성자
@@ -74,17 +76,36 @@ public class MemberDto {
 	public String getProfileImg() {
 		return profileImg;
 	}
-	
+
 	public MemberDto setProfileImg(String profileImg) {
 		this.profileImg = profileImg;
+		return this;
+	}
+	
+	public String getKakaoId() {
+		return kakaoId;
+	}
+	
+	public MemberDto setKakaoId(String kakaoId) {
+		this.kakaoId = kakaoId;
+		return this;
+	}
+	
+	public String getNaverId() {
+		return naverId;
+	}
+	
+	public MemberDto setNaverId(String naverId) {
+		this.naverId = naverId;
 		return this;
 	}
 
 	@Override
 	public String toString() {
 		return "MemberDto [email=" + email + ", name=" + name + ", birth=" + birth + ", gender=" + gender + ", pw=" + pw
-				+ ", profileImg=" + profileImg + "]";
+				+ ", profileImg=" + profileImg + ", kakaoId=" + kakaoId + ", naverId=" + naverId + "]";
 	}
+
 	
 	
 }

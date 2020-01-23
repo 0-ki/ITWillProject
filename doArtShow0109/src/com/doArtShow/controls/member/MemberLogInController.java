@@ -39,6 +39,7 @@ MemberDao memberDao;
 		        }
 		        if(referer.startsWith("http://localhost:8888/doArtShow/client/auth/memberLogIn.do")) {
 		        	return "redirect:/doArtShow/";
+
 		        }
 		        
 		        return "redirect:"+referer;

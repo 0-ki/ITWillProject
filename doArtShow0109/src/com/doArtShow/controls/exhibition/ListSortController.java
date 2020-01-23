@@ -22,45 +22,55 @@ public class ListSortController implements Controller{
 	
 	@Override
 	public String execute(Map<String, Object> model) throws Exception {
+		System.out.println("##3번 ListSortController(페이지컨트롤러)실행");
+		
 		String result = "";
 		String res = "";
 		JSONArray jsonArray = new JSONArray();
-
-		if(model.get("sortBtn") != null){
-			System.out.println("##3번 TagSortController(페이지컨트롤러)실행");
+		
+		int inputSort = Integer.valueOf((String)model.get("inputSort"));
+		int inputTag = Integer.valueOf((String)model.get("inputTag"));
+		int inputLoc = Integer.valueOf((String)model.get("inputLoc"));
+		int inputGen = Integer.valueOf((String)model.get("inputGen"));
+		int inputPage = Integer.valueOf((String)model.get("inputPage"));
+		
+		/*확인*/
+		System.out.println("inputSort : " + inputSort);
+		System.out.println("inputTag : " + inputTag);
+		System.out.println("inputLoc : " + inputLoc);
+		System.out.println("inputGen : " + inputGen);
+		System.out.println("inputPage : " + inputPage);
+		
+		List<ExhListDto> lists = null;
+		lists = exhibitionDao.selectSortList(inputSort, inputTag, inputLoc, inputGen, inputPage);
+		
+		ArrayList<Map> list = new ArrayList<Map>();
+		JSONObject jsonObj = null;
 			
-			String sortBtn = (String)model.get("sortBtn");
-			System.out.println("sortBtn : " + sortBtn);
-
-			List<ExhListDto> lists = exhibitionDao.selectSortList(sortBtn); //sortBtn값에 따라 dao에서 다른 쿼리문 실행하여 리스트 리턴받아옴
-			
-			ArrayList<Map> list = new ArrayList<Map>();
-			
-			if(lists.size() > 0) {
-				for(int i=0;i<lists.size();i++) {
-					JSONObject jsonObj = new JSONObject();
-					jsonObj.put("exhID", lists.get(i).getExhID());
-					jsonObj.put("imageFile1", lists.get(i).getImageFile1());
-					jsonObj.put("exhName", lists.get(i).getExhName());
-					jsonObj.put("exhPlace", lists.get(i).getExhPlace());
-					jsonObj.put("exhStartDate", lists.get(i).getExhStartDate());
-					jsonObj.put("exhEndDate", lists.get(i).getExhEndDate());
+		if(lists.size() > 0) {
+			for(int i=0;i<lists.size();i++) {
+				jsonObj = new JSONObject();
+				jsonObj.put("exhID", lists.get(i).getExhID());
+				jsonObj.put("imageFile1", lists.get(i).getImageFile1());
+				jsonObj.put("exhName", lists.get(i).getExhName());
+				jsonObj.put("exhPlace", lists.get(i).getExhPlace());
+				jsonObj.put("exhStartDate", lists.get(i).getExhStartDate());
+				jsonObj.put("exhEndDate", lists.get(i).getExhEndDate());
 					
-					list.add(jsonObj);
-				}
+				list.add(jsonObj);
 			}
-			
-			int listCnt = lists.size(); //정렬로 찾을 경우의 전시갯수
-			System.out.println(listCnt);
-			JSONObject json = new JSONObject();
-			json.put("listCnt", listCnt);
-			list.add(json);
-			
-			jsonArray.add(list);
-			result = jsonArray.toJSONString();
-			int idx = result.indexOf("]");
-			res = result.substring(1,idx+1);
 		}
+			
+		int listCnt = lists.size(); //정렬로 찾을 경우의 전시갯수
+		System.out.println(listCnt);
+		jsonObj = new JSONObject();
+		jsonObj.put("listCnt", listCnt);
+		list.add(jsonObj);
+			
+		jsonArray.add(list);
+		result = jsonArray.toJSONString();
+		int idx = result.indexOf("]");
+		res = result.substring(1,idx+1);
 				
 		return "json:" + res;
 	}

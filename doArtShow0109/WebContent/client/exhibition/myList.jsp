@@ -94,10 +94,4 @@ if(request.getAttribute("dRsCnt")!=null) {
 </div>
 <jsp:include page="/module/3body_last.html" />
 </body>
-
-<script>
-
-
-</script>
-
 </html>

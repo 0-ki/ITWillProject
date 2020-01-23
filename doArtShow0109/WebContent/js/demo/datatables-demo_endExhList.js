@@ -14,7 +14,10 @@ $(document).ready(function() {
               "visible": false,
               "searchable": false
           },
-          
+          {
+              "targets": [ 5 ],
+              className: "exhName"
+          },
           {
         	  "targets": [ 6 ],
               "visible": false,
@@ -97,7 +100,7 @@ $(document).ready(function() {
 
   var tableData;
   
-  $('#dataTable tbody').on( 'click', 'tr', function () {
+  $('#dataTable tbody').on( 'click', 'tr', function (event) {
       tableData = table.row( this ).data()[0];
       
 	  $('#exhID').html(table.row( this ).data()[0]);
@@ -125,6 +128,31 @@ $(document).ready(function() {
 	  $('#imageFile').append(table.row( this ).data()[22]);
 	  $('#exhReadCount').html(table.row( this ).data()[23]);
 	  $('#registerDate').html(table.row( this ).data()[24]);
+	  
+	  $.ajax({
+		  url: "/doArtShow/getArtShowTag.do",
+		  type: "GET",
+		  data: "exhID=" + tableData,
+		  success: function(data){
+			  var str = data.split(',');
+			  var tags = "";
+			  
+			  for(var i = 1; i < str.length; i++) {
+				  tags += "#";
+				  tags += str[i];
+				  tags += " "; 
+			  }
+			  
+			  $('#exhGubun3').text(tags);
+		  }
+	  });
+	  
+  });
+  
+  $('#dataTable tbody').on( 'click', 'tr td', function () {
+	  if (this.className == " exhName") {
+		  $("#myModal").modal();
+	  }
   });
   
   $('input[type="checkbox"]').change(function(){
@@ -133,26 +161,47 @@ $(document).ready(function() {
 			  url: "/doArtShow/updateActiveFlag.do",
 			  type: "GET",
 			  data: "exhID=" + tableData + "&checked=true",
-			  dataType : "html",
-			  success: function(data){
-				  //console.log("updateActiveFlagTrue success");
-			  }
+			  success: function(data){}
 		  });
 	  } else {
+		  var end = $(this);
 		  $.ajax({
 			  url: "/doArtShow/updateActiveFlag.do",
 			  type: "GET",
 			  data: "exhID=" + tableData + "&checked=end",
 			  success: function(data){
-				  //console.log("updateActiveFlagFalse success");
+				  end.attr('disabled', true);
 			  }
 		  });
 	  } 
   });
   
-  $('.exhName').click(function() { 
-	  $("#myModal").modal();
+  $('#deleteBtn').click(function(){
+	  var exhID = $('#exhID').html();
+	  
+	  var conf = confirm("삭제하시겠습니까?");
+	  
+	  if (conf == true) {
+		  $.ajax({
+			  url: "/doArtShow/deleteExh.do",
+			  type: "GET",
+			  data: "exhID=" + exhID,
+			  success: function(data){
+				  if (data == "success") {
+					  alert("삭제하였습니다.");
+					  
+					  location.reload();
+				  } else {
+					  alert("실패하였습니다.");
+				  }
+			  },
+			  error:function(request,status,error){			
+			        alert("삭제할 수 없습니다.");
+					alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+			    }
+		  });
+	  } 
+	  
   });
-  
   
 }); 

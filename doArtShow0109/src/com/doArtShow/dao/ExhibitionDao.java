@@ -116,7 +116,7 @@ public class ExhibitionDao {
 	
 	
 	//----------------------------------seran----------------------------------
-		//전시목록을 출력하는 메서드(전체보기, 내림차순)
+		//전시목록을 출력하는 메서드(전체보기, 등록날짜 기준으로 내림차순)
 		public List<ExhListDto> selectList(){
 			System.out.println("##4번 ExhibitionDao실행 - selectList()");
 			
@@ -124,7 +124,7 @@ public class ExhibitionDao {
 			PreparedStatement pstmt = null;
 			ResultSet rs = null;
 			
-			String sql = "SELECT exhID, imageFile1, exhName, exhPlace, exhStartDate, exhEndDate FROM artshowdb.artshow ORDER BY exhID ASC";
+			String sql = "SELECT exhID, imageFile1, exhName, exhPlace, exhStartDate, exhEndDate FROM artshowdb.artshow ORDER BY registerDate DESC";
 			ArrayList<ExhListDto> lists = null;
 			
 			try {
@@ -192,32 +192,381 @@ public class ExhibitionDao {
 			
 		}//end - public int getListCount(){
 		
-		//정렬로 리스트 출력
-		public List<ExhListDto> selectSortList(String sortBtn){
-			System.out.println("##4-1번 ExhibitionDao실행 - selectSortList()");
+		//ajax로 정렬,더보기하여 전시목록을 가져오는 메소드
+		public List<ExhListDto> selectSortList(int inputSort, int inputTag, int inputLoc, int inputGen, int inputPage){
+			System.out.println("##4번 ExhibitionDao실행 - selectSortList()");
 						
 			Connection conn = null;
 			PreparedStatement pstmt = null;
 			ResultSet rs = null;
-						
+			
+			String tagName = "";
+			switch(inputTag){
+				case 1 : tagName = "데이트"; break;
+				case 2 : tagName = "인생샷"; break;
+				case 3 : tagName = "친구와함께"; break;
+				case 4 : tagName = "나혼자문화생활"; break;
+				case 5 : tagName = "부모님과함께"; break;
+				case 6 : tagName = "아이와함께"; break;
+				case 7 : tagName = "교육전시"; break;
+			}
+			String locName = "";
+			switch(inputLoc){
+				case 1 : locName = "서울"; break;
+				case 2 : locName = "인천/경기"; break;
+				case 3 : locName = "대전/충청"; break;
+				case 4 : locName = "광주/전라"; break;
+				case 5 : locName = "부산/경상"; break;
+				case 6 : locName = "강원"; break;
+				case 7 : locName = "제주"; break;
+			}
+			String genName = "";
+			switch(inputGen){
+				case 1 : genName = "서양화"; break;
+				case 2 : genName = "동양화"; break;
+				case 3 : genName = "유화"; break;
+				case 4 : genName = "조각"; break;
+				case 5 : genName = "설치미술"; break;
+				case 6 : genName = "미디어아트"; break;
+				case 7 : genName = "사진"; break;
+				case 8 : genName = "디자인"; break;
+				case 9 : genName = "공예"; break;
+			}
+				
+			System.out.println("tagName : " + tagName);
+			System.out.println("locName : " + locName);
+			System.out.println("genName : " + genName);
+			
 			String sql = "";
 			ArrayList<ExhListDto> lists = null;
-						
+
 			try {
 				conn = ds.getConnection();
-				if(sortBtn.equals("sortBtn0")){
-					sql = "SELECT exhID, imageFile1, exhName, exhPlace, exhStartDate, exhEndDate FROM artshowdb.artshow ORDER BY exhID ASC";
-				}else if(sortBtn.equals("sortBtn1")){ //진행중전시
-					sql = "SELECT exhID, imageFile1, exhName, exhPlace, exhStartDate, exhEndDate FROM artshowdb.artshow WHERE DATE(exhStartDate)<=DATE(now()) AND DATE(exhEndDate)>=DATE(now()) ORDER BY exhStartDate DESC";
-				}else if(sortBtn.equals("sortBtn2")){ //인기전시
-					sql = "SELECT exhID, imageFile1, exhName, exhPlace, exhStartDate, exhEndDate FROM artshowdb.artshow WHERE DATE(exhStartDate)<=DATE(now()) AND DATE(exhEndDate)>=DATE(now()) ORDER BY exhReadCount DESC";
-				}else if(sortBtn.equals("sortBtn3")){ //곧종료전시
-					sql = "SELECT exhID, imageFile1, exhName, exhPlace, exhStartDate, exhEndDate FROM artshowdb.artshow WHERE DATE(exhEndDate)>=DATE(now()) ORDER BY exhEndDate ASC";
-				}else if(sortBtn.equals("sortBtn4")){ //종료전시
-					sql = "SELECT exhID, imageFile1, exhName, exhPlace, exhStartDate, exhEndDate FROM artshowdb.artshow WHERE DATE(exhEndDate)<DATE(now()) ORDER BY exhEndDate DESC";
+				if(inputSort == 0){ //전체전시
+					if(inputTag > 0){
+						if(inputLoc > 0){
+							if(inputGen > 0){
+								sql = "SELECT exhID, imageFile1, exhName, exhPlace, exhStartDate, exhEndDate "
+										+ "FROM (SELECT artshow.exhID, imageFile1, exhName, exhPlace, exhStartDate, exhEndDate, registerDate, exhReadCount FROM artshow, artshowtag WHERE artshow.exhID = artshowtag.exhID AND artshowtag.tagName=? AND ExhGubun4=? AND ExhGubun2=?) AS sort "
+										+ "ORDER BY registerDate DESC "
+										+ "LIMIT " + (inputPage*15) + ",15";
+							}else if(inputGen == 0){
+								sql = "SELECT exhID, imageFile1, exhName, exhPlace, exhStartDate, exhEndDate "
+										+ "FROM (SELECT artshow.exhID, imageFile1, exhName, exhPlace, exhStartDate, exhEndDate, registerDate, exhReadCount FROM artshow, artshowtag WHERE artshow.exhID = artshowtag.exhID AND artshowtag.tagName=? AND ExhGubun4=?) AS sort "
+										+ "ORDER BY registerDate DESC "
+										+ "LIMIT " + (inputPage*15) + ",15";
+							}
+						}else if(inputLoc == 0){
+							if(inputGen > 0){
+								sql = "SELECT exhID, imageFile1, exhName, exhPlace, exhStartDate, exhEndDate "
+										+ "FROM (SELECT artshow.exhID, imageFile1, exhName, exhPlace, exhStartDate, exhEndDate, registerDate, exhReadCount FROM artshow, artshowtag WHERE artshow.exhID = artshowtag.exhID AND artshowtag.tagName=? AND ExhGubun2=?) AS sort "
+										+ "ORDER BY registerDate DESC "
+										+ "LIMIT " + (inputPage*15) + ",15";
+							}else if(inputGen == 0){
+								sql = "SELECT exhID, imageFile1, exhName, exhPlace, exhStartDate, exhEndDate "
+										+ "FROM (SELECT artshow.exhID, imageFile1, exhName, exhPlace, exhStartDate, exhEndDate, registerDate, exhReadCount FROM artshow, artshowtag WHERE artshow.exhID = artshowtag.exhID AND artshowtag.tagName=?) AS sort "
+										+ "ORDER BY registerDate DESC "
+										+ "LIMIT " + (inputPage*15) + ",15";
+							}
+						}
+					}else if(inputTag == 0){
+						if(inputLoc > 0){
+							if(inputGen > 0){
+								sql = "SELECT exhID, imageFile1, exhName, exhPlace, exhStartDate, exhEndDate "
+										+ "FROM (SELECT artshow.exhID, imageFile1, exhName, exhPlace, exhStartDate, exhEndDate, registerDate, exhReadCount FROM artshow WHERE ExhGubun4=? AND ExhGubun2=?) AS sort "
+										+ "ORDER BY registerDate DESC "
+										+ "LIMIT " + (inputPage*15) + ",15";
+							}else if(inputGen == 0){
+								sql = "SELECT exhID, imageFile1, exhName, exhPlace, exhStartDate, exhEndDate "
+										+ "FROM (SELECT artshow.exhID, imageFile1, exhName, exhPlace, exhStartDate, exhEndDate, registerDate, exhReadCount FROM artshow WHERE ExhGubun4=?) AS sort "
+										+ "ORDER BY registerDate DESC "
+										+ "LIMIT " + (inputPage*15) + ",15";
+							}
+						}else if(inputLoc == 0){
+							if(inputGen > 0){
+								sql = "SELECT exhID, imageFile1, exhName, exhPlace, exhStartDate, exhEndDate "
+										+ "FROM (SELECT artshow.exhID, imageFile1, exhName, exhPlace, exhStartDate, exhEndDate, registerDate, exhReadCount FROM artshow WHERE ExhGubun2=?) AS sort "
+										+ "ORDER BY registerDate DESC "
+										+ "LIMIT " + (inputPage*15) + ",15";
+							}else if(inputGen == 0){
+								sql = "SELECT exhID, imageFile1, exhName, exhPlace, exhStartDate, exhEndDate "
+										+ "FROM (SELECT artshow.exhID, imageFile1, exhName, exhPlace, exhStartDate, exhEndDate, registerDate, exhReadCount FROM artshow) AS sort "
+										+ "ORDER BY registerDate DESC "
+										+ "LIMIT " + (inputPage*15) + ",15";
+							}
+						}
+					}
+				}else if(inputSort == 1){ //진행중 전시
+					if(inputTag > 0){
+						if(inputLoc > 0){
+							if(inputGen > 0){
+								sql = "SELECT exhID, imageFile1, exhName, exhPlace, exhStartDate, exhEndDate "
+										+ "FROM (SELECT artshow.exhID, imageFile1, exhName, exhPlace, exhStartDate, exhEndDate, registerDate, exhReadCount FROM artshow, artshowtag WHERE artshow.exhID = artshowtag.exhID AND artshowtag.tagName=? AND ExhGubun4=? AND ExhGubun2=?) AS sort "
+										+ "WHERE DATE(exhStartDate)<=DATE(now()) AND DATE(exhEndDate)>=DATE(now()) "
+										+ "ORDER BY exhStartDate DESC "
+										+ "LIMIT " + (inputPage*15) + ",15";
+							}else if(inputGen == 0){
+								sql = "SELECT exhID, imageFile1, exhName, exhPlace, exhStartDate, exhEndDate "
+										+ "FROM (SELECT artshow.exhID, imageFile1, exhName, exhPlace, exhStartDate, exhEndDate, registerDate, exhReadCount FROM artshow, artshowtag WHERE artshow.exhID = artshowtag.exhID AND artshowtag.tagName=? AND ExhGubun4=?) AS sort "
+										+ "WHERE DATE(exhStartDate)<=DATE(now()) AND DATE(exhEndDate)>=DATE(now()) "
+										+ "ORDER BY exhStartDate DESC "
+										+ "LIMIT " + (inputPage*15) + ",15";
+							}
+						}else if(inputLoc == 0){
+							if(inputGen > 0){
+								sql = "SELECT exhID, imageFile1, exhName, exhPlace, exhStartDate, exhEndDate "
+										+ "FROM (SELECT artshow.exhID, imageFile1, exhName, exhPlace, exhStartDate, exhEndDate, registerDate, exhReadCount FROM artshow, artshowtag WHERE artshow.exhID = artshowtag.exhID AND artshowtag.tagName=? AND ExhGubun2=?) AS sort "
+										+ "WHERE DATE(exhStartDate)<=DATE(now()) AND DATE(exhEndDate)>=DATE(now()) "
+										+ "ORDER BY exhStartDate DESC "
+										+ "LIMIT " + (inputPage*15) + ",15";
+							}else if(inputGen == 0){
+								sql = "SELECT exhID, imageFile1, exhName, exhPlace, exhStartDate, exhEndDate "
+										+ "FROM (SELECT artshow.exhID, imageFile1, exhName, exhPlace, exhStartDate, exhEndDate, registerDate, exhReadCount FROM artshow, artshowtag WHERE artshow.exhID = artshowtag.exhID AND artshowtag.tagName=?) AS sort "
+										+ "WHERE DATE(exhStartDate)<=DATE(now()) AND DATE(exhEndDate)>=DATE(now()) "
+										+ "ORDER BY exhStartDate DESC "
+										+ "LIMIT " + (inputPage*15) + ",15";
+							}
+						}
+					}else if(inputTag == 0){
+						if(inputLoc > 0){
+							if(inputGen > 0){
+								sql = "SELECT exhID, imageFile1, exhName, exhPlace, exhStartDate, exhEndDate "
+										+ "FROM (SELECT artshow.exhID, imageFile1, exhName, exhPlace, exhStartDate, exhEndDate, registerDate, exhReadCount FROM artshow WHERE ExhGubun4=? AND ExhGubun2=?) AS sort "
+										+ "WHERE DATE(exhStartDate)<=DATE(now()) AND DATE(exhEndDate)>=DATE(now()) "
+										+ "ORDER BY exhStartDate DESC "
+										+ "LIMIT " + (inputPage*15) + ",15";
+							}else if(inputGen == 0){
+								sql = "SELECT exhID, imageFile1, exhName, exhPlace, exhStartDate, exhEndDate "
+										+ "FROM (SELECT artshow.exhID, imageFile1, exhName, exhPlace, exhStartDate, exhEndDate, registerDate, exhReadCount FROM artshow WHERE ExhGubun4=?) AS sort "
+										+ "WHERE DATE(exhStartDate)<=DATE(now()) AND DATE(exhEndDate)>=DATE(now()) "
+										+ "ORDER BY exhStartDate DESC "
+										+ "LIMIT " + (inputPage*15) + ",15";
+							}
+						}else if(inputLoc == 0){
+							if(inputGen > 0){
+								sql = "SELECT exhID, imageFile1, exhName, exhPlace, exhStartDate, exhEndDate "
+										+ "FROM (SELECT artshow.exhID, imageFile1, exhName, exhPlace, exhStartDate, exhEndDate, registerDate, exhReadCount FROM artshow WHERE ExhGubun2=?) AS sort "
+										+ "WHERE DATE(exhStartDate)<=DATE(now()) AND DATE(exhEndDate)>=DATE(now()) "
+										+ "ORDER BY exhStartDate DESC "
+										+ "LIMIT " + (inputPage*15) + ",15";
+							}else if(inputGen == 0){
+								sql = "SELECT exhID, imageFile1, exhName, exhPlace, exhStartDate, exhEndDate "
+										+ "FROM (SELECT artshow.exhID, imageFile1, exhName, exhPlace, exhStartDate, exhEndDate, registerDate, exhReadCount FROM artshow) AS sort "
+										+ "WHERE DATE(exhStartDate)<=DATE(now()) AND DATE(exhEndDate)>=DATE(now()) "
+										+ "ORDER BY exhStartDate DESC "
+										+ "LIMIT " + (inputPage*15) + ",15";
+							}
+						}
+					}
+				}else if(inputSort == 2){ //인기전시
+					if(inputTag > 0){
+						if(inputLoc > 0){
+							if(inputGen > 0){
+								sql = "SELECT exhID, imageFile1, exhName, exhPlace, exhStartDate, exhEndDate "
+										+ "FROM (SELECT artshow.exhID, imageFile1, exhName, exhPlace, exhStartDate, exhEndDate, registerDate, exhReadCount FROM artshow, artshowtag WHERE artshow.exhID = artshowtag.exhID AND artshowtag.tagName=? AND ExhGubun4=? AND ExhGubun2=?) AS sort "
+										+ "WHERE DATE(exhStartDate)<=DATE(now()) AND DATE(exhEndDate)>=DATE(now()) "
+										+ "ORDER BY exhReadCount DESC "
+										+ "LIMIT " + (inputPage*15) + ",15";
+							}else if(inputGen == 0){
+								sql = "SELECT exhID, imageFile1, exhName, exhPlace, exhStartDate, exhEndDate "
+										+ "FROM (SELECT artshow.exhID, imageFile1, exhName, exhPlace, exhStartDate, exhEndDate, registerDate, exhReadCount FROM artshow, artshowtag WHERE artshow.exhID = artshowtag.exhID AND artshowtag.tagName=? AND ExhGubun4=?) AS sort "
+										+ "WHERE DATE(exhStartDate)<=DATE(now()) AND DATE(exhEndDate)>=DATE(now()) "
+										+ "ORDER BY exhReadCount DESC "
+										+ "LIMIT " + (inputPage*15) + ",15";
+							}
+						}else if(inputLoc == 0){
+							if(inputGen > 0){
+								sql = "SELECT exhID, imageFile1, exhName, exhPlace, exhStartDate, exhEndDate "
+										+ "FROM (SELECT artshow.exhID, imageFile1, exhName, exhPlace, exhStartDate, exhEndDate, registerDate, exhReadCount FROM artshow, artshowtag WHERE artshow.exhID = artshowtag.exhID AND artshowtag.tagName=? AND ExhGubun2=?) AS sort "
+										+ "WHERE DATE(exhStartDate)<=DATE(now()) AND DATE(exhEndDate)>=DATE(now()) "
+										+ "ORDER BY exhReadCount DESC "
+										+ "LIMIT " + (inputPage*15) + ",15";
+							}else if(inputGen == 0){
+								sql = "SELECT exhID, imageFile1, exhName, exhPlace, exhStartDate, exhEndDate "
+										+ "FROM (SELECT artshow.exhID, imageFile1, exhName, exhPlace, exhStartDate, exhEndDate, registerDate, exhReadCount FROM artshow, artshowtag WHERE artshow.exhID = artshowtag.exhID AND artshowtag.tagName=?) AS sort "
+										+ "WHERE DATE(exhStartDate)<=DATE(now()) AND DATE(exhEndDate)>=DATE(now()) "
+										+ "ORDER BY exhReadCount DESC "
+										+ "LIMIT " + (inputPage*15) + ",15";
+							}
+						}
+					}else if(inputTag == 0){
+						if(inputLoc > 0){
+							if(inputGen > 0){
+								sql = "SELECT exhID, imageFile1, exhName, exhPlace, exhStartDate, exhEndDate "
+										+ "FROM (SELECT artshow.exhID, imageFile1, exhName, exhPlace, exhStartDate, exhEndDate, registerDate, exhReadCount FROM artshow WHERE ExhGubun4=? AND ExhGubun2=?) AS sort "
+										+ "WHERE DATE(exhStartDate)<=DATE(now()) AND DATE(exhEndDate)>=DATE(now()) "
+										+ "ORDER BY exhReadCount DESC "
+										+ "LIMIT " + (inputPage*15) + ",15";
+							}else if(inputGen == 0){
+								sql = "SELECT exhID, imageFile1, exhName, exhPlace, exhStartDate, exhEndDate "
+										+ "FROM (SELECT artshow.exhID, imageFile1, exhName, exhPlace, exhStartDate, exhEndDate, registerDate, exhReadCount FROM artshow WHERE ExhGubun4=?) AS sort "
+										+ "WHERE DATE(exhStartDate)<=DATE(now()) AND DATE(exhEndDate)>=DATE(now()) "
+										+ "ORDER BY exhReadCount DESC "
+										+ "LIMIT " + (inputPage*15) + ",15";
+							}
+						}else if(inputLoc == 0){
+							if(inputGen > 0){
+								sql = "SELECT exhID, imageFile1, exhName, exhPlace, exhStartDate, exhEndDate "
+										+ "FROM (SELECT artshow.exhID, imageFile1, exhName, exhPlace, exhStartDate, exhEndDate, registerDate, exhReadCount FROM artshow WHERE ExhGubun2=?) AS sort "
+										+ "WHERE DATE(exhStartDate)<=DATE(now()) AND DATE(exhEndDate)>=DATE(now()) "
+										+ "ORDER BY exhReadCount DESC "
+										+ "LIMIT " + (inputPage*15) + ",15";
+							}else if(inputGen == 0){
+								sql = "SELECT exhID, imageFile1, exhName, exhPlace, exhStartDate, exhEndDate "
+										+ "FROM (SELECT artshow.exhID, imageFile1, exhName, exhPlace, exhStartDate, exhEndDate, registerDate, exhReadCount FROM artshow) AS sort "
+										+ "WHERE DATE(exhStartDate)<=DATE(now()) AND DATE(exhEndDate)>=DATE(now()) "
+										+ "ORDER BY exhReadCount DESC "
+										+ "LIMIT " + (inputPage*15) + ",15";
+							}
+						}
+					}
+				}else if(inputSort == 3){ //곧종료전시
+					if(inputTag > 0){
+						if(inputLoc > 0){
+							if(inputGen > 0){
+								sql = "SELECT exhID, imageFile1, exhName, exhPlace, exhStartDate, exhEndDate "
+										+ "FROM (SELECT artshow.exhID, imageFile1, exhName, exhPlace, exhStartDate, exhEndDate, registerDate, exhReadCount FROM artshow, artshowtag WHERE artshow.exhID = artshowtag.exhID AND artshowtag.tagName=? AND ExhGubun4=? AND ExhGubun2=?) AS sort "
+										+ "WHERE DATE(exhEndDate)>=DATE(now()) "
+										+ "ORDER BY exhEndDate ASC "
+										+ "LIMIT " + (inputPage*15) + ",15";
+							}else if(inputGen == 0){
+								sql = "SELECT exhID, imageFile1, exhName, exhPlace, exhStartDate, exhEndDate "
+										+ "FROM (SELECT artshow.exhID, imageFile1, exhName, exhPlace, exhStartDate, exhEndDate, registerDate, exhReadCount FROM artshow, artshowtag WHERE artshow.exhID = artshowtag.exhID AND artshowtag.tagName=? AND ExhGubun4=?) AS sort "
+										+ "WHERE DATE(exhEndDate)>=DATE(now()) "
+										+ "ORDER BY exhEndDate ASC "
+										+ "LIMIT " + (inputPage*15) + ",15";
+							}
+						}else if(inputLoc == 0){
+							if(inputGen > 0){
+								sql = "SELECT exhID, imageFile1, exhName, exhPlace, exhStartDate, exhEndDate "
+										+ "FROM (SELECT artshow.exhID, imageFile1, exhName, exhPlace, exhStartDate, exhEndDate, registerDate, exhReadCount FROM artshow, artshowtag WHERE artshow.exhID = artshowtag.exhID AND artshowtag.tagName=? AND ExhGubun2=?) AS sort "
+										+ "WHERE DATE(exhEndDate)>=DATE(now()) "
+										+ "ORDER BY exhEndDate ASC "
+										+ "LIMIT " + (inputPage*15) + ",15";
+							}else if(inputGen == 0){
+								sql = "SELECT exhID, imageFile1, exhName, exhPlace, exhStartDate, exhEndDate "
+										+ "FROM (SELECT artshow.exhID, imageFile1, exhName, exhPlace, exhStartDate, exhEndDate, registerDate, exhReadCount FROM artshow, artshowtag WHERE artshow.exhID = artshowtag.exhID AND artshowtag.tagName=?) AS sort "
+										+ "WHERE DATE(exhEndDate)>=DATE(now()) "
+										+ "ORDER BY exhEndDate ASC "
+										+ "LIMIT " + (inputPage*15) + ",15";
+							}
+						}
+					}else if(inputTag == 0){
+						if(inputLoc > 0){
+							if(inputGen > 0){
+								sql = "SELECT exhID, imageFile1, exhName, exhPlace, exhStartDate, exhEndDate "
+										+ "FROM (SELECT artshow.exhID, imageFile1, exhName, exhPlace, exhStartDate, exhEndDate, registerDate, exhReadCount FROM artshow WHERE ExhGubun4=? AND ExhGubun2=?) AS sort "
+										+ "WHERE DATE(exhEndDate)>=DATE(now()) "
+										+ "ORDER BY exhEndDate ASC "
+										+ "LIMIT " + (inputPage*15) + ",15";
+							}else if(inputGen == 0){
+								sql = "SELECT exhID, imageFile1, exhName, exhPlace, exhStartDate, exhEndDate "
+										+ "FROM (SELECT artshow.exhID, imageFile1, exhName, exhPlace, exhStartDate, exhEndDate, registerDate, exhReadCount FROM artshow WHERE ExhGubun4=?) AS sort "
+										+ "WHERE DATE(exhEndDate)>=DATE(now()) "
+										+ "ORDER BY exhEndDate ASC "
+										+ "LIMIT " + (inputPage*15) + ",15";
+							}
+						}else if(inputLoc == 0){
+							if(inputGen > 0){
+								sql = "SELECT exhID, imageFile1, exhName, exhPlace, exhStartDate, exhEndDate "
+										+ "FROM (SELECT artshow.exhID, imageFile1, exhName, exhPlace, exhStartDate, exhEndDate, registerDate, exhReadCount FROM artshow WHERE ExhGubun2=?) AS sort "
+										+ "WHERE DATE(exhEndDate)>=DATE(now()) "
+										+ "ORDER BY exhEndDate ASC "
+										+ "LIMIT " + (inputPage*15) + ",15";
+							}else if(inputGen == 0){
+								sql = "SELECT exhID, imageFile1, exhName, exhPlace, exhStartDate, exhEndDate "
+										+ "FROM (SELECT artshow.exhID, imageFile1, exhName, exhPlace, exhStartDate, exhEndDate, registerDate, exhReadCount FROM artshow) AS sort "
+										+ "WHERE DATE(exhEndDate)>=DATE(now()) "
+										+ "ORDER BY exhEndDate ASC "
+										+ "LIMIT " + (inputPage*15) + ",15";
+							}
+						}
+					}
+				}else if(inputSort == 4){ //종료전시
+					if(inputTag > 0){
+						if(inputLoc > 0){
+							if(inputGen > 0){
+								sql = "SELECT exhID, imageFile1, exhName, exhPlace, exhStartDate, exhEndDate "
+										+ "FROM (SELECT artshow.exhID, imageFile1, exhName, exhPlace, exhStartDate, exhEndDate, registerDate, exhReadCount FROM artshow, artshowtag WHERE artshow.exhID = artshowtag.exhID AND artshowtag.tagName=? AND ExhGubun4=? AND ExhGubun2=?) AS sort "
+										+ "WHERE DATE(exhEndDate)<DATE(now()) "
+										+ "ORDER BY exhEndDate DESC "
+										+ "LIMIT " + (inputPage*15) + ",15";
+							}else if(inputGen == 0){
+								sql = "SELECT exhID, imageFile1, exhName, exhPlace, exhStartDate, exhEndDate "
+										+ "FROM (SELECT artshow.exhID, imageFile1, exhName, exhPlace, exhStartDate, exhEndDate, registerDate, exhReadCount FROM artshow, artshowtag WHERE artshow.exhID = artshowtag.exhID AND artshowtag.tagName=? AND ExhGubun4=?) AS sort "
+										+ "WHERE DATE(exhEndDate)<DATE(now()) "
+										+ "ORDER BY exhEndDate DESC "
+										+ "LIMIT " + (inputPage*15) + ",15";
+							}
+						}else if(inputLoc == 0){
+							if(inputGen > 0){
+								sql = "SELECT exhID, imageFile1, exhName, exhPlace, exhStartDate, exhEndDate "
+										+ "FROM (SELECT artshow.exhID, imageFile1, exhName, exhPlace, exhStartDate, exhEndDate, registerDate, exhReadCount FROM artshow, artshowtag WHERE artshow.exhID = artshowtag.exhID AND artshowtag.tagName=? AND ExhGubun2=?) AS sort "
+										+ "WHERE DATE(exhEndDate)<DATE(now()) "
+										+ "ORDER BY exhEndDate DESC "
+										+ "LIMIT " + (inputPage*15) + ",15";
+							}else if(inputGen == 0){
+								sql = "SELECT exhID, imageFile1, exhName, exhPlace, exhStartDate, exhEndDate "
+										+ "FROM (SELECT artshow.exhID, imageFile1, exhName, exhPlace, exhStartDate, exhEndDate, registerDate, exhReadCount FROM artshow, artshowtag WHERE artshow.exhID = artshowtag.exhID AND artshowtag.tagName=?) AS sort "
+										+ "WHERE DATE(exhEndDate)<DATE(now()) "
+										+ "ORDER BY exhEndDate DESC "
+										+ "LIMIT " + (inputPage*15) + ",15";
+							}
+						}
+					}else if(inputTag == 0){
+						if(inputLoc > 0){
+							if(inputGen > 0){
+								sql = "SELECT exhID, imageFile1, exhName, exhPlace, exhStartDate, exhEndDate "
+										+ "FROM (SELECT artshow.exhID, imageFile1, exhName, exhPlace, exhStartDate, exhEndDate, registerDate, exhReadCount FROM artshow WHERE ExhGubun4=? AND ExhGubun2=?) AS sort "
+										+ "WHERE DATE(exhEndDate)<DATE(now()) "
+										+ "ORDER BY exhEndDate DESC "
+										+ "LIMIT " + (inputPage*15) + ",15";
+							}else if(inputGen == 0){
+								sql = "SELECT exhID, imageFile1, exhName, exhPlace, exhStartDate, exhEndDate "
+										+ "FROM (SELECT artshow.exhID, imageFile1, exhName, exhPlace, exhStartDate, exhEndDate, registerDate, exhReadCount FROM artshow WHERE ExhGubun4=?) AS sort "
+										+ "WHERE DATE(exhEndDate)<DATE(now()) "
+										+ "ORDER BY exhEndDate DESC "
+										+ "LIMIT " + (inputPage*15) + ",15";
+							}
+						}else if(inputLoc == 0){
+							if(inputGen > 0){
+								sql = "SELECT exhID, imageFile1, exhName, exhPlace, exhStartDate, exhEndDate "
+										+ "FROM (SELECT artshow.exhID, imageFile1, exhName, exhPlace, exhStartDate, exhEndDate, registerDate, exhReadCount FROM artshow WHERE ExhGubun2=?) AS sort "
+										+ "WHERE DATE(exhEndDate)<DATE(now()) "
+										+ "ORDER BY exhEndDate DESC "
+										+ "LIMIT " + (inputPage*15) + ",15";
+							}else if(inputGen == 0){
+								sql = "SELECT exhID, imageFile1, exhName, exhPlace, exhStartDate, exhEndDate "
+										+ "FROM (SELECT artshow.exhID, imageFile1, exhName, exhPlace, exhStartDate, exhEndDate, registerDate, exhReadCount FROM artshow) AS sort "
+										+ "WHERE DATE(exhEndDate)<DATE(now()) "
+										+ "ORDER BY exhEndDate DESC "
+										+ "LIMIT " + (inputPage*15) + ",15";
+							}
+						}
+					}
 				}
+				
 				pstmt = conn.prepareStatement(sql);
-							
+				if(inputTag != 0 && inputLoc != 0 && inputGen != 0){
+					pstmt.setString(1, tagName);
+					pstmt.setString(2, locName);
+					pstmt.setString(3, genName);
+				}else if(inputTag != 0 && inputLoc != 0 && inputGen == 0){
+					pstmt.setString(1, tagName);
+					pstmt.setString(2, locName);
+				}else if(inputTag != 0 && inputLoc == 0 && inputGen != 0){
+					pstmt.setString(1, tagName);
+					pstmt.setString(2, genName);
+				}else if(inputTag == 0 && inputLoc != 0 && inputGen != 0){
+					pstmt.setString(1, locName);
+					pstmt.setString(2, genName);
+				}else if(inputTag != 0 && inputLoc == 0 && inputGen == 0){
+					pstmt.setString(1, tagName);
+				}else if(inputTag == 0 && inputLoc != 0 && inputGen == 0){
+					pstmt.setString(1, locName);
+				}else if(inputTag == 0 && inputLoc == 0 && inputGen != 0){
+					pstmt.setString(1, genName);
+				}
 				rs = pstmt.executeQuery();
 							
 				lists = new ArrayList<ExhListDto>();
@@ -246,60 +595,8 @@ public class ExhibitionDao {
 					
 			return lists;
 						
-		}
-					
-		//태그로 리스트 출력
-		public List<ExhListDto> selectTagList(String ctgBtn, String ctgName){
-			System.out.println("##4-1번 ExhibitionDao실행 - selectTagList()");
-							
-			Connection conn = null;
-			PreparedStatement pstmt = null;
-			ResultSet rs = null;
-							
-			String sql = "";
-			ArrayList<ExhListDto> lists = null;
-							
-			try {
-				conn = ds.getConnection();
-				if(ctgBtn.equals("tagCtg")){ //태그로 찾기
-					sql = "SELECT exhID, imageFile1, exhName, exhPlace, exhStartDate, exhEndDate FROM artshowdb.artshow WHERE DATE(exhStartDate)<=DATE(now()) AND DATE(exhEndDate)>=DATE(now()) AND exhid IN (SELECT exhid FROM artshowdb.artshowtag WHERE tagname=?) ORDER BY registerDate ASC";
-				}else if(ctgBtn.equals("locCtg")){ //위치로 찾기
-					sql = "SELECT exhID, imageFile1, exhName, exhPlace, exhStartDate, exhEndDate FROM artshowdb.artshow WHERE DATE(exhStartDate)<=DATE(now()) AND DATE(exhEndDate)>=DATE(now()) AND ExhGubun4=? ORDER BY registerDate ASC";
-				}else if(ctgBtn.equals("genCtg")){ //장르로 찾기
-					sql = "SELECT exhID, imageFile1, exhName, exhPlace, exhStartDate, exhEndDate FROM artshowdb.artshow WHERE DATE(exhStartDate)<=DATE(now()) AND DATE(exhEndDate)>=DATE(now()) AND ExhGubun2=? ORDER BY registerDate ASC";
-				}
-				pstmt = conn.prepareStatement(sql);
-				pstmt.setString(1, ctgName);
-							
-				rs = pstmt.executeQuery();
-								
-				lists = new ArrayList<ExhListDto>();
-				ExhListDto art = null;
-								
-				while(rs.next()) {
-					art = new ExhListDto();
-									
-					art.setExhID(rs.getInt("exhID"));
-					art.setImageFile1(rs.getString("imageFile1"));
-					art.setExhName(rs.getString("exhName"));
-					art.setExhPlace(rs.getString("exhPlace"));
-					art.setExhStartDate(rs.getString("exhStartDate"));
-					art.setExhEndDate(rs.getString("exhEndDate"));
-									
-					lists.add(art);
-				}
-								
-			} catch (Exception e) {
-				e.printStackTrace();
-			} finally {
-				try {if (rs != null) rs.close();} catch(Exception e) {}
-				try {if (pstmt != null) pstmt.close();} catch(Exception e) {}
-				try {if (conn != null) conn.close();} catch(Exception e) {}
-			}
-							
-			return lists;
-							
-		}
+		}//end - public List<ExhListDto> selectSortList(int inputSort, int inputTag, int inputLoc, int inputGen, int inputPage)
+		
 		
 		//리스트 목록의 content를 불러오는 메서드
 		public ExhibitionDto selectOne(int exhID){
@@ -310,7 +607,7 @@ public class ExhibitionDao {
 			ResultSet rs = null;
 			
 			ExhibitionDto content = null;
-			String sql = "SELECT * FROM artshowdb.artshow WHERE exhID=? and activeFlag='Y' ";
+			String sql = "SELECT * FROM artshowdb.artshow WHERE exhID=?";
 			
 			try {
 				conn = ds.getConnection();
@@ -495,6 +792,7 @@ public class ExhibitionDao {
 			
 			return wishchk;
 		}//end - public int wishCheck(String email, int exhID)
+		
 	
 		//-------------------------------------------------------------------------------------------------------------
 //		programmed by Hojeong - begin
@@ -1011,6 +1309,51 @@ public int getTagCount(Integer exhID) {
 //programmed @20/01/20(yy/MM/dd)
 //-------------------------------------------------------------------------------------------------------------	
 //-------------------------------------------------------------------------------------------------------------
+//public String[] getImageFile(int exhID) - begin
+//ExhID에 해당하는 imageFile들의 파일명 가져오기(전시회 삭제시, imageFile도 삭제하기 위해서)
+//programmed @20/01/21(yy/MM/dd)
+//-------------------------------------------------------------------------------------------------------------
+	public String[] getImageFile(int exhID) {
+
+		System.out.println("getImageFile - Dao");
+		Connection 			conn 		= null;
+		PreparedStatement 	pstmt 		= null;
+		ResultSet 			rs 			= null;
+		int					count		= 0;
+		String 				sql 		= null;
+		String[] 			imageFile 	= new String[4];
+		
+		try {
+			conn = ds.getConnection();
+			pstmt =	conn.prepareStatement(" select imageFile1, imageFile2, imageFile3, imageFile4 "
+					+ " from artshow "
+					+ " where exhID=? ");
+			pstmt.setInt(1, exhID);
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()){
+				imageFile[0] = rs.getString(1);
+				imageFile[1] = rs.getString(2);
+				imageFile[2] = rs.getString(3);
+				imageFile[3] = rs.getString(4);
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {if(rs!=null)rs.close();} catch (Exception e) {}
+			try {if(pstmt!=null)pstmt.close();} catch (Exception e) {}
+			try {if(conn!=null)conn.close();} catch (Exception e) {}
+		}
+		
+		return imageFile;
+	}
+//-------------------------------------------------------------------------------------------------------------
+//public String[] getImageFile(int exhID) - end
+//ExhID에 해당하는 imageFile들의 파일명 가져오기(전시회 삭제시, imageFile도 삭제하기 위해서)
+//programmed @20/01/21(yy/MM/dd)
+//-------------------------------------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------------------------------------
 //programmed by Hojeong - end
 //-------------------------------------------------------------------------------------------------------------
 
@@ -1118,6 +1461,7 @@ public int getTagCount(Integer exhID) {
 				}
 				return myExhCount;
 			}
+			
 	
 	
 	

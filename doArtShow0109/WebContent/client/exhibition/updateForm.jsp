@@ -56,7 +56,12 @@ try {
 	}
 */	
 %>
-<jsp:include page="/module/1doctype_head.jsp"></jsp:include>     
+<jsp:include page="/module/1doctype_head.jsp"></jsp:include>
+<style>
+.updateForm1{
+display: inline-block;
+}
+</style>
 <body>
 <jsp:include page="/module/2body_first.jsp"></jsp:include>
 <%	Date nowTime = new Date();
@@ -92,13 +97,13 @@ try {
                 </tr>
                 <tr>
                     <th>
-                        <lable for="">*신청자</lable> <!-- member 테이블에서 가져온다. readonly-->
+                        <label for="">*신청자</label> <!-- member 테이블에서 가져온다. readonly-->
                     </th>
                     <td><input type="text" name="memberID" id="memberID" value="${exhibition.memberID }" readOnly style="width:100%; padding: .8em .5em;" class="updateForm"></td>
                 </tr>
                 <tr>
                     <th>
-                        <lable for="">*장르</lable>
+                        <label for="">*장르</label>
                     </th>
                     <td>          
                         <select name="exhGubun2" id="exhGubun2" style="width:100%; padding: .8em .5em;" required>
@@ -116,16 +121,49 @@ try {
                     </td>
                 </tr>
                 <tr>
-                    <th><lable for="">*태그</lable>
+                    <th><label for="">*태그</label>
                     <p style="font-size:14px; line-height:22px; letter-spacing:-0.6px; font-weight:300;">(최대 3개 선택)</p></th>
                     <td style="padding: .8em .5em;">
-                        #데이트				<input name="exhGubun3" type="checkbox" value="데이트" class="updateForm"				<%for(int i=0; i<tagList.size(); i++) if ("데이트".equals(tagList.get(i).getExhTagName())) 			{%>checked<%} %>>
-                    	#인생샷				<input name="exhGubun3" type="checkbox" value="인생샷" class="updateForm"				<%for(int i=0; i<tagList.size(); i++) if ("인생샷".equals(tagList.get(i).getExhTagName())) 			{%>checked<%} %>>
-                    	#친구와함께		<input name="exhGubun3" type="checkbox" value="친구와함께" class="updateForm"		 	<%for(int i=0; i<tagList.size(); i++) if ("친구와함께".equals(tagList.get(i).getExhTagName()))		{%>checked<%} %>>
-                    	#나혼자문화생활	<input name="exhGubun3" type="checkbox" value="나혼자문화생활"	class="updateForm"	<%for(int i=0; i<tagList.size(); i++) if ("나혼자문화생활".equals(tagList.get(i).getExhTagName())) {%>checked<%} %>>
-                    	#부모님과함께		<input name="exhGubun3" type="checkbox" value="부모님과함께" class="updateForm"		<%for(int i=0; i<tagList.size(); i++) if ("부모님과함께".equals(tagList.get(i).getExhTagName()))	{%>checked<%} %>>
-                    	#아이와함께		<input name="exhGubun3" type="checkbox" value="아이와함께" 	class="updateForm"		<%for(int i=0; i<tagList.size(); i++) if ("아이와함께".equals(tagList.get(i).getExhTagName())) 		{%>checked<%} %>>
-                    	#교육전시			<input name="exhGubun3" type="checkbox" value="교육전시" class="updateForm"			<%for(int i=0; i<tagList.size(); i++) if ("교육전시".equals(tagList.get(i).getExhTagName())) 			{%>checked<%} %>>
+           				<label for="exhGubun31" style="font-weight:300;">
+           				<input name="exhGubun3" type="checkbox" value="데이트" class="updateForm1" id="exhGubun31" <%for(int i=0; i<tagList.size(); i++) if ("데이트".equals(tagList.get(i).getExhTagName())) 			{%>checked<%} %>>
+                        &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                        #데이트
+                        </label>
+                        <br>
+           				<label for="exhGubun32" style="font-weight:300;">
+                    	<input name="exhGubun3" type="checkbox" value="인생샷" class="updateForm1" id="exhGubun32" <%for(int i=0; i<tagList.size(); i++) if ("인생샷".equals(tagList.get(i).getExhTagName())) 			{%>checked<%} %>>
+                        &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                    	#인생샷
+                        </label>
+                        <br>
+           				<label for="exhGubun33" style="font-weight:300;">
+                    	<input name="exhGubun3" type="checkbox" value="친구와함께" class="updateForm1"	id="exhGubun33"	<%for(int i=0; i<tagList.size(); i++) if ("친구와함께".equals(tagList.get(i).getExhTagName()))		{%>checked<%} %>>
+                        &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                    	#친구와함께
+                        </label>
+                        <br>
+           				<label for="exhGubun34" style="font-weight:300;">
+                    	<input name="exhGubun3" type="checkbox" value="나혼자문화생활"	class="updateForm1"	id="exhGubun34" <%for(int i=0; i<tagList.size(); i++) if ("나혼자문화생활".equals(tagList.get(i).getExhTagName())) {%>checked<%} %>>
+                        &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                    	#나혼자문화생활
+                        </label>
+                        <br>
+           				<label for="exhGubun35" style="font-weight:300;">
+                    	<input name="exhGubun3" type="checkbox" value="부모님과함께" class="updateForm1" id="exhGubun35" <%for(int i=0; i<tagList.size(); i++) if ("부모님과함께".equals(tagList.get(i).getExhTagName()))	{%>checked<%} %>>
+                        &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                    	#부모님과함께
+                        </label>
+                        <br>
+           				<label for="exhGubun36" style="font-weight:300;">
+                    	<input name="exhGubun3" type="checkbox" value="아이와함께" 	class="updateForm1"	id="exhGubun36"	<%for(int i=0; i<tagList.size(); i++) if ("아이와함께".equals(tagList.get(i).getExhTagName())) 		{%>checked<%} %>>
+                        &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                    	#아이와함께
+                        </label>
+                        <br>
+           				<label for="exhGubun37" style="font-weight:300;">
+                    	<input name="exhGubun3" type="checkbox" value="교육전시" class="updateForm1" id="exhGubun37" <%for(int i=0; i<tagList.size(); i++) if ("교육전시".equals(tagList.get(i).getExhTagName())) 			{%>checked<%} %>>
+                        &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                    	#교육전시			
                     </td>	
                 </tr>
                 <tr>
@@ -157,8 +195,8 @@ try {
                 <tr>
                         <th>*전시관 주소</th>
                         <td>
-               			<input type="text"  class="updateForm"id="exhPlaceAddr1" name="exhPlaceAddr1" id="exhPlaceAddr1" value="${exhibition.exhPlaceAddr1}" style="width:90%;"> 
-                		<input type="button" class="updateForm" onclick="sample5_execDaumPostcode()" value="주소 검색" style="width:9%;"><br> 
+               			<input type="text"  class="updateForm" id="exhPlaceAddr1" name="exhPlaceAddr1" id="exhPlaceAddr1" value="${exhibition.exhPlaceAddr1}" style="width:90%;" readOnly onclick="sample6_execDaumPostcode_1()"> 
+                		<input type="button" class="updateForm" onclick="sample6_execDaumPostcode_1()" value="주소 검색" style="width:9%;"><br> 
 						<div id="map" style="width:300px;height:300px;margin-top:10px;display:none"></div>
 						</td>
 				</tr>
@@ -204,7 +242,7 @@ try {
                 
                 <tr>
                     <th>
-                        <lable for="">*전시관지역</lable>
+                        <label for="">*전시관지역</label>
                     </th>
                     <td>          
                         <select name="exhGubun4" id="exhGubun4" style="width:100%;">
@@ -352,7 +390,55 @@ try {
 $("input:checkbox").click(function() {
 	var bol = $("input:checkbox:checked").length >= 3;     
 	$("input:checkbox").not(":checked").attr("disabled",bol);
-	});
+	}); 
+	
+function sample6_execDaumPostcode_1() {
+    new daum.Postcode({
+        oncomplete: function(data) {
+            // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
+
+            // 각 주소의 노출 규칙에 따라 주소를 조합한다.
+            // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+            var addr = ''; // 주소 변수
+            var extraAddr = ''; // 참고항목 변수
+
+            //사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
+            if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
+                addr = data.roadAddress;
+            } else { // 사용자가 지번 주소를 선택했을 경우(J)
+                addr = data.jibunAddress;
+            }
+
+            // 사용자가 선택한 주소가 도로명 타입일때 참고항목을 조합한다.
+            if(data.userSelectedType === 'R'){
+                // 법정동명이 있을 경우 추가한다. (법정리는 제외)
+                // 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
+                if(data.bname !== '' && /[동|로|가]$/g.test(data.bname)){
+                    extraAddr += data.bname;
+                }
+                // 건물명이 있고, 공동주택일 경우 추가한다.
+                if(data.buildingName !== '' && data.apartment === 'Y'){
+                    extraAddr += (extraAddr !== '' ? ', ' + data.buildingName : data.buildingName);
+                }
+                // 표시할 참고항목이 있을 경우, 괄호까지 추가한 최종 문자열을 만든다.
+                if(extraAddr !== ''){
+                    extraAddr = ' (' + extraAddr + ')';
+                }
+                // 조합된 참고항목을 해당 필드에 넣는다.
+                //document.getElementById("sample6_extraAddress").value = extraAddr;
+            
+            } else {
+                //document.getElementById("sample6_extraAddress").value = '';
+            }
+
+            // 우편번호와 주소 정보를 해당 필드에 넣는다.
+            //document.getElementById('sample6_postcode').value = data.zonecode;
+            document.getElementById("exhPlaceAddr1").value = addr;
+            // 커서를 상세주소 필드로 이동한다.
+            //document.getElementById("exhGubun4").focus();
+        }
+    }).open();
+}
 </script>
 </body>
 </html>

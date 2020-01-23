@@ -316,39 +316,6 @@ public class ManagerDao {
 		
 	}
 
-	public int getVisitCnt() {
-		Connection conn = null;
-		Statement stmt = null;
-		ResultSet rs = null;
-		
-		int visitCnt = 0;
-		
-		try {
-			conn = ds.getConnection();
-			
-			String sql = "select count(*) from visitPage where visitDate <= sysdate()";
-			stmt = conn.createStatement();
-			rs = stmt.executeQuery(sql);
-			
-			if (rs.next()) {
-				visitCnt = rs.getInt(1);
-			}
-			
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			try {
-				if(rs != null) rs.close();
-				if(stmt != null) stmt.close();
-				if(conn != null) conn.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-		}
-		
-		return visitCnt;
-	}
-
 	public List<ExhibitionDto> getEndExhLists() {
 		Connection conn = null;
 		Statement stmt = null;
@@ -557,6 +524,317 @@ public class ManagerDao {
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
+		}
+		
+		return res;
+	}
+
+	public int updateExhContent(ExhibitionDto modifyExhibitionDto) {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		
+		int res = 0;
+		
+		try {
+			conn = ds.getConnection();
+			
+			String sql = "update artshow set MemberID = ?, ExhGubun1 = ?, ExhGubun2 = ?, ExhGubun4 = ?, ExhName = ?, ArtistName = ?, ArtistInfo = ?, ExhContent = ?, ExhPlace = ?, ExhPlaceZip = ?, ExhPlaceAddr1 = ?, ExhPlaceAddr2 = ?, ExhUrl = ?, exhstartdate = ?, exhenddate = ?, OpTime = ?, Tel = ?, AdmFee = ? where ExhID = ?";
+			
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, modifyExhibitionDto.getMemberID());
+			pstmt.setString(2, modifyExhibitionDto.getExhGubun1());
+			pstmt.setString(3, modifyExhibitionDto.getExhGubun2());
+			pstmt.setString(4, modifyExhibitionDto.getExhGubun4());
+			pstmt.setString(5, modifyExhibitionDto.getExhName());
+			pstmt.setString(6, modifyExhibitionDto.getArtistName());
+			pstmt.setString(7, modifyExhibitionDto.getArtistInfo());
+			pstmt.setString(8, modifyExhibitionDto.getExhContent());
+			pstmt.setString(9, modifyExhibitionDto.getExhPlace());
+			pstmt.setString(10, modifyExhibitionDto.getExhPlaceZip());
+			pstmt.setString(11, modifyExhibitionDto.getExhPlaceAddr1());
+			pstmt.setString(12, modifyExhibitionDto.getExhPlaceAddr2());
+			pstmt.setString(13, modifyExhibitionDto.getExhUrl());
+			pstmt.setString(14, modifyExhibitionDto.getExhStartDate());
+			pstmt.setString(15, modifyExhibitionDto.getExhEndDate());
+			pstmt.setString(16, modifyExhibitionDto.getOpTime());
+			pstmt.setString(17, modifyExhibitionDto.getTel());
+			pstmt.setString(18, modifyExhibitionDto.getAdmFee());
+			pstmt.setInt(19, modifyExhibitionDto.getExhID());
+			
+			res = pstmt.executeUpdate();
+			
+			if (res > 0) {
+				System.out.println("Update ArtShow without ImageFile Success!");
+			} else {
+				System.out.println("Update ArtShow without ImageFile Fail...");
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if(pstmt != null) pstmt.close();
+				if(conn != null) conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		return res;
+	}
+
+	public int updateImageFile(ExhibitionDto modifyExhibitionDto) {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		
+		int res = 0;
+		
+		try {
+			conn = ds.getConnection();
+			
+			if (modifyExhibitionDto.getImageFile1() != null) {
+				String sql = "update artshow set ImageFile1 = ? where ExhID = ?";
+				
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setString(1, modifyExhibitionDto.getImageFile1());
+				pstmt.setInt(2, modifyExhibitionDto.getExhID());
+				
+				int res1 = pstmt.executeUpdate();
+				
+				if (res1 > 0) {
+					System.out.println("Update ArtShow ImageFile1 Success!");
+				} else {
+					System.out.println("Update ArtShow ImageFile1 Fail...");
+				}
+				
+				res = res1;
+				pstmt.close();
+			}
+
+			if (modifyExhibitionDto.getImageFile2() != null) {
+				String sql = "update artshow set ImageFile2 = ? where ExhID = ?";
+				
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setString(1, modifyExhibitionDto.getImageFile2());
+				pstmt.setInt(2, modifyExhibitionDto.getExhID());
+				
+				int res2 = pstmt.executeUpdate();
+				
+				if (res2 > 0) {
+					System.out.println("Update ArtShow ImageFile2 Success!");
+				} else {
+					System.out.println("Update ArtShow ImageFile2 Fail...");
+				}
+				
+				res = res2;
+				pstmt.close();
+			}
+			
+			if (modifyExhibitionDto.getImageFile3() != null) {
+				String sql = "update artshow set ImageFile3 = ? where ExhID = ?";
+				
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setString(1, modifyExhibitionDto.getImageFile3());
+				pstmt.setInt(2, modifyExhibitionDto.getExhID());
+				
+				int res3 = pstmt.executeUpdate();
+				
+				if (res3 > 0) {
+					System.out.println("Update ArtShow ImageFile3 Success!");
+				} else {
+					System.out.println("Update ArtShow ImageFile3 Fail...");
+				}
+				
+				res = res3;
+				pstmt.close();
+			}
+
+			if (modifyExhibitionDto.getImageFile4() != null) {
+				String sql = "update artshow set ImageFile4 = ? where ExhID = ?";
+				
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setString(1, modifyExhibitionDto.getImageFile4());
+				pstmt.setInt(2, modifyExhibitionDto.getExhID());
+				
+				int res4 = pstmt.executeUpdate();
+				
+				if (res4 > 0) {
+					System.out.println("Update ArtShow ImageFile4 Success!");
+				} else {
+					System.out.println("Update ArtShow ImageFile4 Fail...");
+				}
+				
+				res = res4;
+			} else {
+				System.out.println("이미지 변동사항 없음..!!");	
+				res = 1;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if(pstmt != null) pstmt.close();
+				if(conn != null) conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		
+		return res;
+	}
+
+
+
+
+	public int deleteExhContent(int exhID) {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		
+		int res = 0;
+		
+		try {
+			conn = ds.getConnection();
+			
+			String sql = "delete from artshow where ExhID = ?";
+			
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, exhID);
+			
+			res = pstmt.executeUpdate();
+			
+
+			if (res > 0) {
+				System.out.println("Delete ArtShow Success!");
+				
+				pstmt.close();
+				
+				String sql2 = "delete from artshowtag where ExhID = ?";
+				
+				pstmt = conn.prepareStatement(sql2);
+				pstmt.setInt(1, exhID);
+				
+				int res2 = pstmt.executeUpdate();
+				
+				if (res2 > 0) {
+					System.out.println("Delete ArtShowTag Success!");
+				} else {
+					System.out.println("Delete ArtShowTag Fail...");
+				}
+				
+				res = res2;
+			} else {
+				System.out.println("Delete ArtShow Fail...");
+				
+				return res;
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if(pstmt != null) pstmt.close();
+				if(conn != null) conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		return res;
+	}
+
+
+
+
+	public String[] getImageFile(int exhID) {
+		Connection conn	= null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		int	count = 0;
+		String[] imageFile = new String[4];
+		
+		try {
+			conn = ds.getConnection();
+			
+			String sql = "select imageFile1, imageFile2, imageFile3, imageFile4 from artshow where exhID=?";
+			
+			pstmt =	conn.prepareStatement(sql);
+			pstmt.setInt(1, exhID);
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()){
+				imageFile[0] = rs.getString(1);
+				imageFile[1] = rs.getString(2);
+				imageFile[2] = rs.getString(3);
+				imageFile[3] = rs.getString(4);
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {if(rs!=null)rs.close();} catch (Exception e) {}
+			try {if(pstmt!=null)pstmt.close();} catch (Exception e) {}
+			try {if(conn!=null)conn.close();} catch (Exception e) {}
+		}
+		
+		return imageFile;
+	}
+
+	public void setVisitDate() {
+		Connection conn	= null;
+		Statement stmt = null;
+		
+		int res = 0;
+		
+		try {
+			conn = ds.getConnection();
+			
+			String sql = "insert into visitPage values(sysdate())";
+			
+			stmt = conn.createStatement();
+			
+			res = stmt.executeUpdate(sql);
+			
+			if (res > 0) {
+				System.out.println("Insert visitDate Success!");
+			} else {
+				System.out.println("Insert visitDate Fail...");
+			}
+			
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if(stmt != null) stmt.close();
+				if(conn != null) conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+
+	public int getTodayVisitCnt() {
+		Connection conn	= null;
+		Statement stmt = null;
+		ResultSet rs = null;
+		
+		int res = 0;
+		
+		try {
+			conn = ds.getConnection();
+			
+			String sql = "select count(*) from visitPage where visitDate = date(sysdate())";
+			
+			stmt = conn.createStatement();
+			rs = stmt.executeQuery(sql);
+			
+			if (rs.next()) {
+				res = rs.getInt(1);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
 		}
 		
 		return res;
