@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <jsp:include page="../../module/1doctype_head.jsp"></jsp:include>
-
+<jsp:include page="../../module/client_auth.jsp"></jsp:include>
 <body>
     <jsp:include page="../../module/2body_first.jsp"></jsp:include>
     

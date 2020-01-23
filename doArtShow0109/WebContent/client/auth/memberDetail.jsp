@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <jsp:include page="../../module/1doctype_head.jsp"></jsp:include>
+<jsp:include page="../../module/client_auth.jsp"></jsp:include>
 <style>
 	td{
 		font-size: 1.2em;
@@ -71,6 +72,16 @@ $(document).ready(function(){
 	});
 });
 
+//--------------------------------------------------------------------------------
+//	memberDetail.jsp	프로필 사진 수정을 위한 jsp페이지를 여는 기능
+//--------------------------------------------------------------------------------
+function profileImgUpdate() {
+    url = "profileImgUpdate.jsp";
+
+    window.open(url, "confirm",
+        "toolbar=no, location=no, status=no, menubar=no, scrollbars=no, resizable=no, left=200, right=200, width=500, height=500"
+        );
+}
 </script>
 <body>
 

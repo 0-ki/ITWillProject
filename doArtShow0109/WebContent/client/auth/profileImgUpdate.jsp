@@ -5,6 +5,7 @@
 
 <head>
 <jsp:include page="../../module/1doctype_head.jsp"></jsp:include>
+<jsp:include page="../../module/client_auth.jsp"></jsp:include>
     <meta charset="UTF-8">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
     <title>프로필 사진 수정</title>

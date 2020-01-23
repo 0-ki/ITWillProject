@@ -19,7 +19,7 @@
     </style>
 </head>
 <jsp:include page="../../module/1doctype_head.jsp"></jsp:include>
-
+<jsp:include page="../../module/client_auth.jsp"></jsp:include>
 <body>
     <div class="container" id="mainContainer">
         <div id="pDiv">

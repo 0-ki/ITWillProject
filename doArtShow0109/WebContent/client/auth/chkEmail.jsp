@@ -2,19 +2,14 @@
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
-
 <head>
     <meta charset="UTF-8">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
     <script src="../js/chkEmailAjax.js"></script>
     <title>이메일 중복확인</title>
-    <style>
-        #emailChkModalBtn {
-            margin: 1vw;
-        }
-    </style>
 </head>
 <jsp:include page="../../module/1doctype_head.jsp"></jsp:include>
+<jsp:include page="../../module/client_auth.jsp"></jsp:include>
 
 <body>
     <div class="container" id="mainContainer">
@@ -33,7 +28,7 @@
                 </tr>
                 <tr colspan="3">
                     <td>
-                        <input class="btn" type="button" value="이메일 사용" id="emailUseBtn" onclick="setId()"></td>
+                        <input class="btn" type="button" value="이메일 사용" id="emailUseBtn" onclick="setId()" style="margin: 1vw;"></td>
                 </tr>
             </table>
         </form>

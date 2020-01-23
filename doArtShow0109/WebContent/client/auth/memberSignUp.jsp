@@ -3,7 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri = "http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <jsp:include page="../../module/1doctype_head.jsp"></jsp:include>
-
+<jsp:include page="../../module/client_auth.jsp"></jsp:include>
 <body>
     <jsp:include page="../../module/2body_first.jsp"></jsp:include>
     <div class="container" id="mainContainer">
@@ -151,6 +151,36 @@
         </form>
     </div>
     <jsp:include page="../../module/3body_last.html"></jsp:include>
+<script>
+	function emailChkModal() {
+	    if ($("#input_email").val() == "") {
+	        $("#email_check").text("아이디를 입력하세요");
+	        $("#email_check").css('color', 'red');
+	        $("#emailChkButton").attr("disabled", true);
+	        return;
+	    } else {
+	        url = "chkEmail.jsp?email=" + document.signUpForm.email.value;
+	
+	        window.open(url, "confirm",
+	            "toolbar=no, location=no, status=no, menubar=no, scrollbars=no, resizable=no, left=200, right=200, width=500, height=200"
+	            );
+	        $("#input_email").attr("disabled", true);
+	        $("#emailChkButton").attr("disabled", true);
+	    }
+	}
+	$(document).ready(function () {
+	    $("#input_email").keyup(function () {
+	        if ($("#input_email").val() != "") {
+	            $("#chkEmail").text("")
+	        }
+	    });
+	    $("#input_pw").keyup(function () {
+	        if ($("#input_pw").val() != "") {
+	            $("#chkPw").text("")
+	        }
+	    });
+	});
+</script>
 </body>
 
 </html>

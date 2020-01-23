@@ -27,9 +27,7 @@
     <script src="/doArtShow/js/ifReadyscript.js"></script>
     <script src="/doArtShow/js/exhFunction.js"></script>
 	
-    <!-- jungmi -->
-	<script src="/doArtShow/client/js/validateForm.js"></script>
-	<script src="/doArtShow/client/js/signUpFormFilter.js"></script>
+    
 	
 	<!-- ================ script  ================  -->
 <script type="text/javascript">
@@ -43,83 +41,6 @@
 			$(this).parent('label').removeClass('active');
 	});
 	
-	//--------------------------------------------------------------------------------
-	//	memberSignUp.jsp	중복확인을 위한 jsp페이지
-	//--------------------------------------------------------------------------------
-	function emailChkModal()
-	{
-		if($("#input_email").val()==""){
-			$("#email_check").text("아이디를 입력하세요");
-			$("#email_check").css('color','red');
-			$("#emailChkButton").attr("disabled", true);
-			return;
-		} else {
-			url = "chkEmail.jsp?email=" + document.signUpForm.email.value;
-			
-			window.open(url, "confirm", "toolbar=no, location=no, status=no, menubar=no, scrollbars=no, resizable=no, left=200, right=200, width=500, height=200");	
-			$("#input_email").attr("disabled", true);
-			$("#emailChkButton").attr("disabled", true);
-		}
-	}
 	
-	//--------------------------------------------------------------------------------
-	//	memberSignUp.jsp	?????
-	//--------------------------------------------------------------------------------
-	$(document).ready(function(){
-		   $("#input_email").keyup(function(){
-		      if($("#input_email").val() != ""){
-		         $("#chkEmail").text("")
-		      }
-		   });
-		   $("#input_pw").keyup(function(){
-		      if($("#input_pw").val() != ""){
-		         $("#chkPw").text("")
-		      }
-		   });
-		});
-	
-	//--------------------------------------------------------------------------------
-	//	memberDetail.jsp	프로필 사진 수정을 위한 jsp페이지를 여는 기능
-	//--------------------------------------------------------------------------------
-	function profileImgUpdate()
-	{
-		url = "profileImgUpdate.jsp";
-		
-		window.open(url, "confirm", "toolbar=no, location=no, status=no, menubar=no, scrollbars=no, resizable=no, left=200, right=200, width=500, height=500");				
-	}
-	
-	
-
-	//--------------------------------------------------------------------------------
-	//	myReviewList.jsp
-	//--------------------------------------------------------------------------------
-	function openRevModal(num){
-	$("#revUpdateModal"+num).modal({
-    	backdrop: true
-    });
-	}
-	function confirmDeleteRev(num){
-		confirm("삭제하시겠습니까?");
-		location.href="revDelete.do?exhName="+$("#revExhName"+num).text();
-	}
-	function chkreviewUpdateForm(reviewUpdateForm){         
-	    if(!reviewUpdateForm.revContent.value){
-	       alert("내용을 작성해주세요");
-	       revForm.revConter.focus();
-	       return false;
-	    }
-	    
-	    reviewUpdateForm.action = "revUpdate.do";
-	    reviewUpdateForm.submit();
-	 }
-	
-	//--------------------------------------------------------------------------------
-	//	myList.jsp
-	//--------------------------------------------------------------------------------
-	function openExhModal(num){
-	$("#exhUpdateModal"+num).modal({
-    	backdrop: true
-    });
-	}
 	</script>
 	

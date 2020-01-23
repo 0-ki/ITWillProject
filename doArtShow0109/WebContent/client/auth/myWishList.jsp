@@ -3,7 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri = "http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <jsp:include page="../../module/1doctype_head.jsp"></jsp:include>
-
+<jsp:include page="../../module/client_auth.jsp"></jsp:include>
 <body>
     <jsp:include page="../../module/2body_first.jsp"></jsp:include>
     <c:if test="${!empty sessionScope.member}">

@@ -57,11 +57,11 @@
 	#mainContainer > div > a:hover { color: skyblue; text-decoration: none;}
 	#mainContainer > div > a { width:200px; margin:10px;}
    
-   #pDiv{
+/*    #pDiv{
    	margin-top : 15vh;
    	margin-bottom : 10vh;
    	font-size : 1.8em;
-   }
+   } */
 
     .box a:link ,.box2 a:link , .iconDiv a:link { color: gray; text-decoration: none; }
     .box a:visited,.box2 a:visited, .iconDiv a:visited { color: gray; text-decoration: none; }

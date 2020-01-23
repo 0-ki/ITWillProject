@@ -93,5 +93,12 @@ if(request.getAttribute("dRsCnt")!=null) {
 	</table>
 </div>
 <jsp:include page="/module/3body_last.html" />
+<script>
+	function openExhModal(num) {
+	    $("#exhUpdateModal" + num).modal({
+	        backdrop: true
+	    });
+	}
+</script>
 </body>
 </html>

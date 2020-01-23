@@ -25,10 +25,7 @@
     <!-- 직접 작성한 css 및 폰트 CDN 방식 by Hojeong -begin -->
    <link rel="stylesheet" href="/doArtShow/css/HJStyle.css" type="text/css">
     <!-- 직접 작성한 css 및 폰트 CDN 방식 by Hojeong -end -->
-    
-    <!-- 직접 작성한 css 및 폰트 CDN 방식 by jungmi -begin -->
-   <link rel="stylesheet" href="/doArtShow/css/JMStyle.css" type="text/css">
-    <!-- 직접 작성한 css 및 폰트 CDN 방식 by jungmi -end -->
+
     
     <!-- javascript used by Hojeong : begin -->
  

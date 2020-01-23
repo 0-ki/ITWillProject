@@ -3,7 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri = "http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <jsp:include page="../../module/1doctype_head.jsp"></jsp:include>
-
+<jsp:include page="../../module/client_auth.jsp"></jsp:include>
 <body>
     <jsp:include page="../../module/2body_first.jsp"></jsp:include>
     <c:if test="${!empty sessionScope.member}">
@@ -123,6 +123,31 @@
         <jsp:include page="askLogIn.jsp"></jsp:include>
     </c:if>
     <jsp:include page="../../module/3body_last.html"></jsp:include>
+
+<script>
+	function openRevModal(num) {
+	    $("#revUpdateModal" + num).modal({
+	        backdrop: true
+	    });
+	}
+	
+	function confirmDeleteRev(num) {
+	    confirm("삭제하시겠습니까?");
+	    location.href = "revDelete.do?exhName=" + $("#revExhName" + num).text();
+	}
+	
+	function chkreviewUpdateForm(reviewUpdateForm) {
+	    if (!reviewUpdateForm.revContent.value) {
+	        alert("내용을 작성해주세요");
+	        revForm.revConter.focus();
+	        return false;
+	    }
+	
+	    reviewUpdateForm.action = "revUpdate.do";
+	    reviewUpdateForm.submit();
+	}
+
+</script>
 </body>
 
 </html>
