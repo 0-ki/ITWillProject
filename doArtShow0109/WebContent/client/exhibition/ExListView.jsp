@@ -29,6 +29,8 @@
 	    font-size: 20pt;
 	    transition: all 0.3s;
 	    margin: 0 auto; /* div를 가운데 정렬하는애 */
+	    padding-right: 5px;
+    	padding-left: 5px;
 	    text-align: -webkit-center;
 	}
 	#tagList .ctg{
@@ -100,7 +102,7 @@
 	#ctgBox {
       margin-left: 70px;
       margin-right: 70px; 
-      padding: 20px;
+      padding: 30px;
 	  padding-right: 50px;
 	  padding-left: 50px;
 	  border-radius: 100px;
@@ -110,8 +112,8 @@
 	/* 출력되는 div 게시물 */
 	#content_div {
     	text-align: center;
-    	padding-left: 5%;
-    	padding-right: 5%;
+    	padding-left: 3%;
+    	padding-right: 3%;
     	padding-top: 5em;
     }
     
@@ -123,36 +125,44 @@
     	width: 100%;
 	}
 	
-	#content_list_div{ 
+	.content_list_div{ 
 		margin-left: 15px;
 	    margin-right: 15px;
 	    margis-top: 20px;
 	    margin-bottom: 20px;
 	    width: 275px;
-	    height: 450px;
+	    /* height: auto; */
+	    height: 540px;
 	    text-align: left;
 	    border-radius: 20px;
+	    padding-bottom: 10px;
 	}
 	
-	#content_list_div img{ 
+	.content_list_div img{ 
+		width: 100%;
 		border-radius: 20px;
+		display: flex;
+	    overflow: hidden;
 	}
 	
-	#content_list_div a{ 
+	.content_list_div a{ 
 		color: #474747;
 		text-decoration: none;
 	}
 	
-	#content_list_div:hover{ 
-		-moz-box-shadow: 0px 12px 20px rgba(54, 24, 79, 0.5);
+	.content_list_div:hover{ 
+		/* -moz-box-shadow: 0px 12px 20px rgba(54, 24, 79, 0.5);
 		-webkit-box-shadow: 0px 12px 20px rgba(54, 24, 79, 0.5);
-		box-shadow: 0px 12px 20px rgba(54, 24, 79, 0.5);
+		box-shadow: 0px 12px 20px rgba(54, 24, 79, 0.5); */
+		opacity: 0.4;
 		transition: all .3s;
+		border-radius: 20px;
 	}
 	
-	#content_list_div a:hover{ 
+	.#content_list_div a:hover{ 
 		color: #8a8a8a;
 		text-decoration: none;
+		border-radius: 20px;
 	}
 	
 	#moreBtn_div{
@@ -166,7 +176,7 @@
       <input type="text" hidden id="gen_num" value="0"/> <!-- 0일경우 선택 안되있는 것 -->
       <input type="text" hidden id="page_num" value="0"/> <!-- 처음 출력되는 페이지 : 0 -->
       
-	<div class="container" id="mainContainer">
+	<div class="container" id="mainContainer" style="width:90%;">
 		<div id="sortBox">
 			<div class="ctg artSort selected" id="0"><b>전체 전시 보기</b></div>
 			<div class="ctg artSort" id="1"><b>진행중인 전시 보기</b></div>
@@ -224,14 +234,18 @@
 				<c:otherwise>
 					<div id="content_list">  
 				    	<c:forEach var="list" items="${lists}" begin="0" end="14">
-						    <div id="content_list_div">
-						        <a href="<%=request.getContextPath()%>/client/exhibition/ExContentView.do?exhID=${list.exhID}" id="ExContentView" style="width: 290px; height: 470px;"><!-- 아무데나 눌러도 상세페이지로 넘어가게 -->
-						        	<img src="/doArtShow/exhibitionImages/${list.imageFile1}" style="height: 370px; width: 275px;"/><br>
-						            <b style="font-size:12pt;">${list.exhName}</b><br>
-						            ${list.exhPlace}<br>
-						            ${list.exhStartDate}&nbsp;~&nbsp;${list.exhEndDate}
+						   <!-- <div class="list_div" style="height: 540px;">  -->
+						   	<div class="content_list_div">
+						    	<a href="<%=request.getContextPath()%>/client/exhibition/ExContentView.do?exhID=${list.exhID}" id="ExContentView"><!-- 아무데나 눌러도 상세페이지로 넘어가게 -->
+						        	<img src="/doArtShow/exhibitionImages/${list.imageFile1}"/><br>
+							        <div style="padding: 10px;">
+								        <b style="font-size:12pt;">${list.exhName}</b><br>
+								        ${list.exhPlace}<br>
+								        ${list.exhStartDate}&nbsp;~&nbsp;${list.exhEndDate}
+							        </div>
 						       	</a>
-						    </div>
+						     </div>
+						    <!-- </div> -->
 					    </c:forEach>
 					</div>
 					<div id="moreBtn_div" align="center">
@@ -318,13 +332,16 @@
 					
 					if(listCnt > 0){
 						for(i=0;i<listCnt;i++){
-							html += "<div id='content_list_div'>";
-							html += "<a href='/doArtShow/client/exhibition/ExContentView.do?exhID=" + data[i].exhID + "' id='ExContentView' style='width: 290px; height: 470px;'>";
-							html += "<img src='/doArtShow/exhibitionImages/" + data[i].imageFile1 + "' style='height: 370px; width: 275px;'/><br>";
-							html += "<b>" + data[i].exhName + "</b><br>";
+							/* html += "<div class='list_div' style='height: 540px;'>"; */
+							html += "<div class='content_list_div'>";
+							html += "<a href='/doArtShow/client/exhibition/ExContentView.do?exhID=" + data[i].exhID + "' id='ExContentView'>";
+							html += "<img src='/doArtShow/exhibitionImages/" + data[i].imageFile1 + "'/><br>";
+							html += "<div style='padding: 10px;'>";
+							html += "<b style='font-size:12pt;'>" + data[i].exhName + "</b><br>";
 							html += data[i].exhPlace + "<br>";
 							html += data[i].exhStartDate + "&nbsp;~&nbsp;" + data[i].exhEndDate + "</a>";
 							html += "</div>";
+							/* html += "</div>"; */
 						}
 						
 						var pagingNum = parseInt(inputPage.val() + 1);
@@ -342,7 +359,7 @@
 						html += "<div id='pDiv'>";
 						html += "<center>진행중인 전시가 없습니다!</center><br>";
 						html += "<div align='center'>";
-						html += "<a class='btn' href='/index.jsp'>메인으로 돌아가기</a>";
+						html += "<a class='btn' href='location.replace('/doArtShow')'>메인으로 돌아가기</a>";
 						html += "</div>";
 						html += "</div>"
 						
@@ -423,13 +440,16 @@
 					}
 					
 					for(i=0;i<listCnt;i++){
-						html += "<div id='content_list_div'>";
-						html += "<a href='/doArtShow/client/exhibition/ExContentView.do?exhID=" + data[i].exhID + "' id='ExContentView' style='width: 290px; height: 470px;'>";
-						html += "<img src='/doArtShow/exhibitionImages/" + data[i].imageFile1 + "' style='height: 370px; width: 275px;'/><br>";
-						html += "<b>" + data[i].exhName + "</b><br>";
+						/* html += "<div class='list_div'  style='height: 540px;'>"; */
+						html += "<div class='content_list_div'>";
+						html += "<a href='/doArtShow/client/exhibition/ExContentView.do?exhID=" + data[i].exhID + "' id='ExContentView'>";
+						html += "<img src='/doArtShow/exhibitionImages/" + data[i].imageFile1 + "'/><br>";
+						html += "<div style='padding: 10px;'>";
+						html += "<b style='font-size:12pt;'>" + data[i].exhName + "</b><br>";
 						html += data[i].exhPlace + "<br>";
 						html += data[i].exhStartDate + "&nbsp;~&nbsp;" + data[i].exhEndDate + "</a>";
 						html += "</div>";
+						/* html += "</div>"; */
 					}
 						
 					var pagingNum = parseInt(inputPage.val() + 1);
@@ -455,69 +475,7 @@
 		});
 		
 		
-		/* Box의 그라디언트 색상 */
-		var colors = new Array(
-		  [62,35,255],
-		  [60,255,60],
-		  [255,35,98],
-		  [45,175,230],
-		  [255,0,255],
-		  [255,128,0]);
-
-		var step = 0;
-		//color table indices for: 
-		// current color left
-		// next color left
-		// current color right
-		// next color right
-		var colorIndices = [0,1,2,3];
-
-		//transition speed
-		var gradientSpeed = 0.002;
-
-		function updateGradient()
-		{
-		  
-		  if ( $===undefined ) return;
-		  
-		var c0_0 = colors[colorIndices[0]];
-		var c0_1 = colors[colorIndices[1]];
-		var c1_0 = colors[colorIndices[2]];
-		var c1_1 = colors[colorIndices[3]];
-
-		var istep = 1 - step;
-		var r1 = Math.round(istep * c0_0[0] + step * c0_1[0]);
-		var g1 = Math.round(istep * c0_0[1] + step * c0_1[1]);
-		var b1 = Math.round(istep * c0_0[2] + step * c0_1[2]);
-		var color1 = "rgb("+r1+","+g1+","+b1+")";
-
-		var r2 = Math.round(istep * c1_0[0] + step * c1_1[0]);
-		var g2 = Math.round(istep * c1_0[1] + step * c1_1[1]);
-		var b2 = Math.round(istep * c1_0[2] + step * c1_1[2]);
-		var color2 = "rgb("+r2+","+g2+","+b2+")";
-
-		 $('#gradient').css({
-		   background: "-webkit-gradient(linear, left top, right top, from("+color1+"), to("+color2+"))"}).css({
-		    background: "-moz-linear-gradient(left, "+color1+" 0%, "+color2+" 100%)"});
-		  
-		  step += gradientSpeed;
-		  if ( step >= 1 )
-		  {
-		    step %= 1;
-		    colorIndices[0] = colorIndices[1];
-		    colorIndices[2] = colorIndices[3];
-		    
-		    //pick two new target color indices
-		    //do not pick the same as the current one
-		    colorIndices[1] = ( colorIndices[1] + Math.floor( 1 + Math.random() * (colors.length - 1))) % colors.length;
-		    colorIndices[3] = ( colorIndices[3] + Math.floor( 1 + Math.random() * (colors.length - 1))) % colors.length;
-		    
-		  }
-		}
-
-		setInterval(updateGradient,10);
 		
-		/* 눌른 버튼에 대해 css 적용 및 hidden input에 기록 */
 		
 
 		

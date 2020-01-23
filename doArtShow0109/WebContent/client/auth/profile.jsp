@@ -309,7 +309,7 @@ padding : 5px;
 
 <div class="container col-lg-2" id="profileDiv" style="margin-top:25px; padding-rigth:20px;">
     <div id="profileImg">
-        <img  style="max-width : 200px;" src="/doArtShow/memberProfileImages/${member.profileImg}" alt="${member.profileImg}">
+        <img  style="max-width : 200px; border-radius:100px;" src="/doArtShow/memberProfileImages/${member.profileImg}" alt="${member.profileImg}">
     </div>
     <div id="profile">
         <div id="profileName" style="font-size: 3em; margin-top:20px; font-weight:bold; margin-bottom:80px;">

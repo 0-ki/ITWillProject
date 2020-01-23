@@ -189,7 +189,10 @@
 		#myHist{
 			display: inline-flex;
 			text-align: center;
-			padding-left: 25px;
+		}
+		
+		#myHist div{
+			margin: 0 auto;
 		}
 		
 		#imageBtn{
@@ -278,6 +281,10 @@
 			border-radius: 100px;
 			margin: 10px; 
 		}
+		
+		#exhImage{
+			width: 100%;
+		}
  	</style>
  		
  		
@@ -289,8 +296,8 @@
 		<div>
 			<table class="table nanum">
 				<tr>
-					<td rowspan="7">
-						<img src="/doArtShow/exhibitionImages/${listOne.imageFile1}" id="exhImage" style="height: 450px; width: 330px;"/>
+					<td rowspan="7" style="height: 500px; width: 25%;">
+						<img src="/doArtShow/exhibitionImages/${listOne.imageFile1}" id="exhImage"/>
 					</td>
 					<td>&nbsp;기간 : ${listOne.exhStartDate}&nbsp;~&nbsp;${listOne.exhEndDate}</td>
 				</tr>
