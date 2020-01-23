@@ -11,14 +11,14 @@
 	<c:set var="member" value="${sessionScope.member}" />
 
 	<div class="contentContainer" id="mainContainer" style="width: 90%;">
-		<div>
+		<div style="margin-left: 2%; margin-right: 5%">
 			<h2><b>${listOne.exhName}</b></h2>
 			<h4>${listOne.artistName}</h4>
 		</div>
-		<div>
+		<div style="margin-left: 2%; margin-right: 5%">
 			<table class="table nanum">
 				<tr>
-					<td rowspan="7" style="height: 500px; width: 25%;">
+					<td rowspan="7" style="height: 500px; width: 30%;">
 						<img src="/doArtShow/exhibitionImages/${listOne.imageFile1}" id="exhImage" />
 					</td>
 					<td>&nbsp;기간 : ${listOne.exhStartDate}&nbsp;~&nbsp;${listOne.exhEndDate}</td>
@@ -126,48 +126,56 @@
 					</td>
 				</tr>
 				<tr>
-					<td colspan="2" style="padding-bottom: 5%; padding-top: 2%;">
+					<td colspan="2" style="padding-bottom: 2%; padding-top: 2%;">
 						<pre id="exhContent">${listOne.exhContent}</pre>
 					</td>
 				</tr>
 				<tr>
 					<td colspan="2">
-						<p><b><i class="fa fa-image"></i>&nbsp;전시 사진</b></p>
+						<p style="color: #1a1a1a"><b><i class="fa fa-image"></i>&nbsp;전시 사진</b></p>
 						<div class="swiper-container">
 							<div class="swiper-wrapper">
 								<c:if test="${listOne.imageFile1 != null}">
 									<div class="swiper-slide">
-										<img src="/doArtShow/exhibitionImages/${listOne.imageFile1}" />
-										<div class="slide-content">
-											<p class="slide-imageName">${listOne.imageName1}</p>
-											<p class="slide-imageType">${listOne.imageType1}</p>
+										<div class="oneSwiper">
+											<div class="slide-content">
+												<p class="slide-imageName">${listOne.imageName1}</p>
+												<p class="slide-imageType">${listOne.imageType1}</p>
+											</div>
+											<img src="/doArtShow/exhibitionImages/${listOne.imageFile1}" />
 										</div>
 									</div>
 								</c:if>
 								<c:if test="${listOne.imageFile2 != null}">
 									<div class="swiper-slide">
-										<img src="/doArtShow/exhibitionImages/${listOne.imageFile2}" />
-										<div class="slide-content">
-											<p class="slide-imageName">${listOne.imageName2}</p>
-											<p class="slide-imageType">${listOne.imageType2}</p>
+										<div class="oneSwiper">
+											<img src="/doArtShow/exhibitionImages/${listOne.imageFile2}" />
+											<div class="slide-content">
+												<p class="slide-imageName">${listOne.imageName2}</p>
+												<p class="slide-imageType">${listOne.imageType2}</p>
+											</div>
 										</div>
 									</div>
 								</c:if>
 								<c:if test="${listOne.imageFile3 != null}">
 									<div class="swiper-slide">
-										<img src="/doArtShow/exhibitionImages/${listOne.imageFile3}" />
-										<div class="slide-content">
-											<p class="slide-imageName">${listOne.imageName3}</p>
-											<p class="slide-imageType">${listOne.imageType3}</p>
+										<div class="oneSwiper">
+											<img src="/doArtShow/exhibitionImages/${listOne.imageFile3}" />
+											<div class="slide-content">
+												<p class="slide-imageName">${listOne.imageName3}</p>
+												<p class="slide-imageType">${listOne.imageType3}</p>
+											</div>
 										</div>
 									</div>
 								</c:if>
 								<c:if test="${listOne.imageFile4 != null}">
 									<div class="swiper-slide">
-										<img src="/doArtShow/exhibitionImages/${listOne.imageFile4}" />
-										<div class="slide-content">
-											<p class="slide-imageName">${listOne.imageName4}</p>
-											<p class="slide-imageType">${listOne.imageType4}</p>
+										<div class="oneSwiper">
+											<img src="/doArtShow/exhibitionImages/${listOne.imageFile4}" />
+											<div class="slide-content">
+												<p class="slide-imageName">${listOne.imageName4}</p>
+												<p class="slide-imageType">${listOne.imageType4}</p>
+											</div>
 										</div>
 									</div>
 								</c:if>
@@ -178,44 +186,45 @@
 						</div>
 					</td>
 				</tr>
+				<tr>
+					<td colspan="2">
+						<!-- 리뷰 보여지는 부분 -->
+						<div>
+							<p style="color: #1a1a1a"><b><i class="fa fa-edit"></i>&nbsp;리뷰 보기</b></p>
+							<c:choose>
+								<c:when test="${revCnt == 0}">
+									<div id="reviewView">
+										<center style="line-height: 200px;">다녀온 전시로 등록하고, 첫 리뷰를 작성해주세요!</center>
+									</div>
+								</c:when>
+								<c:otherwise>
+									<div id="revList">
+										<c:forEach var="revlist" items="${revLists}">
+											<div class="revOne">
+												<table>
+													<tr>
+														<td rowspan="2" width="25%">
+															<img src="/doArtShow/memberProfileImages/${revlist.profileImg}" class="memberProfile" /></td>
+														<td width="75%">
+															<div class="memberName"><b>${revlist.name}</b></div>
+														</td>
+													</tr>
+													<tr>
+														<td><div class="revContent">${revlist.revContent}</div></td>
+													</tr>
+													<tr>
+														<td colspan="2" style="color: #808080; text-align: right;">${revlist.revDate}에 작성되었습니다.&nbsp;&nbsp;&nbsp;</td>
+													</tr>
+												</table>
+											</div>
+										</c:forEach>
+									</div>
+								</c:otherwise>
+							</c:choose>
+						</div>
+					</td>
+				</tr>
 			</table>
-		</div>
-		<br>
-		<!-- 리뷰 보여지는 부분 -->
-		<div>
-			<p>
-				<b><i class="fa fa-edit"></i>&nbsp;리뷰 보기</b>
-			</p>
-			<c:choose>
-				<c:when test="${revCnt == 0}">
-					<div id="reviewView">
-						<center style="line-height: 200px;">다녀온 전시로 등록하고, 첫 리뷰를 작성해주세요!</center>
-					</div>
-				</c:when>
-				<c:otherwise>
-					<div id="revList">
-						<c:forEach var="revlist" items="${revLists}">
-							<div class="revOne">
-								<table>
-									<tr>
-										<td rowspan="2" width="25%">
-											<img src="/doArtShow/memberProfileImages/${revlist.profileImg}" class="memberProfile" /></td>
-										<td width="75%">
-											<div class="memberName"><b>${revlist.name}</b></div>
-										</td>
-									</tr>
-									<tr>
-										<td><div class="revContent">${revlist.revContent}</div></td>
-									</tr>
-									<tr>
-										<td colspan="2" style="color: #808080; text-align: right;">${revlist.revDate}에 작성되었습니다.&nbsp;&nbsp;&nbsp;</td>
-									</tr>
-								</table>
-							</div>
-						</c:forEach>
-					</div>
-				</c:otherwise>
-			</c:choose>
 		</div>
 	</div>
 

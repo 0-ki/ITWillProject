@@ -25,6 +25,7 @@
 	}
 	
 	#sortBox{
+		font-family: 'Do Hyeon', sans-serif !important;
 		display: inline-flex;
 		margin: 20px;
 		margin-right: 70px;
@@ -36,7 +37,7 @@
 	
 	#sortBox > div{
 		border: 0;
-	    font-size: 20pt;
+	    font-size: 25pt;
 	    transition: all 0.3s;
 	    margin: 0 auto; /* div를 가운데 정렬하는애 */
 	    padding-right: 5px;
@@ -97,15 +98,17 @@
 	  margin-right: 10px;
 	  color: #1a1a1a;
 	  font-family: 'Noto Sans KR', sans-serif !important;
-	  font-size: 15px;
+	  font-size: 17px;
 	}
 	
 	.ctgList{
 	  padding-left: 3em;
 	}
 	
-	li b {
+	.ctgList li b {
 	  margin-right: 50px;
+	  font-family: 'Noto Sans KR', sans-serif !important;
+	  font-size: 17px;
 	}
 	
 	#ctgBox {
@@ -335,9 +338,9 @@
 		margin: 10px;
 		padding-left: 15px;
 		padding-right: 10px;
-		font-size: 15px;
+		font-size: 17px;
 		text-align: center;
-		font-family: 'Noto Sans KR', sans-serif !important;
+		font-family: 'Poor Story', sans-serif !important;
 		letter-spacing: 1px;
 	}
 	#tagctgList #gubun1{
@@ -465,47 +468,69 @@
 	
 	/* 전시사진 swiper */
 	.swiper-container {
-      width: 100%;
-      height: 500px;
+		width: 1100px;
+      	height: 500px;
+      	margin: 2%;
     }
     .swiper-slide {
-      text-align: center;
-      background: #fff;
+        text-align: center;
+        background: #fff;
 
-      /* Center slide text vertically */
-      display: -webkit-box;
-      display: -ms-flexbox;
-      display: -webkit-flex;
-      display: flex;
-      -webkit-box-pack: center;
-      -ms-flex-pack: center;
-      -webkit-justify-content: center;
-      justify-content: center;
-      -webkit-box-align: center;
-      -ms-flex-align: center;
-      -webkit-align-items: center;
-      align-items: center;
+        /* Center slide text vertically */
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: -webkit-flex;
+        display: flex;
+        -webkit-box-pack: center;
+        -ms-flex-pack: center;
+        -webkit-justify-content: center;
+        justify-content: center;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        -webkit-align-items: center;
+        align-items: center;
     }
-    .swiper-wrapper div,
-	.swiper-wrapper div img{
+    .swiper-wrapper .swiper-slide,
+	.swiper-wrapper .swiper-slide .oneSwiper img{
 		box-sizing: border-box;
 		height: 500px;
 	}
+	.oneSwiper{
+		position: absolute;
+	}
     .slide-content{
-    	background-color: #000;
-		width: 500px;
+    	width: 100%;
 		height: 500px;
 		display: none;
 	}
-    .swiper-slide:HOVER .slide-content{
+	.oneSwiper:hover{
+		background-color: #000;
+		transition: 0.32s all;
+	}
+	.oneSwiper:hover img{
+		opacity: 0.5;
+		transition: 0.32s all;
+	}
+	.oneSwiper:hover .slide-content{
 		position: absolute;
 		display: block;
 		transition: 0.32s all;
-		opacity: 0.5;
+	}
+	
+	.slide-imageName,
+	.slide-imageType{
+		z-index: 9999;
+		color: white;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		font-family: 'Noto Sans KR', sans-serif;
+		position: relative;
+		white-space: nowrap;
+		padding: 3%;
 	}
 	.slide-imageName{
 		font-weight: bold;
-		font-size: 15pt;
+		font-size: 20pt;
 		color: white;
 	}
 	.slide-imageType{
