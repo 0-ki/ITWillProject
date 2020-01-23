@@ -244,7 +244,7 @@
 		    width: 550px;
 		    height: 170px;
 		   	border-radius: 20px;
-    		box-shadow: 0px 0px 20px 0px grey;
+    		border: 2px solid #b36b00;
 		}
 		
 		.contentContainer{
@@ -276,8 +276,7 @@
 			height: 120px; 
 			width: 120px; 
 			border-radius: 100px;
-			padding-top: 10px; 
-			padding-left: 10px;
+			margin: 10px; 
 		}
  	</style>
  		
@@ -426,7 +425,7 @@
 											<td><div class="revContent">${revlist.revContent}</div></td>
 										</tr>
 										<tr>
-										<td colspan="2" style="color:#808080; text-align: right;">${revlist.revDate}에 작성되었습니다.</td>
+										<td colspan="2" style="color:#804d00; text-align: right;">${revlist.revDate}에 작성되었습니다.&nbsp;&nbsp;&nbsp;</td>
 										</tr>
 									</table>
 								</div>

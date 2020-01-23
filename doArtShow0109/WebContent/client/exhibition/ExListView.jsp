@@ -10,90 +10,85 @@
 
 <style>
 	/* 정렬 */
-	*:before,
-	*:after {
-	  box-sizing: border-box;
-	  transition: 0.3s ease-in-out;
-	  z-index: -1;
-	}
-	
- 	#sortBox {
-	  display: inline-flex;
-      justify-content: center;
-	} 
 	.selected{
-	  background-color: aqua;
+	  	border-bottom: 2px solid #23AD21 !important;
+		transition: all 0.3s;
+		background-color: white;
 	}
 	
-/* 	.artSort {
-	  text-decoration: none;
-	  line-height: 80px;
-	  color: black;
-	  text-align: center;
-	  font-size: 18px;
-	  margin-bottom: 20px;
-      margin-left: auto;
-      margin-right: auto;
-	  position: relative;
-	  display: block;
-	  overflow: hidden;
-	  width: 100%;
-	  height: 80px;
-	  max-width: 200px;
-	  margin: 1rem auto;
-	  text-transform: uppercase;
-	  text-align: center;
-	  border: 1px solid currentColor;
-	  color: #ad3da1;
+	#sortBox{
+		display: inline-flex;
+		margin: 20px;
+		margin-right: 70px;
+		margin-left: 70px;
+		width: 90%
 	}
 	
-	.artSort::before, 
-	.artSort::after {
-	  content: '';
-	  position: absolute;
-	  top: 0;
-	  right: 0;
-	  bottom: 0;
-	  left: 0;
+	#sortBox > div{
+		border: 0;
+	    font-size: 20pt;
+	    transition: all 0.3s;
+	    margin: 0 auto; /* div를 가운데 정렬하는애 */
+	    text-align: -webkit-center;
 	}
-	.artSort::before {
-	  right: -50px;
-	  border-right: 50px solid transparent;
-	  border-bottom: 80px solid #8e1882; 
-	  -webkit-transform: translateX(-100%);
-	          transform: translateX(-100%);
+	#tagList .ctg{
+		border: 0;
+		margin-bottom: 10px;
+    	margin-top: 10px;
+    	margin-right: 20px;
+	    font-size: 13pt;
+	    transition: all 0.3s;
 	}
-	.artSort::after {
-	  left: -50px;
-	  border-left: 50px solid transparent;
-	  border-top: 80px solid #8e1882;
-	  -webkit-transform: translateX(100%);
-	          transform: translateX(100%);
+	#locList .ctg{
+		border: 0;
+		margin-bottom: 10px;
+    	margin-top: 10px;
+    	margin-right: 20px;
+	    font-size: 13pt;
+	    transition: all 0.3s;
 	}
-	.artSort:hover {
-	  color: #f5e8f4;
-	  cursor: pointer;
+	#genList .ctg{
+		border: 0;
+		margin-bottom: 10px;
+    	margin-top: 10px;
+    	margin-right: 20px;
+	    font-size: 13pt;
+	    transition: all 0.3s;
 	}
-	.artSort:hover::before {
-	  -webkit-transform: translateX(-49%);
-	          transform: translateX(-49%);
+	
+	#sortBox > div:hover{
+		border-bottom: 2px solid #23AD21 !important;
+		transition: all 0.3s;
+		cursor: pointer;
 	}
-	.artSort:hover::after {
-	  -webkit-transform: translateX(49%);
-	          transform: translateX(49%);
+	#tagList .ctg:hover{
+		border-bottom: 2px solid #23AD21 !important;
+		transition: all 0.3s;
+		cursor: pointer;
 	}
- */
+	#locList .ctg:hover{
+		border-bottom: 2px solid #23AD21 !important;
+		transition: all 0.3s;
+		cursor: pointer;
+	}
+	#genList .ctg:hover{
+		border-bottom: 2px solid #23AD21 !important;
+		transition: all 0.3s;
+		cursor: pointer;
+	}
+
 	/* 태그 */	
-	#ctgList li {
+	.ctgList li {
 	  display: inline-flex;
 	  list-style-type: none;
 	  margin-left: 10px;
-	  color: #f7f7f7;
+	  margin-right: 10px;
+	  color: #1a1a1a;
 	  font-family: 'Noto Sans KR', sans-serif !important;
 	  font-size: 15px;
 	}
 	
-	#ctgList{
+	.ctgList{
 	  padding-left: 5em;
       padding-right: 2em;
 	}
@@ -102,66 +97,15 @@
 	  padding-right: 80px;
 	}
 	
-	#gradient {
-	  background: linear-gradient(135deg, #c71eae 0%, #db8344 31%, #c73653 71%, #6e38a8 100%);
-	  font-family: 'Noto Sans KR', sans-serif !important;
-	  justify-content: center;
-	  align-items: center;
-	  align-content: center;
-	  padding: 20px;
+	#ctgBox {
+      margin-left: 70px;
+      margin-right: 70px; 
+      padding: 20px;
 	  padding-right: 50px;
 	  padding-left: 50px;
-	  border-radius: 10px;
-	  margin-left: 70px;
-      margin-right: 70px;
+	  border-radius: 100px;
+	  box-shadow: 0px 0px 15px 0px #994d00;
 	}
-/* 	
-	.ctg {
-	  flex: 1 1 auto;
-	  padding-top: 15px;
-	  padding-bottom: 15px;
-	  padding-left: 20px;
-	  padding-right: 20px;
-	  text-align: center;
-	  text-transform: uppercase;
-	  position: relative;
-	  overflow: hidden;
-	  letter-spacing: 1px;
-	  
-	  transition-property: all;
-	  transition-duration: .6s;
-	  transition-timing-function: ease;	
-	}
-	
-	.ctg::after{
-	  content: "";
-	  display: block;
-	  position: absolute;
-	}
-	.ctg::before{
-	  content: "";
-	  display: block;
-	  position: absolute;
-	}
-	
-	.ctg:hover,
-	.ctg:active {
-	  letter-spacing: 5px;
-	  cursor: pointer;
-	}
-	
-	.ctg::after {
-	  left: 50%;
-  	  bottom: -0.5rem;
-  	  width: 0%;
-  	  height: 0.2rem;
-  	  background-color: #f7f7f7;
-  	  transform: translateX(-50%);
-  	  transition: all 0.3s;
-	}
-	.ctg:hover::after{
-	  width: 100%;
-	} */
 	
 	/* 출력되는 div 게시물 */
 	#content_div {
@@ -216,22 +160,22 @@
 	}
 </style>
 	
-      <input type="text" hidden id="sort_num" value="0"/>
-      <input type="text" hidden id="tag_num" value="0"/>
-      <input type="text" hidden id="loc_num" value="0"/>
-      <input type="text" hidden id="gen_num" value="0"/>
-      <input type="text" hidden id="page_num" value="0"/>
+      <input type="text" hidden id="sort_num" value="0"/> <!-- 기본값 0 : 전체전시 -->
+      <input type="text" hidden id="tag_num" value="0"/> <!-- 0일경우 선택 안되있는 것 -->
+      <input type="text" hidden id="loc_num" value="0"/> <!-- 0일경우 선택 안되있는 것 -->
+      <input type="text" hidden id="gen_num" value="0"/> <!-- 0일경우 선택 안되있는 것 -->
+      <input type="text" hidden id="page_num" value="0"/> <!-- 처음 출력되는 페이지 : 0 -->
       
 	<div class="container" id="mainContainer">
-		<div id="sortBox" style="display: inline-flex;"><!-- 전체전시보기는 0이며 처음부터 선택 돼 있음. -->
-			<div class="ctg artSort" id="0"><b>전체 전시 보기</b></div>
+		<div id="sortBox">
+			<div class="ctg artSort selected" id="0"><b>전체 전시 보기</b></div>
 			<div class="ctg artSort" id="1"><b>진행중인 전시 보기</b></div>
 			<div class="ctg artSort" id="2"><b>인기 전시 보기</b></div>
 			<div class="ctg artSort" id="3"><b>곧 종료하는 전시 보기</b></div>
 			<div class="ctg artSort" id="4"><b>종료 된 전시 보기</b></div>
 		</div>
-		<div id="gradient">
-			<ul id="ctgList"><!-- 미선택시 0, 선택시 1번부터~ -->
+		<div id="ctgBox">
+			<ul class="ctgList" id="tagList"><!-- 미선택시 0, 선택시 1번부터~ -->
 				<li><i class="fa fa-slack"></i>&nbsp;<b>태그로 찾을래요</b></li>
 				<li id="1" class="ctg tag" name="데이트">#데이트</li>
 				<li id="2" class="ctg tag" name="인생샷">#인생샷</li>
@@ -241,7 +185,7 @@
 				<li id="6" class="ctg tag" name="아이와함께">#아이와함께</li>
 				<li id="7" class="ctg tag" name="교육전시">#교육전시</li>
 			</ul>
-			<ul id="ctgList">
+			<ul class="ctgList" id="locList">
 				<li><i class="fa fa-map"></i>&nbsp;<b>위치로 찾을래요</b></li>
 				<li id="1" class="ctg loc" name="서울">서울</li>
 				<li id="2" class="ctg loc" name="인천/경기">인천/경기</li>
@@ -251,7 +195,7 @@
 				<li id="6" class="ctg loc" name="강원">강원</li>
 				<li id="7" class="ctg loc" name="제주">제주</li>
 			</ul>
-			<ul id="ctgList">
+			<ul class="ctgList" id="genList">
 				<li><i class="fa fa-image"></i>&nbsp;<b>장르로 찾을래요</b></li>
 				<li id="1" class="ctg gen" name="서양화">서양화</li>
 				<li id="2" class="ctg gen" name="동양화">동양화</li>
@@ -283,7 +227,7 @@
 						    <div id="content_list_div">
 						        <a href="<%=request.getContextPath()%>/client/exhibition/ExContentView.do?exhID=${list.exhID}" id="ExContentView" style="width: 290px; height: 470px;"><!-- 아무데나 눌러도 상세페이지로 넘어가게 -->
 						        	<img src="/doArtShow/exhibitionImages/${list.imageFile1}" style="height: 370px; width: 275px;"/><br>
-						            <b>${list.exhName}</b><br>
+						            <b style="font-size:12pt;">${list.exhName}</b><br>
 						            ${list.exhPlace}<br>
 						            ${list.exhStartDate}&nbsp;~&nbsp;${list.exhEndDate}
 						       	</a>
@@ -291,7 +235,7 @@
 					    </c:forEach>
 					</div>
 					<div id="moreBtn_div" align="center">
-						<button type="button" id="more_btn">더보기</button>
+						<button type="button" id="more_btn" class="btn">더보기</button>
 					</div>
 				</c:otherwise>
 			</c:choose>
