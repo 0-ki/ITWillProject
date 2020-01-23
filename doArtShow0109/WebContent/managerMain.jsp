@@ -119,7 +119,8 @@
 		        <div class="card mb-3">
 		          <div class="card-header">
 		            <i class="fas fa-chart-area"></i>
-		            Area Chart Example</div>
+		            <span id="title_week"></span>
+		          </div>
 		          <div class="card-body">
 		            <canvas id="myAreaChart" width="100%" height="30"></canvas>
 		          </div>

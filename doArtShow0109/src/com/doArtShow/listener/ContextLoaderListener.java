@@ -28,6 +28,7 @@ import com.doArtShow.controls.manager.ManagerLogoutController;
 import com.doArtShow.controls.manager.ManagerMainController;
 import com.doArtShow.controls.manager.MemberListController;
 import com.doArtShow.controls.manager.UpdateExhController;
+import com.doArtShow.controls.manager.VisitCountController;
 import com.doArtShow.controls.manager.UpdateActiveFlagController;
 import com.doArtShow.controls.member.FindEmailController;
 import com.doArtShow.controls.member.FindPwController;
@@ -227,7 +228,10 @@ public class ContextLoaderListener implements ServletContextListener{
 			sc.setAttribute("/deleteExh.do", new DeleteExhController().setManagerDao(managerDao));
 			
 			// 회원 목록 조회
-			sc.setAttribute("/memberList.do", new MemberListController().setManagerDao(managerDao));			
+			sc.setAttribute("/memberList.do", new MemberListController().setManagerDao(managerDao));
+			
+			// 통계 자료 관련
+			sc.setAttribute("/getWeekVisitCnt.do", new VisitCountController().setManagerDao(managerDao));
 			
 			//-------------------------------------------------------------------------------------------------------------
 			//			programmed by Dongsik - end

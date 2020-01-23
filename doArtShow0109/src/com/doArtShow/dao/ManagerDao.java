@@ -835,9 +835,51 @@ public class ManagerDao {
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
+		} finally {
+			try {
+				if(rs != null) rs.close();
+				if(stmt != null) stmt.close();
+				if(conn != null) conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
 		}
 		
 		return res;
+	}
+
+	public int getWeekVisitCnt(String weekValue) {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		int weekVisitCnt = 0;
+		
+		try {
+			conn = ds.getConnection();
+			
+			String sql = "select count(*) from visitPage where visitDate = ?";
+			
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, weekValue);
+			rs = pstmt.executeQuery();
+			
+			if (rs.next()) {
+				weekVisitCnt = rs.getInt(1);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if(rs != null) rs.close();
+				if(pstmt != null) pstmt.close();
+				if(conn != null) conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		return weekVisitCnt;
 	}
 	
 	

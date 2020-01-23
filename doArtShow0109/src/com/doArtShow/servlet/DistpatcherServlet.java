@@ -519,6 +519,14 @@ public class DistpatcherServlet extends HttpServlet {
 				response.getWriter().write(deleteResult);
 				
 				return ;
+			} else if ("/getWeekVisitCnt.do".equals(servletPath)) {
+				model.put("weekValue", request.getParameter("weekValue"));
+				model.put("value", request.getParameter("value"));
+				
+				String weekVisitCnt = pageController.execute(model);
+				response.getWriter().write(weekVisitCnt);
+				
+				return ;
 			}
 
 		      
