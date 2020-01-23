@@ -52,6 +52,7 @@
          					</c:forEach>
 
 					</select>
+					<label>년&nbsp;&nbsp;</label>
                     <select id="month" style="width: 100px;">
           					<c:forEach begin="1" end="12" var="idx" step="1">
 	          					<option value="<c:out value="${idx}" />">
@@ -60,6 +61,7 @@
          					</c:forEach>
 
 					</select>
+					<label>월&nbsp;&nbsp;</label>
                     <select id="day" style="width: 100px;">
           					<c:forEach begin="1" end="31" var="idx" step="1">
 	          					<option value="<c:out value="${idx}" />">
@@ -68,6 +70,7 @@
          					</c:forEach>
 
 					</select>
+					<label>일&nbsp;&nbsp;</label>
                         <input type="hidden" name="birth">
                     </td>
                 </tr>
@@ -131,10 +134,7 @@
                 <tr class="check_tr">
                     <td></td>
                     <td colspan="2"></td>
-                </tr>
-                <tr>
-                    <td colspan="2"><b>이용 약관 동의(필수)</b></td>
-                </tr>      
+                </tr>     
                 <tr class="check_tr">
                     <td colspan="3">
                         <div id="checkbox_check"></div>

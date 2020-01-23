@@ -3,186 +3,25 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 	<jsp:include page="/module/1doctype_head.jsp"></jsp:include>
+	<jsp:include page="../../module/exhibition_view.jsp"></jsp:include>
 	
 <body>
 	
  	<jsp:include page="/module/2body_first.jsp"></jsp:include>
-
-<style>
-	/* 정렬 */
-	.selected{
-	  	border-bottom: 2px solid #23AD21 !important;
-		transition: all 0.3s;
-		background-color: white;
-	}
-	
-	#sortBox{
-		display: inline-flex;
-		margin: 20px;
-		margin-right: 70px;
-		margin-left: 70px;
-		width: 90%
-	}
-	
-	#sortBox > div{
-		border: 0;
-	    font-size: 20pt;
-	    transition: all 0.3s;
-	    margin: 0 auto; /* div를 가운데 정렬하는애 */
-	    padding-right: 5px;
-    	padding-left: 5px;
-	    text-align: -webkit-center;
-	}
-	#tagList .ctg{
-		border: 0;
-		margin-bottom: 10px;
-    	margin-top: 10px;
-    	margin-right: 20px;
-	    font-size: 13pt;
-	    transition: all 0.3s;
-	}
-	#locList .ctg{
-		border: 0;
-		margin-bottom: 10px;
-    	margin-top: 10px;
-    	margin-right: 20px;
-	    font-size: 13pt;
-	    transition: all 0.3s;
-	}
-	#genList .ctg{
-		border: 0;
-		margin-bottom: 10px;
-    	margin-top: 10px;
-    	margin-right: 20px;
-	    font-size: 13pt;
-	    transition: all 0.3s;
-	}
-	
-	#sortBox > div:hover{
-		border-bottom: 2px solid #23AD21 !important;
-		transition: all 0.3s;
-		cursor: pointer;
-	}
-	#tagList .ctg:hover{
-		border-bottom: 2px solid #23AD21 !important;
-		transition: all 0.3s;
-		cursor: pointer;
-	}
-	#locList .ctg:hover{
-		border-bottom: 2px solid #23AD21 !important;
-		transition: all 0.3s;
-		cursor: pointer;
-	}
-	#genList .ctg:hover{
-		border-bottom: 2px solid #23AD21 !important;
-		transition: all 0.3s;
-		cursor: pointer;
-	}
-
-	/* 태그 */	
-	.ctgList li {
-	  display: inline-flex;
-	  list-style-type: none;
-	  margin-left: 10px;
-	  margin-right: 10px;
-	  color: #1a1a1a;
-	  font-family: 'Noto Sans KR', sans-serif !important;
-	  font-size: 15px;
-	}
-	
-	.ctgList{
-	  padding-left: 5em;
-      padding-right: 2em;
-	}
-	
-	li b {
-	  padding-right: 80px;
-	}
-	
-	#ctgBox {
-      margin-left: 70px;
-      margin-right: 70px; 
-      padding: 30px;
-	  padding-right: 50px;
-	  padding-left: 50px;
-	  border-radius: 100px;
-	  box-shadow: 0px 0px 15px 0px #994d00;
-	}
-	
-	/* 출력되는 div 게시물 */
-	#content_div {
-    	text-align: center;
-    	padding-left: 3%;
-    	padding-right: 3%;
-    	padding-top: 5em;
-    }
-    
-    
-	#content_list{
-		display: -webkit-inline-box;
-    	flex-wrap: wrap;
-    	-webkit-box-pack: center;
-    	width: 100%;
-	}
-	
-	.content_list_div{ 
-		margin-left: 15px;
-	    margin-right: 15px;
-	    margis-top: 20px;
-	    margin-bottom: 20px;
-	    width: 275px;
-	    /* height: auto; */
-	    height: 540px;
-	    text-align: left;
-	    border-radius: 20px;
-	    padding-bottom: 10px;
-	}
-	
-	.content_list_div img{ 
-		width: 100%;
-		border-radius: 20px;
-		display: flex;
-	    overflow: hidden;
-	}
-	
-	.content_list_div a{ 
-		color: #474747;
-		text-decoration: none;
-	}
-	
-	.content_list_div:hover{ 
-		/* -moz-box-shadow: 0px 12px 20px rgba(54, 24, 79, 0.5);
-		-webkit-box-shadow: 0px 12px 20px rgba(54, 24, 79, 0.5);
-		box-shadow: 0px 12px 20px rgba(54, 24, 79, 0.5); */
-		opacity: 0.4;
-		transition: all .3s;
-		border-radius: 20px;
-	}
-	
-	.#content_list_div a:hover{ 
-		color: #8a8a8a;
-		text-decoration: none;
-		border-radius: 20px;
-	}
-	
-	#moreBtn_div{
-		padding: 30px;
-	}
-</style>
 	
       <input type="text" hidden id="sort_num" value="0"/> <!-- 기본값 0 : 전체전시 -->
       <input type="text" hidden id="tag_num" value="0"/> <!-- 0일경우 선택 안되있는 것 -->
       <input type="text" hidden id="loc_num" value="0"/> <!-- 0일경우 선택 안되있는 것 -->
       <input type="text" hidden id="gen_num" value="0"/> <!-- 0일경우 선택 안되있는 것 -->
-      <input type="text" hidden id="page_num" value="0"/> <!-- 처음 출력되는 페이지 : 0 -->
+      <input type="text" hidden id="page_num" value="1"/> <!-- 처음 출력되는 페이지 : 0 -->
       
 	<div class="container" id="mainContainer" style="width:90%;">
 		<div id="sortBox">
-			<div class="ctg artSort selected" id="0"><b>전체 전시 보기</b></div>
-			<div class="ctg artSort" id="1"><b>진행중인 전시 보기</b></div>
-			<div class="ctg artSort" id="2"><b>인기 전시 보기</b></div>
-			<div class="ctg artSort" id="3"><b>곧 종료하는 전시 보기</b></div>
-			<div class="ctg artSort" id="4"><b>종료 된 전시 보기</b></div>
+			<div class="ctg artSort selected" id="0"><b>전체 전시</b></div>
+			<div class="ctg artSort" id="1"><b>진행중인 전시</b></div>
+			<div class="ctg artSort" id="2"><b>인기 전시</b></div>
+			<div class="ctg artSort" id="3"><b>곧 종료하는 전시</b></div> <!-- 오늘날짜 기준으로 2달후에 끝나는 전시 -->
+			<div class="ctg artSort" id="4"><b>종료된 전시</b></div>
 		</div>
 		<div id="ctgBox">
 			<ul class="ctgList" id="tagList"><!-- 미선택시 0, 선택시 1번부터~ -->
@@ -226,7 +65,7 @@
 						<div id="pDiv">
 							<center>진행중인 전시가 없습니다!</center><br>
 							<div style="text-align: center;">
-							   <a class="btn" href="<%=request.getContextPath()%>/index.jsp">메인으로 돌아가기</a>
+							   <a class="btn" href="location.replace('/doArtShow')">메인으로 돌아가기</a>
 							</div>
 						</div>
 					</div>
@@ -234,18 +73,18 @@
 				<c:otherwise>
 					<div id="content_list">  
 				    	<c:forEach var="list" items="${lists}" begin="0" end="14">
-						   <!-- <div class="list_div" style="height: 540px;">  -->
-						   	<div class="content_list_div">
-						    	<a href="<%=request.getContextPath()%>/client/exhibition/ExContentView.do?exhID=${list.exhID}" id="ExContentView"><!-- 아무데나 눌러도 상세페이지로 넘어가게 -->
-						        	<img src="/doArtShow/exhibitionImages/${list.imageFile1}"/><br>
-							        <div style="padding: 10px;">
-								        <b style="font-size:12pt;">${list.exhName}</b><br>
-								        ${list.exhPlace}<br>
-								        ${list.exhStartDate}&nbsp;~&nbsp;${list.exhEndDate}
-							        </div>
-						       	</a>
+						   	<div style="height: 600px;">
+							   	<div class="content_list_div">
+							    	<a href="<%=request.getContextPath()%>/client/exhibition/ExContentView.do?exhID=${list.exhID}" id="ExContentView"><!-- 아무데나 눌러도 상세페이지로 넘어가게 -->
+							        	<img src="/doArtShow/exhibitionImages/${list.imageFile1}"/><br>
+								        <div style="padding: 10px;">
+									        <b style="font-size:12pt;">${list.exhName}</b><br>
+									        ${list.exhPlace}<br>
+									        ${list.exhStartDate}&nbsp;~&nbsp;${list.exhEndDate}
+								        </div>
+							       	</a>
+							     </div>
 						     </div>
-						    <!-- </div> -->
 					    </c:forEach>
 					</div>
 					<div id="moreBtn_div" align="center">
@@ -328,20 +167,19 @@
 						listCnt = data[i].listCnt;
 					}
 					
-					console.log(listCnt);
+					console.log("listCnt : " + listCnt);
 					
 					if(listCnt > 0){
 						for(i=0;i<listCnt;i++){
-							/* html += "<div class='list_div' style='height: 540px;'>"; */
+							html += "<div style='height: 600px;'>";
 							html += "<div class='content_list_div'>";
 							html += "<a href='/doArtShow/client/exhibition/ExContentView.do?exhID=" + data[i].exhID + "' id='ExContentView'>";
 							html += "<img src='/doArtShow/exhibitionImages/" + data[i].imageFile1 + "'/><br>";
 							html += "<div style='padding: 10px;'>";
 							html += "<b style='font-size:12pt;'>" + data[i].exhName + "</b><br>";
 							html += data[i].exhPlace + "<br>";
-							html += data[i].exhStartDate + "&nbsp;~&nbsp;" + data[i].exhEndDate + "</a>";
-							html += "</div>";
-							/* html += "</div>"; */
+							html += data[i].exhStartDate + "&nbsp;~&nbsp;" + data[i].exhEndDate + "</div>";
+							html += "</a></div></div>";
 						}
 						
 						var pagingNum = parseInt(inputPage.val() + 1);
@@ -360,8 +198,7 @@
 						html += "<center>진행중인 전시가 없습니다!</center><br>";
 						html += "<div align='center'>";
 						html += "<a class='btn' href='location.replace('/doArtShow')'>메인으로 돌아가기</a>";
-						html += "</div>";
-						html += "</div>"
+						html += "</div></div>";
 						
 						$("#moreBtn_div").hide(); 
 					}
@@ -440,16 +277,15 @@
 					}
 					
 					for(i=0;i<listCnt;i++){
-						/* html += "<div class='list_div'  style='height: 540px;'>"; */
+						html += "<div style='height: 600px;'>";
 						html += "<div class='content_list_div'>";
 						html += "<a href='/doArtShow/client/exhibition/ExContentView.do?exhID=" + data[i].exhID + "' id='ExContentView'>";
 						html += "<img src='/doArtShow/exhibitionImages/" + data[i].imageFile1 + "'/><br>";
 						html += "<div style='padding: 10px;'>";
 						html += "<b style='font-size:12pt;'>" + data[i].exhName + "</b><br>";
 						html += data[i].exhPlace + "<br>";
-						html += data[i].exhStartDate + "&nbsp;~&nbsp;" + data[i].exhEndDate + "</a>";
-						html += "</div>";
-						/* html += "</div>"; */
+						html += data[i].exhStartDate + "&nbsp;~&nbsp;" + data[i].exhEndDate + "</div>";
+						html += "</a></div></div>";
 					}
 						
 					var pagingNum = parseInt(inputPage.val() + 1);
@@ -473,12 +309,7 @@
 				}
 			});
 		});
-		
-		
-		
-		
 
-		
 	</script>
 	
 	
