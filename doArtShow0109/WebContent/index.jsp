@@ -23,7 +23,7 @@
 <div class="rotating">
 <div class="rotating-text">
   <p>전시:해에서 </p>
-  <p>.t
+  <p>
     <span class="word alizarin">지도로  찾아요.</span>
     <span class="word wisteria">내 전시를 알려요.</span>
     <span class="word peter-river">#태그로 둘러봐요.</span>
