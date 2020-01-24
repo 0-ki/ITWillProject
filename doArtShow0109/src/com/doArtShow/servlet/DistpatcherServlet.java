@@ -536,7 +536,7 @@ public class DistpatcherServlet extends HttpServlet {
 		      
 		      //카카오 로그인/회원가입 시
 			else if ("/kakaoLogin.do".equals(servletPath)){
-				System.out.println("DS의 카카오로그인==>"+request.getParameter("gender"));
+				System.out.println("DS의 카카오로그인 성별==>"+request.getParameter("gender"));
 				JSONObject jsonObj = new JSONObject();
 	            model.put("jsonObj", jsonObj);
 	            
