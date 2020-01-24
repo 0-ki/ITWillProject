@@ -759,34 +759,86 @@ public class MemberDao {
    }
    
    //////////////////////////////////////////////////////////////////////
-   //KaKao 멤버 체크
-   public int kakaoCheckMember(String email, String kakaoId) {
+   //KaKao 멤버 로그인 / 회원가입
+   public MemberDto kakaoCheckMember(String email, String kakaoId, String kname, String kbirth, String kgender) {
 	      Connection conn = null;
 	      PreparedStatement pstmt = null;
 	      ResultSet rs = null;
 	      String sql = null;
-	      
 	      MemberDto member = null;
 	      
 	      try {
 	         conn = ds.getConnection();
-	         sql = "SELECT count(*) FROM MEMBER WHERE EMAIL=? AND PW=password(?) ";
+	         sql = "SELECT * FROM MEMBER WHERE kakaoId= ? ";
 	         pstmt = conn.prepareStatement(sql);
-	         pstmt.setString(1, email);
-	         pstmt.setString(2, kakaoId);
+	         pstmt.setString(1, kakaoId);
 	         
 	         rs = pstmt.executeQuery();
 	         
-	         member = new MemberDto();
-
-	         while(rs.next()){
-	            member.setBirth(rs.getString("birth"));
-	            member.setGender(rs.getString("gender"));
-	            member.setPw(rs.getString("pw"));
-	            member.setEmail(rs.getString("email"));
-	            member.setName(rs.getString("name"));
-	            member.setProfileImg(rs.getString("profileImg"));
-	         }
+	         if(rs.next()){//1. DB에 kakaoId 있음.
+	        	 System.out.println("rs가 있습니다.");
+	        	 //1-1. 해당 kakaoId의 email가져와서 로그인 처리 (세션 put)
+	        		 member = new MemberDto();
+	        		 do{
+	        		 member.setBirth(rs.getString("birth"));
+	        		 member.setGender(rs.getString("gender"));
+	        		 member.setEmail(rs.getString("email"));
+	        		 member.setName(rs.getString("name"));
+	        		 member.setProfileImg(rs.getString("profileImg"));
+	        		 member.setKakaoId(rs.getString("kakaoId"));
+	        		 }while(rs.next());
+	        		 System.out.println("email이 잘 넘어오나 테스트 memberDAO 1::"+email);
+	        		 
+	        	}else{//2. kakaoId에 해당하는 member 없음
+	        		System.out.println("email이 잘 넘어오나 테스트 memberDAO 2::"+email);
+	        		if(email.equals("nothing")){
+	        			System.out.println("여긴 3::");
+	        			member = new MemberDto();
+	        			member.setProfileImg("회원가입필요함");
+	        			return member;
+	        			}
+	        			//새로 가입해야 하는데 kakao에 등록된 email이 이미 사용중인지 확인해본다.
+		        		try{
+		        		sql=" SELECT * from member where email= ? ";
+		        		pstmt = conn.prepareStatement(sql);
+		        		pstmt.setString(1, email);
+		        		rs = pstmt.executeQuery();
+		        		
+		        		}catch(SQLException e){
+		        			member = new MemberDto();
+		        			member.setProfileImg("에러발생");
+		        			return member;
+		        		}
+		        		
+	        		if(rs.next()){//2-1. DB에 카카오 로그인에서 사용하는 email이 이미 등록돼 있음.
+	        			//컨트롤러에서 분기하기 위해서
+	        			System.out.println("DB에 이메일이 중복됩니다.");
+	        			member = new MemberDto();
+	        			member.setProfileImg("이메일중복");
+	        		}else{//2-2. DB에 kakaoId, email이 모두 새로 입력됨. 회원가입처리
+		        	 System.out.println("rs는 null입니다. kakaoId("+kakaoId+")로 회원가입을 진행합니다");
+		        	 member = new MemberDto();
+			        	  try{ 
+			        		  
+			              sql = "INSERT INTO artshowdb.MEMBER(EMAIL, NAME, BIRTH, GENDER, kakaoId) "
+			                     + "VALUES (?,?,?,?,?)";
+		                  pstmt = conn.prepareStatement(sql);
+		                  pstmt.setString(1, email);
+		                  pstmt.setString(2, kname);
+		                  pstmt.setString(3, kbirth);
+		                  pstmt.setString(4, kgender);
+		                  pstmt.setString(5, kakaoId);
+		                  pstmt.executeUpdate();
+		                  //컨트롤러로 돌아가서 분기하기 위해서
+		                  member.setProfileImg("회원가입했어요!로그인해줘요");
+		                  }catch(SQLException e){
+		                	e.printStackTrace();
+		                	member = new MemberDto();
+		        			member.setProfileImg("에러발생");
+		        			return member;
+		        			}
+	        		}
+	        	}
 	         
 	      } catch (SQLException e) {
 	         e.printStackTrace();
@@ -796,38 +848,9 @@ public class MemberDao {
 	         try {if(conn   != null)conn.close();   } catch (SQLException e) {}
 	      }
 	      
-	      return 1;
+	      return member;
 	   }
 
    
-   
-   
-   //Kakao 회원가입
-   public void kakaoInsertMember(MemberDto member) {
-	      Connection          conn    = null;
-	      PreparedStatement    pstmt    = null;
-	      String             sql    = null;
-	      
-	      try {
-	         conn = ds.getConnection();
-	         sql = "INSERT INTO artshowdb.MEMBER(EMAIL, NAME, BIRTH, GENDER, PW) "
-	            + "VALUES (?,?,?,?,password(?))";
-	         pstmt = conn.prepareStatement(sql);
-	         pstmt.setString(1, member.getEmail());
-	         pstmt.setString(2, member.getName());
-	         pstmt.setString(3, member.getBirth());
-	         pstmt.setString(4, member.getGender());
-	         pstmt.setString(5, member.getPw());
-	         
-	         pstmt.executeUpdate();
-
-	      } catch (Exception e) {
-	         e.printStackTrace();
-	      } finally {
-	         try {if(pstmt!=null)pstmt.close();} catch (SQLException e) {}
-	         try {if(conn!=null)conn.close();} catch (SQLException e) {}
-	      }
-	   }
-
    
 }

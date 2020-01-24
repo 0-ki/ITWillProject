@@ -537,14 +537,15 @@ public class DistpatcherServlet extends HttpServlet {
 		      //카카오 로그인/회원가입 시
 			else if ("/kakaoLogin.do".equals(servletPath)){
 				System.out.println("DS의 카카오로그인==>"+request.getParameter("gender"));
-				if(true){
+				JSONObject jsonObj = new JSONObject();
+	            model.put("jsonObj", jsonObj);
+	            
 				model.put("member", new MemberDto()
 								.setKakaoId(request.getParameter("kid"))
 								.setEmail(request.getParameter("email"))
 								.setName(request.getParameter("name"))
 								.setBirth(request.getParameter("birth"))
 								.setGender(request.getParameter("gender")));
-				}
 			}
 
 		      
