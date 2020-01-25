@@ -534,7 +534,7 @@ public class DistpatcherServlet extends HttpServlet {
 			// end - admin page by Dongsik 20/01/20(yy/mm/dd)	
 		    //--------------------------------------------------------------------------------------  
 		      
-		      //카카오 로그인/회원가입 시
+		    //카카오 로그인/회원가입 시
 			else if ("/kakaoLogin.do".equals(servletPath)){
 				System.out.println("DS의 카카오로그인 성별==>"+request.getParameter("gender"));
 				JSONObject jsonObj = new JSONObject();
@@ -546,11 +546,27 @@ public class DistpatcherServlet extends HttpServlet {
 								.setName(request.getParameter("name"))
 								.setBirth(request.getParameter("birth"))
 								.setGender(request.getParameter("gender")));
+			
+			// 네이버 로그인 및 회원가입시
+			}else if("/naverLogin.do".equals(servletPath)){
+				System.out.println("DS의 네이버로그인 실행");
+				JSONObject jsonObj = new JSONObject();
+	            model.put("jsonObj", jsonObj);
+	            String gender = "남성";
+	            if(request.getParameter("gender").equals("M")){
+	            	gender = "남성";
+	            }else if(request.getParameter("gender").equals("F")){
+	            	gender = "여성";
+	            }
+	            model.put("member", new MemberDto()
+	         					.setNaverId(request.getParameter("nid"))
+	            				.setEmail(request.getParameter("email"))
+	            				.setName(request.getParameter("name"))
+	            				.setBirth(request.getParameter("birth"))
+	            				.setGender(gender));//request.getParameter("gender")
+				
 			}
 
-		      
-		      
-		      
 		      // 페이지 컨트롤러를 실행한다.
 		      System.out.println("##2번 페이지컨트롤러 호출");
 		      String viewUrl = pageController.execute(model); //페이지 컨트롤러의 execute()메서드로 이동하며 데이터를 주고받을 바구니 역할을 하는 Map객체(model)를 넘긴다

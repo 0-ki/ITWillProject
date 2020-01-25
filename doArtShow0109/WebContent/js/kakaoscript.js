@@ -1,4 +1,4 @@
-					 var kid,email,name,raw_birth,birth,gender;
+var kid,email,name,raw_birth,birth,gender;
 // 카카오 로그인 버튼을 생성합니다.
 Kakao.Auth.createLoginButton({
 	container : '#kakao-login-btn',

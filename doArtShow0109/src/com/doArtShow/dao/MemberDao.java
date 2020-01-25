@@ -850,7 +850,98 @@ public class MemberDao {
 	      
 	      return member;
 	   }
-
+   
+   	//////////////////////////////////////////////////////////
+   //네이버 아이디 로그인 및 회원가입처리
+   public MemberDto naverCheckMember(String email, String naverId, String kname, String kbirth, String kgender) {
+	      Connection conn = null;
+	      PreparedStatement pstmt = null;
+	      ResultSet rs = null;
+	      String sql = null;
+	      MemberDto member = null;
+	      
+	      try {
+	         conn = ds.getConnection();
+	         sql = "SELECT * FROM MEMBER WHERE naverId= ? ";
+	         pstmt = conn.prepareStatement(sql);
+	         pstmt.setString(1, naverId);
+	         
+	         rs = pstmt.executeQuery();
+	         
+	         if(rs.next()){//1. DB에 naverId 있음.
+	        	 System.out.println("rs가 있습니다.");
+	        	 //1-1. 해당 naverId의 email가져와서 로그인 처리 (세션 put)
+	        		 member = new MemberDto();
+	        		 do{
+	        		 member.setBirth(rs.getString("birth"));
+	        		 member.setGender(rs.getString("gender"));
+	        		 member.setEmail(rs.getString("email"));
+	        		 member.setName(rs.getString("name"));
+	        		 member.setProfileImg(rs.getString("profileImg"));
+	        		 member.setKakaoId(rs.getString("naverId"));
+	        		 }while(rs.next());
+	        		 System.out.println("email이 잘 넘어오나 테스트 memberDAO 1::"+email);
+	        		 return member;
+	        	}else{//2. naverId에 해당하는 member 없음
+	        		System.out.println("email이 잘 넘어오나 테스트 memberDAO 2::"+email);
+	        		/*if(email.equals("nothing")){
+	        			System.out.println("여긴 3::");
+	        			member = new MemberDto();
+	        			member.setProfileImg("회원가입필요함");
+	        			return member;
+	        			}*/
+	        		
+	        			//새로 가입해야 하는데 naver에 등록된 email이 이미 사용중인지 확인해본다.
+		        		sql=" SELECT * from member where email= ? ";
+		        		pstmt = conn.prepareStatement(sql);
+		        		pstmt.setString(1, email);
+		        		rs = pstmt.executeQuery();
+		        		
+	        		if(rs.next()){//2-1. DB에 네이버 로그인에서 사용하는 email이 이미 등록돼 있음.
+	        			//컨트롤러에서 분기하기 위해서
+	        			System.out.println("DB에 이메일이 중복됩니다.");
+	        			member = new MemberDto();
+	        			member.setProfileImg("이메일중복");
+	        			return member;
+	        		}else{//2-2. DB에 naverId, email이 모두 새로 입력됨. 회원가입처리
+		        	 System.out.println("rs는 null입니다. naverId("+naverId+")로 회원가입을 진행합니다");
+		        	 member = new MemberDto();
+			        	  try{ 
+			        		  
+			              sql = "INSERT INTO artshowdb.MEMBER(EMAIL, NAME, BIRTH, GENDER, naverId) "
+			                     + "VALUES (?,?,?,?,?)";
+		                  pstmt = conn.prepareStatement(sql);
+		                  pstmt.setString(1, email);
+		                  pstmt.setString(2, kname);
+		                  pstmt.setString(3, kbirth);
+		                  pstmt.setString(4, kgender);
+		                  pstmt.setString(5, naverId);
+		                  pstmt.executeUpdate();
+		                  
+		                  member.setEmail(email).setBirth(kbirth).setName(kname).setGender(kgender).setProfileImg("default.jpg");
+		                  
+		                  //컨트롤러로 돌아가서 분기하기 위해서
+		                  //member.setProfileImg("회원가입했어요!로그인해줘요");
+		                  return member;
+		                  }catch(SQLException e){
+		                	e.printStackTrace();
+		                	member = new MemberDto();
+		        			member.setProfileImg("에러발생");
+		        			return member;
+		        			}
+	        		}
+	        	}
+	         
+	      } catch (SQLException e) {
+	         e.printStackTrace();
+	      } finally {
+	         try {if(pstmt   != null)pstmt.close();   } catch (SQLException e) {}
+	         try {if(rs      != null)rs.close();      } catch (SQLException e) {}
+	         try {if(conn   != null)conn.close();   } catch (SQLException e) {}
+	      }
+	      
+	      return member;
+	   }
    
    
 }

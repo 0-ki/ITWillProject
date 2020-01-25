@@ -49,6 +49,7 @@ import com.doArtShow.controls.member.MemberLogOutController;
 import com.doArtShow.controls.member.MemberPageController;
 import com.doArtShow.controls.member.MemberUpdateController;
 import com.doArtShow.controls.member.NaverLoginController;
+import com.doArtShow.controls.member.NaverMemberController;
 import com.doArtShow.controls.member.SupportController;
 import com.doArtShow.dao.ExhibitionDao;
 import com.doArtShow.dao.ManagerDao;
@@ -240,6 +241,8 @@ public class ContextLoaderListener implements ServletContextListener{
 			//카카오 로그인/회원가입 처리
 			sc.setAttribute("/kakaoLogin.do", new KakaoMemberController().setMemberDao(memberDao));
 			
+			//네이버 로그인/회원가입 처리
+			sc.setAttribute("/naverLogin.do", new NaverMemberController().setMemberDao(memberDao));
 			
 			
 		} catch (Exception e) {
