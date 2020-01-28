@@ -200,46 +200,6 @@ display: inline-block;
 						<div id="map" style="width:300px;height:300px;margin-top:10px;display:none"></div>
 						</td>
 				</tr>
-				
-				<!-- ### 아트맵에서 퍼옴-->
-				
-				<style>
-				.my_layer_span { margin-top:15px; display:inline-block; text-align:center; width:33%; padding:5px 15px; font-size:13px; line-height:24px; letter-spacing:-0.64px; cursor:pointer; }
-				</style>
-				<tr id="museum_tr" >
-				<th></th>
-				<td colspan="3">
-					<div style="width:100%; height:150px; border:1px solid #c8c8c8; overflow:auto;" id="m_list">
-						<span onclick="chk_museum('1','대백프라자갤러리/대구')" class="my_layer_span" style='width:20%;'>대백프라자갤러리/대구</span>
-						<span onclick="chk_museum('1','대백프라자갤러리/대구')" class="my_layer_span">대구</span>
-						<span onclick="chk_museum('1','대백프라자갤러리/대구')" class="my_layer_span" style='width:40%;'>대구 중구 대봉동 214 대백프라자 12층</span>
-												<span onclick="chk_museum('2','경북대학교박물관/대구')" class="my_layer_span" style='width:20%;'>경북대학교박물관/대구</span>
-						<span onclick="chk_museum('2','경북대학교박물관/대구')" class="my_layer_span">대구</span>
-						<span onclick="chk_museum('2','경북대학교박물관/대구')" class="my_layer_span" style='width:40%;'>대구 북구 산격동 1370-1</span>
-												<span onclick="chk_museum('3','국립대구박물관/대구')" class="my_layer_span" style='width:20%;'>국립대구박물관/대구</span>
-						<span onclick="chk_museum('3','국립대구박물관/대구')" class="my_layer_span">대구</span>
-						<span onclick="chk_museum('3','국립대구박물관/대구')" class="my_layer_span" style='width:40%;'>대구 수성구 황금동 70</span>
-												<span onclick="chk_museum('4','삼성미술관 플라토/서울')" class="my_layer_span" style='width:20%;'>삼성미술관 플라토/서울</span>
-						<span onclick="chk_museum('4','삼성미술관 플라토/서울')" class="my_layer_span">서울</span>
-						<span onclick="chk_museum('4','삼성미술관 플라토/서울')" class="my_layer_span" style='width:40%;'>서울 중구 태평로2가 150 삼성생명</span>
-												<span onclick="chk_museum('5','백남준아트센터/경기')" class="my_layer_span" style='width:20%;'>백남준아트센터/경기</span>
-						<span onclick="chk_museum('5','백남준아트센터/경기')" class="my_layer_span">경기</span>
-						<span onclick="chk_museum('5','백남준아트센터/경기')" class="my_layer_span" style='width:40%;'>경기 용인시 기흥구 상갈동 85</span>
-												<span onclick="chk_museum('6','대구문화예술회관/대구')" class="my_layer_span" style='width:20%;'>대구문화예술회관/대구</span>
-						<span onclick="chk_museum('6','대구문화예술회관/대구')" class="my_layer_span">대구</span>
-						<span onclick="chk_museum('6','대구문화예술회관/대구')" class="my_layer_span" style='width:40%;'>대구 달서구 성당동 187</span>
-												<span onclick="chk_museum('7','봉산문화회관/대구')" class="my_layer_span" style='width:20%;'>봉산문화회관/대구</span>
-						<span onclick="chk_museum('7','봉산문화회관/대구')" class="my_layer_span">대구</span>
-						<span onclick="chk_museum('7','봉산문화회관/대구')" class="my_layer_span" style='width:40%;'>대구 중구 봉산동 125</span>
-												<span onclick="chk_museum('9','수성아트피아/대구')" class="my_layer_span" style='width:20%;'>수성아트피아/대구</span>
-						<span onclick="chk_museum('9','수성아트피아/대구')" class="my_layer_span">대구</span>
-						<span onclick="chk_museum('9','수성아트피아/대구')" class="my_layer_span" style='width:40%;'>대구 수성구 지산동 1137-3</span> 
-                    </div>               
-               	</td>
-				</tr>
-                
-                <!-- ### 아트맵에서 퍼옴-->
-                
                 <tr>
                     <th>
                         <label for="">*전시관지역</label>
