@@ -62,7 +62,7 @@
                }else if(gender=='F'){
             	   gender='여성';
                } */
-               alert( email +'\n'+name+'\n'+profileImage+'\n'+birthday+'\n'+uniqId+'\n'+age+'\n'+gender); // 로그인 한 이메일 ***@naver.com 이 출력된다.
+               //alert( email +'\n'+name+'\n'+profileImage+'\n'+birthday+'\n'+uniqId+'\n'+age+'\n'+gender); // 로그인 한 이메일 ***@naver.com 이 출력된다.
                //////////////////////////////////////////
 
                	  $.ajax({
@@ -76,7 +76,7 @@
 		        																	console.log("로그인처리됨");
 		        					location.reload(true);
 		        				}else if(data.res==2){
-		        					alert("네이버 계정에서 사용중인 이메일이 이미 사용중입니다.\n이메일로 로그인 해주세요.");
+		        					alert("네이버 계정에서 설정한 이메일이 이미 사용중입니다.\n이메일로 로그인 해주세요.");
 		           				}else if(data.res==3){
 		           					alert('로그인/회원가입 처리중 오류가 발생하였습니다.\n다시 시도하시거나 관리자에게 문의해주세요.');
 		           				}
