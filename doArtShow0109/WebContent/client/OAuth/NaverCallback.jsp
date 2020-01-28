@@ -1,5 +1,6 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"  pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html><!--  lang="kr" -->
+<html>
 
 <head>
    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
@@ -17,7 +18,6 @@
          {
             clientId: "QvLk55msCCyAfv2p50Yg",
             callbackUrl: "http://localhost:8888/doArtShow/NaverCallback",
-            /* contentType: "application/x-www-form-urlencoded; charset=UTF-8", */
             isPopup: false,
             callbackHandle: true
          }
@@ -36,28 +36,23 @@
    				 age = naverLogin.user.getAge();
    				 gender = naverLogin.user.getGender();
    				
-   				// if문에 걸려서 alert가 호출시에 URL Encoding이 된 상태로 출력됨.한글 깨짐
                if( email == undefined || email == null) {
-                  alert('Email is required. Please agree to provide information.');
-                  //alert(new String(str.getBytes("utf-8"), '이메일은 필수항목입니다.'));
-                  //alert(URLDecoder.decode( '이메일은 필수항목입니다.',"utf-8"));
-                  //alert(encodeURIComponent(encodeURIComponent('이메일은 필수항목입니다.')));
-                  //alert(encodeURIComponent('이메일은 필수항목입니다.')+'\n'+decodeURIComponent('이메일좀줘'));
+                  alert('이메일은 필수 항목입니다. 정보 제공에 동의해주세요.');
                   naverLogin.reprompt();
                   return;
                }
                if( name == undefined || name == null) {
-                  alert("Name is required. Please agree to provide information.");
+                  alert("성명은 필수 항목입니다. 정보 제공에 동의해주세요.");
                   naverLogin.reprompt();
                   return;
                }
                if( birthday == undefined || birthday == null) {
-                  alert("Birthday is required. Please agree to provide information.");
+                  alert("생일은 필수 항목입니다. 정보 제공에 동의해주세요.");
                   naverLogin.reprompt();
                   return;
                }
                if( gender == undefined || gender == null) {
-                  alert("Gender is required. Please agree to provide information.");
+                  alert("성별은 필수 항목입니다. 정보 제공에 동의해주세요.");
                   naverLogin.reprompt();
                   return;
                }
@@ -81,7 +76,7 @@
 		        																	console.log("로그인처리됨");
 		        					location.reload(true);
 		        				}else if(data.res==2){
-		        					alert("네이버 계정에서 사용중인 이메일이 이미 사용중입니다.\n이메일로 로그인 해주세요.\n Email Already Used");
+		        					alert("네이버 계정에서 사용중인 이메일이 이미 사용중입니다.\n이메일로 로그인 해주세요.");
 		           				}else if(data.res==3){
 		           					alert('로그인/회원가입 처리중 오류가 발생하였습니다.\n다시 시도하시거나 관리자에게 문의해주세요.');
 		           				}
