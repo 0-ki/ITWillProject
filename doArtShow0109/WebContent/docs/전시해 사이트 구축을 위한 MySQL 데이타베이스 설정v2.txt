@@ -21,16 +21,25 @@ use artshowdb; <enter>
 
 
 DB를 단일서버(외부서버)-192.168.11.9로 통합하기 
+0. root권한으로 서버로 사용할 MySQL서버에 접속한다.
+mysql -u root -p <enter>
+1. 다음과 같이 각 IP어드레스에 권한을 할당한다.  
 GRANT ALL PRIVILEGES ON *.* TO root@'ip주소' IDENTIFIED BY '비밀번호'' WITH GRANT OPTION;
-
+예)
 grant all privileges on *.* to artmaster@192.168.11.8 identified by '1111' with grant option;
 grant all privileges on *.* to artmaster@192.168.11.1 identified by '1111' with grant option;
 grant all privileges on *.* to artmaster@192.168.11.2 identified by '1111' with grant option;
 grant all privileges on *.* to artmaster@192.168.11.7 identified by '1111' with grant option;
 grant all privileges on *.* to artmaster@ITW identified by '1111' with grant option;
 
+2. 다음 명령을 실행한다.  
 flush privileges;
 
+3. 각 PC에서 다음을 실행하여 DB 서버로 접속이 되는지 테스트한다. 
 mysql -h 192.168.11.9 -u artmaster -p
 
-server.xml변경하기 
+4. 이클립스 톰캣서버의 server.xml을 변경하고 어플리케이션 프로젝트를 실행한 후, DB 서버로 접속이 되는지를 테스트한다.  
+server.xml변경하기 => url항목의 localhost를 DB서버의 IP address로 변경한다. 
+	예) url="jdbc:mysql://localhost:3306/artshowdb?useUnicode=true&amp;characterEncoding=utf8" => url="jdbc:mysql://192.168.11.9:3306/artshowdb?useUnicode=true&amp;characterEncoding=utf8"
+	<Resource auth="Container" driverClassName="com.mysql.jdbc.Driver" loginTimeout="10" maxActive="50" maxIdle="20" maxWait="5000" name="jdbc/artshowdb" password="1111" testOnBorrow="true" type="javax.sql.DataSource" url="jdbc:mysql://localhost:3306/artshowdb?useUnicode=true&amp;characterEncoding=utf8" username="artmaster"/> 
+

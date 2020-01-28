@@ -1021,7 +1021,7 @@ public class ExhibitionDao {
 				pstmt.setString(25, exhibition.getImageType2());
 				pstmt.setString(26, exhibition.getImageType3());
 				pstmt.setString(27, exhibition.getImageType4());
-				pstmt.setInt(22, exhibition.getExhID());
+				pstmt.setInt(28, exhibition.getExhID());
 				cnt += pstmt.executeUpdate();
 				System.out.println("#cnt1"+cnt);
 				
