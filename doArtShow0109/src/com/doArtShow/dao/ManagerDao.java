@@ -84,7 +84,7 @@ public class ManagerDao {
 				list = new ArrayList<MemberDto>();
 				
 				do {
-					list.add(new MemberDto(rs.getString("email"), rs.getString("name"),rs.getString("birth"),rs.getString("gender"), rs.getString("pw"), rs.getString("profileImg")));	
+					list.add(new MemberDto(rs.getString("email"), rs.getString("name"),rs.getString("birth"),rs.getString("gender"), rs.getString("pw"), rs.getString("profileImg"), rs.getString("kakaoId"), rs.getString("naverId")));	
 				} while (rs.next());
 				
 			}

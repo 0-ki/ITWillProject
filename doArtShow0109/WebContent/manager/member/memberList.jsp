@@ -55,6 +55,8 @@
                     <th>생년월일</th>
                     <th>성별</th>
                     <th>비밀번호</th>
+                    <th>카카오 아이디</th>
+                    <th>네이버 아이디</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -65,6 +67,22 @@
                   		<td>${list.birth}</td>
                   		<td>${list.gender}</td>
                   		<td>${list.pw}</td>
+                  		<c:choose>
+                  			<c:when test="${list.kakaoId eq '' || empty list.kakaoId}">
+                  				<td>없음</td>
+                  			</c:when>
+                  			<c:otherwise>
+                  				<td>${list.kakaoId}</td>
+                  			</c:otherwise>
+                  		</c:choose>
+                  		<c:choose>
+                  			<c:when test="${list.naverId eq '' || empty list.naverId}">
+                  				<td>없음</td>
+                  			</c:when>
+                  			<c:otherwise>
+                  				<td>${list.naverId}</td>
+                  			</c:otherwise>
+                  		</c:choose>
                   	</tr>
                   </c:forEach>
                 </tbody>

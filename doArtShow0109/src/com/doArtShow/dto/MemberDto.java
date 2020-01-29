@@ -24,10 +24,22 @@ public class MemberDto {
 		this.profileImg = profileImg;
 	}// ManagerDao 전용 생성자2
 	
+	public MemberDto(String email, String name, String birth, String gender, String pw, String profileImg, String kakaoId, String naverId) {
+		super();
+		this.email = email;
+		this.name = name;
+		this.birth = birth;
+		this.gender = gender;
+		this.pw = pw;
+		this.profileImg = profileImg;
+		this.kakaoId = kakaoId;
+		this.naverId = naverId;
+	}// ManagerDao 전용 생성자3
 	
 	
 	
 	
+
 	public String getEmail() {
 		return email;
 	}
