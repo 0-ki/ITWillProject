@@ -87,7 +87,7 @@ for (var i = 0; i < chkDay; i++) {
 	} else {
 		weekValue = (date.getMonth() == 0 ? year - 1 : year) + "-" + (date.getMonth() == 0 ? 12 : date.getMonth()) + "-" + week[i];
 	}
-	console.log(weekValue);
+	
 	(function(i) {
 	  $.ajax({
 	  	url: "/doArtShow/getWeekVisitCnt.do",
@@ -152,3 +152,5 @@ var myLineChart = new Chart(ctx, {
     }
   }
 });
+
+$('.nowTime').text((date.getHours() >= 0 && date.getHours() < 10 ? "0" + date.getHours() : date.getHours()) + ":" + (date.getMinutes() >= 0 && date.getMinutes() < 10 ? "0" + date.getMinutes() : date.getMinutes()) + " " + (date.getHours >= 0 && date.getHours < 12 ? "AM" : "PM"));

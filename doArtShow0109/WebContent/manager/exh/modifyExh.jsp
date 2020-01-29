@@ -13,7 +13,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>SB Admin - Modify</title>
+  <title>전시:해 - 수정</title>
 
   <jsp:include page="/module/manager_ModifyExh_Header.html"></jsp:include>
 
@@ -364,7 +364,7 @@
       <footer class="sticky-footer">
         <div class="container my-auto">
           <div class="copyright text-center my-auto">
-            <span>Copyright © Your Website 2019</span>
+            <span>Copyright © 전시:해 2020</span>
           </div>
         </div>
       </footer>
