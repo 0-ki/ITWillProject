@@ -76,12 +76,11 @@ for (var i = 0; i < chkDay; i++) {
 		chkOne = i;
 	}
 }
-console.log(week);
+
 for (var i = 0; i < chkOne; i++) {
 	week[i] = new Date(date.getMonth() == 0 ? year - 1 : year, date.getMonth() == 0 ? 12 : date.getMonth(), 0).getDate() - (chkOne - 1 - i) + "일";
 }
-console.log(chkOne);
-console.log(chkDay);
+
 for (var i = 0; i < chkDay; i++) {
 	if (i >= chkOne) {
 		weekValue = year + "-" + month + "-" + week[i];
