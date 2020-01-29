@@ -19,7 +19,9 @@ public class VisitCountController implements Controller {
 		
 		String value = (String) model.get("value");
 		
-		if (value.equals("week")) {
+		if (value.equals("total")) {
+			return "manager/chart/charts.jsp";
+		} else if (value.equals("week")) {
 			String weekValue = (String) model.get("weekValue");
 			
 			int weekVisitCnt = managerDao.getWeekVisitCnt(weekValue);

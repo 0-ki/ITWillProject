@@ -527,6 +527,8 @@ public class DistpatcherServlet extends HttpServlet {
 				response.getWriter().write(weekVisitCnt);
 				
 				return ;
+			} else if ("/getTotalVisitCnt.do".equals(servletPath)) {
+				model.put("value", "total");
 			}
 
 		      

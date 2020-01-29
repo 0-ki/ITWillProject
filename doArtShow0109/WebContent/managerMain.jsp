@@ -73,7 +73,7 @@
 		                </div>
 		                <div class="mr-5"><span class="count">${todayVisitCnt}</span> 오늘 방문자 수</div>
 		              </div>
-		              <a class="card-footer text-white clearfix small z-1" href="charts.jsp">
+		              <a class="card-footer text-white clearfix small z-1" href="getTotalVisitCnt.do">
 		                <span class="float-left">자세히 보기</span>
 		                <span class="float-right">
 		                  <i class="fas fa-angle-right"></i>

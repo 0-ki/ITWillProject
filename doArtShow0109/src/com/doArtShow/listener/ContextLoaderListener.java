@@ -233,6 +233,7 @@ public class ContextLoaderListener implements ServletContextListener{
 			
 			// 통계 자료 관련
 			sc.setAttribute("/getWeekVisitCnt.do", new VisitCountController().setManagerDao(managerDao));
+			sc.setAttribute("/getTotalVisitCnt.do", new VisitCountController());
 			
 			//-------------------------------------------------------------------------------------------------------------
 			//			programmed by Dongsik - end

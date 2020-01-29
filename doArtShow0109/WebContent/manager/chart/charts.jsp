@@ -12,7 +12,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>SB Admin - Charts</title>
+  <title>전시:해 - 통계</title>
 
   <jsp:include page="/module/manager_ExhList_Header.html"></jsp:include>
 
@@ -34,16 +34,17 @@
         <!-- Breadcrumbs-->
         <ol class="breadcrumb">
           <li class="breadcrumb-item">
-            <a href="#">Dashboard</a>
+            <a href="manager.do">Home</a>
           </li>
-          <li class="breadcrumb-item active">Charts</li>
+          <li class="breadcrumb-item active">통계</li>
         </ol>
 
         <!-- Area Chart Example-->
         <div class="card mb-3">
           <div class="card-header">
             <i class="fas fa-chart-area"></i>
-            Area Chart Example</div>
+            <span id="title_week"></span>
+          </div>
           <div class="card-body">
             <canvas id="myAreaChart" width="100%" height="30"></canvas>
           </div>
