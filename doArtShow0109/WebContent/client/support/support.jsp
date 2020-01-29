@@ -124,7 +124,7 @@
 /*  */
 
 .support-section{
-	margin-bottom: 
+	min-height: 510px;
 }
 
 

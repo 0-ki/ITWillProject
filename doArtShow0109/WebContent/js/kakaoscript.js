@@ -7,24 +7,19 @@ Kakao.Auth.createLoginButton({
 		Kakao.API.request({
 			url : '/v2/user/me',
 			success : function(res) {
-				console.log("1");
-				console.log('\n res>>'+JSON.stringify(res));
-				 console.log('\n authObj>>'+ JSON.stringify(authObj)); //Kakao.Auth.createLoginButton에서 불러온 결과값 json형태로 출력
-	             console.log('\n access_token>>'+ authObj.access_token);
+				//console.log('\n res>>'+JSON.stringify(res));
+				 //console.log('\n authObj>>'+ JSON.stringify(authObj)); //Kakao.Auth.createLoginButton에서 불러온 결과값 json형태로 출력
+	             //console.log('\n access_token>>'+ authObj.access_token);
 	             kid = res.id;
-	             console.log(kid);
 	             $.ajax({//이미 kakaoId가 있는 유저를 login만 처리하기 위해서
 		        		type: "POST",
 		        		url: "/doArtShow/kakaoLogin.do",
 		        		async: false,
 		        		data: {'kid':kid, 'email':'nothing'},
 		        		success: function(data){
-		        			console.log("2");
 		        			if(data.res==1){//바로 로그인 처리 완료. session 생성함. 새로고침
-		        				console.log("3");
 		        					location.reload(true);
 		        				}else{// kakaoId가 DB에 없음. 회원가입 처리로 넘김
-		        					console.log("4");
 		        					kakaoSignUp();
 		        				}
 		        		},
@@ -34,7 +29,6 @@ Kakao.Auth.createLoginButton({
 		        	});
 	             
 	             function kakaoSignUp(){//해당 kakao 계정으로 회원가입 처리
-	            	 console.log("5");
 	            	 
 					 var haz_gender = true;
 					 var haz_name  = true;
@@ -45,22 +39,9 @@ Kakao.Auth.createLoginButton({
 					 if(typeof res.properties['nickname']=='undefined')haz_name=false; 
 					 if(typeof res.kakao_account.birthday=='undefined')haz_birth=false; 
 					 if(typeof res.kakao_account['email']=='undefined')haz_email=false;
-	            	 // 생일 이메일 비동의 , 닉네임 성별 동의시
-					 console.log('res.~.gender==>>'+ res.kakao_account.gender);//male string
-					 console.log( res.properties['nickname']);//영기 string
-					 console.log( res.kakao_account.birthday);//undefined undefined
-					 console.log( res.kakao_account['email']);// undefined undefined
-					 
-					 console.log('typeof==>>'+ typeof  res.kakao_account.gender);
-					 console.log(typeof  res.properties['nickname']);
-					 console.log(typeof  res.kakao_account.birthday);
-					 console.log(typeof  res.kakao_account['email']);
-					 
-					 console.log(haz_birth , haz_email , haz_gender , haz_name);
 					 
 					 if(haz_gender== true && haz_name== true && haz_birth == true && haz_email ==true ){
 						 // 1-1) kakaoAPI로부터 모든 필요 값을 받음.
-						 console.log("6");
 		              email = res.kakao_account['email'];
 		              name = res.properties['nickname'];
 		              raw_birth = res.kakao_account.birthday;
@@ -72,10 +53,8 @@ Kakao.Auth.createLoginButton({
 										} else {
 											gender = '여성';
 										}
-		            		 console.log(kid+'\n'+email+'\n'+name+'\n'+birth+'\n'+gender);
 		            		 kakaoSignUpAjax(email, name, gender, birth);
 					 }else{// 1-2) kakaoAPI로부터 받지 못하여서 창 오픈.
-						 console.log("7");
 		            	 function popupAddInfo(){
 			                 var popUrl = "/doArtShow/client/OAuth/KakaoAddInfo.jsp";
 			                 var popOption = " status=no, menubar=no, toolbar=no, resizable=no";//top=140, left=740, width=450, height=660,
@@ -84,8 +63,6 @@ Kakao.Auth.createLoginButton({
 		            	 popupAddInfo();
 		            	 
 		                 
-		                 console.log("7-1 \n"+kid+'\n'+email+'\n'+name+'\n'+birth+'\n'+gender);
-		                
 					 }
 					 
 	             }// end - kakaoSignUp()
@@ -102,7 +79,6 @@ Kakao.Auth.createLoginButton({
 });
 
 function inputAddInfo(add_email, add_name, add_gender, add_birth){
-	 console.log("8");
 	 if(add_gender==null || add_birth==null || add_name==null){
 		 alert('잘못 입력하셨습니다.\n다시 입력해주세요.');
 		 popupAddInfo();
@@ -121,7 +97,6 @@ function kakaoSignUpAjax(email,name,gender,birth){
    		/*data: data,*/
    		data: {'kid':kid, 'email':email,'name':name,'birth':birth,'gender':gender},
    		success: function(data){
-   			console.log("9");
    			location.reload(true);
    			if(data.res==2){alert("카카오 계정에서 사용중인 이메일이 이미 사용중입니다.\n이메일로 로그인 해주세요.");
    				}else if(data.res==3){
