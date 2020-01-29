@@ -539,6 +539,14 @@ public class DistpatcherServlet extends HttpServlet {
 				response.getWriter().write(monthVisitCnt);
 				
 				return ;
+			} else if ("/getAgeCnt.do".equals(servletPath)) {
+				model.put("startYear", request.getParameter("startYear"));
+				model.put("lastYear", request.getParameter("lastYear"));
+				
+				String memberAgeCnt = pageController.execute(model);
+				response.getWriter().write(memberAgeCnt);
+				
+				return ;
 			}
 
 		      

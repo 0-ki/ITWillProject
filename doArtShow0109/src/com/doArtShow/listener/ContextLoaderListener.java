@@ -26,6 +26,7 @@ import com.doArtShow.controls.manager.GetArtShowTagController;
 import com.doArtShow.controls.manager.ManagerLoginController;
 import com.doArtShow.controls.manager.ManagerLogoutController;
 import com.doArtShow.controls.manager.ManagerMainController;
+import com.doArtShow.controls.manager.MemberAgeCountController;
 import com.doArtShow.controls.manager.MemberListController;
 import com.doArtShow.controls.manager.UpdateExhController;
 import com.doArtShow.controls.manager.VisitCountController;
@@ -235,6 +236,7 @@ public class ContextLoaderListener implements ServletContextListener{
 			sc.setAttribute("/getWeekVisitCnt.do", new VisitCountController().setManagerDao(managerDao));
 			sc.setAttribute("/getTotalVisitCnt.do", new VisitCountController());
 			sc.setAttribute("/getMonthVisitCnt.do", new VisitCountController().setManagerDao(managerDao));
+			sc.setAttribute("/getAgeCnt.do", new MemberAgeCountController().setManagerDao(managerDao));
 			
 			//-------------------------------------------------------------------------------------------------------------
 			//			programmed by Dongsik - end

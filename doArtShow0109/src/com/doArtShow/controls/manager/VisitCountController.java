@@ -13,6 +13,7 @@ public class VisitCountController implements Controller {
 		
 		return this;
 	}
+	
 	@Override
 	public String execute(Map<String, Object> model) throws Exception {
 		System.out.println("### VisitCountController ###");

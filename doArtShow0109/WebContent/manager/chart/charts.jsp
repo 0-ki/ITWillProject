@@ -68,7 +68,8 @@
             <div class="card mb-3">
               <div class="card-header">
                 <i class="fas fa-chart-pie"></i>
-                Pie Chart Example</div>
+                	연령대별 비율	
+              </div>
               <div class="card-body">
                 <canvas id="myPieChart" width="100%" height="107"></canvas>
               </div>

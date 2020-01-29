@@ -916,6 +916,41 @@ public class ManagerDao {
 		
 		return monthVisitCnt;
 	}
+
+	public int getAgeCnt(int startYear, int lastYear) {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		int memberAgeCnt = 0;
+		
+		try {
+			conn = ds.getConnection();
+			
+			String sql = "select count(*) from member where left(birth, 4) >= ? and left(birth, 4) <= ?";
+			
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, startYear);
+			pstmt.setInt(2, lastYear);
+			rs = pstmt.executeQuery();
+			
+			if (rs.next()) {
+				memberAgeCnt = rs.getInt(1);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if(rs != null) rs.close();
+				if(pstmt != null) pstmt.close();
+				if(conn != null) conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		return memberAgeCnt;
+	}
 	
 	
 }
