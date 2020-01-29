@@ -881,6 +881,41 @@ public class ManagerDao {
 		
 		return weekVisitCnt;
 	}
+
+	public int getMonthVisitCnt(String year, String monthValue) {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		int monthVisitCnt = 0;
+		
+		try {
+			conn = ds.getConnection();
+			
+			String sql = "select count(*) from visitPage where year(visitDate) = ? and month(visitDate) = ?";
+			
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, year);
+			pstmt.setString(2, monthValue);
+			rs = pstmt.executeQuery();
+			
+			if (rs.next()) {
+				monthVisitCnt = rs.getInt(1);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if(rs != null) rs.close();
+				if(pstmt != null) pstmt.close();
+				if(conn != null) conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		return monthVisitCnt;
+	}
 	
 	
 }

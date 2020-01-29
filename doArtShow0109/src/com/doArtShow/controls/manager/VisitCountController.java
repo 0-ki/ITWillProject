@@ -27,6 +27,13 @@ public class VisitCountController implements Controller {
 			int weekVisitCnt = managerDao.getWeekVisitCnt(weekValue);
 			
 			return "" + weekVisitCnt;
+		} else if (value.equals("month")) {
+			String year = (String) model.get("year");
+			String monthValue = (String) model.get("monthValue");
+
+			int monthVisitCnt = managerDao.getMonthVisitCnt(year, monthValue);
+			
+			return "" + monthVisitCnt;
 		} else {
 			
 			return null;

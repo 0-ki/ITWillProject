@@ -2,17 +2,60 @@
 Chart.defaults.global.defaultFontFamily = '-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
 Chart.defaults.global.defaultFontColor = '#292b2c';
 
+var date = new Date(); 
+var year = date.getFullYear(); 
+
+var years = new Array();
+var months = new Array();
+
+if (date.getMonth() + 1 >= 1 && date.getMonth() + 1 <= 5) {
+	lastYear = year - 1;
+	
+	for (var i = 0; i < 6 - (date.getMonth() + 1); i++) {
+		years[i] = lastYear;
+		months[i] = 8 + i + date.getMonth();
+	}
+	
+	for (var i = 6 - (date.getMonth() + 1); i < 6; i++) {
+		years[i] = year;
+		months[i] = i - (5 - (date.getMonth() + 1));
+	}
+} else {
+	for (var i = 0; i < 6; i++) {
+		years[i] = year;
+		months[i] = (date.getMonth() + 1) - 5 + i; 
+	}
+}
+
+var monthVisitCnt = new Array();
+
+for (var i = 0; i < 6; i++) {
+	(function(i) {
+	  $.ajax({
+	  	url: "/doArtShow/getMonthVisitCnt.do",
+			type: "GET",
+			data: "year=" + years[i] + "&monthValue=" + months[i] + "&value=month",
+			async: false,
+			success:function(data){
+				monthVisitCnt[i] = parseInt(data);
+			}
+	  });
+	})(i);
+	
+	months[i] = months[i] + "월";
+}
+
 // Bar Chart Example
 var ctx = document.getElementById("myBarChart");
 var myLineChart = new Chart(ctx, {
   type: 'bar',
   data: {
-    labels: ["January", "February", "March", "April", "May", "June"],
+    labels: months,
     datasets: [{
-      label: "Revenue",
+      label: "방문자",
       backgroundColor: "rgba(2,117,216,1)",
       borderColor: "rgba(2,117,216,1)",
-      data: [4215, 5312, 6251, 7841, 9821, 14984],
+      data: monthVisitCnt,
     }],
   },
   options: {
@@ -31,7 +74,7 @@ var myLineChart = new Chart(ctx, {
       yAxes: [{
         ticks: {
           min: 0,
-          max: 15000,
+          max: 400,
           maxTicksLimit: 5
         },
         gridLines: {

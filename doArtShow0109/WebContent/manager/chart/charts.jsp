@@ -56,7 +56,8 @@
             <div class="card mb-3">
               <div class="card-header">
                 <i class="fas fa-chart-bar"></i>
-                Bar Chart Example</div>
+                	월별 방문자 통계
+              </div>
               <div class="card-body">
                 <canvas id="myBarChart" width="100%" height="50"></canvas>
               </div>

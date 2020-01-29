@@ -21,6 +21,7 @@ import org.json.simple.JSONObject;
 
 import com.doArtShow.controls.Controller;
 import com.doArtShow.controls.exhibition.ExhibitionListController;
+import com.doArtShow.controls.manager.VisitCountController;
 import com.doArtShow.dao.MemberDao;
 import com.doArtShow.dto.ExhibitionDto;
 import com.doArtShow.dto.ManagerDto;
@@ -529,6 +530,15 @@ public class DistpatcherServlet extends HttpServlet {
 				return ;
 			} else if ("/getTotalVisitCnt.do".equals(servletPath)) {
 				model.put("value", "total");
+			} else if ("/getMonthVisitCnt.do".equals(servletPath)) {
+				model.put("year", request.getParameter("year"));
+				model.put("monthValue", request.getParameter("monthValue"));
+				model.put("value", request.getParameter("value"));
+				
+				String monthVisitCnt = pageController.execute(model);
+				response.getWriter().write(monthVisitCnt);
+				
+				return ;
 			}
 
 		      
