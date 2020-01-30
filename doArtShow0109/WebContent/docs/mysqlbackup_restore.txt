@@ -1,5 +1,5 @@
 1) 도스창에서 다음을 실행한다. 
-mysqldump -u root --databases artshowdb > artshowdb_2020_01_27.sql
+mysqldump -u root -p --databases artshowdb > artshowdb_2020_01_27.sql
 *https://code-factory.tistory.com/21
 
 2) 
