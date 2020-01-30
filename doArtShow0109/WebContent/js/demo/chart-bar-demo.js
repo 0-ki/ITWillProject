@@ -87,3 +87,13 @@ var myLineChart = new Chart(ctx, {
     }
   }
 });
+
+var avg = 0;
+
+for (var i = 0; i < 6; i++) {
+	avg += monthVisitCnt[i];
+}
+
+$('#average').text(parseInt(avg/6));
+$('#min').text(Math.min.apply(null, monthVisitCnt));
+$('#max').text(Math.max.apply(null, monthVisitCnt));

@@ -11,8 +11,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
   <meta name="author" content="">
-
-  <title>SB Admin - Tables</title>
+  <link rel="shortcut icon" href="/doArtShow/resourcesImages/Jeon_invisible.ico" type="image/x-icon" />
+  <title>전시:해 - 종료된 목록</title>
 
   <jsp:include page="/module/manager_ExhList_Header.html"></jsp:include>
 

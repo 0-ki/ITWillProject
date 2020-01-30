@@ -31,8 +31,8 @@
 		  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 		  <meta name="description" content="">
 		  <meta name="author" content="">
-		
-		  <title>doArtShow Admin - Login</title>
+		  <link rel="shortcut icon" href="/doArtShow/resourcesImages/Jeon_invisible.ico" type="image/x-icon" />
+		  <title>전시:해 - 관리자 로그인</title>
 		
 		  <!-- Custom fonts for this template-->
 		  <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">

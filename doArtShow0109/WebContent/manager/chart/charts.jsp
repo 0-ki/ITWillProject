@@ -11,7 +11,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
   <meta name="author" content="">
-
+  <link rel="shortcut icon" href="/doArtShow/resourcesImages/Jeon_invisible.ico" type="image/x-icon" />
   <title>전시:해 - 통계</title>
 
   <jsp:include page="/module/manager_ExhList_Header.html"></jsp:include>
@@ -59,7 +59,21 @@
                 	월별 방문자 통계
               </div>
               <div class="card-body">
-                <canvas id="myBarChart" width="100%" height="50"></canvas>
+	              <div class="row">
+	              	<div class="col-sm-8 my-auto">
+		                <canvas id="myBarChart" width="100%" height="50"></canvas>
+	              	</div>
+	                <div class="col-sm-4 text-center my-auto">
+	                 <div class="h4 mb-0 text-primary" id="average"></div>
+	                 <div class="small text-muted">평균 방문자 수</div>
+	                 <hr>
+	                 <div class="h4 mb-0 text-warning" id="min"></div>
+	                 <div class="small text-muted">최소 방문자 수</div>
+	                 <hr>
+	                 <div class="h4 mb-0 text-success" id="max"></div>
+	                 <div class="small text-muted">최대 방문자 수</div>
+	               </div>
+	              </div>
               </div>
               <div class="card-footer small text-muted">Updated today at <span class="nowTime"></span></div>
             </div>
@@ -71,7 +85,7 @@
                 	연령대별 비율	
               </div>
               <div class="card-body">
-                <canvas id="myPieChart" width="100%" height="107"></canvas>
+                <canvas id="myPieChart" width="100%" height="71"></canvas>
               </div>
               <div class="card-footer small text-muted">Updated today at <span class="nowTime"></span></div>
             </div>
