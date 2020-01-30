@@ -514,7 +514,7 @@
                     </div>
                 </div>
                 <div class="col-md-6">
-                    <form name="sentMessage" id="contactForm" novalidate="">
+                    <form action="" method="post" name="sentMessage" id="contactForm">
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">

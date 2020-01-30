@@ -326,7 +326,7 @@ public class ManagerDao {
 		try {
 			conn = ds.getConnection();
 			
-			String sql = "select * from artshow where exhenddate < sysdate()";
+			String sql = "select * from artshow where exhenddate < date(sysdate())";
 			stmt = conn.createStatement();
 			rs = stmt.executeQuery(sql);
 			
