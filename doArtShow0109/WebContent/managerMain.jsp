@@ -44,8 +44,8 @@
 		          <li class="breadcrumb-item">
 		            <a href="manager.do">Home</a>
 		          </li>
-		          <li class="breadcrumb-item active">Overview</li>
-		        </ol>
+		          <li class="breadcrumb-item active">개요</li>
+		        </ol><!-- End of Breadcrumbs-->
 		
 		        <!-- Icon Cards-->
 		        <div class="row">
@@ -85,7 +85,7 @@
 		            <div class="card text-white bg-success o-hidden h-100">
 		              <div class="card-body">
 		                <div class="card-body-icon">
-		                  <i class="fas fa-fw fa-shopping-cart"></i>
+		                  <i class="fas fa-fw fa-comment-dots"></i>
 		                </div>
 		                <div class="mr-5"><span class="count"></span> 1:1 문의 요청</div>
 		              </div>
@@ -113,24 +113,85 @@
 		              </a>
 		            </div>
 		          </div>
-		        </div>
+		        </div><!-- End of Icon Cards-->
 		
-		        <!-- Area Chart Example-->
-		        <div class="card mb-3">
-		          <div class="card-header">
-		            <i class="fas fa-chart-area"></i>
-		            <span id="title_week"></span>
-		          </div>
-		          <div class="card-body">
-		            <canvas id="myAreaChart" width="100%" height="30"></canvas>
-		          </div>
-		          <div class="card-footer small text-muted">Updated today at <span class="nowTime"></span></div>
-		        </div>
 		
-		    
+				<div class="row">
+					<div class="col-lg-8">
+						<!-- Area Chart-->
+				        <div class="card mb-3">
+				          <div class="card-header">
+				            <i class="fas fa-chart-area"></i>
+				            <span id="title_week"></span>
+				          </div>
+				          <div class="card-body">
+				            <canvas id="myAreaChart" width="100%" height="45"></canvas>
+				          </div>
+				          <div class="card-footer small text-muted">Updated today at <span class="nowTime"></span></div>
+				        </div><!-- End of Area Chart-->
+					</div>
+					<div class="col-lg-4">
+						<!-- Notifications Card-->
+				          <div class="card mb-3">
+				            <div class="card-header">
+				              <i class="far fa-bell"></i> 요청 알림</div>
+				            <div class="list-group list-group-flush small">
+				              <a class="list-group-item list-group-item-action" href="#">
+				                <div class="media">
+				                  <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/45x45" alt="">
+				                  <div class="media-body">
+				                    <strong>David Miller</strong>posted a new article to
+				                    <strong>David Miller Website</strong>.
+				                    <div class="text-muted smaller">Today at 5:43 PM - 5m ago</div>
+				                  </div>
+				                </div>
+				              </a>
+				              <a class="list-group-item list-group-item-action" href="#">
+				                <div class="media">
+				                  <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/45x45" alt="">
+				                  <div class="media-body">
+				                    <strong>Samantha King</strong>sent you a new message!
+				                    <div class="text-muted smaller">Today at 4:37 PM - 1hr ago</div>
+				                  </div>
+				                </div>
+				              </a>
+				              <a class="list-group-item list-group-item-action" href="#">
+				                <div class="media">
+				                  <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/45x45" alt="">
+				                  <div class="media-body">
+				                    <strong>Jeffery Wellings</strong>added a new photo to the album
+				                    <strong>Beach</strong>.
+				                    <div class="text-muted smaller">Today at 4:31 PM - 1hr ago</div>
+				                  </div>
+				                </div>
+				              </a>
+				              <a class="list-group-item list-group-item-action" href="#">
+				                <div class="media">
+				                  <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/45x45" alt="">
+				                  <div class="media-body">
+				                    <i class="fa fa-code-fork"></i>
+				                    <strong>Monica Dennis</strong>forked the
+				                    <strong>startbootstrap-sb-admin</strong>repository on
+				                    <strong>GitHub</strong>.
+				                    <div class="text-muted smaller">Today at 3:54 PM - 2hrs ago</div>
+				                  </div>
+				                </div>
+				              </a>
+				            </div>
+				            <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
+				          </div><!-- End of Notifications Card-->
+					</div>
+				</div>
+		        
+				
+		    	
+		    	
+		    	
+			    	
+			   
 		
-		      </div>
-		      <!-- /.container-fluid -->
+		      </div><!-- End of container-fluid -->
+		      
 		
 		      <!-- Sticky Footer -->
 		      <footer class="sticky-footer">

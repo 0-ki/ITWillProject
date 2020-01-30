@@ -508,9 +508,9 @@
                 <div class="col-md-3">
                     <div class="section-text">
                         <h4>Business Hours</h4>
-                        <p><i class="fa fa-clock-o"></i> <span class="day">Weekdays:</span><span>9am to 8pm</span></p>
-                        <p><i class="fa fa-clock-o"></i> <span class="day">Saturday:</span><span>9am to 2pm</span></p>
-                        <p><i class="fa fa-clock-o"></i> <span class="day">Sunday:</span><span>Closed</span></p>
+                        <p><i class="fa fa-clock-o"></i> <span class="day">Weekdays&nbsp;:&nbsp;</span><span>9am to 8pm</span></p>
+                        <p><i class="fa fa-clock-o"></i> <span class="day">Saturday&nbsp;:&nbsp;</span><span>9am to 2pm</span></p>
+                        <p><i class="fa fa-clock-o"></i> <span class="day">Sunday&nbsp;:&nbsp;</span><span>Closed</span></p>
                     </div>
                 </div>
                 <div class="col-md-6">
