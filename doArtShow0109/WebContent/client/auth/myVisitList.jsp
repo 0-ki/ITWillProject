@@ -20,7 +20,6 @@
                         <c:if test="${!empty requestScope.visitCount}">${visitCount}</c:if>
                     </span>
                 </label>
-                <a href="<%=request.getContextPath()%>/client/auth/visitList.do" class="seeAll">전체보기</a>
                 <c:choose>
                     <c:when test="${empty requestScope.visitList}">
                         <div class="box2">

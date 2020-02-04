@@ -226,7 +226,30 @@
     </c:if>
     <jsp:include page="../../module/3body_last.html"></jsp:include>
     <jsp:include page="../../module/client_auth.jsp"></jsp:include>
-    
+    <script>
+		function openRevModal(num) {
+		    $("#revUpdateModal" + num).modal({
+		        backdrop: true
+		    });
+		}
+		
+		function confirmDeleteRev(num) {
+		    confirm("삭제하시겠습니까?");
+		    location.href = "revDelete.do?exhName=" + $("#revExhName" + num).text();
+		}
+		
+		function chkreviewUpdateForm(reviewUpdateForm) {
+		    if (!reviewUpdateForm.revContent.value) {
+		        alert("내용을 작성해주세요");
+		        revForm.revConter.focus();
+		        return false;
+		    }
+		
+		    reviewUpdateForm.action = "revUpdate.do";
+		    reviewUpdateForm.submit();
+		}
+
+	</script>
 </body>
 
 </html>

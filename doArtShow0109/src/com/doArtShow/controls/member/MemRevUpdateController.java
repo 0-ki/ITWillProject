@@ -17,6 +17,8 @@ public class MemRevUpdateController implements Controller{
 
 	@Override
 	public String execute(Map<String, Object> model) throws Exception {
+		String referer = (String)model.get("Referer");
+		
 		if(model.get("revUpdateInfo")!=null) {
 			ReviewDto revUpdateInfo = (ReviewDto)model.get("revUpdateInfo");
 			String 	email 		= revUpdateInfo.getEmail();
@@ -26,7 +28,7 @@ public class MemRevUpdateController implements Controller{
 			memberDao.updateReveiw(email, exhID, revContent);
 			
 		}
-		return "redirect:reviewList.do";
+		return "redirect:"+referer;
 	}
 
 }

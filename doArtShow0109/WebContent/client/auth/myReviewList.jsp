@@ -19,7 +19,6 @@
                         <c:if test="${!empty requestScope.reviewCount}">${reviewCount}</c:if>
                     </span>
                 </label>
-                <a href="<%=request.getContextPath()%>/client/auth/reviewList.do" class="seeAll">전체보기</a>
                 <c:choose>
                     <c:when test="${empty requestScope.reviewList}">
                         <div class="box2">

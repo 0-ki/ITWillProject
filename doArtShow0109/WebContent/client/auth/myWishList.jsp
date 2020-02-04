@@ -19,7 +19,6 @@
                         <c:if test="${!empty requestScope.wishCount}">${wishCount}</c:if>
                     </span>
                 </label>
-                <a href="<%=request.getContextPath()%>/client/auth/wishList.do" class="seeAll">전체보기</a>
                 <c:choose>
                     <c:when test="${empty requestScope.wishList}">
                         <div class="box2">
