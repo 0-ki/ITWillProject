@@ -41,21 +41,6 @@ $(document).ready(function(){
 		}
 	});
 	
-	//생년월일 유효검사(숫자가 아닐 경우  다시입력)
-	$("#input_birth").blur(function(){
-		var birth = $("#input_birth").val();
-		var filter =  /^(19[0-9][0-9]|20\d{2})-(0[0-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$/;
-		if(filter.test(birth)){
-			$("#birth_check").text(" ");
-			$("#submitBtn").attr("disabled", false);
-		} else {
-			
-			$("#birth_check").text("생년월일 8자리를 입력해주세요.");
-			$("#birth_check").css('color','red');
-			$("#submitBtn").attr("disabled", true);
-		}					
-	});
-	
 	//비밀번호 유효검사
 	$("#input_pw").blur(function(){
 		var pw = $("#input_pw").val();

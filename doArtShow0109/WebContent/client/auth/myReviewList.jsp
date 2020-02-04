@@ -123,6 +123,8 @@
         <jsp:include page="askLogIn.jsp"></jsp:include>
     </c:if>
     <jsp:include page="../../module/3body_last.html"></jsp:include>
+    <jsp:include page="../../module/client_auth.jsp"></jsp:include>
+    
 
 <script>
 	function openRevModal(num) {

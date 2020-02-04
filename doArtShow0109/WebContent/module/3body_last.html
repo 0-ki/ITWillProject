@@ -44,3 +44,35 @@
 	
 	</script>
 	
+	<script>
+	//회원 로그인 유효성 검사
+	function validateLogin(loginForm){
+		event.preventDefault();
+	    if(!loginForm.email.value){
+	        $("#chkLoginEmail").text("이메일을 입력하세요");
+	        $("#chkLoginEmail").css('color','red');
+	        loginForm.email.focus();
+	        return;
+	    }
+	    if(!loginForm.pw.value){
+	        $("#chkLoginPw").text("비밀번호를 입력하세요");
+	        $("#chkLoginPw").css('color','red');
+	        loginForm.pw.focus();
+	        return;
+	    }
+	    loginForm.submit();
+	}
+	
+	$(document).ready(function(){
+		$("#login_email").keyup(function(){
+			if($("#login_email").val() != ""){
+				$("#chkLoginEmail").text("")
+			}
+		});
+		$("#login_pw").keyup(function(){
+			if($("#login_pw").val() != ""){
+				$("#chkLoginPw").text("")
+			}
+		});
+	});
+	</script>

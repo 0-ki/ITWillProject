@@ -278,7 +278,6 @@ padding : 5px;
 	 font-size: 14pt;
 }
 
-/* 세란 */
 #revWriteModal-content .modal-body{
          padding: 30px;
             padding-top: 40px;

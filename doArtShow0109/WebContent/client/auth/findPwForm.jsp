@@ -3,7 +3,6 @@
 <jsp:include page="../../module/1doctype_head.jsp"></jsp:include>
 <title>비밀번호 찾기</title>
 <jsp:include page="../../module/2body_first.jsp"></jsp:include>
-<jsp:include page="../../module/client_auth.jsp"></jsp:include>
 </head>
 
 <body>
@@ -46,6 +45,8 @@
         </form>
     </div>
     <jsp:include page="../../module/3body_last.html"></jsp:include>
+    <jsp:include page="../../module/client_auth.jsp"></jsp:include>
+    
     <script type="text/javascript">
         $(document).ready(function () {
             $("#input_email").keyup(function () {

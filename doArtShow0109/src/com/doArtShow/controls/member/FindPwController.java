@@ -38,8 +38,7 @@ public class FindPwController implements Controller{
 			msg += "<h3><strong>" + member.getEmail() + "님</strong>의 임시 비밀번호 입니다.</h3>";
 			msg += "<h3>로그인 후 비밀번호를 변경하세요.</h3>";
 			msg += "<p style='color:blue';>임시 비밀번호 : <strong>"+ newPw +"</strong></p>";
-			msg += "<a href=\"http://localhost:8888/doArtShow/\">전시해 홈페이지 바로가기</a>&nbsp;";
-			msg += "<a href=\"http://localhost:8888/doArtShow/client/auth/memberLogIn.do\">로그인 하러 가기</a>";
+			msg += "<a href=\"http://rladudrl286.cafe24.com/doArtShow/\">전시해 홈페이지 바로가기</a>";
 			msg += "</div>";
 			
 			EmailUtil.sendMail(member.getEmail(), subject, msg);

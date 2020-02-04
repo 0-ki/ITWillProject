@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
 <c:set var="isLogin" value="${sessionScope.member}"/>
 
     <!-- 메인로고나 top 버튼 클릭시 최상단 좌표 역할 #page-top -->

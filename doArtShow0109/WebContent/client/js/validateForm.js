@@ -1,34 +1,3 @@
-// 회원 로그인 유효성 검사
-function validateLogin(loginForm){
-	event.preventDefault();
-    if(!loginForm.email.value){
-        $("#chkLoginEmail").text("이메일을 입력하세요");
-        $("#chkLoginEmail").css('color','red');
-        loginForm.email.focus();
-        return;
-    }
-    if(!loginForm.pw.value){
-        $("#chkLoginPw").text("비밀번호를 입력하세요");
-        $("#chkLoginPw").css('color','red');
-        loginForm.pw.focus();
-        return;
-    }
-    loginForm.submit();
-}
-
-$(document).ready(function(){
-	$("#login_email").keyup(function(){
-		if($("#login_email").val() != ""){
-			$("#chkLoginEmail").text("")
-		}
-	});
-	$("#login_pw").keyup(function(){
-		if($("#login_pw").val() != ""){
-			$("#chkLoginPw").text("")
-		}
-	});
-});
-
 //회원가입 유효성 검사
 function validateSignUp(signUpForm){
 	console.log(signUpForm.email.value);
@@ -86,18 +55,18 @@ function validateSignUp(signUpForm){
 
 //회원 정보수정(생년월일 수정)
 function checkUpdateForm(updateForm){
-	if(!updateForm.birth.value){
-        $("#birth_check").text("수정할 생년월일 입력하세요");
-        $("#birth_check").css('color','red');
-        updateForm.birth.focus();
-        return false;
-    }
 	if(!updateForm.pw.value){
 		$("#pw_check").text("본인인증을 위해 비밀번호를 입력하세요");
 		$("#pw_check").css('color','red');
 		updateForm.pw.focus();
 		return false;
 	}
+	//생년월일 입력여부 검사
+	var year 	= $("#year").val();
+	var month 	= $("#month").val();
+	var day 	= $("#day").val();
+	var birth 	= year+"-"+month+"-"+day;
+	updateForm.birth.value=birth;
 	
 	confirm("회원정보를 수정하시겠습니까?")
 	updateForm.action="memberUpdate.do"
