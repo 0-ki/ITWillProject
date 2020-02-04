@@ -8,12 +8,12 @@ public class EmailUtil {
 		//smtp 서버
 		String charset 		= "utf-8";
 		String hostSMTP 	= "smtp.naver.com";
-		String hostSMTPid 	= "jungmi0008";
-		String hostSMTPpw	= "qp2ql134";
+		String hostSMTPid 	= "do_art_show";
+		String hostSMTPpw	= "itwill1111";
 		
 		//발신인 정보
-		String senderEmail	= "jungmi0008@naver.com";
-		String senderName 	= "길정미";
+		String senderEmail	= "do_art_show@naver.com";
+		String senderName 	= "전시:해";
 		
 		try {
 			HtmlEmail mail = new HtmlEmail();
