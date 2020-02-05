@@ -41,7 +41,7 @@ public class ManagerLoginController implements Controller {
 				session.setAttribute("managerId", managerDto.getManagerId());
 				
 				//return "redirect:managerMain.jsp";
-				return "redirect:manager.do";
+				return "redirect:admin.do";
 			} else if (result == 0) {
 				session.setAttribute("error", "pwdError");
 				

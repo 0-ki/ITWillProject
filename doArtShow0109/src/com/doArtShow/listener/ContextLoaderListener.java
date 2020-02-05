@@ -212,8 +212,8 @@ public class ContextLoaderListener implements ServletContextListener{
 			//-------------------------------------------------------------------------------------------------------------
 			
 			// managerMain으로 가기 위한 controller
-			sc.setAttribute("/manager", new ManagerMainController().setManagerDao(managerDao));
-			sc.setAttribute("/manager.do", new ManagerMainController().setManagerDao(managerDao));
+			sc.setAttribute("/admin", new ManagerMainController().setManagerDao(managerDao));
+			sc.setAttribute("/admin.do", new ManagerMainController().setManagerDao(managerDao));
 			
 			// login 기능
 			sc.setAttribute("/managerLogin.do", new ManagerLoginController().setManagerDao(managerDao));

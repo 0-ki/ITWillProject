@@ -33,7 +33,7 @@ import com.doArtShow.util.UploadUtil;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
-@WebServlet({"*.do", "/start","/NaverCallback", "/manager"})
+@WebServlet({"*.do", "/start","/NaverCallback", "/admin"})
 public class DistpatcherServlet extends HttpServlet {
 
 	@Override
