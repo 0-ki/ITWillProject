@@ -514,7 +514,7 @@
                     </div>
                 </div>
                 <div class="col-md-6">
-                    <form action="" method="post" name="sentMessage" id="contactForm">
+                    <form action="request.do" method="post" name="sentMessage" id="contactForm">
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
