@@ -48,7 +48,6 @@
 		border: 0;
 		margin-bottom: 10px;
     	margin-top: 10px;
-    	margin-right: 20px;
 	    font-size: 12pt;
 	    transition: all 0.3s;
 	}
@@ -101,12 +100,7 @@
 	  font-size: 17px;
 	}
 	
-	.ctgList{
-	  padding-left: 3em;
-	}
-	
 	.ctgList li b {
-	  margin-right: 50px;
 	  font-family: 'Noto Sans KR', sans-serif !important;
 	  font-size: 17px;
 	}
@@ -119,6 +113,26 @@
 	  padding-left: 5%;
 	  border-radius: 80px;
 	  box-shadow: 0px 0px 15px 0px #994d00;
+	}
+	
+	@media(min-width: 1600px){ 
+		.ctgList{
+		  	padding-left: 3em;
+		}
+		.ctgList li b {
+		  	margin-right: 50px;
+		}
+		#tagList .ctg{
+	    	margin-right: 20px;
+		}
+	}
+	@media(max-width: 1600px){ 
+		.ctgList li b {
+		  	margin-right: 30px;
+		}
+		#tagList .ctg{
+	    	margin-right: 10px;
+		}
 	}
 	
 	/* 출력되는 div 게시물 */
@@ -402,17 +416,17 @@
 		width: 100%;
 	    height: 250px;
 	}
-		
+	
 	/* 리뷰보여주는 리스트 */
 	#revList{
 		display: -webkit-inline-box;
-		/* text-align: -webkit-center; */
 		margin: 0 auto;
 	    padding-left: 5%;
 	   	padding-right: 5%;
 		width: 100%;
 		background-color: #f2f2f2;
 	}
+	
 	#reviewView{
 		width: 100%;
 		height: 200px;
@@ -425,9 +439,8 @@
 	    box-sizing: border-box;
 	    width: 500px;
 	    height: 170px;
-	   	border-radius: 20px;
+	   	border-radius: 70px;
 	   	background-color: white;
-	   	box-shadow: 0px 0px 20px 10px white;
 	}
 		
 	.contentContainer{
@@ -448,11 +461,11 @@
 	}
 	.memberName{
 		padding-top: 10px;
-		width: 350px;
+		width: 340px;
 		height: 30px;
 	}
 	.revContent{
-		width: 350px;
+		width: 340px;
 		height: 70px;
 	}
 	.memberProfile{
@@ -461,10 +474,59 @@
 		border-radius: 100px;
 		margin: 10px; 
 	}
+	
+	.revWriteDate{
+		color: #808080; 
+		text-align: right; 
+		padding-right: 2em;
+	}
 		
 	#exhImage{
 		width: 100%;
 	}
+	
+	@media(min-width: 1600px){ 
+		#revList{
+		    padding-left: 5%;
+		   	padding-right: 5%;
+		}
+		.revOne{
+		    margin-right: 6em;
+	    	margin-left: 6em;
+	    	width: 500px;
+		}
+		.memberName{
+			width: 340px;
+		}
+		.revContent{
+			width: 340px;
+		}
+		.revWriteDate{
+			padding-right: 2em;
+		}
+	}
+	
+	@media(max-width: 1600px){ 
+		#revList{
+		    padding-left: 3%;
+		   	padding-right: 3%;
+		}
+		.revOne{
+		    margin-right: 2em;
+	    	margin-left: 2em;
+	    	width: 445px;
+		}
+		.memberName{
+			width: 290px;
+		}
+		.revContent{
+			width: 290px;
+		}
+		.revWriteDate{
+			padding-right: 3em;
+		}
+	}
+	
 	
 	/* 전시사진 swiper */
 	.swiper-container {
@@ -495,6 +557,19 @@
 		box-sizing: border-box;
 		height: 500px;
 	}
+	
+	@media(min-width: 1600px){ 
+		.swiper-container{
+			margin-left: 12em;
+    		margin-right: 12em;
+		}
+	}
+	@media(max-width: 1600px){ 
+		.swiper-container{
+			width: 1000px;
+		}
+	}
+	
 	.oneSwiper{
 		position: absolute;
 	}

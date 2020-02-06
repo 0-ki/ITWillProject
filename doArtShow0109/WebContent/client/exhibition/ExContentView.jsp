@@ -127,6 +127,7 @@
 				</tr>
 				<tr>
 					<td colspan="2" style="padding-bottom: 2%; padding-top: 2%;">
+						<p style="color: #1a1a1a"><b><i class="fa fa-file-text-o"></i>&nbsp;상세 설명</b></p>
 						<pre id="exhContent">${listOne.exhContent}</pre>
 					</td>
 				</tr>
@@ -213,7 +214,7 @@
 														<td><div class="revContent">${revlist.revContent}</div></td>
 													</tr>
 													<tr>
-														<td colspan="2" style="color: #808080; text-align: right;">${revlist.revDate}에 작성되었습니다.&nbsp;&nbsp;&nbsp;</td>
+														<td colspan="2" class="revWriteDate">${revlist.revDate}에 작성되었습니다.&nbsp;&nbsp;&nbsp;</td>
 													</tr>
 												</table>
 											</div>

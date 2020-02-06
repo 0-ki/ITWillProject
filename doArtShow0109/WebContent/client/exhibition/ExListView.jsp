@@ -197,7 +197,7 @@
 						html += "<div id='pDiv'>";
 						html += "<center>진행중인 전시가 없습니다!</center><br>";
 						html += "<div align='center'>";
-						html += "<a class='btn' href='location.replace('/doArtShow')'>메인으로 돌아가기</a>";
+						html += "<a class='btn' href='/doArtShow/main'>메인으로 돌아가기</a>";
 						html += "</div></div>";
 						
 						$("#moreBtn_div").hide(); 
