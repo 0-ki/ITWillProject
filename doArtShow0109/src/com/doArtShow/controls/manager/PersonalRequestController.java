@@ -17,6 +17,12 @@ public class PersonalRequestController implements Controller {
 	@Override
 	public String execute(Map<String, Object> model) throws Exception {
 		System.out.println("### PersonalRequestController ###");
+
+		String name = (String) model.get("name");
+		String email = (String) model.get("email");
+		String message = (String) model.get("message");
+		
+		int res = managerDao.insertRequest(name, email, message);
 		
 		return null;
 	}

@@ -40,7 +40,7 @@
             <!-- Modal Header -->
             <div class="modal-header breadcrumb">
               <h5 class="modal-title breadcrumb-item">
-              	<a href="manager.do">Home</a>
+              	<a href="admin.do">Home</a>
               	&nbsp;&nbsp;/&nbsp;&nbsp;
               	<span class="breadcrumb-item active">수정 페이지</span>
               </h5>

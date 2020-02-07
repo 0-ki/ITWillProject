@@ -34,7 +34,7 @@
         <!-- Breadcrumbs-->
         <ol class="breadcrumb">
           <li class="breadcrumb-item">
-            <a href="manager.do">Home</a>
+            <a href="admin.do">Home</a>
           </li>
           <li class="breadcrumb-item active">전시회 등록/수정 요청</li>
         </ol>

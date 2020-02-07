@@ -547,6 +547,10 @@ public class DistpatcherServlet extends HttpServlet {
 				response.getWriter().write(memberAgeCnt);
 				
 				return ;
+			} else if ("/request.do".equals(servletPath)) {
+				model.put("name", request.getParameter("name"));
+				model.put("email", request.getParameter("email"));
+				model.put("message", request.getParameter("message"));
 			}
 
 		      

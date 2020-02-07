@@ -12,6 +12,7 @@ import javax.sql.DataSource;
 
 import com.doArtShow.dto.ExhibitionDto;
 import com.doArtShow.dto.MemberDto;
+import com.doArtShow.dto.PersonalRequestDto;
 
 // 관리자 정보 dao
 public class ManagerDao {
@@ -950,6 +951,116 @@ public class ManagerDao {
 		}
 		
 		return memberAgeCnt;
+	}
+
+	public int insertRequest(String name, String email, String message) {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		int res = 0;
+		
+		try {
+			conn = ds.getConnection();
+			
+			String sql = "insert into request(name, email, message, reqTime) values(?, ?, ?, sysdate())";
+			
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, name);
+			pstmt.setString(2, email);
+			pstmt.setString(3, message);
+			
+			res = pstmt.executeUpdate();
+			
+			if (res > 0) {
+				System.out.println("Insert request Success!");
+			} else {
+				System.out.println("Insert request Fail...");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if(rs != null) rs.close();
+				if(pstmt != null) pstmt.close();
+				if(conn != null) conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		return res;
+	}
+
+	public List<PersonalRequestDto> getPersonalRequestList() {
+		Connection conn = null;
+		Statement stmt = null;
+		ResultSet rs = null;
+		
+		List<PersonalRequestDto> list = null;
+		
+		try {
+			conn = ds.getConnection();
+			
+			String sql = "select * from request";
+			stmt = conn.createStatement();
+			rs = stmt.executeQuery(sql);
+			
+			if (rs.next()) {
+				list = new ArrayList<PersonalRequestDto>();
+				
+				do {
+					list.add(new PersonalRequestDto(rs.getInt("reqNo"), rs.getString("name"), rs.getString("email"), rs.getString("message"), rs.getString("reqTime"), rs.getString("respTime"), rs.getString("reqFlag")));
+					System.out.println(rs.getString("name"));
+				} while (rs.next());
+				
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if(rs != null) rs.close();
+				if(stmt != null) stmt.close();
+				if(conn != null) conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		return list;
+	}
+
+	public int getNewPersonalRequestCnt() {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		int cnt = 0;
+		
+		try {
+			conn = ds.getConnection();
+			
+			String sql = "select count(*) from request where reqFlag = ?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, "N");
+			rs = pstmt.executeQuery();
+			
+			if (rs.next()) {
+				cnt = rs.getInt(1);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if(rs != null) rs.close();
+				if(pstmt != null) pstmt.close();
+				if(conn != null) conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		return cnt;
 	}
 	
 	

@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
 <c:set var="managerId" value="${managerId}" />
 <c:choose>
@@ -87,7 +88,7 @@
 		                <div class="card-body-icon">
 		                  <i class="fas fa-fw fa-comment-dots"></i>
 		                </div>
-		                <div class="mr-5"><span class="count"></span> 1:1 문의 요청</div>
+		                <div class="mr-5"><span class="count">${newPersonalRequestCnt}</span> 1:1 문의 요청</div>
 		              </div>
 		              <a class="card-footer text-white clearfix small z-1" href="#">
 		                <span class="float-left">자세히 보기</span>
@@ -136,47 +137,31 @@
 				            <div class="card-header">
 				              <i class="far fa-bell"></i> 요청 알림</div>
 				            <div class="list-group list-group-flush small">
-				              <a class="list-group-item list-group-item-action" href="#">
-				                <div class="media">
-				                  <img class="d-flex mr-3 rounded-circle" src="/doArtShow/exhibitionImages/user.jpg" alt="user" width="50">
-				                  <div class="media-body">
-				                    <strong>David Miller</strong>posted a new article to
-				                    <strong>David Miller Website</strong>.
-				                    <div class="text-muted smaller">Today at 5:43 PM - 5m ago</div>
-				                  </div>
-				                </div>
-				              </a>
-				              <a class="list-group-item list-group-item-action" href="#">
-				                <div class="media">
-				                  <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/45x45" alt="">
-				                  <div class="media-body">
-				                    <strong>Samantha King</strong>sent you a new message!
-				                    <div class="text-muted smaller">Today at 4:37 PM - 1hr ago</div>
-				                  </div>
-				                </div>
-				              </a>
-				              <a class="list-group-item list-group-item-action" href="#">
-				                <div class="media">
-				                  <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/45x45" alt="">
-				                  <div class="media-body">
-				                    <strong>Jeffery Wellings</strong>added a new photo to the album
-				                    <strong>Beach</strong>.
-				                    <div class="text-muted smaller">Today at 4:31 PM - 1hr ago</div>
-				                  </div>
-				                </div>
-				              </a>
-				              <a class="list-group-item list-group-item-action" href="#">
-				                <div class="media">
-				                  <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/45x45" alt="">
-				                  <div class="media-body">
-				                    <i class="fa fa-code-fork"></i>
-				                    <strong>Monica Dennis</strong>forked the
-				                    <strong>startbootstrap-sb-admin</strong>repository on
-				                    <strong>GitHub</strong>.
-				                    <div class="text-muted smaller">Today at 3:54 PM - 2hrs ago</div>
-				                  </div>
-				                </div>
-				              </a>
+				            	<c:forEach var="list" items="${personalRequestList}" begin="0" end="7">
+				            		<a class="list-group-item list-group-item-action" href="#">
+						                <div class="media">
+						                  <img class="d-flex mr-3 rounded-circle" src="/doArtShow/exhibitionImages/user.jpg" alt="user" width="50">
+						                  <div class="media-body">
+						                    <strong>${list.name}</strong>&nbsp;님의 1:1 문의가 접수되었습니다.
+						                    	<c:if test="${list.reqFlag eq 'Y'}">
+						                    		&nbsp;&nbsp;<span style="color: blue;"><strong>→&nbsp;답변완료</strong></span>
+						                    	</c:if>
+						                    <br>
+						                    <div class="text-muted smaller">
+						                    	${fn:substring(list.reqTime, 0, 16)}
+						                    	<c:choose>
+						                    	<c:when test="${fn:substring(list.reqTime, 11, 13) >= 0 && fn:substring(list.reqTime, 11, 13) < 12}">
+						                    		AM
+						                    	</c:when>
+						                    	<c:otherwise>
+						                    		PM
+						                    	</c:otherwise>
+						                    </c:choose>
+						                    </div>
+						                  </div>
+						                </div>
+						            </a>
+				            	</c:forEach>
 				            </div>
 				            <div class="card-footer small text-muted">Updated today at <span class="nowTime"></span></div>
 				          </div><!-- End of Notifications Card-->

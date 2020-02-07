@@ -1,11 +1,13 @@
 package com.doArtShow.controls.manager;
 
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
 import com.doArtShow.controls.Controller;
 import com.doArtShow.dao.ManagerDao;
+import com.doArtShow.dto.PersonalRequestDto;
 
 public class ManagerMainController implements Controller {
 	ManagerDao managerDao;
@@ -36,6 +38,14 @@ public class ManagerMainController implements Controller {
 			int todayVisitCnt = managerDao.getTodayVisitCnt();
 			
 			model.put("todayVisitCnt", todayVisitCnt);
+			
+			List<PersonalRequestDto> personalRequestList = managerDao.getPersonalRequestList();
+			
+			model.put("personalRequestList", personalRequestList);
+			
+			int newPersonalRequestCnt = managerDao.getNewPersonalRequestCnt();
+			
+			model.put("newPersonalRequestCnt", newPersonalRequestCnt);
 			
 			return "managerMain.jsp";
 		}
