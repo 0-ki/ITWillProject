@@ -241,6 +241,9 @@ public class ContextLoaderListener implements ServletContextListener{
 			
 			// 1:1 문의
 			sc.setAttribute("/request.do", new PersonalRequestController().setManagerDao(managerDao));
+			sc.setAttribute("/getPersonalRequest.do", new PersonalRequestController().setManagerDao(managerDao));
+			sc.setAttribute("/response.do", new PersonalRequestController().setManagerDao(managerDao));
+			sc.setAttribute("/responseEmail.do", new PersonalRequestController().setManagerDao(managerDao));
 			
 			//-------------------------------------------------------------------------------------------------------------
 			//			programmed by Dongsik - end

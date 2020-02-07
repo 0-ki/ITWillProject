@@ -551,6 +551,18 @@ public class DistpatcherServlet extends HttpServlet {
 				model.put("name", request.getParameter("name"));
 				model.put("email", request.getParameter("email"));
 				model.put("message", request.getParameter("message"));
+				model.put("req", "req");
+			} else if ("/getPersonalRequest.do".equals(servletPath)) {
+				model.put("req", "page");
+			} else if ("/response.do".equals(servletPath)) {
+				model.put("req", "resp");
+				model.put("reqNo", request.getParameter("reqNo"));
+			} else if ("/responseEmail.do".equals(servletPath)) {
+				model.put("reqNo", request.getParameter("reqNo"));
+				model.put("respSubject", request.getParameter("respSubject"));
+				model.put("respEmail", request.getParameter("respEmail"));
+				model.put("respMessage", request.getParameter("respMessage"));
+				model.put("req", "respEmail");
 			}
 
 		      

@@ -963,7 +963,7 @@ public class ManagerDao {
 		try {
 			conn = ds.getConnection();
 			
-			String sql = "insert into request(name, email, message, reqTime) values(?, ?, ?, sysdate())";
+			String sql = "insert into request(name, email, reqMessage, reqTime) values(?, ?, ?, sysdate())";
 			
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, name);
@@ -1002,7 +1002,7 @@ public class ManagerDao {
 		try {
 			conn = ds.getConnection();
 			
-			String sql = "select * from request";
+			String sql = "select * from request order by reqNo desc";
 			stmt = conn.createStatement();
 			rs = stmt.executeQuery(sql);
 			
@@ -1010,7 +1010,7 @@ public class ManagerDao {
 				list = new ArrayList<PersonalRequestDto>();
 				
 				do {
-					list.add(new PersonalRequestDto(rs.getInt("reqNo"), rs.getString("name"), rs.getString("email"), rs.getString("message"), rs.getString("reqTime"), rs.getString("respTime"), rs.getString("reqFlag")));
+					list.add(new PersonalRequestDto(rs.getInt("reqNo"), rs.getString("name"), rs.getString("email"), rs.getString("reqMessage"), rs.getString("respMessage"), rs.getString("reqTime"), rs.getString("respTime"), rs.getString("reqFlag")));
 					System.out.println(rs.getString("name"));
 				} while (rs.next());
 				
@@ -1061,6 +1061,77 @@ public class ManagerDao {
 		}
 		
 		return cnt;
+	}
+
+	public PersonalRequestDto getPersonalRequest(int reqNo) {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		PersonalRequestDto prDto = null;
+		
+		try {
+			conn = ds.getConnection();
+			
+			String sql = "select * from request where reqNo = ?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, reqNo);
+			rs = pstmt.executeQuery();
+			
+			if (rs.next()) {
+				prDto = new PersonalRequestDto(rs.getInt("reqNo"), rs.getString("name"), rs.getString("email"), rs.getString("reqMessage"), rs.getString("respMessage"), rs.getString("reqTime"), rs.getString("respTime"), rs.getString("reqFlag"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if(rs != null) rs.close();
+				if(pstmt != null) pstmt.close();
+				if(conn != null) conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+
+		return prDto;
+	}
+
+	public int updatePersonalRequest(int reqNo, String respMessage) {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		int res = 0;
+		
+		try {
+			conn = ds.getConnection();
+			
+			String sql = "update request set respMessage = ?, respTime = sysdate(), reqFlag = ? where reqNo = ?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, respMessage);
+			pstmt.setString(2, "Y");
+			pstmt.setInt(3, reqNo);
+			
+			res = pstmt.executeUpdate();
+			
+			if (res > 0) {
+				System.out.println("Update PersonalRequest Success!");
+			} else {
+				System.out.println("Update PersonalRequest Fail...");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if(rs != null) rs.close();
+				if(pstmt != null) pstmt.close();
+				if(conn != null) conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		return res;
 	}
 	
 	

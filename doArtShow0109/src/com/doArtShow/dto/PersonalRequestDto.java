@@ -4,25 +4,20 @@ public class PersonalRequestDto {
 	private int reqNo;
 	private String name;
 	private String email;
-	private String message;
+	private String reqMessage;
+	private String respMessage;
 	private String reqTime;
 	private String respTime;
 	private String reqFlag;
 	
 	public PersonalRequestDto() {}
-	
-	public PersonalRequestDto(String name, String email, String message) {
-		this.name = name;
-		this.email = email;
-		this.message = message;
-	}
 
-	public PersonalRequestDto(int reqNo, String name, String email, String message, String reqTime, String respTime,
-			String reqFlag) {
+	public PersonalRequestDto(int reqNo, String name, String email, String reqMessage, String respMessage, String reqTime, String respTime, String reqFlag) {
 		this.reqNo = reqNo;
 		this.name = name;
 		this.email = email;
-		this.message = message;
+		this.reqMessage = reqMessage;
+		this.respMessage = respMessage;
 		this.reqTime = reqTime;
 		this.respTime = respTime;
 		this.reqFlag = reqFlag;
@@ -52,12 +47,20 @@ public class PersonalRequestDto {
 		this.email = email;
 	}
 
-	public String getMessage() {
-		return message;
+	public String getReqMessage() {
+		return reqMessage;
 	}
 
-	public void setMessage(String message) {
-		this.message = message;
+	public void setReqMessage(String reqMessage) {
+		this.reqMessage = reqMessage;
+	}
+
+	public String getRespMessage() {
+		return respMessage;
+	}
+
+	public void setRespMessage(String respMessage) {
+		this.respMessage = respMessage;
 	}
 
 	public String getReqTime() {

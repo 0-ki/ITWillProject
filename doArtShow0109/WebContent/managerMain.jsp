@@ -54,9 +54,9 @@
 		            <div class="card text-white bg-primary o-hidden h-100">
 		              <div class="card-body">
 		                <div class="card-body-icon">
-		                  <i class="fas fa-fw fa-file-alt"></i>
+		                  <i class="fas fa-fw fa-cloud-upload-alt"></i>
 		                </div>
-		                <div class="mr-5"><span class="count">${newExhListCnt}</span> 새로운 게시물 요청</div>
+		                <div class="mr-5"><span class="count">${newExhListCnt}</span>&nbsp;&nbsp;&nbsp;&nbsp;새로운 게시물 요청</div>
 		              </div>
 		              <a class="card-footer text-white clearfix small z-1" href="newExhList.do">
 		                <span class="float-left">자세히 보기</span>
@@ -72,7 +72,7 @@
 		                <div class="card-body-icon">
 		                  <i class="fas fa-fw fa-bell"></i>
 		                </div>
-		                <div class="mr-5"><span class="count">${todayVisitCnt}</span> 오늘 방문자 수</div>
+		                <div class="mr-5"><span class="count">${todayVisitCnt}</span>&nbsp;&nbsp;&nbsp;&nbsp;오늘 방문자 수</div>
 		              </div>
 		              <a class="card-footer text-white clearfix small z-1" href="getTotalVisitCnt.do">
 		                <span class="float-left">자세히 보기</span>
@@ -88,9 +88,9 @@
 		                <div class="card-body-icon">
 		                  <i class="fas fa-fw fa-comment-dots"></i>
 		                </div>
-		                <div class="mr-5"><span class="count">${newPersonalRequestCnt}</span> 1:1 문의 요청</div>
+		                <div class="mr-5"><span class="count">${newPersonalRequestCnt}</span>&nbsp;&nbsp;&nbsp;&nbsp;1:1 문의 요청</div>
 		              </div>
-		              <a class="card-footer text-white clearfix small z-1" href="#">
+		              <a class="card-footer text-white clearfix small z-1" href="getPersonalRequest.do">
 		                <span class="float-left">자세히 보기</span>
 		                <span class="float-right">
 		                  <i class="fas fa-angle-right"></i>
@@ -104,7 +104,7 @@
 		                <div class="card-body-icon">
 		                  <i class="fas fa-fw fa-users"></i>
 		                </div>
-		                <div class="mr-5"><span class="count">${memberCnt}</span> 전체 회원 수</div>
+		                <div class="mr-5"><span class="count">${memberCnt}</span>&nbsp;&nbsp;&nbsp;&nbsp;전체 회원 수</div>
 		              </div>
 		              <a class="card-footer text-white clearfix small z-1" href="memberList.do">
 		                <span class="float-left">자세히 보기</span>
@@ -150,13 +150,13 @@
 						                    <div class="text-muted smaller">
 						                    	${fn:substring(list.reqTime, 0, 16)}
 						                    	<c:choose>
-						                    	<c:when test="${fn:substring(list.reqTime, 11, 13) >= 0 && fn:substring(list.reqTime, 11, 13) < 12}">
-						                    		AM
-						                    	</c:when>
-						                    	<c:otherwise>
-						                    		PM
-						                    	</c:otherwise>
-						                    </c:choose>
+							                    	<c:when test="${fn:substring(list.reqTime, 11, 13) >= 0 && fn:substring(list.reqTime, 11, 13) < 12}">
+							                    		AM
+							                    	</c:when>
+							                    	<c:otherwise>
+							                    		PM
+							                    	</c:otherwise>
+						                    	</c:choose>
 						                    </div>
 						                  </div>
 						                </div>
