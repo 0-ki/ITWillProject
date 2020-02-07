@@ -110,30 +110,55 @@
 			var inputGen = $('#gen_num');
 			var inputPage = $('#page_num');
 			
+			var cssChk = className.indexOf("selected");
+			
 			inputPage.val('0'); 
 			
 			$("#moreBtn_div").show();
 			
 			// 클릭된 항목으로 input에 값을 셋팅하고, .selected 클래스를 적용시켜줌.
 			switch (className) {
-			case 'ctg artSort':inputSort.val(parseInt(thisId));
+			case 'ctg artSort':
+				inputSort.val(parseInt(thisId));
 				$('.ctg.artSort').removeClass("selected");
 				$(this).addClass("selected");
 				break;
-
-			case 'ctg tag':inputTag.val(parseInt(thisId));
-				$('.ctg.tag').removeClass("selected");
-				$(this).addClass("selected");
+				
+			case 'ctg tag': 
+			case 'ctg tag selected':
+				inputTag.val(parseInt(thisId));
+				if(cssChk != -1){
+					$(this).removeClass("selected");
+					$('#tag_num').val('0');
+					inputTag = $('#tag_num');
+				}else{
+					$('.ctg.tag').removeClass("selected");
+					$(this).addClass("selected");
+				}
 				break;
-
-			case 'ctg loc':inputLoc.val(parseInt(thisId));
-				$('.ctg.loc').removeClass("selected");
-				$(this).addClass("selected");
+			case 'ctg loc':
+			case 'ctg loc selected':
+				inputLoc.val(parseInt(thisId));
+				if(cssChk != -1){
+					$(this).removeClass("selected");
+					$('#loc_num').val('0');
+					inputLoc = $('#loc_num')
+				}else{
+					$('.ctg.loc').removeClass("selected");
+					$(this).addClass("selected");
+				}
 				break;
-
-			case 'ctg gen':inputGen.val(parseInt(thisId));
-				$('.ctg.gen').removeClass("selected");
-				$(this).addClass("selected");
+			case 'ctg gen':
+			case 'ctg gen selected':	
+				inputGen.val(parseInt(thisId));
+				if(cssChk != -1){
+					$(this).removeClass("selected");
+					$('#gen_num').val('0');
+					inputGen = $('#gen_num')
+				}else{
+					$('.ctg.gen').removeClass("selected");
+					$(this).addClass("selected");
+				}
 				break;
 			default:
 				break;
