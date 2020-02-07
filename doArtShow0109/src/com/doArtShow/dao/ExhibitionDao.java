@@ -244,13 +244,13 @@ public class ExhibitionDao {
 				if(inputSort == 0){ //전체전시
 					if(inputTag > 0){
 						if(inputLoc > 0){
-							if(inputGen > 0){
+							if(inputGen > 0){ 
 								sql = "SELECT exhID, imageFile1, exhName, exhPlace, exhStartDate, exhEndDate "
 										+ "FROM (SELECT artshow.exhID, imageFile1, exhName, exhPlace, exhStartDate, exhEndDate, registerDate, exhReadCount, activeFlag FROM artshow, artshowtag WHERE artshow.exhID = artshowtag.exhID AND artshowtag.tagName=? AND ExhGubun4=? AND ExhGubun2=?) AS sort "
 										+ "WHERE ActiveFlag!='N' "
 										+ "ORDER BY registerDate DESC "
 										+ "LIMIT " + (inputPage*15) + ",15";
-							}else if(inputGen == 0){
+							}else if(inputGen == 0){ 
 								sql = "SELECT exhID, imageFile1, exhName, exhPlace, exhStartDate, exhEndDate "
 										+ "FROM (SELECT artshow.exhID, imageFile1, exhName, exhPlace, exhStartDate, exhEndDate, registerDate, exhReadCount, activeFlag FROM artshow, artshowtag WHERE artshow.exhID = artshowtag.exhID AND artshowtag.tagName=? AND ExhGubun4=?) AS sort "
 										+ "WHERE ActiveFlag!='N' "
@@ -258,7 +258,7 @@ public class ExhibitionDao {
 										+ "LIMIT " + (inputPage*15) + ",15";
 							}
 						}else if(inputLoc == 0){
-							if(inputGen > 0){
+							if(inputGen > 0){ 
 								sql = "SELECT exhID, imageFile1, exhName, exhPlace, exhStartDate, exhEndDate "
 										+ "FROM (SELECT artshow.exhID, imageFile1, exhName, exhPlace, exhStartDate, exhEndDate, registerDate, exhReadCount, activeFlag FROM artshow, artshowtag WHERE artshow.exhID = artshowtag.exhID AND artshowtag.tagName=? AND ExhGubun2=?) AS sort "
 										+ "WHERE ActiveFlag!='N' "
@@ -276,27 +276,27 @@ public class ExhibitionDao {
 						if(inputLoc > 0){
 							if(inputGen > 0){
 								sql = "SELECT exhID, imageFile1, exhName, exhPlace, exhStartDate, exhEndDate "
-										+ "FROM (SELECT artshow.exhID, imageFile1, exhName, exhPlace, exhStartDate, exhEndDate, registerDate, exhReadCount, activeFlag FROM artshow WHERE ExhGubun4=? AND ExhGubun2=?) AS sort "
-										+ "WHERE ActiveFlag!='N' "
+										+ "FROM artshow "
+										+ "WHERE ExhGubun4=? AND ExhGubun2=? AND ActiveFlag!='N' "
 										+ "ORDER BY registerDate DESC "
 										+ "LIMIT " + (inputPage*15) + ",15";
 							}else if(inputGen == 0){
 								sql = "SELECT exhID, imageFile1, exhName, exhPlace, exhStartDate, exhEndDate "
-										+ "FROM (SELECT artshow.exhID, imageFile1, exhName, exhPlace, exhStartDate, exhEndDate, registerDate, exhReadCount, activeFlag FROM artshow WHERE ExhGubun4=?) AS sort "
-										+ "WHERE ActiveFlag='Y' AND ActiveFlag='E' "
+										+ "FROM artshow "
+										+ "WHERE ExhGubun4=? AND ActiveFlag!='N' "
 										+ "ORDER BY registerDate DESC "
 										+ "LIMIT " + (inputPage*15) + ",15";
 							}
 						}else if(inputLoc == 0){
 							if(inputGen > 0){
 								sql = "SELECT exhID, imageFile1, exhName, exhPlace, exhStartDate, exhEndDate "
-										+ "FROM (SELECT artshow.exhID, imageFile1, exhName, exhPlace, exhStartDate, exhEndDate, registerDate, exhReadCount, activeFlag FROM artshow WHERE ExhGubun2=?) AS sort "
-										+ "WHERE ActiveFlag!='N' "
+										+ "FROM artshow "
+										+ "WHERE ExhGubun2=? AND ActiveFlag!='N' "
 										+ "ORDER BY registerDate DESC "
 										+ "LIMIT " + (inputPage*15) + ",15";
 							}else if(inputGen == 0){
 								sql = "SELECT exhID, imageFile1, exhName, exhPlace, exhStartDate, exhEndDate "
-										+ "FROM (SELECT artshow.exhID, imageFile1, exhName, exhPlace, exhStartDate, exhEndDate, registerDate, exhReadCount, activeFlag FROM artshow) AS sort "
+										+ "FROM artshow "
 										+ "WHERE ActiveFlag!='N' "
 										+ "ORDER BY registerDate DESC "
 										+ "LIMIT " + (inputPage*15) + ",15";
@@ -338,27 +338,27 @@ public class ExhibitionDao {
 						if(inputLoc > 0){
 							if(inputGen > 0){
 								sql = "SELECT exhID, imageFile1, exhName, exhPlace, exhStartDate, exhEndDate "
-										+ "FROM (SELECT artshow.exhID, imageFile1, exhName, exhPlace, exhStartDate, exhEndDate, registerDate, exhReadCount, activeFlag FROM artshow WHERE ExhGubun4=? AND ExhGubun2=?) AS sort "
-										+ "WHERE DATE(exhStartDate)<=DATE(now()) AND DATE(exhEndDate)>=DATE(now()) AND ActiveFlag='Y' "
+										+ "FROM artshow "
+										+ "WHERE ExhGubun4=? AND ExhGubun2=? AND DATE(exhStartDate)<=DATE(now()) AND DATE(exhEndDate)>=DATE(now()) AND ActiveFlag='Y' "
 										+ "ORDER BY exhStartDate DESC "
 										+ "LIMIT " + (inputPage*15) + ",15";
 							}else if(inputGen == 0){
 								sql = "SELECT exhID, imageFile1, exhName, exhPlace, exhStartDate, exhEndDate "
-										+ "FROM (SELECT artshow.exhID, imageFile1, exhName, exhPlace, exhStartDate, exhEndDate, registerDate, exhReadCount, activeFlag FROM artshow WHERE ExhGubun4=?) AS sort "
-										+ "WHERE DATE(exhStartDate)<=DATE(now()) AND DATE(exhEndDate)>=DATE(now()) AND ActiveFlag='Y' "
+										+ "FROM artshow "
+										+ "WHERE ExhGubun4=? AND DATE(exhStartDate)<=DATE(now()) AND DATE(exhEndDate)>=DATE(now()) AND ActiveFlag='Y' "
 										+ "ORDER BY exhStartDate DESC "
 										+ "LIMIT " + (inputPage*15) + ",15";
 							}
 						}else if(inputLoc == 0){
 							if(inputGen > 0){
 								sql = "SELECT exhID, imageFile1, exhName, exhPlace, exhStartDate, exhEndDate "
-										+ "FROM (SELECT artshow.exhID, imageFile1, exhName, exhPlace, exhStartDate, exhEndDate, registerDate, exhReadCount, activeFlag FROM artshow WHERE ExhGubun2=?) AS sort "
-										+ "WHERE DATE(exhStartDate)<=DATE(now()) AND DATE(exhEndDate)>=DATE(now()) AND ActiveFlag='Y' "
+										+ "FROM artshow "
+										+ "WHERE ExhGubun2=? AND DATE(exhStartDate)<=DATE(now()) AND DATE(exhEndDate)>=DATE(now()) AND ActiveFlag='Y' "
 										+ "ORDER BY exhStartDate DESC "
 										+ "LIMIT " + (inputPage*15) + ",15";
 							}else if(inputGen == 0){
 								sql = "SELECT exhID, imageFile1, exhName, exhPlace, exhStartDate, exhEndDate "
-										+ "FROM (SELECT artshow.exhID, imageFile1, exhName, exhPlace, exhStartDate, exhEndDate, registerDate, exhReadCount, activeFlag FROM artshow) AS sort "
+										+ "FROM artshow "
 										+ "WHERE DATE(exhStartDate)<=DATE(now()) AND DATE(exhEndDate)>=DATE(now()) AND ActiveFlag='Y' "
 										+ "ORDER BY exhStartDate DESC "
 										+ "LIMIT " + (inputPage*15) + ",15";
@@ -400,27 +400,27 @@ public class ExhibitionDao {
 						if(inputLoc > 0){
 							if(inputGen > 0){
 								sql = "SELECT exhID, imageFile1, exhName, exhPlace, exhStartDate, exhEndDate "
-										+ "FROM (SELECT artshow.exhID, imageFile1, exhName, exhPlace, exhStartDate, exhEndDate, registerDate, exhReadCount, activeFlag FROM artshow WHERE ExhGubun4=? AND ExhGubun2=?) AS sort "
-										+ "WHERE DATE(exhStartDate)<=DATE(now()) AND DATE(exhEndDate)>=DATE(now()) AND ActiveFlag='Y' "
+										+ "FROM artshow "
+										+ "WHERE ExhGubun4=? AND ExhGubun2=? AND DATE(exhStartDate)<=DATE(now()) AND DATE(exhEndDate)>=DATE(now()) AND ActiveFlag='Y' "
 										+ "ORDER BY exhReadCount DESC "
 										+ "LIMIT " + (inputPage*15) + ",15";
 							}else if(inputGen == 0){
 								sql = "SELECT exhID, imageFile1, exhName, exhPlace, exhStartDate, exhEndDate "
-										+ "FROM (SELECT artshow.exhID, imageFile1, exhName, exhPlace, exhStartDate, exhEndDate, registerDate, exhReadCount, activeFlag FROM artshow WHERE ExhGubun4=?) AS sort "
-										+ "WHERE DATE(exhStartDate)<=DATE(now()) AND DATE(exhEndDate)>=DATE(now()) AND ActiveFlag='Y' "
+										+ "FROM artshow "
+										+ "WHERE ExhGubun4=? AND DATE(exhStartDate)<=DATE(now()) AND DATE(exhEndDate)>=DATE(now()) AND ActiveFlag='Y' "
 										+ "ORDER BY exhReadCount DESC "
 										+ "LIMIT " + (inputPage*15) + ",15";
 							}
 						}else if(inputLoc == 0){
 							if(inputGen > 0){
 								sql = "SELECT exhID, imageFile1, exhName, exhPlace, exhStartDate, exhEndDate "
-										+ "FROM (SELECT artshow.exhID, imageFile1, exhName, exhPlace, exhStartDate, exhEndDate, registerDate, exhReadCount, activeFlag FROM artshow WHERE ExhGubun2=?) AS sort "
-										+ "WHERE DATE(exhStartDate)<=DATE(now()) AND DATE(exhEndDate)>=DATE(now()) AND ActiveFlag='Y' "
+										+ "FROM artshow "
+										+ "WHERE ExhGubun2=? AND DATE(exhStartDate)<=DATE(now()) AND DATE(exhEndDate)>=DATE(now()) AND ActiveFlag='Y' "
 										+ "ORDER BY exhReadCount DESC "
 										+ "LIMIT " + (inputPage*15) + ",15";
 							}else if(inputGen == 0){
 								sql = "SELECT exhID, imageFile1, exhName, exhPlace, exhStartDate, exhEndDate "
-										+ "FROM (SELECT artshow.exhID, imageFile1, exhName, exhPlace, exhStartDate, exhEndDate, registerDate, exhReadCount, activeFlag FROM artshow) AS sort "
+										+ "FROM artshow "
 										+ "WHERE DATE(exhStartDate)<=DATE(now()) AND DATE(exhEndDate)>=DATE(now()) AND ActiveFlag='Y' "
 										+ "ORDER BY exhReadCount DESC "
 										+ "LIMIT " + (inputPage*15) + ",15";
@@ -462,27 +462,27 @@ public class ExhibitionDao {
 						if(inputLoc > 0){
 							if(inputGen > 0){
 								sql = "SELECT exhID, imageFile1, exhName, exhPlace, exhStartDate, exhEndDate "
-										+ "FROM (SELECT artshow.exhID, imageFile1, exhName, exhPlace, exhStartDate, exhEndDate, registerDate, exhReadCount, activeFlag FROM artshow WHERE ExhGubun4=? AND ExhGubun2=?) AS sort "
-										+ "WHERE DATE(exhEndDate)<=DATE_ADD(now(), INTERVAL +2 MONTH) AND ActiveFlag='Y' "
+										+ "FROM artshow "
+										+ "WHERE ExhGubun4=? AND ExhGubun2=? AND DATE(exhEndDate)<=DATE_ADD(now(), INTERVAL +2 MONTH) AND ActiveFlag='Y' "
 										+ "ORDER BY exhEndDate ASC "
 										+ "LIMIT " + (inputPage*15) + ",15";
 							}else if(inputGen == 0){
 								sql = "SELECT exhID, imageFile1, exhName, exhPlace, exhStartDate, exhEndDate "
-										+ "FROM (SELECT artshow.exhID, imageFile1, exhName, exhPlace, exhStartDate, exhEndDate, registerDate, exhReadCount, activeFlag FROM artshow WHERE ExhGubun4=?) AS sort "
-										+ "WHERE DATE(exhEndDate)<=DATE_ADD(now(), INTERVAL +2 MONTH) AND ActiveFlag='Y' "
+										+ "FROM artshow "
+										+ "WHERE ExhGubun4=? AND DATE(exhEndDate)<=DATE_ADD(now(), INTERVAL +2 MONTH) AND ActiveFlag='Y' "
 										+ "ORDER BY exhEndDate ASC "
 										+ "LIMIT " + (inputPage*15) + ",15";
 							}
 						}else if(inputLoc == 0){
 							if(inputGen > 0){
 								sql = "SELECT exhID, imageFile1, exhName, exhPlace, exhStartDate, exhEndDate "
-										+ "FROM (SELECT artshow.exhID, imageFile1, exhName, exhPlace, exhStartDate, exhEndDate, registerDate, exhReadCount, activeFlag FROM artshow WHERE ExhGubun2=?) AS sort "
-										+ "WHERE DATE(exhEndDate)<=DATE_ADD(now(), INTERVAL +2 MONTH) AND ActiveFlag='Y' "
+										+ "FROM artshow "
+										+ "WHERE ExhGubun2=? AND DATE(exhEndDate)<=DATE_ADD(now(), INTERVAL +2 MONTH) AND ActiveFlag='Y' "
 										+ "ORDER BY exhEndDate ASC "
 										+ "LIMIT " + (inputPage*15) + ",15";
 							}else if(inputGen == 0){
 								sql = "SELECT exhID, imageFile1, exhName, exhPlace, exhStartDate, exhEndDate "
-										+ "FROM (SELECT artshow.exhID, imageFile1, exhName, exhPlace, exhStartDate, exhEndDate, registerDate, exhReadCount, activeFlag FROM artshow) AS sort "
+										+ "FROM artshow "
 										+ "WHERE DATE(exhEndDate)<=DATE_ADD(now(), INTERVAL +2 MONTH) AND ActiveFlag='Y' "
 										+ "ORDER BY exhEndDate ASC "
 										+ "LIMIT " + (inputPage*15) + ",15";
@@ -494,25 +494,25 @@ public class ExhibitionDao {
 						if(inputLoc > 0){
 							if(inputGen > 0){
 								sql = "SELECT exhID, imageFile1, exhName, exhPlace, exhStartDate, exhEndDate "
-										+ "FROM (SELECT artshow.exhID, imageFile1, exhName, exhPlace, exhStartDate, exhEndDate, registerDate, exhReadCount FROM artshow, artshowtag, activeFlag WHERE artshow.exhID = artshowtag.exhID AND artshowtag.tagName=? AND ExhGubun4=? AND ExhGubun2=?) AS sort "
+										+ "FROM (SELECT artshow.exhID, imageFile1, exhName, exhPlace, exhStartDate, exhEndDate, registerDate, exhReadCount, activeFlag FROM artshow, artshowtag WHERE artshow.exhID = artshowtag.exhID AND artshowtag.tagName=? AND ExhGubun4=? AND ExhGubun2=?) AS sort "
 										+ "WHERE ActiveFlag='E' "
 										+ "ORDER BY exhEndDate DESC "
 										+ "LIMIT " + (inputPage*15) + ",15";
-							}else if(inputGen == 0){
+							}else if(inputGen == 0){ 
 								sql = "SELECT exhID, imageFile1, exhName, exhPlace, exhStartDate, exhEndDate "
-										+ "FROM (SELECT artshow.exhID, imageFile1, exhName, exhPlace, exhStartDate, exhEndDate, registerDate, exhReadCount FROM artshow, artshowtag, activeFlag WHERE artshow.exhID = artshowtag.exhID AND artshowtag.tagName=? AND ExhGubun4=?) AS sort "
+										+ "FROM (SELECT artshow.exhID, imageFile1, exhName, exhPlace, exhStartDate, exhEndDate, registerDate, exhReadCount, activeFlag FROM artshow, artshowtag WHERE artshow.exhID = artshowtag.exhID AND artshowtag.tagName=? AND ExhGubun4=?) AS sort "
 										+ "WHERE ActiveFlag='E' "
 										+ "ORDER BY exhEndDate DESC "
 										+ "LIMIT " + (inputPage*15) + ",15";
 							}
 						}else if(inputLoc == 0){
-							if(inputGen > 0){
+							if(inputGen > 0){ 
 								sql = "SELECT exhID, imageFile1, exhName, exhPlace, exhStartDate, exhEndDate "
 										+ "FROM (SELECT artshow.exhID, imageFile1, exhName, exhPlace, exhStartDate, exhEndDate, registerDate, exhReadCount, activeFlag FROM artshow, artshowtag WHERE artshow.exhID = artshowtag.exhID AND artshowtag.tagName=? AND ExhGubun2=?) AS sort "
 										+ "WHERE ActiveFlag='E' "
 										+ "ORDER BY exhEndDate DESC "
 										+ "LIMIT " + (inputPage*15) + ",15";
-							}else if(inputGen == 0){
+							}else if(inputGen == 0){ 
 								sql = "SELECT exhID, imageFile1, exhName, exhPlace, exhStartDate, exhEndDate "
 										+ "FROM (SELECT artshow.exhID, imageFile1, exhName, exhPlace, exhStartDate, exhEndDate, registerDate, exhReadCount, activeFlag FROM artshow, artshowtag WHERE artshow.exhID = artshowtag.exhID AND artshowtag.tagName=?) AS sort "
 										+ "WHERE ActiveFlag='E' "
@@ -524,27 +524,27 @@ public class ExhibitionDao {
 						if(inputLoc > 0){
 							if(inputGen > 0){
 								sql = "SELECT exhID, imageFile1, exhName, exhPlace, exhStartDate, exhEndDate "
-										+ "FROM (SELECT artshow.exhID, imageFile1, exhName, exhPlace, exhStartDate, exhEndDate, registerDate, exhReadCount, activeFlag FROM artshow WHERE ExhGubun4=? AND ExhGubun2=?) AS sort "
-										+ "WHERE ActiveFlag='E' "
+										+ "FROM artshow "
+										+ "WHERE ExhGubun4=? AND ExhGubun2=? AND ActiveFlag='E' "
 										+ "ORDER BY exhEndDate DESC "
 										+ "LIMIT " + (inputPage*15) + ",15";
 							}else if(inputGen == 0){
 								sql = "SELECT exhID, imageFile1, exhName, exhPlace, exhStartDate, exhEndDate "
-										+ "FROM (SELECT artshow.exhID, imageFile1, exhName, exhPlace, exhStartDate, exhEndDate, registerDate, exhReadCount, activeFlag FROM artshow WHERE ExhGubun4=?) AS sort "
-										+ "WHERE ActiveFlag='E' "
+										+ "FROM artshow "
+										+ "WHERE ExhGubun4=? AND ActiveFlag='E' "
 										+ "ORDER BY exhEndDate DESC "
 										+ "LIMIT " + (inputPage*15) + ",15";
 							}
 						}else if(inputLoc == 0){
 							if(inputGen > 0){
 								sql = "SELECT exhID, imageFile1, exhName, exhPlace, exhStartDate, exhEndDate "
-										+ "FROM (SELECT artshow.exhID, imageFile1, exhName, exhPlace, exhStartDate, exhEndDate, registerDate, exhReadCount, activeFlag FROM artshow WHERE ExhGubun2=?) AS sort "
-										+ "WHERE ActiveFlag='E' "
+										+ "FROM artshow "
+										+ "WHERE ExhGubun2=? AND ActiveFlag='E' "
 										+ "ORDER BY exhEndDate DESC "
 										+ "LIMIT " + (inputPage*15) + ",15";
 							}else if(inputGen == 0){
 								sql = "SELECT exhID, imageFile1, exhName, exhPlace, exhStartDate, exhEndDate "
-										+ "FROM (SELECT artshow.exhID, imageFile1, exhName, exhPlace, exhStartDate, exhEndDate, registerDate, exhReadCount, activeFlag FROM artshow) AS sort "
+										+ "FROM artshow "
 										+ "WHERE ActiveFlag='E' "
 										+ "ORDER BY exhEndDate DESC "
 										+ "LIMIT " + (inputPage*15) + ",15";
